@@ -3,6 +3,6 @@ package com.rocket.laf.controller;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class lafController {
+public class LafController {
 
 }
