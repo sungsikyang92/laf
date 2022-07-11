@@ -3,6 +3,7 @@ target/
 .mvn/
 mvnw
 mvnw.cmd
+application.properties
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -56,9 +57,9 @@ build/
 .idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-.idea/**/dataSources/
+.idea/**/dataSources/`
 .idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
+.idea/**/dataSources.local.xml`
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
