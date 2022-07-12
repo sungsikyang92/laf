@@ -5,5 +5,5 @@ import com.rocket.laf.dto.CommunityDto;
 import java.util.List;
 
 public interface CommunityService {
-    List<CommunityDto> getComBoardList();
+    public List<CommunityDto> getComBoardList();
 }

@@ -9,6 +9,6 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-    @Select(" SELECT cBoardNo,cTitle,cContent,cCreateDate,cIsModified,cLocation,cCategory,userNo,hashNo,picNo FROM Community ")
+    @Select(" SELECT * FROM Community ")
     List<CommunityDto> getComBoardList();
 }
