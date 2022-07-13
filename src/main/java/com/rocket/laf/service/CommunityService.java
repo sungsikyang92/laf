@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CommunityService {
     List<CommunityDto> getComBoardList();
+    int insertComBoard(CommunityDto communityDto);
 }
