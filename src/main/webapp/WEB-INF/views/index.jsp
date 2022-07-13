@@ -25,8 +25,12 @@
                 hi
                 <c:set var="t" value="hello" />
 
+                
+
 
             </div>
+            
+            <h2><a href="user/login">login</a></h2>
 
             <footer class="footer_container">
 
