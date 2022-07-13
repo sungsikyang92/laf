@@ -1,6 +1,10 @@
 package com.rocket.laf.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 
@@ -10,14 +14,14 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class CommunityDto {
-    private int cBoardNo;
+    private long cBoardNo;
     private String cTitle;
     private String cContent;
     private Date cCreateDate;
     private boolean cIsModified;
     private String cLocation;
     private String cCategory;
-    private int userNo;
-    private int hashNo;
-    private int picNo;
+    private long userNo;
+    private long hashNo;
+    private long picNo;
 }
