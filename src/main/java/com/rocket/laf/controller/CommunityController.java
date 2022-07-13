@@ -2,7 +2,11 @@ package com.rocket.laf.controller;
 
 import com.rocket.laf.dto.CommunityDto;
 import com.rocket.laf.service.impl.CommunityServiceImpl;
+import com.rocket.laf.dto.CommunityDto;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class CommunityController {
-<<<<<<< HEAD
-    System.out.println("kk");
-=======
 
-    private final CommunityServiceImpl communityService;
+    @Autowired
+    private CommunityServiceImpl communityService;
 
     @GetMapping("/cBoard")
     public String getComBoardList(Model model) {
@@ -34,8 +36,5 @@ public class CommunityController {
     public String insertComBoard(CommunityDto communityDto) {
         communityService.insertComBoard(communityDto);
         return "redirect:/cBoard";
-
     }
-
->>>>>>> com004
 }
