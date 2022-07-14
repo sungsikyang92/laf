@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,12 +30,18 @@ public class CommunityController {
 
     @GetMapping("/write")
     public String openComBoardWrite() {
-        return "community/comBoardWrite";
+        return "/community/comBoardWrite";
     }
 
-    @PostMapping("write")
+    @PostMapping("/write")
     public String insertComBoard(CommunityDto communityDto) {
         communityService.insertComBoard(communityDto);
         return "redirect:/cBoard";
+    }
+
+    @GetMapping("/{cBoardNo}")
+    public String getComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
+        model.addAttribute("cbDetail", communityService.getComBoardDetail(cBoardNo));
+        return "/community/comBoardDetail";
     }
 }

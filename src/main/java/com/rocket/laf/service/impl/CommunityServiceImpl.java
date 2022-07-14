@@ -24,4 +24,9 @@ public class CommunityServiceImpl implements CommunityService {
     public int insertComBoard(CommunityDto communityDto) {
         return communityMapper.insertComBoard(communityDto);
     }
+
+    @Override
+    public CommunityDto getComBoardDetail(int cBoardNo) {
+        return communityMapper.getComBoardDetail(cBoardNo);
+    }
 }

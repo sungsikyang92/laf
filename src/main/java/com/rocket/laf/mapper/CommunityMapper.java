@@ -15,4 +15,7 @@ public interface CommunityMapper {
 
     @Insert(" INSERT INTO Community (cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo, picNo) VALUES (#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},#{userNo},#{hashNo},#{picNo}) ")
     int insertComBoard(CommunityDto communityDto);
+
+    @Select(" SELECT * FROM Community WHERE cBoardNo = #{cBoardNo}")
+    CommunityDto getComBoardDetail(long cBoardNo);
 }

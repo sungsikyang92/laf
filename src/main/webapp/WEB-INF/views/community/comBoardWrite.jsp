@@ -30,7 +30,7 @@
                     </a>
                 </div>
                 <div class="right_nav">
-                    <button class="btn" onclick="location.href='/write'">글쓰기</button>
+                    <button class="btn" onclick="location.href='#'">글쓰기</button>
                     <button class="btn">로그인/마이페이지</button>
                 </div>
             </div>
@@ -39,20 +39,26 @@
 
 
         <div class="contents_container">
-            <table border="1">
-                <tr>
-                    <th>BoardNo</th>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>CreateDate</th>
-                    <th>IsModified</th>
-                    <th>Location</th>
-                    <th>Category</th>
-                    <th>userNo</th>
-                    <th>hashNo</th>
-                    <th>picNo</th>
-                </tr>
-            </table>
+            <form action="/cBaord/write" method="post">
+                <table>
+                    <tr>
+                        <td>Pic Input</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="cBoardWriteTitle" placeholder="글 제목을 입력해주세요"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea name="cBoardWriteContent" placeholder="글 내용을 입력해주세요"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="취소" onclick="location.href='/cBoard'">
+                            <input type="submit" value="확인"></td>
+                    </tr>
+                </table>
+            </form>
         </div>
 
 
@@ -73,7 +79,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="cBoard" class="cboard">
+                    <a href="/cBoard" class="cboard">
                         <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
                         <span class="item">커뮤니티</span>
                     </a>
