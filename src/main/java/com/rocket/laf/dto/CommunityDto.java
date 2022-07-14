@@ -1,12 +1,12 @@
 package com.rocket.laf.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,4 +24,7 @@ public class CommunityDto {
     private long userNo;
     private long hashNo;
     private long picNo;
+
+    
+    
 }

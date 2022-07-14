@@ -1,19 +1,21 @@
 package com.rocket.laf.service.impl;
 
-import com.rocket.laf.dto.CommunityDto;
-import com.rocket.laf.mapper.CommunityMapper;
-import com.rocket.laf.service.CommunityService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.rocket.laf.dto.CommunityDto;
+import com.rocket.laf.mapper.CommunityMapper;
+import com.rocket.laf.service.CommunityService;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
-
-    private CommunityMapper communityMapper;
+	
+    private final  CommunityMapper communityMapper;
 
     @Override
     public List<CommunityDto> getComBoardList() {
