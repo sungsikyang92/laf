@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
 
-    private final CommunityMapper communityMapper;
+    private CommunityMapper communityMapper;
 
     @Override
     public List<CommunityDto> getComBoardList() {
