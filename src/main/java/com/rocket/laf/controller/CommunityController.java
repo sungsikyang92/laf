@@ -12,27 +12,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequiredArgsConstructor
+@RequestMapping("/cBoard")
 public class CommunityController {
 
     @Autowired
     private CommunityServiceImpl communityService;
 
-    @GetMapping("/cBoard")
+    @GetMapping("")
     public String getComBoardList(Model model) {
         model.addAttribute("cbList", communityService.getComBoardList());
         return "/community/ComBoardList";
     }
 
-    @GetMapping("/cBoard/write")
+    @GetMapping("/write")
     public String openComBoardWrite() {
-        return "/community/comBoardWrite";
+        return "community/comBoardWrite";
     }
 
-    @PostMapping("/cBoard/write")
+    @PostMapping("write")
     public String insertComBoard(CommunityDto communityDto) {
         communityService.insertComBoard(communityDto);
         return "redirect:/cBoard";

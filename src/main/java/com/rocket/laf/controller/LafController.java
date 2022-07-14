@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LafController {
 
     @GetMapping("/")
-    public String test() {
+    public String main() {
         return "index";
+    }
+
+    @GetMapping("/Lostwrite")
+    public String Lostwrite() {
+        return "lostcommunity/lostwrite";
     }
 }
