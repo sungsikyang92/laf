@@ -10,10 +10,10 @@ import com.rocket.laf.dto.PictureDto;
 @Mapper
 public interface PictureMapper {
 
-    @Select("SELECT * FROM Picture")
-    List<PictureDto> getAllPictuer();
+    @Select("SELECT * FROM Picture WHERE picNo = #{picNo}")
+    List<PictureDto> getAllPictuer(String picNo);
 
-    @Select("SELECT mainPicLoc FROM Picture When picNo = #{picNo}")
+    @Select("SELECT mainPicLoc FROM Picture WHERE picNo = #{picNo}")
     String getMainPicLoc(long picNo);
 
 }

@@ -7,15 +7,16 @@
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-            <title>Laf Lostwrite</title>
-
+            <title>Document</title>
 
             <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
             <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
             <link rel="stylesheet"
                 href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
             <script src='resources/js/main_sidebar.js'></script>
+            <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
+
+
         </head>
 
         <body class="body_container">
@@ -36,9 +37,59 @@
 
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
-                    
-
-
+                    <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
+                        ${boardDetail[0].LTitle}</h1>
+                    <br>
+                    <h2>현재 동네 : ${boardDetail[0].LLocation}</h2>
+                    <div class="child-page-listing">
+                        <br>
+                        <br>
+                        <h2>사진 </h2>
+                        <div class="grid-container"
+                            style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;padding-top:20px">
+                            <c:choose>
+                                <c:when test="${empty allpicture }">
+                                    <td colspan="4">----사진이 없다----</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <article class="location-listing">
+                                        <div class="location-title" href="">대표사진 </div>
+                                        <div class="location-image">
+                                            <img width="300" height="169" src="${allpicture[0].mainPicLoc}" alt="">
+                                        </div>
+                                    </article>
+                                    <article class="location-listing">
+                                        <div class="location-title" href="">사진 1 </div>
+                                        <div class="location-image">
+                                            <img width="300" height="169" src="${allpicture[0].picLoc1}" alt="">
+                                        </div>
+                                    </article>
+                                    <article class="location-listing">
+                                        <div class="location-title" href="">사진 2 </div>
+                                        <div class="location-image">
+                                            <img width="300" height="169" src="${allpicture[0].picLoc2}" alt="">
+                                        </div>
+                                    </article>
+                                    <article class="location-listing">
+                                        <div class="location-title" href="">사진 3 </div>
+                                        <div class="location-image">
+                                            <img width="300" height="169" src="${allpicture[0].picLoc3}" alt="">
+                                        </div>
+                                    </article>
+                                    <article class="location-listing">
+                                        <div class="location-title" href="">사진 4 </div>
+                                        <div class="location-image">
+                                            <img width="300" height="169" src="${allpicture[0].picLoc4}" alt="">
+                                        </div>
+                                    </article>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <!-- end grid container -->
+                    </div>
+                    <br>
+                    <h2>작성일 : ${boardDetail[0].LCreateDate}</h2>
+                    <h3>글내용 : ${boardDetail[0].LContent}</h3>
                 </div>
 
 

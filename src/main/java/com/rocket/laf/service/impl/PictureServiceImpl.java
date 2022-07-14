@@ -16,9 +16,9 @@ public class PictureServiceImpl implements PictureService {
     private PictureMapper pictureMapper;
 
     @Override
-    public List<PictureDto> getAllPictuer() {
+    public List<PictureDto> getAllPictuer(String picNo) {
         // TODO Auto-generated method stub
-        return pictureMapper.getAllPictuer();
+        return pictureMapper.getAllPictuer(picNo);
     }
 
     @Override
