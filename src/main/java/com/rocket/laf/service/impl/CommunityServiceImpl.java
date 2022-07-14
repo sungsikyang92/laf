@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
 
+    @Autowired
     private final CommunityMapper communityMapper;
 
     @Override

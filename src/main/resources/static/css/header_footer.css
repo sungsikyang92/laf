@@ -70,16 +70,28 @@
 .wrapper .section {
     width: calc(100% - 225px);
     margin-left: 225px;
+    display: flex;
     transition: all 0.5s ease;
+    vertical-align: middle;
 }
 
 .wrapper .section .top_navbar {
     background: #6667AB;
     height: 80px;
-    display: flex;
-    align-items: center;
+    width: 100%;
     padding: 0 30px;
 
+}
+
+.wrapper .section .hamburger {
+    float: left;
+    width: 40px;
+    margin-top: 25px;
+}
+
+.top_navbar .right_nav {
+    float: right;
+    margin-top: 15px;
 }
 
 .wrapper .section .top_navbar .hamburger a {
