@@ -32,7 +32,7 @@ public class CommunityController {
         return "community/comBoardWrite";
     }
 
-    @PostMapping("/cBoard/write")
+    @PostMapping("write")
     public String insertComBoard(CommunityDto communityDto) {
         communityService.insertComBoard(communityDto);
         return "redirect:/cBoard";
