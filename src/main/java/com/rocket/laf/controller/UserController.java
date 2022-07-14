@@ -1,5 +1,7 @@
 package com.rocket.laf.controller;
 
+import javax.net.ssl.SSLSocket;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.rocket.laf.service.TermsService;
 import com.rocket.laf.service.UserService;
 
 @Controller
@@ -17,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private TermsService userService;
+    private TermsService termsService;
 
 
 
@@ -29,7 +32,8 @@ public class UserController {
     public String userSignUpBotton(Model model){
         logger.info("------------------------Controller mapping 'signUp button call'");
 
-        model.addAttribute("terms", terms)
+        int tVersion = 1;
+        model.addAttribute("terms", termsService.selectOne(tVersion));
 
 
         return "user/terms";
