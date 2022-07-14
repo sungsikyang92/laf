@@ -15,6 +15,7 @@
             <link rel="stylesheet" href="css/header_footer_btn.css" type="text/css">
             <link rel="stylesheet"
                 href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+            <script src='/js/main_sidebar.js'></script>
         </head>
 
         <body class="body_container">
@@ -27,7 +28,7 @@
                             </a>
                         </div>
                         <div class="right_nav">
-                            
+
                         </div>
                     </div>
                 </div>
