@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,22 +9,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LaF</title>
 
-    <link rel="stylesheet" href="css/header_footer.css" type="text/css">
-    <link rel="stylesheet" href="css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet" href="css/star.css" type="text/css">
-    <link rel="stylesheet" href="css/main.css" type="text/css">
-    <link rel="stylesheet" media="screen and (max-width:390px)" href="css/main_mobile.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
-    <script src='/js/main_sidebar.js'></script>
-    <script src='/js/star.js'></script>
+    <link rel="stylesheet" href="resources/css/main.css" type="text/css">
+    <link rel="stylesheet" media="screen and (max-width:390px)" href="resources/css/main_mobile.css" type="text/css">
+
+
+    <script src='resources/js/main_sidebar.js'></script>
 </head>
 
 <body class="body_container">
-
 <div class="wrapper">
     <div class="section">
         <div class="top_navbar">
@@ -33,52 +33,30 @@
                 </a>
             </div>
             <div class="right_nav">
-                <button class="btn" onclick="location.href='/cBoard/write'">글쓰기</button>
+                <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
                 <button class="btn">로그인/마이페이지</button>
             </div>
         </div>
     </div>
 
 
-
+    <!-- 컨텐츠 삽입부분-->
     <div class="contents_container">
-        <table border="1">
-            <tr>
-                <th>BoardNo</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>CreateDate</th>
-                <th>IsModified</th>
-                <th>Location</th>
-                <th>Category</th>
-                <th>userNo</th>
-                <th>hashNo</th>
-                <th>picNo</th>
-            </tr>
-            <c:choose>
-                <c:when test="${empty cbList }">
-                    <tr>
-                        <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                    </tr>
-                </c:when>
-                <c:otherwise>
-                    <c:forEach items="${cbList}" var="cbl">
-                        <tr>
-                            <td>${cbl.CBoardNo}</td>
-                            <td>${cbl.CTitle}</td>
-                            <td>${cbl.CContent}</td>
-                            <td>${cbl.CCreateDate}</td>
-                            <td>${cbl.CIsModified}</td>
-                            <td>${cbl.CLocation}</td>
-                            <td>${cbl.CCategory}</td>
-                            <td>${cbl.userNo}</td>
-                            <td>${cbl.hashNo}</td>
-                            <td>${cbl.picNo}</td>
-                        </tr>
-                    </c:forEach>
-                </c:otherwise>
-            </c:choose>
-        </table>
+        <form action="/community/write" method="post">
+            <table border="1">
+                <tr>
+                    PIC INPUT
+                </tr>
+                <tr>
+                    <td><input type="text" name="cWriteTitle" placeholder="글 제목을 입력해주세요"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="cWriteContent" placeholder="내용을 입력해주세요"></td>
+                </tr>
+                <tr>
+                </tr>
+            </table>
+        </form>
     </div>
 
 
@@ -87,7 +65,7 @@
         <div class="sidetop">
             <div class="sidetop_left">
                 <a href="/" class="logo">
-                    <img src="/img/logo/laf6.png" alt="">
+                    <img src="resources/img/logo/laf6.png" alt="">
                 </a>
             </div>
         </div>
@@ -99,7 +77,7 @@
                 </a>
             </li>
             <li>
-                <a href="http://localhost:8080/cBoard" class="cboard">
+                <a href="cBoard" class="cboard">
                     <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
                     <span class="item">커뮤니티</span>
                 </a>

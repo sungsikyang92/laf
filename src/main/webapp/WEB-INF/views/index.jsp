@@ -10,16 +10,16 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>LaF</title>
 
-            <link rel="stylesheet" href="css/header_footer.css" type="text/css">
-            <link rel="stylesheet" href="css/header_footer_btn.css" type="text/css">
+            <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
+            <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
             <link rel="stylesheet"
                 href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
-            <link rel="stylesheet" href="css/main.css" type="text/css">
-            <link rel="stylesheet" media="screen and (max-width:390px)" href="css/main_mobile.css" type="text/css">
+            <link rel="stylesheet" href="resources/css/main.css" type="text/css">
+            <link rel="stylesheet" media="screen and (max-width:390px)" href="resources/css/main_mobile.css" type="text/css">
 
 
-            <script src='/js/main_sidebar.js'></script>
+            <script src='resources/js/main_sidebar.js'></script>
         </head>
 
         <body class="body_container">
@@ -51,7 +51,7 @@
                     <div class="sidetop">
                         <div class="sidetop_left">
                             <a href="/" class="logo">
-                                <img src="/img/logo/laf6.png" alt="">
+                                <img src="resources/img/logo/laf6.png" alt="">
                             </a>
                         </div>
                     </div>
