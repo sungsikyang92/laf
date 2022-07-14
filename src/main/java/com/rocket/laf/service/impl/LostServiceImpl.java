@@ -25,4 +25,9 @@ public class LostServiceImpl implements LostService {
         return lostMapper.insertLostBoard(LostDto);
     }
 
+    @Override
+    public List<LostDto> getLostBoardOne(String lBoardNo) {
+        return lostMapper.getLostBoardOne(lBoardNo);
+    }
+
 }
