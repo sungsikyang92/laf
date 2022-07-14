@@ -24,7 +24,7 @@ public class CommunityController {
     @GetMapping("")
     public String getComBoardList(Model model) {
         model.addAttribute("cbList", communityService.getComBoardList());
-        return "/community/ComBoardList";
+        return "/community/comBoardList";
     }
 
     @GetMapping("/write")
@@ -32,7 +32,7 @@ public class CommunityController {
         return "community/comBoardWrite";
     }
 
-    @PostMapping("write")
+    @PostMapping("/write")
     public String insertComBoard(CommunityDto communityDto) {
         communityService.insertComBoard(communityDto);
         return "redirect:/cBoard";

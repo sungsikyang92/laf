@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,20 +9,29 @@
     <title>Document</title>
 </head>
 <body>
-    <table border="1">
+    <table >
 		<tr>
-		<th>NAME</th><td>${mydto.myname }</td>
+			<th>${terms.tPolicyTitle}</th>
 		</tr>
 		<tr>
-		<th>title</th><td>${mydto.mytitle }</td>
+			<td><textarea rows="10" cols="30">${terms.tPolicyContent}</textarea></td>
 		</tr>
 		<tr>
-		<th>content</th><td><textarea rows="10" cols="30">${mydto.mycontent }</textarea></td>
+			<td>이용약관에 동의합니다 <input type="radio" name="chk_policy"></td>
+		</tr>
 		<tr>
-			<td colspan="2">
-			<input type="button" value="to list" onclick="location.href='/myboard/list'">
-			<input type="button" value="modify" onclick="location.href='update?myno=${mydto.myno }'">
-			<input type="button" value="delete" onclick="location.href='delete?myno=${mydto.myno }'">
+			<th>${terms.tPrivacyTitle}</th>
+		</tr>
+		<tr>
+			<td><textarea rows="10" cols="30">${terms.tPrivacyContent}</textarea></td>
+		</tr>
+		<tr>
+			<td>개인정보 처리방침에 동의합니다 <input type="radio" name="chk_policy"></td>
+		</tr>
+		<tr>
+			<td colspan="1">
+				<input type="button" value="to list" onclick="location.href='/myboard/list'">
+				<input type="button" value="modify" onclick="location.href='update?myno=${mydto.myno }'">
 			</td>
 		</tr>
 	</table>

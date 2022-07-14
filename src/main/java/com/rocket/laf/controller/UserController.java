@@ -16,6 +16,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private TermsService userService;
+
+
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -23,15 +27,19 @@ public class UserController {
     // 영재: 로그인 창에서 회원가입으로 이동
     @GetMapping("/signUp")
     public String userSignUpBotton(Model model){
-        logger.info("------------------------Controller mapping 'signUp'");
+        logger.info("------------------------Controller mapping 'signUp button call'");
+
+        model.addAttribute("terms", terms)
 
 
-        return "";
+        return "user/terms";
     }
 
     @GetMapping("/signOut")
     public String userSignOut(){
         logger.info("------------------------Controller mapping 'signOut'");
+
+
 
         return "";
     }
