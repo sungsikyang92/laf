@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
         <!DOCTYPE html>
         <html lang="en">
 
@@ -8,18 +7,14 @@
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>LaF</title>
+
+            <title>Laf Lostwrite</title>
+
 
             <link rel="stylesheet" href="css/header_footer.css" type="text/css">
             <link rel="stylesheet" href="css/header_footer_btn.css" type="text/css">
             <link rel="stylesheet"
                 href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-
-            <link rel="stylesheet" href="css/main.css" type="text/css">
-            <link rel="stylesheet" media="screen and (max-width:390px)" href="css/main_mobile.css" type="text/css">
-
-
-            <script src='/js/main_sidebar.js'></script>
         </head>
 
         <body class="body_container">
@@ -32,8 +27,7 @@
                             </a>
                         </div>
                         <div class="right_nav">
-                            <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
-                            <button class="btn">로그인/마이페이지</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -41,6 +35,7 @@
 
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
+
 
 
                 </div>
