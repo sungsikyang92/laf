@@ -2,20 +2,29 @@ package com.rocket.laf.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.rocket.laf.service.UserService;
 
 @Controller
 @RequestMapping("/user") 
 public class UserController {
 
+    @Autowired
+    private UserService userService;
+
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     
+    // 영재: 로그인 창에서 회원가입으로 이동
     @GetMapping("/signUp")
-    public String userSignUpBotton(){
-        logger.info("Controller mapping 'signUp'");
+    public String userSignUpBotton(Model model){
+        logger.info("------------------------Controller mapping 'signUp'");
+
 
         return "";
     }
@@ -27,11 +36,12 @@ public class UserController {
         return "";
     }
 
+    // 영재: 로그인 창에서 회원가입으로 이동
     @GetMapping("/login")
     public String userLogin(){
         logger.info("------------------------Controller mapping 'login'");
-
-        return "/member/login";
+        
+        return "/user/login";
     }
 
     @GetMapping("/logout")

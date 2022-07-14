@@ -24,7 +24,7 @@ public class CommunityController {
     @GetMapping("/cBoard")
     public String getComBoardList(Model model) {
         model.addAttribute("cbList", communityService.getComBoardList());
-        return "/community/comBoardList";
+        return "/community/ComBoardList";
     }
 
     @GetMapping("/cBoard/write")
