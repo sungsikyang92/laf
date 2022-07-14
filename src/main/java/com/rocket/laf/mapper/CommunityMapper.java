@@ -13,6 +13,6 @@ public interface CommunityMapper {
     @Select(" SELECT * FROM Community ")
     List<CommunityDto> getComBoardList();
 
-    @Insert(" INSERT INTO Community VALUES (null, #{cTitle},#{cContent},#{cCreateDate},#{cIsModified},#{cLocation},#{cCategory},#{userNo},#{hashNo},#{picNo}) ")
+    @Insert(" INSERT INTO Community (cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo, picNo) VALUES (#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},#{userNo},#{hashNo},#{picNo}) ")
     int insertComBoard(CommunityDto communityDto);
 }

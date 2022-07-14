@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class CommunityDto {
     private long cBoardNo;
     private String cTitle;
     private String cContent;
-    private Date cCreateDate;
+    private LocalDateTime cCreateDate;
     private boolean cIsModified;
     private String cLocation;
     private String cCategory;
