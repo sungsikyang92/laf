@@ -1,15 +1,31 @@
 package com.rocket.laf.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.rocket.laf.dto.LostDto;
+import com.rocket.laf.service.LostService;
+import com.rocket.laf.service.PictureService;
 
 @Controller
 @RequestMapping("/")
 public class LafController {
 
+    @Autowired
+    private LostService lostservice;
+    @Autowired
+    private PictureService pictureService;
+
     @GetMapping("/")
-    public String main() {
+    public String main(Model model) {
+        List<LostDto> lostlist = lostservice.getLostBoardList();
+        
+        model.addAttribute("lostlist", lostlist);
         return "index";
     }
 
