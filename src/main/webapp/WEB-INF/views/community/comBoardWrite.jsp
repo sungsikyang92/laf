@@ -52,29 +52,6 @@
                     <th>hashNo</th>
                     <th>picNo</th>
                 </tr>
-                <c:choose>
-                    <c:when test="${empty cbList }">
-                        <tr>
-                            <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                        </tr>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach items="${cbList}" var="cbl">
-                            <tr>
-                                <td>${cbl.CBoardNo}</td>
-                                <td>${cbl.CTitle}</td>
-                                <td>${cbl.CContent}</td>
-                                <td>${cbl.CCreateDate}</td>
-                                <td>${cbl.CIsModified}</td>
-                                <td>${cbl.CLocation}</td>
-                                <td>${cbl.CCategory}</td>
-                                <td>${cbl.userNo}</td>
-                                <td>${cbl.hashNo}</td>
-                                <td>${cbl.picNo}</td>
-                            </tr>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
             </table>
         </div>
 
