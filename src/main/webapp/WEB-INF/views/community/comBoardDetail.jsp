@@ -16,11 +16,10 @@
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
-        href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
 </head>
-
-<body class="body_container">
+    <body class="body_container">
     <div class="wrapper">
         <div class="section">
             <div class="top_navbar">
@@ -30,7 +29,7 @@
                     </a>
                 </div>
                 <div class="right_nav">
-                    <button class="btn" onclick="location.href='#'">글쓰기</button>
+                    <button class="btn" onclick="location.href='cBoard/write'">글쓰기</button>
                     <button class="btn">로그인/마이페이지</button>
                 </div>
             </div>
@@ -39,26 +38,37 @@
 
 
         <div class="contents_container">
-            <form action="/cBaord/write" method="post" enctype="multipart/form-data">
-                <table>
-                    <tr>
-                        <td><input type="file" name="pic"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="cTitle" placeholder="글 제목을 입력해주세요"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <textarea name="cContent" placeholder="글 내용을 입력해주세요"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" value="취소" onclick="location.href='/cBoard'">
-                            <input type="submit" value="확인"></td>
-                    </tr>
-                </table>
-            </form>
+            <table border="1">
+                <tr>
+                    <td>${cbDetail.CBoardNo}</td>
+                </tr>
+                <tr>
+                    <td>${cbDetail.picNo}</td>
+                </tr>
+                <tr>
+                    <td>${cbDetail.userNo}</td>
+                </tr>
+                <tr>
+                    <td>${cbDetail.CLocation}</td>
+                </tr>
+                <tr>
+                    <td>${cbDetail.CTitle}</td>
+                </tr>
+                <tr>
+                    <td>${cbDetail.CCreateDate}</td>
+                </tr>
+                <tr>
+                    <td>${cbDetail.CContent}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="button" value="목록" onclick="location.href='/cBoard'">
+                        <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
+                        <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
+                    </td>
+                </tr>
+            </table>
         </div>
 
 
@@ -117,8 +127,6 @@
             </ul>
         </div>
     </div>
-
-
 </body>
 
 </html>
