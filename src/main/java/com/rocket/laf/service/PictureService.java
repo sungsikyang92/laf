@@ -10,4 +10,7 @@ public interface PictureService {
 
     String getMainPicLoc(long picNo);
 
+    //    모든 사진 가져오기
+    PictureDto getAllPictureByPicNo(long picNo);
+
 }

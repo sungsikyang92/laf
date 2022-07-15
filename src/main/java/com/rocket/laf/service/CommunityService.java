@@ -1,6 +1,7 @@
 package com.rocket.laf.service;
 
 import com.rocket.laf.dto.CommunityDto;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface CommunityService {
 
     CommunityDto getComBoardDetail(int cBoardNo);
 
-    int updateComBoardDetail(CommunityDto communityDto);
+    int updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest);
 
     int deleteComBoardDetail(int cBoardNo);
 }

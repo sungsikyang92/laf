@@ -17,14 +17,17 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public List<PictureDto> getAllPictuer(String picNo) {
-        // TODO Auto-generated method stub
         return pictureMapper.getAllPictuer(picNo);
     }
 
     @Override
     public String getMainPicLoc(long picNo) {
-        // TODO Auto-generated method stub
         return pictureMapper.getMainPicLoc(picNo);
+    }
+
+    @Override
+    public PictureDto getAllPictureByPicNo(long picNo) {
+        return pictureMapper.getAllPictureByPicNo(picNo);
     }
 
 }
