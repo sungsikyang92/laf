@@ -1,5 +1,9 @@
 package com.rocket.laf.controller;
 
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rocket.laf.service.TermsService;
 import com.rocket.laf.service.UserService;
@@ -30,6 +35,7 @@ public class UserController {
     public String userSignUpBotton(Model model){
         logger.info("------------------------Controller mapping 'signUp button call'");
 
+        //약관버전 설정
         int tVersion = 1;
         model.addAttribute("terms", termsService.selectOne(tVersion));
         System.out.println("-----------------------chk-----------------------" + model);
@@ -38,10 +44,32 @@ public class UserController {
     }
 
     @GetMapping("/signUpForm")
-    public String userSignUpFrom(Model model){
-        logger.info("------------------------Controller mapping 'signUp from call'");
+    public String userSignUpFrom(HttpServletRequest request, Model model){
+        logger.info("------------------------Controller mapping 'signUp form call'");
 
-        return "user/terms";
+        // // jsp에서 넘어오는 파라미터 확인
+        // Enumeration params = request.getParameterNames();
+        // while(params.hasMoreElements()) {
+        // String name = (String) params.nextElement();
+        // System.out.print(name + " : " + request.getParameter(name) + "     "); 
+        // }
+        //System.out.println(request.getParameter("selectall").getClass().getName());
+        
+        System.out.println("aaaaaa:          " + request.getParameter("selectall"));
+        System.out.println("aaaaaa:          " + request.getParameter("selectall"));
+        System.out.println("t of f:          " + request.getParameter("selectall").equals("on"));
+        
+        if (request.getParameter("selectall").equals("on")){
+            model.addAttribute("policyOn", request.getParameter("selectall"));
+            return "user/signUp";
+
+        }else{
+
+            return "/user/login";
+
+        }
+
+        
     }
 
     @GetMapping("/signOut")

@@ -37,13 +37,23 @@ function checkSelectAll()  {
     })
 }
 
+//이용약관 확인 버튼 눌르면 실행되는 펑션 
 function cfmReg()  {
     
-    if (console.log(document.getElementsByName('chk').length) ==
-    console.log(document.querySelectorAll('input[name="chk"]:checked'))) {
+    if (document.getElementsByName('chk').length == 
+        document.querySelectorAll('input[name="chk"]:checked').length) {
 
-      location.href='/user/signUpFrom'
+        console.log(document.getElementById("allchked"))
+        document.getElementById("allchked").submit();
+          
+        
+       return false;
+       //return "/user/signUpForm";
+       //폼에서 액션에 리턴페이지 입력하지않고 리턴으로 입력하면 서브밋한데이터가 서버로 넘어가지 않는다.
 
+    }else{
+      window.alert("필수 이용약관에 동의하여 주십시오")
+      return false;
     }
 
 
