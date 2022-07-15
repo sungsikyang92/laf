@@ -11,5 +11,5 @@ import com.rocket.laf.dto.UserDto;
 public interface UserMapper {
 
     @Select(" SELECT * FROM USER")
-    List<UserDto> selectlist();
+    List<UserDto> getUserList();
 }

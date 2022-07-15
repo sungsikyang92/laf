@@ -14,8 +14,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
-	
-    private final  CommunityMapper communityMapper;
+
+    @Autowired
+    private final CommunityMapper communityMapper;
 
     @Override
     public List<CommunityDto> getComBoardList() {

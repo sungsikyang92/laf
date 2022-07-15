@@ -17,15 +17,19 @@ public class MypageServiceImpl implements MypageService {
     
     @Override
     public List<UserDto> getUserList() {
-        // TODO Auto-generated method stub
-        
-        return null;
+        return userMapper.getUserList();
     }
 
     @Override
     public int insertUserBoard(UserDto userDto) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public List<UserDto> selectList() {
+        // TODO Auto-generated method stub
+        return null;
     }
     
 }
