@@ -51,7 +51,7 @@ public class LafController {
         return "lostcommunity/lostdetail";
     }
 
-    @PostMapping("post")
+    @PostMapping("/post_Quiz")
     public String LostCreate() {
         return "index";
     }
