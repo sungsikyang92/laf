@@ -39,12 +39,12 @@
 
 
         <div class="contents_container">
-            <form action="/cBoard/update/${cbDetail.CBoardNo}" method="post">
+            <form action="/cBoard/update/${cbDetail.CBoardNo}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="cBoardNo" value="${cbDetail.CBoardNo}">
                 <input type="hidden" name="cIsModified" value="1">
                 <table>
                     <tr>
-                        <td>Pic Input</td>
+                        <td><input type="file" name="pic" multiple="multiple"></td>
                     </tr>
                     <tr>
                         <td><input type="text" name="cTitle" value="${cbDetail.CTitle}"></td>
