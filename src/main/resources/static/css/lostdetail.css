@@ -76,6 +76,7 @@ h2 {
 }
 
 
+
 /* for touch screen devices */
 @media (hover: none) {
     .location-title {
@@ -87,4 +88,11 @@ h2 {
         filter: blur(2px);
         border-radius: 5px;
     }
+}
+
+
+/* in form tag */
+
+.input_container {
+    display: flex;
 }

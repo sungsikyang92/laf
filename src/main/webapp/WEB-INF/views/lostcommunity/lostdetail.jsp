@@ -16,6 +16,16 @@
             <script src='resources/js/main_sidebar.js'></script>
             <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
+            <script>
+                let answer1 = "${boardDetail[0].LAnswers1}";
+                let answer2 = "${boardDetail[0].LAnswers2}";
+                let answer3 = "${boardDetail[0].LAnswers3}";
+                let answer4 = "${boardDetail[0].LAnswers4}";
+                let answer = "${boardDetail[0].LAnswers}";
+            </script>
+
+
+
 
         </head>
 
@@ -90,11 +100,16 @@
                     <br>
                     <h2>작성일 : ${boardDetail[0].LCreateDate}</h2>
                     <h3>글내용 : ${boardDetail[0].LContent}</h3>
+                    <br>
+                    <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail[0].LQuestion}</h3>
+
+                    <form id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post"><br> </form>
+
                 </div>
 
 
                 <!-- TOP menu -->
-                <div class="sidebar">
+                <div class=" sidebar">
                     <div class="sidetop">
                         <div class="sidetop_left">
                             <a href="/" class="logo">
@@ -148,6 +163,7 @@
                     </ul>
                 </div>
             </div>
+            <script src='resources/js/lostQuestion.js'></script>
         </body>
 
         </html>
