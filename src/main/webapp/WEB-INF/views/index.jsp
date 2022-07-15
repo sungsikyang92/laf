@@ -45,7 +45,7 @@
 
                     <div class="child-page-listing">
 
-                        <h2>실시간베너 만들것 </h2>
+                        <h2 style="text-align: center;">실시간베너 만들것 </h2>
 
                         <div class="grid-container">
 

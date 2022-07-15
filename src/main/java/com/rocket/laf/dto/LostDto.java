@@ -23,6 +23,10 @@ public class LostDto {
     private String lCategory;
     private String lQuestion;
     private String lAnswers;
+    private String lAnswers1;
+    private String lAnswers2;
+    private String lAnswers3;
+    private String lAnswers4;
     private long userNo;
     private long hashNo;
     private long picNo;
