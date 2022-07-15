@@ -19,6 +19,19 @@
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
 </head>
+<%--    <!-- 게시글 삭제를 위한 ajax function-->--%>
+<%--    <script>--%>
+<%--        function deleteBycBoardNo(cBoardNo) {--%>
+<%--            const reqUrl = "/cBoard/" + cBoardNo--%>
+<%--            $.ajax({--%>
+<%--                type: "delete",--%>
+<%--                url: reqUrl,--%>
+<%--                success: function () {--%>
+<%--                    location.href = "/cBoard"--%>
+<%--                },--%>
+<%--            })--%>
+<%--        }--%>
+<%--    </script>--%>
 
 <body class="body_container">
 <div class="wrapper">
@@ -41,6 +54,9 @@
     <div class="contents_container">
         <table border="1">
             <tr>
+                <td>${cbDetail.CBoardNo}</td>
+            </tr>
+            <tr>
                 <td>${cbDetail.picNo}</td>
             </tr>
             <tr>
@@ -59,6 +75,13 @@
                 <td>${cbDetail.CContent}</td>
             </tr>
 
+            <tr>
+                <td>
+                    <input type="button" value="목록" onclick="location.href='/cBoard'">
+                    <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
+                    <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
+                </td>
+            </tr>
         </table>
     </div>
 

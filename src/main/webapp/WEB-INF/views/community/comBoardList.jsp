@@ -62,7 +62,7 @@
                         <c:forEach items="${cbList}" var="cbl">
                             <tr>
                                 <td>${cbl.CBoardNo}</td>
-                                <td><a href="">${cbl.CTitle}</a></td>
+                                <td><a href="/cBoard/${cbl.CBoardNo}">${cbl.CTitle}</a></td>
                                 <td>${cbl.CContent}</td>
                                 <td>${cbl.CCreateDate}</td>
                                 <td>${cbl.CIsModified}</td>

@@ -10,10 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/cBoard")
@@ -35,13 +32,36 @@ public class CommunityController {
 
     @PostMapping("/write")
     public String insertComBoard(CommunityDto communityDto) {
-        communityService.insertComBoard(communityDto);
-        return "redirect:/cBoard";
+        if (communityService.insertComBoard(communityDto) > 0) {
+            return "redirect:/cBoard";
+        } else {
+            return "comBoardWrite";
+        }
     }
 
     @GetMapping("/{cBoardNo}")
     public String getComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
         model.addAttribute("cbDetail", communityService.getComBoardDetail(cBoardNo));
         return "/community/comBoardDetail";
+    }
+
+    @GetMapping("/update/{cBoardNo}")
+    public String updateComBoardForm(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
+        model.addAttribute("cbDetail", communityService.getComBoardDetail(cBoardNo));
+        return "/community/comBoardUpdate";
+    }
+    @PostMapping("/update/{cBoardNo}")
+    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, CommunityDto communityDto) {
+        if (communityService.updateComBoardDetail(communityDto) > 0) {
+            return "redirect:/cBoard/" + cBoardNo;
+        } else {
+            return "/community/comBoardUpdate";
+        }
+    }
+
+    @GetMapping("/delete/{cBaordNo}")
+    public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo) {
+        communityService.deleteComBoardDetail(cBoardNo);
+        return "redirect:/cBoard";
     }
 }

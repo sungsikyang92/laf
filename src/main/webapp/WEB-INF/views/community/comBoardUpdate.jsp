@@ -39,17 +39,19 @@
 
 
         <div class="contents_container">
-            <form action="/cBaord/write" method="post">
+            <form action="/cBoard/update/${cbDetail.CBoardNo}" method="post">
+                <input type="hidden" name="cBoardNo" value="${cbDetail.CBoardNo}">
+                <input type="hidden" name="cIsModified" value="1">
                 <table>
                     <tr>
                         <td>Pic Input</td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="cTitle" placeholder="글 제목을 입력해주세요"></td>
+                        <td><input type="text" name="cTitle" value="${cbDetail.CTitle}"></td>
                     </tr>
                     <tr>
                         <td>
-                            <textarea name="cContent" placeholder="글 내용을 입력해주세요"></textarea>
+                            <textarea name="cContent">${cbDetail.CContent}</textarea>
                         </td>
                     </tr>
                     <tr>

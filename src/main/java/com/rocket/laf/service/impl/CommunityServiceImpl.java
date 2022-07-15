@@ -13,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
 
-    @Autowired
     private final CommunityMapper communityMapper;
 
     @Override
@@ -29,5 +28,15 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public CommunityDto getComBoardDetail(int cBoardNo) {
         return communityMapper.getComBoardDetail(cBoardNo);
+    }
+
+    @Override
+    public int updateComBoardDetail(CommunityDto communityDto) {
+        return communityMapper.updateComBoardDetail(communityDto);
+    }
+
+    @Override
+    public int deleteComBoardDetail(int cBoardNo) {
+        return communityMapper.deleteComBoardDetail(cBoardNo);
     }
 }
