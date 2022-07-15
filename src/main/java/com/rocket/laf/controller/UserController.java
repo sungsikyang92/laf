@@ -37,6 +37,13 @@ public class UserController {
         return "user/terms";
     }
 
+    @GetMapping("/signUpForm")
+    public String userSignUpFrom(Model model){
+        logger.info("------------------------Controller mapping 'signUp from call'");
+
+        return "user/terms";
+    }
+
     @GetMapping("/signOut")
     public String userSignOut(){
         logger.info("------------------------Controller mapping 'signOut'");

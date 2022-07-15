@@ -23,7 +23,7 @@
 			<td><textarea rows="10" cols="30">${terms.TPolicyContent}</textarea></td>
 		</tr>
 		<tr>
-			<td>LaF 이용약관 동의 <input type="checkbox" name="chk" value="policy" onclick="checkSelectAll(this)"></td>
+			<td>LaF 이용약관 동의 <input type="checkbox" name="chk" value="policy" onclick='checkSelectAll()'/></td>
 		</tr>
 
 		<tr>
@@ -33,7 +33,7 @@
 			<td><textarea rows="10" cols="30">${terms.TLocationContent}</textarea></td>
 		</tr>
 		<tr>
-			<td>위치기반 서비스 동의  <input type="checkbox" name="chk" value="location" onclick="checkSelectAll(this)"></td>
+			<td>위치기반 서비스 동의  <input type="checkbox" name="chk" value="location" onclick='checkSelectAll()'/></td>
 		</tr>
 
 		<tr>
@@ -43,10 +43,10 @@
 			<td><textarea rows="10" cols="30">${terms.TPrivacyContent}</textarea></td>
 		</tr>
 		<tr>
-			<td>개인정보 이용 동의 <input type="checkbox" name="chk" value="privacy" onclick="checkSelectAll(this)"></td>
+			<td>개인정보 이용 동의 <input type="checkbox" name="chk" value="privacy" onclick='checkSelectAll()'/></td>
 		</tr>
 		<tr>
-			<td>전체 이용 동의 <input type="checkbox" name="selectall" onclick="selectAll(this)"></td>
+			<td>전체 이용 동의 <input type="checkbox" name="selectall" onclick='selectAll(this)'/></td>
 		</tr>
 		<tr>
 			<td colspan="1">
