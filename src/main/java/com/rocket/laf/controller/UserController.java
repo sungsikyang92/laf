@@ -1,7 +1,5 @@
 package com.rocket.laf.controller;
 
-import javax.net.ssl.SSLSocket;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ public class UserController {
 
         int tVersion = 1;
         model.addAttribute("terms", termsService.selectOne(tVersion));
-
+        System.out.println("-----------------------chk-----------------------" + model);
 
         return "user/terms";
     }

@@ -7,33 +7,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+	<script src='../resources/js/terms.js'></script>
+
 </head>
 <body>
-    <table >
+
+	
+
+    <table border="1">
 		<tr>
-			<th>${terms.tPolicyTitle}</th>
+			<th>${terms.TPolicyTitle } (필수)</th>
 		</tr>
 		<tr>
-			<td><textarea rows="10" cols="30">${terms.tPolicyContent}</textarea></td>
+			<td><textarea rows="10" cols="30">${terms.TPolicyContent}</textarea></td>
 		</tr>
 		<tr>
-			<td>이용약관에 동의합니다 <input type="radio" name="chk_policy"></td>
+			<td>LaF 이용약관 동의 <input type="checkbox" name="chk" value="policy" onclick="checkSelectAll(this)"></td>
+		</tr>
+
+		<tr>
+			<th>${terms.TLocationTitle } (필수)</th>
 		</tr>
 		<tr>
-			<th>${terms.tPrivacyTitle}</th>
+			<td><textarea rows="10" cols="30">${terms.TLocationContent}</textarea></td>
 		</tr>
 		<tr>
-			<td><textarea rows="10" cols="30">${terms.tPrivacyContent}</textarea></td>
+			<td>위치기반 서비스 동의  <input type="checkbox" name="chk" value="location" onclick="checkSelectAll(this)"></td>
+		</tr>
+
+		<tr>
+			<th>${terms.TPrivacyTitle} (필수)</th>
 		</tr>
 		<tr>
-			<td>개인정보 처리방침에 동의합니다 <input type="radio" name="chk_policy"></td>
+			<td><textarea rows="10" cols="30">${terms.TPrivacyContent}</textarea></td>
+		</tr>
+		<tr>
+			<td>개인정보 이용 동의 <input type="checkbox" name="chk" value="privacy" onclick="checkSelectAll(this)"></td>
+		</tr>
+		<tr>
+			<td>전체 이용 동의 <input type="checkbox" name="selectall" onclick="selectAll(this)"></td>
 		</tr>
 		<tr>
 			<td colspan="1">
-				<input type="button" value="to list" onclick="location.href='/myboard/list'">
-				<input type="button" value="modify" onclick="location.href='update?myno=${mydto.myno }'">
+				<input type="button" value="취소" onclick="location.href='/user/login'">
+				<input type="button" value="확인" onclick="cfmReg()">
+				
+
 			</td>
 		</tr>
 	</table>
+
+
 </body>
 </html>
