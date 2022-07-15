@@ -6,7 +6,7 @@ import com.rocket.laf.dto.PictureDto;
 
 public interface PictureService {
 
-    List<PictureDto> getAllPictuer();
+    List<PictureDto> getAllPictuer(String picNo);
 
     String getMainPicLoc(long picNo);
 

@@ -55,12 +55,10 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${lostlist}" var="lostboard">
-
                                         <article class="location-listing">
-
-                                            <a class="location-title" href="#">
+                                            <a class="location-title"
+                                                href="lostdetail?&lBNo=${lostboard.LBoardNo}&PicNo=${lostboard.picNo}">
                                                 ${lostboard.LTitle} </a>
-
                                             <div class="location-image">
                                                 <a href="#">
                                                     <img width="300" height="169" src="${lostboard.mainPicLoc}"
@@ -71,16 +69,9 @@
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
-
-
-
                         </div>
                         <!-- end grid container -->
-
                     </div>
-
-
-
                 </div>
 
 
