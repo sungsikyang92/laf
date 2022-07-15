@@ -32,11 +32,11 @@
                         </div>
                     </div>
                 </div>
-
+                
 
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
-                    
+                    <form action=""></form>
 
 
                 </div>
