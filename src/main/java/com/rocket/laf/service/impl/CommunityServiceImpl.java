@@ -1,11 +1,13 @@
 package com.rocket.laf.service.impl;
 
+import com.rocket.laf.common.FileUtils;
+import com.rocket.laf.dto.ComPicTestDto;
 import com.rocket.laf.dto.CommunityDto;
 import com.rocket.laf.mapper.CommunityMapper;
 import com.rocket.laf.service.CommunityService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -18,6 +20,7 @@ import java.util.List;
 public class CommunityServiceImpl implements CommunityService {
 
     private final CommunityMapper communityMapper;
+    private final FileUtils fileUtils;
 
     @Override
     public List<CommunityDto> getComBoardList() {
@@ -25,8 +28,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public int writeComBoard(CommunityDto communityDto) {
-        return communityMapper.writeComBoard(communityDto);
+    public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        communityMapper.writeComBoard(communityDto);
+        List<ComPicTestDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
+        if (CollectionUtils.isEmpty(list) == false) {
+            communityMapper.writeComBoardFileList(list);
+        }
     }
 
     @Override
