@@ -25,12 +25,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public int insertComBoard(CommunityDto communityDto) {
-        return communityMapper.insertComBoard(communityDto);
+    public int writeComBoard(CommunityDto communityDto) {
+        return communityMapper.writeComBoard(communityDto);
     }
 
     @Override
-    public CommunityDto getComBoardDetail(int cBoardNo) {
+    public CommunityDto getComBoardDetail(long cBoardNo) {
         return communityMapper.getComBoardDetail(cBoardNo);
     }
 
@@ -49,5 +49,10 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public int deleteComBoardDetail(int cBoardNo) {
         return communityMapper.deleteComBoardDetail(cBoardNo);
+    }
+
+    @Override
+    public long getLastCBoardNo() {
+        return communityMapper.getLastCBoardNo();
     }
 }

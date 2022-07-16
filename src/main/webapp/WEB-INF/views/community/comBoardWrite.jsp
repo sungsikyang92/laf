@@ -39,13 +39,16 @@
 
 
         <div class="contents_container">
-            <form action="/cBaord/write" method="post" enctype="multipart/form-data">
+            <form action="/cBoard/write" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td><input type="file" name="pic"></td>
+<%--                        <td><input type="file" name="picCom" id="picCom" multiple="multiple"></td>--%>
                     </tr>
                     <tr>
                         <td><input type="text" name="cTitle" placeholder="글 제목을 입력해주세요"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="cCategory" placeholder="카테고리 입력"> </td>
                     </tr>
                     <tr>
                         <td>

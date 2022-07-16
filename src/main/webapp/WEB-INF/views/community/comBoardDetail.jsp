@@ -88,6 +88,9 @@
                     <td>${cbDetail.CTitle}</td>
                 </tr>
                 <tr>
+                    <td>${cbDetail.CCategory}</td>
+                </tr>
+                <tr>
                     <td>${cbDetail.CCreateDate}</td>
                 </tr>
                 <tr>
