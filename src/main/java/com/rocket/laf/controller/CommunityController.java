@@ -1,9 +1,11 @@
 package com.rocket.laf.controller;
 
-import com.rocket.laf.dto.CommunityDto;
-import com.rocket.laf.dto.PictureDto;
+import com.rocket.laf.dto.*;
 import com.rocket.laf.service.impl.CommunityServiceImpl;
 import com.rocket.laf.dto.CommunityDto;
+import com.rocket.laf.service.impl.HashTagServiceImpl;
+import com.rocket.laf.service.impl.PictureServiceImpl;
+import com.rocket.laf.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -14,13 +16,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/cBoard")
 public class CommunityController {
 
-    @Autowired
-    private CommunityServiceImpl communityService;
+    private final CommunityServiceImpl communityService;
+    private final PictureServiceImpl pictureService;
+    private final HashTagServiceImpl hashTagService;
+    private final UserServiceImpl userService;
 
     @GetMapping("")
     public String getComBoardList(Model model) {
@@ -44,7 +52,17 @@ public class CommunityController {
 
     @GetMapping("/{cBoardNo}")
     public String getComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
-        model.addAttribute("cbDetail", communityService.getComBoardDetail(cBoardNo));
+        CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
+        long picNo = comDto.getPicNo();
+        long hashNo = comDto.getHashNo();
+        long userNo = comDto.getUserNo();
+        PictureDto picDto = pictureService.getAllPictureByPicNo(picNo);
+        HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
+        UserDto userDto = userService.getUserById(userNo);
+        model.addAttribute("cbDetail", comDto);
+        model.addAttribute("pDetail", picDto);
+        model.addAttribute("hDetail", hashTagDto);
+        model.addAttribute("uDetail", userDto);
         return "/community/comBoardDetail";
     }
 
@@ -54,14 +72,8 @@ public class CommunityController {
         return "/community/comBoardUpdate";
     }
     @PostMapping("/update/{cBoardNo}")
-    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, CommunityDto communityDto, @RequestParam("pic") MultipartFile pic) {
-
-        List<PictureDto> pList = new ArrayList<>();
-//        for (MultipartFile file : pic) {
-//            PictureDto pictureDto = new PictureDto(file.getOriginalFilename(), file.getContentType());
-//
-//        }
-        if (communityService.updateComBoardDetail(communityDto) > 0) {
+    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
+        if (communityService.updateComBoardDetail(communityDto, multipartHttpServletRequest) > 0) {
             return "redirect:/cBoard/" + cBoardNo;
         } else {
             return "/community/comBoardUpdate";

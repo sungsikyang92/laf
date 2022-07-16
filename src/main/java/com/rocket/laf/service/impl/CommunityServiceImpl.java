@@ -6,7 +6,11 @@ import com.rocket.laf.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -31,7 +35,14 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public int updateComBoardDetail(CommunityDto communityDto) {
+    public int updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
+        if (ObjectUtils.isEmpty(multipartHttpServletRequest) == false) {
+            Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+            String name;
+            while (iterator.hasNext()) {
+                name = iterator.next();
+                List<MultipartFile> list = multipartHttpServletRequest.getFiles(name);
+            }        }
         return communityMapper.updateComBoardDetail(communityDto);
     }
 

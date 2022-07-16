@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import com.rocket.laf.service.LostService;
 import com.rocket.laf.service.PictureService;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/")
 public class LafController {
 
@@ -51,7 +53,7 @@ public class LafController {
         return "lostcommunity/lostdetail";
     }
 
-    @PostMapping("post")
+    @PostMapping("/post_Quiz")
     public String LostCreate() {
         return "index";
     }
