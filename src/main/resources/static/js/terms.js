@@ -45,7 +45,7 @@ function cfmReg()  {
 
         console.log(document.getElementById("allchked"))
         document.getElementById("allchked").submit();
-          
+        
         
        return false;
        //return "/user/signUpForm";

@@ -8,23 +8,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+	<script>
+		let policyOn = "${policyOn}";
+	</script>
+
 	<script src='../resources/js/signUp.js'></script>
 	
+
 </head>
 <body>
-
-	${policyOn}
 
     <form action="" method="postmapping">
 		<table border="">
 			<tr>
-			<th>writer</th>
+			<th>noname</th>
 			<td><input type="text" name="myname"></td>
 			</tr><tr>
-			<th>title</th>
+			<th>noname</th>
 			<td><input type="text" name="mytitle"></td>
 			</tr><tr>
-			<th>contents</th>
+			<th>noname</th>
 			<td><textarea rows="10" cols="80" name="mycontent"></textarea><td>
 			</tr>
 			<tr>

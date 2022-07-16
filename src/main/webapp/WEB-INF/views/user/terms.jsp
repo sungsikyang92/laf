@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<form id="allchked" method="get" action="/user/signUpForm">
+	<form id="allchked" method="post" action="/user/signUpForm">
 		<table border="1">
 			<tr>
 				<th>${terms.TPolicyTitle } (필수)</th>

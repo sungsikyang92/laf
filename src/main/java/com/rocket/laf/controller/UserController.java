@@ -1,5 +1,6 @@
 package com.rocket.laf.controller;
 
+import java.io.Console;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,7 +45,8 @@ public class UserController {
         return "user/terms";
     }
 
-    @GetMapping("/signUpForm")
+    //signUpForm 강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
+    @RequestMapping(value ="/signUpForm")
     public String userSignUpFrom(HttpServletRequest request, Model model){
         logger.info("------------------------Controller mapping 'signUp form call'");
 
@@ -54,22 +57,17 @@ public class UserController {
         // System.out.print(name + " : " + request.getParameter(name) + "     "); 
         // }
         //System.out.println(request.getParameter("selectall").getClass().getName());
+
+        String param = request.getParameter("selectall");
         
-        System.out.println("aaaaaa:          " + request.getParameter("selectall"));
-        System.out.println("aaaaaa:          " + request.getParameter("selectall"));
-        System.out.println("t of f:          " + request.getParameter("selectall").equals("on"));
-        
-        if (request.getParameter("selectall").equals("on")){
+        if (param == null){
+            return "redirect:/user/login";     
+        }else if (param.equals("on")){
             model.addAttribute("policyOn", request.getParameter("selectall"));
             return "user/signUp";
-
         }else{
-
             return "/user/login";
-
         }
-
-        
     }
 
     @GetMapping("/signOut")
