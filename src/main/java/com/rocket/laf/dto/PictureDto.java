@@ -14,4 +14,5 @@ public class PictureDto {
     private String picLoc3;
     private String picLoc4;
     private String mainPicLoc;
+    private String ThumbImg;
 }
