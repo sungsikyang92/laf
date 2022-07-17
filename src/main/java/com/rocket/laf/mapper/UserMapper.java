@@ -1,15 +1,12 @@
 package com.rocket.laf.mapper;
 
-import java.util.List;
-
+import com.rocket.laf.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-
-import com.rocket.laf.dto.UserDto;
 
 @Mapper
 public interface UserMapper {
 
-    @Select(" SELECT * FROM USER")
-    List<UserDto> getUserList();
+    @Select(" SELECT * FROM User WHERE userNo = #{userNo} ")
+    UserDto getUserById(long userNo);
 }

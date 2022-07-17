@@ -38,9 +38,7 @@
                                 <i class="fi fi-rr-menu-burger"></i>
                             </a>
                         </div>
-                        <div class="right_nav">
-
-                        </div>
+                        <div class="right_nav"></div>
                     </div>
                 </div>
 
@@ -103,7 +101,9 @@
                     <br>
                     <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail[0].LQuestion}</h3>
 
-                    <form id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post"><br> </form>
+                    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);"
+                        method="post"><br>
+                    </form>
 
                 </div>
 
