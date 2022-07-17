@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="right_nav">
-                    <button class="btn" onclick="location.href='cBoard/write'">글쓰기</button>
+                    <button class="btn" onclick="location.href='/cBoard/write'">글쓰기</button>
                     <button class="btn">로그인/마이페이지</button>
                 </div>
             </div>

@@ -21,6 +21,7 @@ public class FileUtils {
 
     @Autowired
     ResourceLoader resourceLoader;
+
     public List<ComPicTestDto> parseFileInfo(long cBoardNo, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
             return null;

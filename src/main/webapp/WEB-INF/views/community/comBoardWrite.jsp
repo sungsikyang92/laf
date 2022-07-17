@@ -39,6 +39,9 @@
 
 
         <div class="contents_container">
+<%--            <form>--%>
+<%--                <input type="button" value="홈" onclick="location.href='/'">--%>
+<%--            </form>--%>
             <form action="/cBoard/write" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
