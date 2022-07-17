@@ -42,16 +42,14 @@ public class CommunityController {
     }
 
     @PostMapping("/write")
-    public String insertComBoard(CommunityDto communityDto) {
-        if (communityService.insertComBoard(communityDto) > 0) {
-            return "redirect:/cBoard";
-        } else {
-            return "comBoardWrite";
-        }
+    public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        communityService.writeComBoard(communityDto, multipartHttpServletRequest);
+        long cBNo = communityService.getLastCBoardNo();
+        return "redirect:/cBoard/"+cBNo;
     }
 
     @GetMapping("/{cBoardNo}")
-    public String getComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
+    public String getComBoardDetail(@PathVariable(name = "cBoardNo") long cBoardNo, Model model) {
         CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
         long picNo = comDto.getPicNo();
         long hashNo = comDto.getHashNo();
