@@ -41,8 +41,9 @@
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
 
-                    <input style="display: block;" type="file" id="input-multiple-image" multiple="multiple">
-                    <div id="multiple-container"></div>
+                    <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple />
+                    <div id="image_container"></div>
+
 
                     <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
                         ${boardDetail[0].LTitle}</h1>
@@ -112,14 +113,6 @@
 
 
 
-
-
-
-
-
-
-
-
                 <!-- TOP menu -->
                 <div class="sidebar">
                     <div class="sidetop">
@@ -175,9 +168,7 @@
                     </ul>
                 </div>
             </div>
-
             <script src='resources/js/readImage.js'></script>
-
         </body>
 
         </html>
