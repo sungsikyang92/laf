@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.service.TermsService;
 import com.rocket.laf.service.UserService;
 
@@ -32,7 +33,7 @@ public class UserController {
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     
-    // 영재: 로그인 창에서 회원가입으로 이동
+    // 로그인 창에서 회원가입으로 이동
     @GetMapping("/signUp")
     public String userSignUpBotton(Model model){
         logger.info("------------------------Controller mapping 'signUp button call'");
@@ -45,7 +46,7 @@ public class UserController {
         return "user/terms";
     }
 
-    //signUpForm 강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
+    //강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
     @RequestMapping(value ="/signUpForm")
     public String userSignUpFrom(HttpServletRequest request, Model model){
         logger.info("------------------------Controller mapping 'signUp form call'");
@@ -70,6 +71,16 @@ public class UserController {
         }
     }
 
+    //회원가입 페이지 입력정보 db에 저장 
+    @PostMapping("/regUser")
+    public String resUser(UserDto userRegDto){
+        logger.info("------------------------Controller mapping 'regUser'");
+        System.out.println(userRegDto.toString());
+        userService.regUser(userRegDto);
+
+    return "/user/login";
+    }
+
     @GetMapping("/signOut")
     public String userSignOut(){
         logger.info("------------------------Controller mapping 'signOut'");
@@ -79,12 +90,25 @@ public class UserController {
         return "";
     }
 
-    // 영재: 로그인 창에서 회원가입으로 이동
+    // 로그인 창에서 회원가입으로 이동
     @GetMapping("/login")
     public String userLogin(){
         logger.info("------------------------Controller mapping 'login'");
         
         return "/user/login";
+    }
+
+
+    @PostMapping("/loginChk")
+    public String loginChk(UserDto userdto){
+        logger.info("------------------------Controller mapping 'loginChk'");
+        //System.out.println(userdto.toString());
+
+        UserDto loggedinfo = userService.login(userdto);
+        System.out.println(loggedinfo);
+
+
+        return "user/terms";
     }
 
     @GetMapping("/logout")
