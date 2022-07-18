@@ -10,6 +10,6 @@ public interface BoardNoMapper {
     @Select(" SELECT MAX(cBoardNO) FROM BoardNo ")
     long getMaxBoardNo();
 
-    @Insert(" ")
-    long addBoardNo(long numbering);
+    @Insert(" INSERT INTO BoardNo (cBoardNo) VALUES (#{cBoardNo}) ")
+    long addBoardNo(long cBoardNo);
 }

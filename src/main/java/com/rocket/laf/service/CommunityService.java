@@ -9,13 +9,13 @@ public interface CommunityService {
 
     List<CommunityDto> getComBoardList();
 
-    void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
+    void writeComBoard(CommunityDto communityDto) throws Exception;
 
-    CommunityDto getComBoardDetail(long cBoardNo);
+    CommunityDto getComBoardDetail(String cBoardNo);
 
     int updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest);
 
-    int deleteComBoardDetail(int cBoardNo);
+    int deleteComBoardDetail(String cBoardNo);
 
-    long getLastCBoardNo();
+    String getLastCBoardNo();
 }

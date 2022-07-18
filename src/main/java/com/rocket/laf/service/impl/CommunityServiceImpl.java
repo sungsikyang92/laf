@@ -28,16 +28,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public void writeComBoard(CommunityDto communityDto) throws Exception {
         communityMapper.writeComBoard(communityDto);
-        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
-        if (CollectionUtils.isEmpty(list) == false) {
-            communityMapper.writeComBoardFileList(list);
-        }
     }
 
     @Override
-    public CommunityDto getComBoardDetail(long cBoardNo) {
+    public CommunityDto getComBoardDetail(String cBoardNo) {
         return communityMapper.getComBoardDetail(cBoardNo);
     }
 
@@ -54,12 +50,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public int deleteComBoardDetail(int cBoardNo) {
+    public int deleteComBoardDetail(String cBoardNo) {
         return communityMapper.deleteComBoardDetail(cBoardNo);
     }
 
     @Override
-    public long getLastCBoardNo() {
+    public String getLastCBoardNo() {
         return communityMapper.getLastCBoardNo();
     }
 }

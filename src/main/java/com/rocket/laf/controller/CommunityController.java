@@ -40,19 +40,19 @@ public class CommunityController {
     }
 
     @PostMapping("/write")
-    public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public String writeComBoard(CommunityDto communityDto) throws Exception {
         String symbol = "com";
         long numbering = boardNoService.getMaxBoardNo() + 1;
         boardNoService.addBoardNo(numbering);
         String comBoardNo = symbol + numbering;
         communityDto.setCBoardNo(comBoardNo);
-        communityService.writeComBoard(communityDto, multipartHttpServletRequest);
-        long cBNo = communityService.getLastCBoardNo();
+        communityService.writeComBoard(communityDto);
+        String cBNo = communityService.getLastCBoardNo();
         return "redirect:/cBoard/"+cBNo;
     }
 
     @GetMapping("/{cBoardNo}")
-    public String getComBoardDetail(@PathVariable(name = "cBoardNo") long cBoardNo, Model model) {
+    public String getComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, Model model) {
         CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
         long picNo = comDto.getPicNo();
         long hashNo = comDto.getHashNo();
@@ -68,12 +68,12 @@ public class CommunityController {
     }
 
     @GetMapping("/update/{cBoardNo}")
-    public String updateComBoardForm(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
+    public String updateComBoardForm(@PathVariable(name = "cBoardNo") String cBoardNo, Model model) {
         model.addAttribute("cbDetail", communityService.getComBoardDetail(cBoardNo));
         return "/community/comBoardUpdate";
     }
     @PostMapping("/update/{cBoardNo}")
-    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
+    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
         if (communityService.updateComBoardDetail(communityDto, multipartHttpServletRequest) > 0) {
             return "redirect:/cBoard/" + cBoardNo;
         } else {
@@ -82,7 +82,7 @@ public class CommunityController {
     }
 
     @GetMapping("/delete/{cBaordNo}")
-    public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo) {
+    public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo) {
         communityService.deleteComBoardDetail(cBoardNo);
         return "redirect:/cBoard";
     }

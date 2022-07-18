@@ -17,14 +17,14 @@ public interface CommunityMapper {
     List<CommunityDto> getComBoardList();
 
     @Insert(" INSERT INTO Community " +
-            "(cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
-            "VALUES (#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
-    @Options(useGeneratedKeys = true, keyProperty = "cBoardNo")
+            "(cBoardNo, cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
+            "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
+//    @Options(useGeneratedKeys = true, keyProperty = "cBoardNo")
     void writeComBoard(CommunityDto communityDto);
 
     @Select(" SELECT * FROM Community " +
             "WHERE cBoardNo = #{cBoardNo}")
-    CommunityDto getComBoardDetail(long cBoardNo);
+    CommunityDto getComBoardDetail(String cBoardNo);
 
     @Update(" UPDATE Community " +
             "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=#{cIsModified} " +
@@ -33,10 +33,10 @@ public interface CommunityMapper {
 
     @Delete(" DELETE FROM Community " +
             "WHERE cBoardNo = #{cBoardNo}")
-    int deleteComBoardDetail(long cBoardNo);
+    int deleteComBoardDetail(String cBoardNo);
 
     @Select(" SELECT MAX(cBoardNo) FROM Community ")
-    long getLastCBoardNo();
+    String getLastCBoardNo();
 
     @Insert({"<script>" +
             "INSERT INTO Picture " +
