@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.mapper.UserMapper;
 import com.rocket.laf.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -24,6 +27,8 @@ public class UserServiceImpl implements UserService{
         return userMapper.register(dto);
     }
     
-
-
+    @Override
+    public UserDto getUserById(long userNo) {
+        return userMapper.getUserById(userNo);
+    }
 }

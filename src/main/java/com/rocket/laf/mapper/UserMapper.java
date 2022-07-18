@@ -18,7 +18,6 @@ public interface UserMapper {
 
 
 
-    
-
-    
+    @Select(" SELECT * FROM User WHERE userNo = #{userNo} ")
+    UserDto getUserById(long userNo);
 }

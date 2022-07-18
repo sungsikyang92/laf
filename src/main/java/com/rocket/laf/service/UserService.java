@@ -7,4 +7,5 @@ public interface UserService {
     public UserDto login(UserDto dto);
     public int regUser(UserDto dto);
 
+    UserDto getUserById(long userNo);
 }

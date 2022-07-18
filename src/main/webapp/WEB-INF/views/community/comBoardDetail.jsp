@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="right_nav">
-                    <button class="btn" onclick="location.href='cBoard/write'">글쓰기</button>
+                    <button class="btn" onclick="location.href='/cBoard/write'">글쓰기</button>
                     <button class="btn">로그인/마이페이지</button>
                 </div>
             </div>
@@ -40,13 +40,46 @@
         <div class="contents_container">
             <table border="1">
                 <tr>
-                    <td>${cbDetail.CBoardNo}</td>
+                    <c:choose>
+                        <c:when test="${empty pDetail}">
+                            <td>등록된 사진이 없습니다</td>
+                        </c:when>
+                        <c:otherwise>
+                            <article class="location-listing">
+                                <div class="location-title" href="">1</div>
+                                <div class="location-image">
+                                    <img width="300" height="169" src="${pDetail.mainPicLoc}" alt="">
+                                </div>
+                            </article>
+                            <article class="location-listing">
+                                <div class="location-title" href="">2</div>
+                                <div class="location-image">
+                                    <img width="300" height="169" src="${pDetail.picLoc1}" alt="">
+                                </div>
+                            </article>
+                            <article class="location-listing">
+                                <div class="location-title" href="">3</div>
+                                <div class="location-image">
+                                    <img width="300" height="169" src="${pDetail.picLoc2}" alt="">
+                                </div>
+                            </article>
+                            <article class="location-listing">
+                                <div class="location-title" href="">4</div>
+                                <div class="location-image">
+                                    <img width="300" height="169" src="${pDetail.picLoc3}" alt="">
+                                </div>
+                            </article>
+                            <article class="location-listing">
+                                <div class="location-title" href="">5</div>
+                                <div class="location-image">
+                                    <img width="300" height="169" src="${pDetail.picLoc4}" alt="">
+                                </div>
+                            </article>
+                        </c:otherwise>
+                    </c:choose>
                 </tr>
                 <tr>
-                    <td>${cbDetail.picNo}</td>
-                </tr>
-                <tr>
-                    <td>${cbDetail.userNo}</td>
+                    <td>${uDetail.userName}유저네임</td>
                 </tr>
                 <tr>
                     <td>${cbDetail.CLocation}</td>
@@ -55,12 +88,17 @@
                     <td>${cbDetail.CTitle}</td>
                 </tr>
                 <tr>
+                    <td>${cbDetail.CCategory}</td>
+                </tr>
+                <tr>
                     <td>${cbDetail.CCreateDate}</td>
                 </tr>
                 <tr>
                     <td>${cbDetail.CContent}</td>
                 </tr>
-
+                <tr>
+                    <td>${hDetail.hashKeyword}</td>
+                </tr>
                 <tr>
                     <td>
                         <input type="button" value="목록" onclick="location.href='/cBoard'">
