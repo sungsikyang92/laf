@@ -40,13 +40,13 @@ public class CommunityController {
     }
 
     @PostMapping("/write")
-    public String writeComBoard(CommunityDto communityDto) throws Exception {
+    public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         String symbol = "com";
         long numbering = boardNoService.getMaxBoardNo() + 1;
         boardNoService.addBoardNo(numbering);
         String comBoardNo = symbol + numbering;
         communityDto.setCBoardNo(comBoardNo);
-        communityService.writeComBoard(communityDto);
+        communityService.writeComBoard(communityDto, multipartHttpServletRequest);
         String cBNo = communityService.getLastCBoardNo();
         return "redirect:/cBoard/"+cBNo;
     }

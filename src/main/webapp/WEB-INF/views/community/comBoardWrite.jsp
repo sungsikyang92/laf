@@ -41,9 +41,9 @@
         <div class="contents_container">
             <form action="/cBoard/write" method="post" enctype="multipart/form-data">
                 <table>
-<%--                    <tr>--%>
-<%--                        <td><input type="file" name="picCom" id="picCom" multiple="multiple"></td>--%>
-<%--                    </tr>--%>
+                    <tr>
+                        <td><input type="file" name="picCom" id="picCom" multiple="multiple"></td>
+                    </tr>
                     <tr>
                         <td><input type="text" name="cTitle" placeholder="글 제목을 입력해주세요"></td>
                     </tr>
