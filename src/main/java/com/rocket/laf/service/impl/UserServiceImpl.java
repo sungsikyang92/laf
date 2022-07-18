@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto login(UserDto dto) {
-        
         return userMapper.login(dto);
     }
 
@@ -30,5 +29,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserById(long userNo) {
         return userMapper.getUserById(userNo);
+    }
+
+    @Override
+    public int chkDuplicatedId(String idFromJson) {
+        return userMapper.chkDuplicatedId(idFromJson);
     }
 }
