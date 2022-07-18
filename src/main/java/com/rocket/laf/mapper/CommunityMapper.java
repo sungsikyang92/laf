@@ -1,7 +1,7 @@
 package com.rocket.laf.mapper;
 
-import com.rocket.laf.dto.ComPicTestDto;
 import com.rocket.laf.dto.CommunityDto;
+import com.rocket.laf.dto.PictureDto;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -9,15 +9,16 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-    @Select(" SELECT * FROM Community c " +
-            "INNER JOIN Picture p  ON c.picNo = p.picNo " +
-            "INNER JOIN HashTag ht ON c.hashNo = ht.hashNo " +
-            "ORDER BY cBoardNo DESC")
+    @Select("SELECT c.cBoardNo, c.cTitle, c.cContent, c.cCreateDate, c.cIsModified, c.cLocation, c.cCategory, c.userNo, c.hashNo, p.picNo, p.boardNo, p.originalFileName, p.storedFilePath, p.fileSize, p.createdDate, p.isDeleted, h.hashKeyword " +
+            "FROM Community c " +
+            "LEFT JOIN Picture p ON c.cBoardNo = p.boardNo " +
+            "LEFT JOIN HashTag h ON c.hashNo = h.hashNo " +
+            "ORDER BY c.cBoardNo DESC")
     List<CommunityDto> getComBoardList();
 
     @Insert(" INSERT INTO Community " +
-            "(cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo, picNo) " +
-            "VALUES (#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1,1) ")
+            "(cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
+            "VALUES (#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
     @Options(useGeneratedKeys = true, keyProperty = "cBoardNo")
     void writeComBoard(CommunityDto communityDto);
 
@@ -31,25 +32,24 @@ public interface CommunityMapper {
     int updateComBoardDetail(CommunityDto communityDto);
 
     @Delete(" DELETE FROM Community " +
-            "WHERE cBoardNo = ${cBoardNo}")
+            "WHERE cBoardNo = #{cBoardNo}")
     int deleteComBoardDetail(long cBoardNo);
 
     @Select(" SELECT MAX(cBoardNo) FROM Community ")
     long getLastCBoardNo();
 
     @Insert({"<script>" +
-            "INSERT INTO PicFile " +
-            "(cBoardNo,originalFileName, storedFilePath, fileSize, userName, cCreateDate) VALUES" +
+            "INSERT INTO Picture " +
+            "(boardNo,originalFileName, storedFilePath, fileSize, createdDate) VALUES" +
             "<foreach collection='list' item='item' separator=','>" +
             "(" +
-            "#{item.cBoardNo}," +
+            "#{item.boardNo}," +
             "#{item.originalFileName}," +
             "#{item.storedFilePath}," +
             "#{item.fileSize}," +
-            "'test'," +
             "NOW()" +
             ")" +
             "</foreach> " +
             "</script>"})
-    void writeComBoardFileList(List<ComPicTestDto> list) throws Exception;
+    void writeComBoardFileList(List<PictureDto> list) throws Exception;
 }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommunityDto {
-    private long cBoardNo;
+    private String cBoardNo;
     private String cTitle;
     private String cContent;
     private LocalDateTime cCreateDate;

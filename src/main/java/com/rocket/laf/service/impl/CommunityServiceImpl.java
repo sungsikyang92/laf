@@ -1,8 +1,8 @@
 package com.rocket.laf.service.impl;
 
 import com.rocket.laf.common.FileUtils;
-import com.rocket.laf.dto.ComPicTestDto;
 import com.rocket.laf.dto.CommunityDto;
+import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.mapper.CommunityMapper;
 import com.rocket.laf.service.CommunityService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         communityMapper.writeComBoard(communityDto);
-        List<ComPicTestDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
+        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             communityMapper.writeComBoardFileList(list);
         }

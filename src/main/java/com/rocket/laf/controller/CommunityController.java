@@ -1,11 +1,8 @@
 package com.rocket.laf.controller;
 
 import com.rocket.laf.dto.*;
-import com.rocket.laf.service.impl.CommunityServiceImpl;
+import com.rocket.laf.service.impl.*;
 import com.rocket.laf.dto.CommunityDto;
-import com.rocket.laf.service.impl.HashTagServiceImpl;
-import com.rocket.laf.service.impl.PictureServiceImpl;
-import com.rocket.laf.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -29,6 +26,7 @@ public class CommunityController {
     private final PictureServiceImpl pictureService;
     private final HashTagServiceImpl hashTagService;
     private final UserServiceImpl userService;
+    private final BoardNoServiceImpl boardNoService;
 
     @GetMapping("")
     public String getComBoardList(Model model) {
@@ -43,6 +41,11 @@ public class CommunityController {
 
     @PostMapping("/write")
     public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        String symbol = "com";
+        long numbering = boardNoService.getMaxBoardNo() + 1;
+        boardNoService.addBoardNo(numbering);
+        String comBoardNo = symbol + numbering;
+        communityDto.setCBoardNo(comBoardNo);
         communityService.writeComBoard(communityDto, multipartHttpServletRequest);
         long cBNo = communityService.getLastCBoardNo();
         return "redirect:/cBoard/"+cBNo;

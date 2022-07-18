@@ -1,6 +1,6 @@
 package com.rocket.laf.common;
 
-import com.rocket.laf.dto.ComPicTestDto;
+import com.rocket.laf.dto.PictureDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -22,11 +22,11 @@ public class FileUtils {
     @Autowired
     ResourceLoader resourceLoader;
 
-    public List<ComPicTestDto> parseFileInfo(long cBoardNo, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public List<PictureDto> parseFileInfo(String boardNo, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
             return null;
         }
-        List<ComPicTestDto> fileList = new ArrayList<>();
+        List<PictureDto> fileList = new ArrayList<>();
         //시간을 생성하는 이유는 저장될 파일 이름이 겹치지 않게 하기위해서 시간으로 파일명을 바꿔서 저장합니다.
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
         ZonedDateTime current = ZonedDateTime.now();
@@ -63,12 +63,12 @@ public class FileUtils {
                     }
 
                     newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
-                    ComPicTestDto comPicTestDto = new ComPicTestDto();
-                    comPicTestDto.setCBoardNo(cBoardNo);
-                    comPicTestDto.setFileSize(multipartFile.getSize());
-                    comPicTestDto.setOriginalFileName(multipartFile.getOriginalFilename());
-                    comPicTestDto.setStoredFilePath(path + "/" + newFileName);
-                    fileList.add(comPicTestDto);
+                    PictureDto pictureDto = new PictureDto();
+                    pictureDto.setBoardNo(boardNo);
+                    pictureDto.setFileSize(multipartFile.getSize());
+                    pictureDto.setOriginalFileName(multipartFile.getOriginalFilename());
+                    pictureDto.setStoredFilePath(path + "/" + newFileName);
+                    fileList.add(pictureDto);
 
                     file = new File(path + "/" + newFileName);
                     multipartFile.transferTo(file);
