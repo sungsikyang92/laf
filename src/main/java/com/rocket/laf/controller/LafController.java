@@ -1,5 +1,6 @@
 package com.rocket.laf.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +12,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.service.impl.LostServiceImpl;
 import com.rocket.laf.service.impl.PictureServiceImpl;
+import com.rocket.laf.common.Bucketlaf;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/")
 public class LafController {
+
+    private Bucketlaf blf = new Bucketlaf();
 
     @Autowired
     private LostServiceImpl lostserviceImpl;
@@ -31,6 +37,7 @@ public class LafController {
     public String main(Model model) {
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
 
+        blf.bucketFileSearchList();
         model.addAttribute("lostlist", lostlist);
         return "index";
     }
@@ -55,6 +62,15 @@ public class LafController {
 
     @PostMapping("/post_Quiz")
     public String LostCreate() {
+        return "index";
+    }
+
+    @PostMapping("/write")
+    public String writesample(MultipartFile mlp)
+            throws IllegalStateException, IOException {
+
+        // blf.bucketFileUploadMultipart("l0000001", mlp);
+
         return "index";
     }
 }
