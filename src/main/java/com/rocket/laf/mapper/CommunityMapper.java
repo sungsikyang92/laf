@@ -52,6 +52,7 @@ public interface CommunityMapper {
             "</foreach> " +
             "</script>"})
     void writeComBoardFileList(List<PictureDto> list) throws Exception;
+
 }
 
 

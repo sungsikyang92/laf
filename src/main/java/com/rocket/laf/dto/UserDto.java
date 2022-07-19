@@ -14,6 +14,7 @@ public class UserDto {
     private String userEmail;
     private String userPw;
     private String userPhone;
+    private String userBirth; //추가
     private String userSex;
     private String userAcc;
     private String userLocation;

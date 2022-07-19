@@ -1,8 +1,11 @@
 window.onload = function () {
+
+
     var hamburger = document.querySelector(".hamburger");
     hamburger.addEventListener("click", function () {
         document.querySelector("body").classList.toggle("active");
     })
+
 
 
 
@@ -72,4 +75,6 @@ window.onload = function () {
             button.classList.remove("start");
         });
     });
+
+    var img_con = null;
 }
