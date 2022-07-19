@@ -41,70 +41,48 @@
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
 
-                    <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple />
-                    <div id="image_container"></div>
-
-
-                    <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-                        ${boardDetail[0].LTitle}</h1>
-                    <br>
-                    <h2>현재 동네 : ${boardDetail[0].LLocation}</h2>
-                    <div class="child-page-listing">
+                    <form action="/lBoard/write" method="post" enctype="multipart/form-data">
+                        <div id="image_container"></div>
+                        <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple />
                         <br>
+                        <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
                         <br>
-                        <h2>사진 </h2>
-                        <div class="grid-container"
-                            style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;padding-top:20px">
-                            <c:choose>
-                                <c:when test="${empty allpicture }">
-                                    <td colspan="4">----사진이 없다----</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">대표사진 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].mainPicLoc}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 1 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc1}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 2 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc2}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 3 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc3}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 4 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc4}" alt="">
-                                        </div>
-                                    </article>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <!-- end grid container -->
-                    </div>
-                    <br>
-                    <h2>작성일 : ${boardDetail[0].LCreateDate}</h2>
-                    <h3>글내용 : ${boardDetail[0].LContent}</h3>
-                    <br>
-                    <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail[0].LQuestion}</h3>
+                        <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
+                            <input type="text" name="lTitle" placeholder="글 제목을 입력해주세요">
+                        </h1>
+                        <br>
+                        <h2>글 내용 : <br><textarea cols="150" rows="15" name="lContent"
+                                placeholder="글 내용을 입력해주세요"></textarea>
+                        </h2>
+                        <br>
+                        <h3 style="border-top:solid 2px rgb(169, 169, 169);">
+                            문제 :<input type="text" name="lQuestion" placeholder="질문을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            정답 :<input type="text" name="lAnswers" placeholder="정답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers1" placeholder="오답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers2" placeholder="오답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers3" placeholder="오답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
+                        </h3>
 
-                    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);"
-                        method="post"><br>
+
+
+
                     </form>
-
                 </div>
 
 

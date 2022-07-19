@@ -1,11 +1,9 @@
 window.onload = function () {
+
     var hamburger = document.querySelector(".hamburger");
     hamburger.addEventListener("click", function () {
         document.querySelector("body").classList.toggle("active");
     })
-
-
-
     const createSVG = (width, height, radius) => {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
@@ -72,4 +70,6 @@ window.onload = function () {
             button.classList.remove("start");
         });
     });
+
+    var img_con = null;
 }

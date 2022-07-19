@@ -14,7 +14,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LostDto {
-    private long lBoardNo;
+    private String lBoardNo;
     private String lTitle;
     private String lContent;
     private Date lCreateDate;

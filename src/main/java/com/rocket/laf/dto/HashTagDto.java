@@ -2,11 +2,9 @@ package com.rocket.laf.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class HashTagDto {
     private long hashNo;
     private String hashKeyword;
