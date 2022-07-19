@@ -31,7 +31,7 @@ public class FileUtils {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
         ZonedDateTime current = ZonedDateTime.now();
         //저장되는 Path 설정입니다. 각자의 경로가 다르기에 시스템상으로 Path.of....을 사용하여 경로를 구하고 마지막 저장될 파일 경로를 따로 기입해줍니다.
-        String rootPath = Path.of(resourceLoader.getResource("classpath:static").getURI()).toString() + "/img/communityBoard/";
+        String rootPath = "src/main/resources/static/img/communityBoard/";
         String path = rootPath + current.format(format);
         File file = new File(path);
         if (file.exists() == false) {

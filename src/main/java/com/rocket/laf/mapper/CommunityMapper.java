@@ -19,7 +19,7 @@ public interface CommunityMapper {
     @Insert(" INSERT INTO Community " +
             "(cBoardNo, cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
             "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
-//    @Options(useGeneratedKeys = true, keyProperty = "cBoardNo")
+    @Options(keyProperty = "cBoardNo")
     void writeComBoard(CommunityDto communityDto);
 
     @Select(" SELECT * FROM Community " +
@@ -53,3 +53,5 @@ public interface CommunityMapper {
             "</script>"})
     void writeComBoardFileList(List<PictureDto> list) throws Exception;
 }
+
+

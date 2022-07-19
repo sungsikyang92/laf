@@ -9,7 +9,7 @@ public interface CommunityService {
 
     List<CommunityDto> getComBoardList();
 
-    void writeComBoard(CommunityDto communityDto) throws Exception;
+    void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
 
     CommunityDto getComBoardDetail(String cBoardNo);
 

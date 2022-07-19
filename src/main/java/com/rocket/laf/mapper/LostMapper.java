@@ -11,7 +11,7 @@ import com.rocket.laf.dto.LostDto;
 @Mapper
 public interface LostMapper {
 
-    @Select("SELECT * FROM Lost AS l INNER JOIN Picture AS p ON l.picNo = p.picNo")
+    @Select("SELECT * FROM Lost AS l INNER JOIN Picture AS p ON l.lBoardNo = p.boardNo")
     List<LostDto> getLostBoardList();
 
     @Select("SELECT * FROM Lost WHERE lBoardNo = #{lBoardNo}")

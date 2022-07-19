@@ -42,8 +42,9 @@ public class CommunityController {
     @PostMapping("/write")
     public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         String symbol = "com";
-        long numbering = boardNoService.getMaxBoardNo() + 1;
-        boardNoService.addBoardNo(numbering);
+        long bnumbering = boardNoService.getMaxBoardNo() + 1;
+        boardNoService.addBoardNo(bnumbering);
+        String numbering = String.format("%08d", bnumbering);
         String comBoardNo = symbol + numbering;
         communityDto.setCBoardNo(comBoardNo);
         communityService.writeComBoard(communityDto, multipartHttpServletRequest);
@@ -54,14 +55,14 @@ public class CommunityController {
     @GetMapping("/{cBoardNo}")
     public String getComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, Model model) {
         CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
-        long picNo = comDto.getPicNo();
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
-        PictureDto picDto = pictureService.getAllPictureByPicNo(picNo);
+        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
+
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
-        model.addAttribute("pDetail", picDto);
+        model.addAttribute("pDetail", picList);
         model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
         return "/community/comBoardDetail";

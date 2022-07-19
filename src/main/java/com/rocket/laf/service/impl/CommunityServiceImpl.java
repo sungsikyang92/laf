@@ -28,8 +28,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public void writeComBoard(CommunityDto communityDto) throws Exception {
+    public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         communityMapper.writeComBoard(communityDto);
+        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
+        if (CollectionUtils.isEmpty(list) == false) {
+            communityMapper.writeComBoardFileList(list);
+        }
     }
 
     @Override
