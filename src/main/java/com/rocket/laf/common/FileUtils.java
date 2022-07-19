@@ -1,6 +1,6 @@
 package com.rocket.laf.common;
 
-import com.rocket.laf.dto.ComPicTestDto;
+import com.rocket.laf.dto.PictureDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -22,14 +22,16 @@ public class FileUtils {
     @Autowired
     ResourceLoader resourceLoader;
 
-    public List<ComPicTestDto> parseFileInfo(long cBoardNo, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public List<PictureDto> parseFileInfo(String boardNo, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
             return null;
         }
-        List<ComPicTestDto> fileList = new ArrayList<>();
+        List<PictureDto> fileList = new ArrayList<>();
+        //시간을 생성하는 이유는 저장될 파일 이름이 겹치지 않게 하기위해서 시간으로 파일명을 바꿔서 저장합니다.
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
         ZonedDateTime current = ZonedDateTime.now();
-        String rootPath = Path.of(resourceLoader.getResource("classpath:static").getURI()).toString() + "/img/communityBoard/";
+        //저장되는 Path 설정입니다. 각자의 경로가 다르기에 시스템상으로 Path.of....을 사용하여 경로를 구하고 마지막 저장될 파일 경로를 따로 기입해줍니다.
+        String rootPath = "src/main/resources/static/img/communityBoard/";
         String path = rootPath + current.format(format);
         File file = new File(path);
         if (file.exists() == false) {
@@ -48,6 +50,7 @@ public class FileUtils {
                     if (ObjectUtils.isEmpty(contentType)) {
                         break;
                     } else {
+                        //저장되는 파일의 형태를 확인 후, 해당하는 확장자명으로 저장합니다.
                         if (contentType.contains("image/jpeg")) {
                             originalFileExtension = ".jpg";
                         } else if (contentType.contains("image/png")) {
@@ -60,12 +63,12 @@ public class FileUtils {
                     }
 
                     newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
-                    ComPicTestDto comPicTestDto = new ComPicTestDto();
-                    comPicTestDto.setCBoardNo(cBoardNo);
-                    comPicTestDto.setFileSize(multipartFile.getSize());
-                    comPicTestDto.setOriginalFileName(multipartFile.getOriginalFilename());
-                    comPicTestDto.setStoredFilePath(path + "/" + newFileName);
-                    fileList.add(comPicTestDto);
+                    PictureDto pictureDto = new PictureDto();
+                    pictureDto.setBoardNo(boardNo);
+                    pictureDto.setFileSize(multipartFile.getSize());
+                    pictureDto.setOriginalFileName(multipartFile.getOriginalFilename());
+                    pictureDto.setStoredFilePath(path + "/" + newFileName);
+                    fileList.add(pictureDto);
 
                     file = new File(path + "/" + newFileName);
                     multipartFile.transferTo(file);

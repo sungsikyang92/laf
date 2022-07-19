@@ -1,8 +1,8 @@
 package com.rocket.laf.service.impl;
 
 import com.rocket.laf.common.FileUtils;
-import com.rocket.laf.dto.ComPicTestDto;
 import com.rocket.laf.dto.CommunityDto;
+import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.mapper.CommunityMapper;
 import com.rocket.laf.service.CommunityService;
 import lombok.RequiredArgsConstructor;
@@ -30,14 +30,14 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         communityMapper.writeComBoard(communityDto);
-        List<ComPicTestDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
+        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             communityMapper.writeComBoardFileList(list);
         }
     }
 
     @Override
-    public CommunityDto getComBoardDetail(long cBoardNo) {
+    public CommunityDto getComBoardDetail(String cBoardNo) {
         return communityMapper.getComBoardDetail(cBoardNo);
     }
 
@@ -54,12 +54,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public int deleteComBoardDetail(int cBoardNo) {
+    public int deleteComBoardDetail(String cBoardNo) {
         return communityMapper.deleteComBoardDetail(cBoardNo);
     }
 
     @Override
-    public long getLastCBoardNo() {
+    public String getLastCBoardNo() {
         return communityMapper.getLastCBoardNo();
     }
 }

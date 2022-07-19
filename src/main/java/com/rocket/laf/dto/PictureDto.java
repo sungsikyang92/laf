@@ -2,17 +2,14 @@ package com.rocket.laf.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class PictureDto {
     private long picNo;
-    private String picLoc1;
-    private String picLoc2;
-    private String picLoc3;
-    private String picLoc4;
-    private String mainPicLoc;
-    private String ThumbImg;
+    private String boardNo;
+    private String originalFileName;
+    private String storedFilePath;
+    private long fileSize;
+    private boolean isDeleted;
 }

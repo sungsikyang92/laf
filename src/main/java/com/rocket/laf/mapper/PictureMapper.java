@@ -16,7 +16,7 @@ public interface PictureMapper {
     @Select("SELECT mainPicLoc FROM Picture WHERE picNo = #{picNo}")
     String getMainPicLoc(long picNo);
 
-    @Select(" SELECT * FROM Picture WHERE picNo = #{picNo} ")
-    PictureDto getAllPictureByPicNo(long picNo);
+    @Select(" SELECT * FROM Picture WHERE boardNo = #{boardNo} ")
+    List<PictureDto> getAllPictureByBoardNo(String boardNo);
 
 }
