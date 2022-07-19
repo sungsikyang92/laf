@@ -39,7 +39,6 @@
         </div>
 
 
-
         <div class="contents_container">
             <form action="/cBoard/write" method="post" enctype="multipart/form-data">
                 <table>
