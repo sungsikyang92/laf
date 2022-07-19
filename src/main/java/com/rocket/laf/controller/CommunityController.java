@@ -58,7 +58,10 @@ public class CommunityController {
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
         List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
-
+        for (PictureDto pdto : picList) {
+            String originPath = pdto.getStoredFilePath();
+            pdto.setStoredFilePath("/resources" + originPath.substring(25));
+        }
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
