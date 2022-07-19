@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
-import com.rocket.laf.service.LostService;
-import com.rocket.laf.service.PictureService;
+import com.rocket.laf.service.impl.LostServiceImpl;
+import com.rocket.laf.service.impl.PictureServiceImpl;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,13 +23,13 @@ import com.rocket.laf.service.PictureService;
 public class LafController {
 
     @Autowired
-    private LostService lostservice;
+    private LostServiceImpl lostserviceImpl;
     @Autowired
-    private PictureService pictureService;
+    private PictureServiceImpl pictureServiceImpl;
 
     @GetMapping("/")
     public String main(Model model) {
-        List<LostDto> lostlist = lostservice.getLostBoardList();
+        List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
 
         model.addAttribute("lostlist", lostlist);
         return "index";
@@ -44,8 +44,8 @@ public class LafController {
     public String LostDetail(HttpServletRequest req, Model model) {
         String boardNo = req.getParameter("lBNo");
         String picNo = req.getParameter("PicNo");
-        List<LostDto> lolist = lostservice.getLostBoardOne(boardNo);
-        List<PictureDto> piclist = pictureService.getAllPictuer(picNo);
+        List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
+        List<PictureDto> piclist = pictureServiceImpl.getAllPictuer(picNo);
 
         model.addAttribute("allpicture", piclist);
         model.addAttribute("boardDetail", lolist);

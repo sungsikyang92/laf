@@ -16,8 +16,9 @@
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
-        href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
+
 </head>
 
 <body class="body_container">
@@ -39,13 +40,19 @@
 
 
         <div class="contents_container">
-            <form action="/cBaord/write" method="post" enctype="multipart/form-data">
+            <form action="/cBoard/write" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td><input type="file" name="pic"></td>
+                        <td><input type="file" name="picCom" id="picCom" multiple="multiple"></td>
+                    </tr>
+                    <tr>
+                        <div class="uploadResult"></div>
                     </tr>
                     <tr>
                         <td><input type="text" name="cTitle" placeholder="글 제목을 입력해주세요"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="cCategory" placeholder="카테고리 입력"> </td>
                     </tr>
                     <tr>
                         <td>

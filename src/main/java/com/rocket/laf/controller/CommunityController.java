@@ -1,11 +1,8 @@
 package com.rocket.laf.controller;
 
 import com.rocket.laf.dto.*;
-import com.rocket.laf.service.impl.CommunityServiceImpl;
+import com.rocket.laf.service.impl.*;
 import com.rocket.laf.dto.CommunityDto;
-import com.rocket.laf.service.impl.HashTagServiceImpl;
-import com.rocket.laf.service.impl.PictureServiceImpl;
-import com.rocket.laf.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -29,6 +26,7 @@ public class CommunityController {
     private final PictureServiceImpl pictureService;
     private final HashTagServiceImpl hashTagService;
     private final UserServiceImpl userService;
+    private final BoardNoServiceImpl boardNoService;
 
     @GetMapping("")
     public String getComBoardList(Model model) {
@@ -42,37 +40,41 @@ public class CommunityController {
     }
 
     @PostMapping("/write")
-    public String insertComBoard(CommunityDto communityDto) {
-        if (communityService.insertComBoard(communityDto) > 0) {
-            return "redirect:/cBoard";
-        } else {
-            return "comBoardWrite";
-        }
+    public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        String symbol = "com";
+        long bnumbering = boardNoService.getMaxBoardNo() + 1;
+        boardNoService.addBoardNo(bnumbering);
+        String numbering = String.format("%08d", bnumbering);
+        String comBoardNo = symbol + numbering;
+        communityDto.setCBoardNo(comBoardNo);
+        communityService.writeComBoard(communityDto, multipartHttpServletRequest);
+        String cBNo = communityService.getLastCBoardNo();
+        return "redirect:/cBoard/"+cBNo;
     }
 
     @GetMapping("/{cBoardNo}")
-    public String getComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
+    public String getComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, Model model) {
         CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
-        long picNo = comDto.getPicNo();
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
-        PictureDto picDto = pictureService.getAllPictureByPicNo(picNo);
+        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
+
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
-        model.addAttribute("pDetail", picDto);
+        model.addAttribute("pDetail", picList);
         model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
         return "/community/comBoardDetail";
     }
 
     @GetMapping("/update/{cBoardNo}")
-    public String updateComBoardForm(@PathVariable(name = "cBoardNo") int cBoardNo, Model model) {
+    public String updateComBoardForm(@PathVariable(name = "cBoardNo") String cBoardNo, Model model) {
         model.addAttribute("cbDetail", communityService.getComBoardDetail(cBoardNo));
         return "/community/comBoardUpdate";
     }
     @PostMapping("/update/{cBoardNo}")
-    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
+    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
         if (communityService.updateComBoardDetail(communityDto, multipartHttpServletRequest) > 0) {
             return "redirect:/cBoard/" + cBoardNo;
         } else {
@@ -81,7 +83,7 @@ public class CommunityController {
     }
 
     @GetMapping("/delete/{cBaordNo}")
-    public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") int cBoardNo) {
+    public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo) {
         communityService.deleteComBoardDetail(cBoardNo);
         return "redirect:/cBoard";
     }
