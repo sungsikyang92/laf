@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -54,7 +55,7 @@ public class UserController {
     }
 
     //강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
-    @RequestMapping(value ="/signUpForm")
+    @RequestMapping(value ="/signUpForm", method= {RequestMethod.GET, RequestMethod.POST})
     public String userSignUpFrom(HttpServletRequest request, Model model){
         logger.info("------------------------Controller mapping 'signUp form call'");
 
