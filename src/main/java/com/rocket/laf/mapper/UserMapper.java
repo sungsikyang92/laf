@@ -22,5 +22,9 @@ public interface UserMapper {
     @Select("select EXISTS (SELECT userNo from User where userId=#{idFromJson})")
     int chkDuplicatedId(String idFromJson);
 
+    //security login
+    @Select( "select * from User where userId=#{userId} " )
+    UserDto secLogin(String userId);
+
 
 }

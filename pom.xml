@@ -97,7 +97,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<!-- 스프링 시큐리티 end:sdddd -->
+		<!-- 스프링 시큐리티 end -->
 
 	</dependencies>
 
