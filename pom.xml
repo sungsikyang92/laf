@@ -92,12 +92,12 @@
 
 		<!-- 첨부파일 END -->
 
-		<!-- 스프링 시큐리티 start -->
-		<!-- <dependency>
+		<!-- 스프링 시큐리티 start: -->
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
-		<!-- 스프링 시큐리티 end -->
+		</dependency>
+		<!-- 스프링 시큐리티 end:sdddd -->
 
 	</dependencies>
 
