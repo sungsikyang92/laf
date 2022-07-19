@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
-public class PicConfig {
+public class WebMvcConfiguration {
 
     @Bean
     public CommonsMultipartResolver commonsMultipartResolver() {

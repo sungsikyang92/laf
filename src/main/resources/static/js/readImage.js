@@ -1,47 +1,42 @@
-function readMultipleImage(input) {
-    const multipleContainer = document.getElementById("multiple-container")
+function setThumbnail(event) {
+    let file_number = 0;
+    let max_file_number = 5;
 
-    // 인풋 태그에 파일들이 있는 경우
-    if (input.files) {
-        // 이미지 파일 검사 (생략)
-        console.log(input.files)
-        // 유사배열을 배열로 변환 (forEach문으로 처리하기 위해)
-        const fileArr = Array.from(input.files)
-        const $colDiv1 = document.createElement("div")
-        const $colDiv2 = document.createElement("div")
-        $colDiv1.classList.add("column")
-        $colDiv2.classList.add("column")
-        fileArr.forEach((file, index) => {
-            const reader = new FileReader()
-            const $imgDiv = document.createElement("div")
-            const $img = document.createElement("img")
-            $img.classList.add("image")
-            const $label = document.createElement("label")
-            $label.classList.add("image-label")
-            $label.textContent = file.name
-            $imgDiv.appendChild($img)
-            $imgDiv.appendChild($label)
-            reader.onload = e => {
-                $img.src = e.target.result
 
-                $imgDiv.style.width = ($img.naturalWidth) * 0.2 + "px"
-                $imgDiv.style.height = ($img.naturalHeight) * 0.2 + "px"
-            }
+    for (let img of event.target.files) {
+        file_number++;
+    }
 
-            console.log(file.name)
-            if (index % 2 == 0) {
-                $colDiv1.appendChild($imgDiv)
-            } else {
-                $colDiv2.appendChild($imgDiv)
-            }
 
-            reader.readAsDataURL(file)
-        })
-        multipleContainer.appendChild($colDiv1)
-        multipleContainer.appendChild($colDiv2)
+    if (file_number <= max_file_number) {
+        for (let image of event.target.files) {
+
+            let reader = new FileReader();
+            reader.onload = function (event) {
+                /*
+                var img_con_init = document.getElementById("image_container");
+                if (img_con_init = false) {
+                    console.log(img_con_init);
+                    //img_con_init.removeChild(img_con_init);
+                }
+                */
+
+                let img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                img.setAttribute("width", "200px");
+                img.setAttribute("height", "125px");
+                img.setAttribute("name", "selectImg");
+                document.querySelector("div#image_container").appendChild(img);
+            };
+
+            console.log(image);
+            reader.readAsDataURL(image);
+        }
+    } else {
+        document.getElementById("image").value = null;
+        alert("이미지는 5개까지 등록 가능합니다.");
+
+
+
     }
 }
-const inputMultipleImage = document.getElementById("input-multiple-image")
-inputMultipleImage.addEventListener("change", e => {
-    readMultipleImage(e.target)
-})

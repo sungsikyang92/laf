@@ -19,7 +19,7 @@
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
 </head>
-    <body class="body_container">
+<body class="body_container">
     <div class="wrapper">
         <div class="section">
             <div class="top_navbar">
@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="right_nav">
-                    <button class="btn" onclick="location.href='cBoard/write'">글쓰기</button>
+                    <button class="btn" onclick="location.href='/cBoard/write'">글쓰기</button>
                     <button class="btn">로그인/마이페이지</button>
                 </div>
             </div>
@@ -45,36 +45,13 @@
                             <td>등록된 사진이 없습니다</td>
                         </c:when>
                         <c:otherwise>
-                            <article class="location-listing">
-                                <div class="location-title" href="">1</div>
-                                <div class="location-image">
-                                    <img width="300" height="169" src="${pDetail.mainPicLoc}" alt="">
-                                </div>
-                            </article>
-                            <article class="location-listing">
-                                <div class="location-title" href="">2</div>
-                                <div class="location-image">
-                                    <img width="300" height="169" src="${pDetail.picLoc1}" alt="">
-                                </div>
-                            </article>
-                            <article class="location-listing">
-                                <div class="location-title" href="">3</div>
-                                <div class="location-image">
-                                    <img width="300" height="169" src="${pDetail.picLoc2}" alt="">
-                                </div>
-                            </article>
-                            <article class="location-listing">
-                                <div class="location-title" href="">4</div>
-                                <div class="location-image">
-                                    <img width="300" height="169" src="${pDetail.picLoc3}" alt="">
-                                </div>
-                            </article>
-                            <article class="location-listing">
-                                <div class="location-title" href="">5</div>
-                                <div class="location-image">
-                                    <img width="300" height="169" src="${pDetail.picLoc4}" alt="">
-                                </div>
-                            </article>
+                            <c:forEach items="${pDetail}" var="pd">
+                                <article class="location-listing">
+                                    <div class="location-image">
+                                        <img width="300" height="169" src="${pd.storedFilePath}" alt="">
+                                    </div>
+                                </article>
+                            </c:forEach>
                         </c:otherwise>
                     </c:choose>
                 </tr>
@@ -86,6 +63,9 @@
                 </tr>
                 <tr>
                     <td>${cbDetail.CTitle}</td>
+                </tr>
+                <tr>
+                    <td>${cbDetail.CCategory}</td>
                 </tr>
                 <tr>
                     <td>${cbDetail.CCreateDate}</td>

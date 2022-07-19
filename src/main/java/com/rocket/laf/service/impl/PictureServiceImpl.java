@@ -37,8 +37,8 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public PictureDto getAllPictureByPicNo(long picNo) {
-        return pictureMapper.getAllPictureByPicNo(picNo);
+    public List<PictureDto> getAllPictureByBoardNo(String boardNo) {
+        return pictureMapper.getAllPictureByBoardNo(boardNo);
     }
         // filesystem
 

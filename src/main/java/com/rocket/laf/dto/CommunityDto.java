@@ -1,5 +1,6 @@
 package com.rocket.laf.dto;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -10,11 +11,17 @@ import lombok.ToString;
 
 @Getter
 @Setter
+=======
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@Data
+>>>>>>> 0346a107d07d6b2a795aada837d5676f666eb4d9
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class CommunityDto {
-    private long cBoardNo;
+    private String cBoardNo;
     private String cTitle;
     private String cContent;
     private LocalDateTime cCreateDate;
