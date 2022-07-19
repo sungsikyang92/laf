@@ -60,7 +60,8 @@ public class CommunityController {
         List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
         for (PictureDto pdto : picList) {
             String originPath = pdto.getStoredFilePath();
-            pdto.setStoredFilePath("/resources" + originPath.substring(25));
+//            pdto.setStoredFilePath(originPath.substring(44));
+            pdto.setStoredFilePath("../"+ originPath.substring(30));
         }
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
