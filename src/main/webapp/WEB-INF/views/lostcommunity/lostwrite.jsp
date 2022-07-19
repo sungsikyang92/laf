@@ -42,7 +42,7 @@
                 <div class="contents_container">
 
                     <form action="/lBoard/write" method="post" enctype="multipart/form-data">
-                        <div id="image_container"> 이미지 재선택시</div>
+                        <div id="image_container"></div>
                         <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple />
                         <br>
                         <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
