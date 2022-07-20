@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
@@ -45,8 +44,7 @@ public class CommunityController {
         String comBoardNo = symbol + numbering;
         communityDto.setCBoardNo(comBoardNo);
         communityService.writeComBoard(communityDto, multipartHttpServletRequest);
-        String cBNo = communityService.getLastCBoardNo();
-        return "redirect:/cBoard/"+cBNo;
+        return "redirect:/cBoard";
     }
 
     @GetMapping("/{cBoardNo}")
