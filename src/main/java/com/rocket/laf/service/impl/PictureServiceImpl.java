@@ -40,7 +40,7 @@ public class PictureServiceImpl implements PictureService {
     public List<PictureDto> getAllPictureByBoardNo(String boardNo) {
         return pictureMapper.getAllPictureByBoardNo(boardNo);
     }
-        // filesystem
+    // filesystem
 
     private String uploadPath;
 
