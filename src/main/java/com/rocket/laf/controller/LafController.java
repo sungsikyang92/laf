@@ -22,6 +22,7 @@ import com.rocket.laf.service.impl.PictureServiceImpl;
 @RequestMapping("/")
 public class LafController {
 
+
     @Autowired
     private LostServiceImpl lostserviceImpl;
     @Autowired
@@ -46,9 +47,9 @@ public class LafController {
         String boardNo = req.getParameter("lBNo");
         String picNo = req.getParameter("PicNo");
         List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
-        List<PictureDto> piclist = pictureServiceImpl.getAllPicture(picNo);
+//        List<PictureDto> piclist = pictureServiceImpl.getAllPicture(picNo);
 
-        model.addAttribute("allpicture", piclist);
+//        model.addAttribute("allpicture", piclist);
         model.addAttribute("boardDetail", lolist);
 
         return "lostcommunity/lostdetail";

@@ -10,9 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>lo</title>
+    <title>comBoardWrite</title>
 
 
+    <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
@@ -43,7 +44,8 @@
             <form action="/cBoard/write" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td><input type="file" name="picCom" id="picCom" multiple="multiple"></td>
+                        <div id="image_container"></div>
+                        <td><input type="file" name="picCom" id="picCom" multiple="multiple" accept="image/*" onchange="setThumbnail(event);"></td>
                     </tr>
                     <tr>
                         <div class="uploadResult"></div>
@@ -124,7 +126,7 @@
             </ul>
         </div>
     </div>
-
+    <script src='/resources/js/readImage.js'></script>
 
 </body>
 

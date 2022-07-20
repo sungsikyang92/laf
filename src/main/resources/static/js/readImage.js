@@ -35,8 +35,5 @@ function setThumbnail(event) {
     } else {
         document.getElementById("image").value = null;
         alert("이미지는 5개까지 등록 가능합니다.");
-
-
-
     }
 }
