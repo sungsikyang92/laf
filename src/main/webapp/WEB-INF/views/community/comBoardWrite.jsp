@@ -44,7 +44,8 @@
             <form action="/cBoard/write" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td><input type="file" name="picCom" id="picCom" multiple="multiple"></td>
+                        <div id="image_container"></div>
+                        <td><input type="file" name="picCom" id="picCom" multiple="multiple" accept="image/*" onchange="setThumbnail(event);"></td>
                     </tr>
                     <tr>
                         <div class="uploadResult"></div>
@@ -125,7 +126,7 @@
             </ul>
         </div>
     </div>
-
+    <script src='/resources/js/readImage.js'></script>
 
 </body>
 

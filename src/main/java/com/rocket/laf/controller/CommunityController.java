@@ -29,7 +29,12 @@ public class CommunityController {
 
     @GetMapping("")
     public String getComBoardList(Model model) {
-        model.addAttribute("cbList", communityService.getComBoardList());
+        List<CommunityDto> cDtoList = communityService.getComBoardList();
+        for (CommunityDto cDto : cDtoList) {
+            String originPath = cDto.getStoredFilePath();
+            cDto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+        }
+        model.addAttribute("cbList", cDtoList);
         return "/community/comBoardList";
     }
 
@@ -57,6 +62,10 @@ public class CommunityController {
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
         List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
+        for (PictureDto pdto : picList) {
+            String originPath = pdto.getStoredFilePath();
+            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+        }
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
@@ -82,7 +91,7 @@ public class CommunityController {
         }
     }
 
-    @GetMapping("/delete/{cBaordNo}")
+    @GetMapping("/delete/{cBoardNo}")
     public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo) {
         communityService.deleteComBoardDetail(cBoardNo);
         return "redirect:/cBoard";
