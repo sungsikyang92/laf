@@ -22,6 +22,7 @@ import com.rocket.laf.service.impl.PictureServiceImpl;
 @RequestMapping("/")
 public class LafController {
 
+
     @Autowired
     private LostServiceImpl lostserviceImpl;
     @Autowired
