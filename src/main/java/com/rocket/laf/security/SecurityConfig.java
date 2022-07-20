@@ -57,7 +57,7 @@ public class SecurityConfig{
         return authConfig.getAuthenticationManager();
     }
 
-    //???
+    //UserDetailsService 실행시 encryption 객체없으면 에러남
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
