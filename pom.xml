@@ -78,6 +78,7 @@
 		</dependency>
 		<!-- 첨부파일 START-->
 		<!-- MultipartHttpServletRequset -->
+
 <!--		<dependency>-->
 <!--			<groupId>commons-io</groupId>-->
 <!--			<artifactId>commons-io</artifactId>-->
