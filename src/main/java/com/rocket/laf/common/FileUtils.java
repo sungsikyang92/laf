@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -29,9 +30,16 @@ public class FileUtils {
         List<PictureDto> fileList = new ArrayList<>();
         //시간을 생성하는 이유는 저장될 파일 이름이 겹치지 않게 하기위해서 시간으로 파일명을 바꿔서 저장합니다.
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
-        ZonedDateTime current = ZonedDateTime.now();
+        ZonedDateTime current = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
         //저장되는 Path 설정입니다. 각자의 경로가 다르기에 시스템상으로 Path.of....을 사용하여 경로를 구하고 마지막 저장될 파일 경로를 따로 기입해줍니다.
-        String rootPath = "src/main/resources/static/img/communityBoard/";
+        String rootPath="";
+        if (boardNo.contains("com")) {
+            rootPath = "src/main/resources/static/img/communityBoard/";
+        } else if (boardNo.contains("l")) {
+            rootPath = "src/main/resources/static/img/lostBoard/";
+        } else if (boardNo.contains("mp")) {
+            rootPath = "src/main/resources/static/img/myPageProfile/";
+        }
         String path = rootPath + current.format(format);
         File file = new File(path);
         if (file.exists() == false) {

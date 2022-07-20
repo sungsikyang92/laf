@@ -15,9 +15,11 @@
 
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
+    
 </head>
 <body class="body_container">
     <div class="wrapper">
@@ -48,7 +50,7 @@
                             <c:forEach items="${pDetail}" var="pd">
                                 <article class="location-listing">
                                     <div class="location-image">
-                                        <img width="300" height="169" src="${pd.storedFilePath}" alt="">
+                                        <img width="300" height="169" src="${pd.storedFilePath}" alt="어휴등신"/>
                                     </div>
                                 </article>
                             </c:forEach>
