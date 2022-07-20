@@ -57,11 +57,11 @@
                                     <c:forEach items="${lostlist}" var="lostboard">
                                         <article class="location-listing">
                                             <a class="location-title"
-                                                href="lostdetail?&lBNo=${lostboard.LBoardNo}&PicNo=${lostboard.picNo}">
+                                                href="lostdetail?&lBNo=${lostboard.LBoardNo}&PicNo=${picture[0].picNo}">
                                                 ${lostboard.LTitle} </a>
                                             <div class="location-image">
                                                 <a href="#">
-                                                    <img width="300" height="169" src="${lostboard.mainPicLoc}"
+                                                    <img width="300" height="169" src="${picture[0].storedFilePath}"
                                                         alt="${lostboard.LTitle}">
                                                 </a>
                                             </div>

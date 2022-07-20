@@ -32,6 +32,9 @@ public class LafController {
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
         model.addAttribute("lostlist", lostlist);
         
+        //List<PictureDto> piclist = pictureServiceImpl.getMainPictureByBoardNo(lostlist.get(0).getLBoardNo());
+        //model.addAttribute("picture", piclist);
+
         return "index";
 
     }
@@ -43,10 +46,12 @@ public class LafController {
 
     @GetMapping("/lostdetail")
     public String LostDetail(HttpServletRequest req, Model model) {
+
         String boardNo = req.getParameter("lBNo");
         String picNo = req.getParameter("PicNo");
+
         List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
-        List<PictureDto> piclist = pictureServiceImpl.getAllPicture(picNo);
+        List<PictureDto> piclist = pictureServiceImpl.getAllPictureByBoardNo(picNo);
 
         model.addAttribute("allpicture", piclist);
         model.addAttribute("boardDetail", lolist);

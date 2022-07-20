@@ -87,9 +87,7 @@
                         <h3>
                             오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
                         </h3>
-
-
-
+                        
                     <div id="map" style="width:60%;height:400px;"></div>
 
                 </div>

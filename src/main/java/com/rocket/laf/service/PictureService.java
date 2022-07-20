@@ -11,24 +11,8 @@ import com.rocket.laf.dto.PictureDto;
 
 public interface PictureService {
 
-    List<PictureDto> getAllPicture(String picNo);
-
-    String getMainPicLoc(long picNo);
-
-    //    모든 사진 가져오기
+    // 모든 사진 가져오기
     List<PictureDto> getAllPictureByBoardNo(String boardNo);
 
-    // filesystem
-
-    void init();
-
-    void store(MultipartFile file);
-
-    Stream<Path> loadAll();
-
-    Path load(String filename);
-
-    Resource loadAsResource(String filename);
-
-    void deleteAll();
+    List<PictureDto> getMainPictureByBoardNo(String boardNo);
 }
