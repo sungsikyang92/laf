@@ -30,7 +30,7 @@ import com.rocket.laf.service.TermsService;
 import com.rocket.laf.service.UserService;
 
 @Controller
-@RequestMapping("/user") 
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -38,17 +38,14 @@ public class UserController {
     @Autowired
     private TermsService termsService;
 
-
-
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    
     // 로그인 창에서 회원가입으로 이동
     @GetMapping("/signUp")
-    public String userSignUpBotton(Model model){
+    public String userSignUpBotton(Model model) {
         logger.info("------------------------Controller mapping 'signUp button call'");
 
-        //약관버전 설정
+        // 약관버전 설정
         int tVersion = 1;
         model.addAttribute("terms", termsService.selectOne(tVersion));
         System.out.println("-----------------------chk-----------------------" + model);
@@ -56,42 +53,48 @@ public class UserController {
         return "user/terms";
     }
 
+<<<<<<< HEAD
     //강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
     @RequestMapping(value ="/signUpForm", method= {RequestMethod.GET, RequestMethod.POST})
     public String userSignUpFrom(HttpServletRequest request, Model model){
+=======
+    // 강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
+    @RequestMapping(value = "/signUpForm")
+    public String userSignUpFrom(HttpServletRequest request, Model model) {
+>>>>>>> 9190f859712551f581a4eaf935057e54e934f729
         logger.info("------------------------Controller mapping 'signUp form call'");
 
         // // jsp에서 넘어오는 파라미터 확인
         // Enumeration params = request.getParameterNames();
         // while(params.hasMoreElements()) {
         // String name = (String) params.nextElement();
-        // System.out.print(name + " : " + request.getParameter(name) + "     "); 
+        // System.out.print(name + " : " + request.getParameter(name) + " ");
         // }
-        //System.out.println(request.getParameter("selectall").getClass().getName());
+        // System.out.println(request.getParameter("selectall").getClass().getName());
 
         String param = request.getParameter("selectall");
-        
-        if (param == null){
-            return "redirect:/user/login";     
-        }else if (param.equals("on")){
+
+        if (param == null) {
+            return "redirect:/user/login";
+        } else if (param.equals("on")) {
             model.addAttribute("policyOn", request.getParameter("selectall"));
             return "user/signUp";
-        }else{
+        } else {
             return "/user/login";
         }
     }
 
     @PostMapping("/chkDuplicatedId")
     @ResponseBody
-    public Map<String, Boolean> chkDuplicatedId(@RequestBody Map<String, Object> idFromJson){
+    public Map<String, Boolean> chkDuplicatedId(@RequestBody Map<String, Object> idFromJson) {
         logger.info("------------------------Controller mapping 'chkDuplicatedId called'");
 
         System.out.println(idFromJson.get("id").toString());
         int res = userService.chkDuplicatedId(idFromJson.get("id").toString());
         Map<String, Boolean> jsonResponse = new HashMap<String, Boolean>();
-        if (res==0) { //중복이 없을시
-            jsonResponse.put("res",true);
-        }else{ //res == 1 중복이 있음
+        if (res == 0) { // 중복이 없을시
+            jsonResponse.put("res", true);
+        } else { // res == 1 중복이 있음
             jsonResponse.put("res", false);
         }
 
@@ -100,10 +103,10 @@ public class UserController {
         return jsonResponse;
     }
 
-
-    //회원가입 페이지 입력정보 db에 저장 
+    // 회원가입 페이지 입력정보 db에 저장
     @PostMapping("/regUser")
-    public String resUser(UserDto userRegDto, HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public String resUser(UserDto userRegDto, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         logger.info("------------------------Controller mapping 'regUser'");
         String userBirth = combineBirth(request);
         userRegDto.setUserBirth(userBirth);
@@ -113,18 +116,18 @@ public class UserController {
         userRegDto.setUserPw(pwdEncoder.encode(userRegDto.getUserPw()));
 
         int res = userService.regUser(userRegDto);
-        
-        if (res == 1){
+
+        if (res == 1) {
             alertToJsp(response, "회원가입을 축하드립니다.  로그인 페이지로 이동합니다.", 0);
             return "/user/login";
-        }else{
+        } else {
             alertToJsp(response, "예상치 못하게 에러가 발생했습니다. 회원가입을 다시진행해 주십시오", 1);
             return "/user/login";
         }
     }
 
     @GetMapping("/signOut")
-    public String userSignOut(){
+    public String userSignOut() {
         logger.info("------------------------Controller mapping 'signOut'");
 
         return "";
@@ -132,73 +135,71 @@ public class UserController {
 
     // 로그인 창에서 회원가입으로 이동
     @GetMapping("/login")
-    public String userLogin(){
+    public String userLogin() {
         logger.info("------------------------Controller mapping 'login'");
-        
+
         return "/user/login";
     }
 
-
     @PostMapping("/loginChk")
-    public String loginChk(UserDto userdto){
+    public String loginChk(UserDto userdto) {
         logger.info("------------------------Controller mapping 'loginChk'");
-        //System.out.println(userdto.toString());
+        // System.out.println(userdto.toString());
 
         UserDto loggedinfo = userService.login(userdto);
         System.out.println(loggedinfo);
-
 
         return "user/terms";
     }
 
     @GetMapping("/logout")
-    public String userLogOut(){
+    public String userLogOut() {
         logger.info("------------------------Controller mapping 'logout'");
 
         return "";
     }
 
     @GetMapping("/socialLogin")
-    public String userSocialLogin(){
+    public String userSocialLogin() {
         logger.info("------------------------Controller mapping 'socialLogin'");
 
         return "";
     }
 
-    public String combineBirth(HttpServletRequest request){
+    public String combineBirth(HttpServletRequest request) {
         int birthY_int = Integer.parseInt(request.getParameter("bY"));
         int birthM_int = Integer.parseInt(request.getParameter("bM"));
         int birthD_int = Integer.parseInt(request.getParameter("bD"));
         String birthM_str = "";
         String birthD_str = "";
-        if (birthM_int >= 1 && birthM_int < 10){
+        if (birthM_int >= 1 && birthM_int < 10) {
             birthM_str = "0" + Integer.toString(birthM_int);
-        }else{
+        } else {
             birthM_str = request.getParameter("bM");
         }
-        if (birthD_int >= 1 && birthD_int < 10){
+        if (birthD_int >= 1 && birthD_int < 10) {
             birthD_str = "0" + Integer.toString(birthD_int);
-        }else{
+        } else {
             birthD_str = request.getParameter("bD");
         }
         String userBirth = request.getParameter("bY") + birthM_str + birthD_str;
         return userBirth;
     }
 
-    public String combineLocation(HttpServletRequest request){
+    public String combineLocation(HttpServletRequest request) {
         String userLocation = request.getParameter("userLocation") + request.getParameter("userLocation_2nd");
 
         return userLocation;
     }
 
-    public String alertToJsp (HttpServletResponse response, String msg, int option) throws IOException{
+    public String alertToJsp(HttpServletResponse response, String msg, int option) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = response.getWriter();
         writer.println("<script type='text/javascript'>");
         writer.println("alert('" + msg + "');");
-        if (option == 1){
-        writer.println("history.back();");
-        }else{
+        if (option == 1) {
+            writer.println("history.back();");
+        } else {
         }
         writer.println("</script>");
         writer.flush();

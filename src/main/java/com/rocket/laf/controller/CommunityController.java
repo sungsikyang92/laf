@@ -40,7 +40,8 @@ public class CommunityController {
     }
 
     @PostMapping("/write")
-    public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public String writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest)
+            throws Exception {
         String symbol = "com";
         long bnumbering = boardNoService.getMaxBoardNo() + 1;
         boardNoService.addBoardNo(bnumbering);
@@ -49,7 +50,7 @@ public class CommunityController {
         communityDto.setCBoardNo(comBoardNo);
         communityService.writeComBoard(communityDto, multipartHttpServletRequest);
         String cBNo = communityService.getLastCBoardNo();
-        return "redirect:/cBoard/"+cBNo;
+        return "redirect:/cBoard/" + cBNo;
     }
 
     @GetMapping("/{cBoardNo}")
@@ -73,8 +74,10 @@ public class CommunityController {
         model.addAttribute("cbDetail", communityService.getComBoardDetail(cBoardNo));
         return "/community/comBoardUpdate";
     }
+
     @PostMapping("/update/{cBoardNo}")
-    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
+    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto,
+            MultipartHttpServletRequest multipartHttpServletRequest) {
         if (communityService.updateComBoardDetail(communityDto, multipartHttpServletRequest) > 0) {
             return "redirect:/cBoard/" + cBoardNo;
         } else {
