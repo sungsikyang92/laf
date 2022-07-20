@@ -9,11 +9,7 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-    @Select("SELECT c.cBoardNo, c.cTitle, c.cContent, c.cCreateDate, c.cIsModified, c.cLocation, c.cCategory, c.userNo, c.hashNo, p.picNo, p.boardNo, p.originalFileName, p.storedFilePath, p.fileSize, p.createdDate, p.isDeleted, h.hashKeyword " +
-            "FROM Community c " +
-            "LEFT JOIN Picture p ON c.cBoardNo = p.boardNo " +
-            "LEFT JOIN HashTag h ON c.hashNo = h.hashNo " +
-            "ORDER BY c.cBoardNo DESC")
+    @Select("SELECT c.cBoardNo, c.cTitle, c.cContent, c.cCreateDate, c.cIsModified, c.cLocation, c.cCategory, c.userNo FROM Community c ORDER BY c.cBoardNo DESC")
     List<CommunityDto> getComBoardList();
 
     @Insert(" INSERT INTO Community " +

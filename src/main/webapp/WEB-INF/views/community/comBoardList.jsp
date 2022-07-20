@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet"
         href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
@@ -49,8 +49,8 @@
                     <th>Location</th>
                     <th>Category</th>
                     <th>userNo</th>
-                    <th>hashNo</th>
-                    <th>picNo</th>
+<%--                    <th>hashNo</th>--%>
+<%--                    <th>picNo</th>--%>
                 </tr>
                 <c:choose>
                     <c:when test="${empty cbList }">
@@ -69,8 +69,8 @@
                                 <td>${cbl.CLocation}</td>
                                 <td>${cbl.CCategory}</td>
                                 <td>${cbl.userNo}</td>
-                                <td>${cbl.hashNo}</td>
-                                <td>${cbl.picNo}</td>
+<%--                                <td>${cbl.hashNo}</td>--%>
+<%--                                <td>${cbl.picNo}</td>--%>
                             </tr>
                         </c:forEach>
                     </c:otherwise>
