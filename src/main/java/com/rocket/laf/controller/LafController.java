@@ -47,7 +47,7 @@ public class LafController {
         String boardNo = req.getParameter("lBNo");
         String picNo = req.getParameter("PicNo");
         List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
-        List<PictureDto> piclist = pictureServiceImpl.getAllPictuer(picNo);
+        List<PictureDto> piclist = pictureServiceImpl.getAllPicture(picNo);
 
         model.addAttribute("allpicture", piclist);
         model.addAttribute("boardDetail", lolist);
