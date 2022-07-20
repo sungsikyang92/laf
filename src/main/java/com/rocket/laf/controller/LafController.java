@@ -44,13 +44,8 @@ public class LafController {
     public String LostDetail(HttpServletRequest req, Model model) {
         String boardNo = req.getParameter("lBNo");
         String picNo = req.getParameter("PicNo");
-<<<<<<< HEAD
-        List<LostDto> lolist = lostservice.getLostBoardOne(boardNo);
-        List<PictureDto> piclist = pictureService.getAllPicture(picNo);
-=======
         List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
         List<PictureDto> piclist = pictureServiceImpl.getAllPictuer(picNo);
->>>>>>> 0346a107d07d6b2a795aada837d5676f666eb4d9
 
         model.addAttribute("allpicture", piclist);
         model.addAttribute("boardDetail", lolist);

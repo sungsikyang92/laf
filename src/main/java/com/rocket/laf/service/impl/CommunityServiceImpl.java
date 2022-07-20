@@ -1,14 +1,6 @@
 package com.rocket.laf.service.impl;
 
-<<<<<<< HEAD
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-=======
 import com.rocket.laf.common.FileUtils;
->>>>>>> 0346a107d07d6b2a795aada837d5676f666eb4d9
 import com.rocket.laf.dto.CommunityDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.mapper.CommunityMapper;
