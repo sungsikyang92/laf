@@ -1,0 +1,9 @@
+body {
+    background: #f5f6fa;
+}
+
+.contents_container {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+}
