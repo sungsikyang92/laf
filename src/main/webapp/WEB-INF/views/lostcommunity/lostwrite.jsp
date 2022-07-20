@@ -49,8 +49,7 @@
                             multiple />
                         <button type="button" onclick="resetFile()">올린파일 초기화</button>
                         <button type="submit"> ddddd </button>
-<%--                    </form>--%>
-                    한번만 살려주세요.
+                        한번만 살려주세요.
                         <br>
                         <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
                         <br>
