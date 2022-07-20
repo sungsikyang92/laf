@@ -34,7 +34,10 @@
                         </div>
                         <div class="right_nav">
                             <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
-                            <button class="btn" onclick="location.href='/user/login'">로그인/마이페이지</button>
+                            <button class="btn" sec:authorize="isAnonymous()" onclick="location.href='/user/login'">로그인</button>
+                            <button class="btn" sec:authorize="isAuthenticated()" onclick="location.href='/user/login'">마이페이지</button>
+                            <button class="btn" sec:authorize="isAuthenticated()" onclick="location.href='/user/logout'">로그아웃</button>
+                            
                         </div>
                     </div>
                 </div>

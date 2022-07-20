@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.rocket.laf.service.UserService;
 import com.rocket.laf.service.impl.UserServiceImpl;
@@ -43,10 +44,14 @@ public class SecurityConfig{
             .formLogin()
                 .loginPage("/user/login").permitAll()
                 .defaultSuccessUrl("/")
-                .failureForwardUrl("/user/login")
+                .successHandler(new UserServiceImpl())
+                //.failureHandler(new failureclassname())
                 .and()
             .logout()
-                .logoutUrl("/user/logout").and()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .and()
             .build();
 
     }

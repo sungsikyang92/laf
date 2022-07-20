@@ -10,6 +10,10 @@
     <title>Document</title>
 
 	<script src='../resources/js/login.js'></script>
+	<script>
+	// 요놈!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	let param = "${param}";
+	</script>
 
 </head>
 
@@ -30,7 +34,6 @@
 			</div>
 			<input type="submit" value="로그인" >
 			<input type="button" value="회원가입" onclick="location.href='/user/signUp'">
-			<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
 		</form>
 	</div>
 </body>

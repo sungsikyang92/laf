@@ -13,8 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,15 +58,9 @@ public class UserController {
         return "user/terms";
     }
 
-<<<<<<< HEAD
     //강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
     @RequestMapping(value ="/signUpForm", method= {RequestMethod.GET, RequestMethod.POST})
     public String userSignUpFrom(HttpServletRequest request, Model model){
-=======
-    // 강제 주소창 입력시get 방식으로 전송되고 약관확인시 post로 전달
-    @RequestMapping(value = "/signUpForm")
-    public String userSignUpFrom(HttpServletRequest request, Model model) {
->>>>>>> 9190f859712551f581a4eaf935057e54e934f729
         logger.info("------------------------Controller mapping 'signUp form call'");
 
         // // jsp에서 넘어오는 파라미터 확인
@@ -135,10 +134,24 @@ public class UserController {
 
     // 로그인 창에서 회원가입으로 이동
     @GetMapping("/login")
-    public String userLogin() {
+    public String userLogin(HttpServletRequest request, Authentication authentication) {
         logger.info("------------------------Controller mapping 'login'");
 
-        return "/user/login";
+        AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
+        if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
+            //login요청을 호출한 위치 저장 Referer: 어디서 참조했는가. 헤더에 url 표시됨.
+            String uri = request.getHeader("Referer");
+            //정상적인 login요청을 받고오면 index(메인페이지) 속성을 추가해준다.
+            if (uri == null) {
+                request.getSession().setAttribute("index", request.getHeader(""));
+            }else if (!uri.contains("/login")){
+                request.getSession().setAttribute("index", request.getHeader("Referer"));
+            }
+            return "/user/login";
+        }else {
+            System.out.println("세션살아있음");
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/loginChk")
@@ -152,12 +165,12 @@ public class UserController {
         return "user/terms";
     }
 
-    @GetMapping("/logout")
-    public String userLogOut() {
-        logger.info("------------------------Controller mapping 'logout'");
+    // @GetMapping("/logout")
+    // public String userLogOut() {
+    //     logger.info("------------------------Controller mapping 'logout'");
 
-        return "";
-    }
+    //     return "";
+    // }
 
     @GetMapping("/socialLogin")
     public String userSocialLogin() {
