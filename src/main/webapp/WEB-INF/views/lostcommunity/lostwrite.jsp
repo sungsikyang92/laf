@@ -81,12 +81,11 @@
 
 
 
+                    <div id="map" style="width:60%;height:400px;"></div>
+
 
                     </form>
                 </div>
-
-
-
 
 
 

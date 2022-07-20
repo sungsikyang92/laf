@@ -31,9 +31,10 @@ public class LafController {
     @GetMapping("/")
     public String main(Model model) {
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
-
         model.addAttribute("lostlist", lostlist);
+        
         return "index";
+
     }
 
     @GetMapping("/Lostwrite")
