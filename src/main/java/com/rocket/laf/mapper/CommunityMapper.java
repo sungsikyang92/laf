@@ -22,14 +22,15 @@ public interface CommunityMapper {
     @Options(keyProperty = "cBoardNo")
     void writeComBoard(CommunityDto communityDto);
 
-    @Select(" SELECT * FROM Community " +
-            "WHERE cBoardNo = #{cBoardNo}")
+    @Select(" SELECT * " +
+            "FROM Community " +
+            "WHERE cBoardNo = #{cBoardNo} ")
     CommunityDto getComBoardDetail(String cBoardNo);
 
     @Update(" UPDATE Community " +
-            "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=#{cIsModified} " +
+            "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=1, storedFilePath=#{storedFilePath} " +
             "WHERE cBoardNo = #{cBoardNo} ")
-    int updateComBoardDetail(CommunityDto communityDto);
+    void updateComBoardDetail(CommunityDto communityDto);
 
     @Delete(" DELETE FROM Community " +
             "WHERE cBoardNo = #{cBoardNo}")
@@ -53,6 +54,11 @@ public interface CommunityMapper {
             "</script>"})
     void writeComBoardFileList(List<PictureDto> list) throws Exception;
 
+    @Select(" SELECT picNo, boardNo, originalFileName, storedFileName " +
+            "FROM Picture " +
+            "WHERE boardNo = #{boardNo} " +
+            "AND isDeleted = 0")
+    List<PictureDto> getComBoardFileList(String boardNo) throws Exception;
 }
 
 
