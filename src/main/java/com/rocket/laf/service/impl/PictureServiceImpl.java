@@ -27,7 +27,7 @@ public class PictureServiceImpl implements PictureService {
     private PictureMapper pictureMapper;
 
     @Override
-    public List<PictureDto> getAllPictuer(String picNo) {
+    public List<PictureDto> getAllPicture(String picNo) {
         return pictureMapper.getAllPictuer(picNo);
     }
 
