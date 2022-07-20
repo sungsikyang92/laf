@@ -10,10 +10,12 @@ import com.rocket.laf.dto.PictureDto;
 @Mapper
 public interface PictureMapper {
 
-
     @Select(" SELECT * FROM Picture WHERE boardNo = #{boardNo} ")
     List<PictureDto> getAllPictureByBoardNo(String boardNo);
 
-    @Select("SELECT * FROM Picture WHERE picNo = (SELECT MIN(picNo) FROM Picture WHERE boardNo = #{boardNo})")
-    List<PictureDto> getMainPictureByBoardNo(String boardNo);
+    @Select(" SELECT * FROM Picture " +
+            "WHERE boardNo = #{boardNo} " +
+            "GROUP BY boardNo " +
+            "ORDER BY picNo DESC ")
+    PictureDto getMainPictureByBoardNo(String boardNo);
 }

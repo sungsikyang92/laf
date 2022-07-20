@@ -18,4 +18,5 @@ public class CommunityDto {
     private long userNo;
     private long hashNo;
     private long picNo;
+    private String storedFilePath;
 }
