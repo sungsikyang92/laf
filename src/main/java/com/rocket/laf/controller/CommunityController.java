@@ -5,13 +5,17 @@ import com.rocket.laf.service.impl.*;
 import com.rocket.laf.dto.CommunityDto;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor
@@ -55,10 +59,7 @@ public class CommunityController {
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
         List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
-        for (PictureDto pdto : picList) {
-            String originPath = pdto.getStoredFilePath();
-            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
-        }
+
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
