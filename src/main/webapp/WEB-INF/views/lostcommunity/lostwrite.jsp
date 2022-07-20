@@ -18,8 +18,7 @@
             <script src='resources/js/main_sidebar.js'></script>
 
             <script type="text/javascript"
-                    src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
-
+                src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
             <script src='resources/js/naverMapApi.js'></script>
 
             <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
@@ -46,9 +45,14 @@
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
 
-                    <form action="/lBoard/write" method="post" enctype="multipart/form-data">
-                        <div id="image_container"> 이미지 재선택시</div>
-                        <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple />
+                    <form action="/write" method="post" enctype="multipart/form-data">
+                        <div id="image_container"></div>
+                        <input type="file" id="image" name="image" accept="image/*" onchange="setThumbnail(event);"
+                            multiple />
+                        <button type="button" onclick="resetFile()">올린파일 초기화</button>
+                        <button type="submit"> ddddd </button>
+                    </form>
+                    한번만 살려주세요.
                         <br>
                         <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
                         <br>
@@ -83,8 +87,16 @@
                         <h3>
                             오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
                         </h3>
+<<<<<<< HEAD
                     </form>
                     <div id="map" style="width:60%;height:400px;"></div>
+=======
+
+
+
+                    <div id="map" style="width:60%;height:400px;"></div>
+
+>>>>>>> 9190f859712551f581a4eaf935057e54e934f729
                 </div>
 
 
