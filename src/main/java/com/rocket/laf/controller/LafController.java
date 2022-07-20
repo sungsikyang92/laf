@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -37,7 +38,7 @@ public class LafController {
     public String main(Model model) {
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
 
-        blf.bucketFileSearchList();
+        // blf.bucketFileSearchList();
         model.addAttribute("lostlist", lostlist);
         return "index";
     }
@@ -66,11 +67,11 @@ public class LafController {
     }
 
     @PostMapping("/write")
-    public String writesample(MultipartFile mlp)
-            throws IllegalStateException, IOException {
+    public String writesample(@RequestParam("image") List<MultipartFile> files) throws IOException {
 
-        // blf.bucketFileUploadMultipart("l0000001", mlp);
+        System.out.println(files.get(1).getOriginalFilename());
+        blf.bucketFileUploadMultipart(files);
 
-        return "index";
+        return "redirect:/";
     }
 }

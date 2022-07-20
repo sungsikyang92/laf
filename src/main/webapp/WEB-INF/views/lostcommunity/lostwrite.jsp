@@ -17,6 +17,12 @@
                 href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
             <script src='resources/js/main_sidebar.js'></script>
 
+            <script type="text/javascript"
+                src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
+
+            <script src='resources/js/naverMapApi.js'></script>
+
+
             <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
 
 
@@ -43,7 +49,8 @@
 
                     <form action="/write" method="post" enctype="multipart/form-data">
                         <div id="image_container"></div>
-                        <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple />
+                        <input type="file" id="image" name="image" accept="image/*" onchange="setThumbnail(event);"
+                            multiple />
                         <button type="button" onclick="resetFile()">올린파일 초기화</button>
                         <button type="submit"> ddddd </button>
                     </form>
@@ -82,7 +89,12 @@
                     <h3>
                         오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
                     </h3>
+
+                    <div id="map" style="width:60%;height:400px;"></div>
+                    
                 </div>
+
+
 
 
 
