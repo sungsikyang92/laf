@@ -27,8 +27,8 @@ public class PictureServiceImpl implements PictureService {
     private PictureMapper pictureMapper;
 
     @Override
-    public List<PictureDto> getAllPictuer(String picNo) {
-        return pictureMapper.getAllPictuer(picNo);
+    public List<PictureDto> getAllPicture(String picNo) {
+        return pictureMapper.getAllPicture(picNo);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class PictureServiceImpl implements PictureService {
     public List<PictureDto> getAllPictureByBoardNo(String boardNo) {
         return pictureMapper.getAllPictureByBoardNo(boardNo);
     }
-        // filesystem
+    // filesystem
 
     private String uploadPath;
 
