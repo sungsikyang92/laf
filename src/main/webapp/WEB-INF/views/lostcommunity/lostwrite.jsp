@@ -41,47 +41,48 @@
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
 
-                    <form action="/write" method="post" enctype="multipart/form-data">
-                        <div id="image_container"></div>
+                    <form action="/lBoard/write" method="post" enctype="multipart/form-data">
+                        <div id="image_container"> 이미지 재선택시</div>
                         <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple />
-                        <button type="button" onclick="resetFile()">올린파일 초기화</button>
-                        <button type="submit"> ddddd </button>
+                        <br>
+                        <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
+                        <br>
+                        <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
+                            <input type="text" name="lTitle" placeholder="글 제목을 입력해주세요">
+                        </h1>
+                        <br>
+                        <h2>글 내용 : <br><textarea cols="150" rows="15" name="lContent"
+                                placeholder="글 내용을 입력해주세요"></textarea>
+                        </h2>
+                        <br>
+                        <h3 style="border-top:solid 2px rgb(169, 169, 169);">
+                            문제 :<input type="text" name="lQuestion" placeholder="질문을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            정답 :<input type="text" name="lAnswers" placeholder="정답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers1" placeholder="오답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers2" placeholder="오답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers3" placeholder="오답을 입력해 주세요">
+                        </h3>
+                        <br>
+                        <h3>
+                            오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
+                        </h3>
+
+
+
+
                     </form>
-
-
-                    <br>
-                    <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
-                    <br>
-                    <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-                        <input type="text" name="lTitle" placeholder="글 제목을 입력해주세요">
-                    </h1>
-                    <br>
-                    <h2>글 내용 : <br><textarea cols="150" rows="15" name="lContent" placeholder="글 내용을 입력해주세요"></textarea>
-                    </h2>
-                    <br>
-                    <h3 style="border-top:solid 2px rgb(169, 169, 169);">
-                        문제 :<input type="text" name="lQuestion" placeholder="질문을 입력해 주세요">
-                    </h3>
-                    <br>
-                    <h3>
-                        정답 :<input type="text" name="lAnswers" placeholder="정답을 입력해 주세요">
-                    </h3>
-                    <br>
-                    <h3>
-                        오답 :<input type="text" name="lAnswers1" placeholder="오답을 입력해 주세요">
-                    </h3>
-                    <br>
-                    <h3>
-                        오답 :<input type="text" name="lAnswers2" placeholder="오답을 입력해 주세요">
-                    </h3>
-                    <br>
-                    <h3>
-                        오답 :<input type="text" name="lAnswers3" placeholder="오답을 입력해 주세요">
-                    </h3>
-                    <br>
-                    <h3>
-                        오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
-                    </h3>
                 </div>
 
 

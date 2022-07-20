@@ -17,8 +17,6 @@ public interface PictureService {
 
     //    모든 사진 가져오기
     List<PictureDto> getAllPictureByBoardNo(String boardNo);
-    // s3테스트
-    PictureDto getPictureByBoardNoTest(String boardNo);
 
     // filesystem
 
