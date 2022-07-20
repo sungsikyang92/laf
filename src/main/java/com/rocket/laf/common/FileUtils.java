@@ -38,6 +38,7 @@ public class FileUtils {
         } else if (boardNo.contains("mp")) {
             rootPath = "src/main/resources/static/img/myPageProfile/";
         }
+
         String path = rootPath + current.format(format);
         File file = new File(path);
         if (file.exists() == false) {
