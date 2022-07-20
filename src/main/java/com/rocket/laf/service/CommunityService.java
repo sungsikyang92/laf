@@ -1,6 +1,7 @@
 package com.rocket.laf.service;
 
 import com.rocket.laf.dto.CommunityDto;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;

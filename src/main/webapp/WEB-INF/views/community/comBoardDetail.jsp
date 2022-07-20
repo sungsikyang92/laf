@@ -50,7 +50,7 @@
                             <c:forEach items="${pDetail}" var="pd">
                                 <article class="location-listing">
                                     <div class="location-image">
-                                        <img width="300" height="169" src="${pd.storedFilePath}" alt="">
+                                        <img width="300" height="169" src="${pd.storedFilePath}" alt="어휴등신"/>
                                     </div>
                                 </article>
                             </c:forEach>
