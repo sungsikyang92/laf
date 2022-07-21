@@ -17,6 +17,8 @@ function onSuccessGeolocation(position) {
 
     infowindow.open(map, location);
     console.log('Coordinates: ' + location.toString());
+    console.log(`More or less ${position.coords.accuracy} meters.`);
+
 }
 
 function onErrorGeolocation() {
