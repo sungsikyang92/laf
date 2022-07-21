@@ -19,7 +19,8 @@
 
             <script type="text/javascript"
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
-            <script src='resources/js/naverMapApi.js'></script>
+
+
 
             <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
         </head>
@@ -39,13 +40,12 @@
                     </div>
                 </div>
 
-
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
                     <form action="/write" method="post" enctype="multipart/form-data">
                         <div id="image_container"></div>
-                        <input type="file" id="image" name="image" accept="image/*" onchange="setThumbnail(event);"
-                            multiple />
+                        <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*"
+                            onchange="setThumbnail(event);" multiple />
                         <button type="button" onclick="resetFile()">올린파일 초기화</button>
                         <button type="submit"> ddddd </button>
                         <br>
@@ -143,6 +143,7 @@
                 </div>
             </div>
             <script src='resources/js/readImage.js'></script>
+            <script src='resources/js/naverMapApiTest2.js'></script>
         </body>
 
         </html>
