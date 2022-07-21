@@ -56,40 +56,20 @@
                         <div class="grid-container"
                             style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;padding-top:20px">
                             <c:choose>
-                                <c:when test="${empty allpicture }">
+                                <c:when test="${empty picturelist }">
                                     <td colspan="4">----사진이 없다----</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">대표사진 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].mainPicLoc}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 1 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc1}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 2 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc2}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 3 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc3}" alt="">
-                                        </div>
-                                    </article>
-                                    <article class="location-listing">
-                                        <div class="location-title" href="">사진 4 </div>
-                                        <div class="location-image">
-                                            <img width="300" height="169" src="${allpicture[0].picLoc4}" alt="">
-                                        </div>
-                                    </article>
+                                    <c:forEach items="${picturelist}" var="plist">
+
+                                        <article class="location-listing">
+                                            <div class="location-title" href="">사진 </div>
+                                            <div class="location-image">
+                                                <img width="300" height="169" src="${plist.storedFilePath}" alt="">
+                                            </div>
+                                        </article>
+                                    </c:forEach>
+
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -119,7 +99,7 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="MyPage" class="mypage">
+                            <a href="myPage" class="mypage">
                                 <span class="icon"><i class="fi fi-rr-home"></i></span>
                                 <span class="item">마이페이지</span>
                             </a>

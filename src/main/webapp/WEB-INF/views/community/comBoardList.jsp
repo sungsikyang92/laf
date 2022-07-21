@@ -8,15 +8,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>comBoardList</title>
 
-    <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
-        href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <script src='/resources/js/main_sidebar.js'></script>
 
-    <script src='resources/js/main_sidebar.js'></script>
 </head>
 
 <body class="body_container">
@@ -43,14 +43,15 @@
                 <tr>
                     <th>BoardNo</th>
                     <th>Title</th>
-                    <th>Content</th>
+<%--                    <th>Content</th>--%>
                     <th>CreateDate</th>
-                    <th>IsModified</th>
+<%--                    <th>IsModified</th>--%>
                     <th>Location</th>
                     <th>Category</th>
-                    <th>userNo</th>
-                    <th>hashNo</th>
+<%--                    <th>userNo</th>--%>
+<%--                    <th>hashNo</th>--%>
                     <th>picNo</th>
+                    <th>picLoc</th>
                 </tr>
                 <c:choose>
                     <c:when test="${empty cbList }">
@@ -63,14 +64,15 @@
                             <tr>
                                 <td>${cbl.CBoardNo}</td>
                                 <td><a href="/cBoard/${cbl.CBoardNo}">${cbl.CTitle}</a></td>
-                                <td>${cbl.CContent}</td>
+<%--                                <td>${cbl.CContent}</td>--%>
                                 <td>${cbl.CCreateDate}</td>
-                                <td>${cbl.CIsModified}</td>
+<%--                                <td>${cbl.CIsModified}</td>--%>
                                 <td>${cbl.CLocation}</td>
                                 <td>${cbl.CCategory}</td>
-                                <td>${cbl.userNo}</td>
-                                <td>${cbl.hashNo}</td>
+<%--                                <td>${cbl.userNo}</td>--%>
+<%--                                <td>${cbl.hashNo}</td>--%>
                                 <td>${cbl.picNo}</td>
+                                <td><img width="300" height="169" src="${cbl.storedFilePath}" alt="넌병신이야"></td>
                             </tr>
                         </c:forEach>
                     </c:otherwise>
@@ -90,7 +92,7 @@
             </div>
             <ul>
                 <li>
-                    <a href="MyPage" class="mypage">
+                    <a href="myPage" class="mypage">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
                         <span class="item">마이페이지</span>
                     </a>

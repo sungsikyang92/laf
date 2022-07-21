@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +29,12 @@ public class CommunityController {
 
     @GetMapping("")
     public String getComBoardList(Model model) {
-        model.addAttribute("cbList", communityService.getComBoardList());
+        List<CommunityDto> cDtoList = communityService.getComBoardList();
+        for (CommunityDto cDto : cDtoList) {
+            String originPath = cDto.getStoredFilePath();
+            cDto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+        }
+        model.addAttribute("cbList", cDtoList);
         return "/community/comBoardList";
     }
 
@@ -49,8 +53,7 @@ public class CommunityController {
         String comBoardNo = symbol + numbering;
         communityDto.setCBoardNo(comBoardNo);
         communityService.writeComBoard(communityDto, multipartHttpServletRequest);
-        String cBNo = communityService.getLastCBoardNo();
-        return "redirect:/cBoard/" + cBNo;
+        return "redirect:/cBoard";
     }
 
     @GetMapping("/{cBoardNo}")
@@ -59,7 +62,10 @@ public class CommunityController {
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
         List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
-
+        for (PictureDto pdto : picList) {
+            String originPath = pdto.getStoredFilePath();
+            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+        }
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
@@ -85,7 +91,7 @@ public class CommunityController {
         }
     }
 
-    @GetMapping("/delete/{cBaordNo}")
+    @GetMapping("/delete/{cBoardNo}")
     public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo) {
         communityService.deleteComBoardDetail(cBoardNo);
         return "redirect:/cBoard";

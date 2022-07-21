@@ -61,7 +61,7 @@
                                                 ${lostboard.LTitle} </a>
                                             <div class="location-image">
                                                 <a href="#">
-                                                    <img width="300" height="169" src="${lostboard.mainPicLoc}"
+                                                    <img width="300" height="169" src="${lostboard.storedFilePath}"
                                                         alt="${lostboard.LTitle}">
                                                 </a>
                                             </div>
@@ -86,7 +86,7 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="MyPage" class="mypage">
+                            <a href="myPage" class="mypage">
                                 <span class="icon"><i class="fi fi-rr-home"></i></span>
                                 <span class="item">마이페이지</span>
                             </a>

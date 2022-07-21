@@ -30,10 +30,16 @@ public class LafController {
     @GetMapping("/")
     public String main(Model model) {
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
-        model.addAttribute("lostlist", lostlist);
-        
-        return "index";
 
+        for (int i = 0; i < lostlist.size(); i++) {
+            String originPath = lostlist.get(i).getStoredFilePath();
+            lostlist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+        }
+        model.addAttribute("lostlist", lostlist);
+        // List<PictureDto> piclist =
+        // pictureServiceImpl.getMainPictureByBoardNo(lostlist.get(0).getLBoardNo());
+        // model.addAttribute("picture", piclist);
+        return "index";
     }
 
     @GetMapping("/Lostwrite")
@@ -43,12 +49,19 @@ public class LafController {
 
     @GetMapping("/lostdetail")
     public String LostDetail(HttpServletRequest req, Model model) {
+
         String boardNo = req.getParameter("lBNo");
         String picNo = req.getParameter("PicNo");
-        List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
-        List<PictureDto> piclist = pictureServiceImpl.getAllPicture(picNo);
 
-        model.addAttribute("allpicture", piclist);
+        List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
+        List<PictureDto> piclist = pictureServiceImpl.getAllPictureByBoardNo(boardNo);
+
+        for (int i = 0; i < piclist.size(); i++) {
+            String originPath = piclist.get(i).getStoredFilePath();
+            piclist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+        }
+
+        model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
 
         return "lostcommunity/lostdetail";
