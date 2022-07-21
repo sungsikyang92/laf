@@ -22,7 +22,6 @@ import com.rocket.laf.service.impl.PictureServiceImpl;
 @RequestMapping("/")
 public class LafController {
 
-
     @Autowired
     private LostServiceImpl lostserviceImpl;
     @Autowired
@@ -31,13 +30,16 @@ public class LafController {
     @GetMapping("/")
     public String main(Model model) {
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
+
+        for (int i = 0; i < lostlist.size(); i++) {
+            String originPath = lostlist.get(i).getStoredFilePath();
+            lostlist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+        }
         model.addAttribute("lostlist", lostlist);
-        
-        //List<PictureDto> piclist = pictureServiceImpl.getMainPictureByBoardNo(lostlist.get(0).getLBoardNo());
-        //model.addAttribute("picture", piclist);
-
+        // List<PictureDto> piclist =
+        // pictureServiceImpl.getMainPictureByBoardNo(lostlist.get(0).getLBoardNo());
+        // model.addAttribute("picture", piclist);
         return "index";
-
     }
 
     @GetMapping("/Lostwrite")
@@ -52,9 +54,14 @@ public class LafController {
         String picNo = req.getParameter("PicNo");
 
         List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
-        List<PictureDto> piclist = pictureServiceImpl.getAllPictureByBoardNo(picNo);
+        List<PictureDto> piclist = pictureServiceImpl.getAllPictureByBoardNo(boardNo);
 
-//        model.addAttribute("allpicture", piclist);
+        for (int i = 0; i < piclist.size(); i++) {
+            String originPath = piclist.get(i).getStoredFilePath();
+            piclist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+        }
+
+        model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
 
         return "lostcommunity/lostdetail";
