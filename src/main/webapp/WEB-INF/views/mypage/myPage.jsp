@@ -10,6 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h3><a href = "mypage/list">list</a></h3>
 </body>
 </html>
