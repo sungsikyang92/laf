@@ -61,7 +61,7 @@
                                                 ${lostboard.LTitle} </a>
                                             <div class="location-image">
                                                 <a href="#">
-                                                    <img width="300" height="169" src="${lostboard.mainPicLoc}"
+                                                    <img width="300" height="169" src="${lostboard.storedFilePath}"
                                                         alt="${lostboard.LTitle}">
                                                 </a>
                                             </div>

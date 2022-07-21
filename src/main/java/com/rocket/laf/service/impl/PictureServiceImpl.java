@@ -21,6 +21,7 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
+
     public PictureDto getMainPictureByBoardNo(String boardNo) {
         return pictureMapper.getMainPictureByBoardNo(boardNo);
     }
