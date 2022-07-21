@@ -24,6 +24,9 @@
         </head>
 
         <body class="body_container">
+
+            
+            
             <div class="wrapper">
                 <div class="section">
                     <div class="top_navbar">
@@ -41,8 +44,8 @@
                         </div>
                     </div>
                 </div>
-
-
+                
+                
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
 

@@ -220,4 +220,14 @@ public class UserController {
         return null;
     }
 
+    
+    //테스트용
+    @GetMapping("/secTest")
+    public String moveSecTest() {
+        logger.info("------------------------Controller mapping 'user/secTest'");
+
+        return "/user/secTest";
+    }
+
+
 }

@@ -12,7 +12,7 @@
 	<script src='../resources/js/login.js'></script>
 	<script>
 	// 요놈!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	let param = "${param}";
+	let param = "${param.error}";
 	</script>
 
 </head>

@@ -2,7 +2,7 @@ window.onload = function(){
 	// if (document.querySelector('p') != null){
 	// 	document.querySelector('p').remove
 	// }
-	if (param == "{error=}"){
+	if (param == "true"){
 		var errorTag = setErrorMsg("아이디 혹은 비밀번호가 일치하지 않습니다", "red");
 		document.getElementsByName("password")[0].parentNode.appendChild(errorTag);
 	}
