@@ -28,7 +28,7 @@ public interface CommunityMapper {
     CommunityDto getComBoardDetail(String cBoardNo);
 
     @Update(" UPDATE Community " +
-            "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=1, storedFilePath=#{storedFilePath} " +
+            "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=1 " +
             "WHERE cBoardNo = #{cBoardNo} ")
     void updateComBoardDetail(CommunityDto communityDto);
 
@@ -53,6 +53,11 @@ public interface CommunityMapper {
             "</foreach> " +
             "</script>"})
     void writeComBoardFileList(List<PictureDto> list) throws Exception;
+
+    @Update({"<script>" +
+            "Update Picture" +
+            ""})
+    void updateComBoardFileList(List<PictureDto> list) throws Exception;
 
     @Select(" SELECT picNo, boardNo, originalFileName, storedFileName " +
             "FROM Picture " +

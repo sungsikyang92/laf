@@ -95,9 +95,8 @@ public class CommunityController {
     }
 
     @PostMapping("/update/{cBoardNo}")
-    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto) {
-        communityService.updateComBoardDetail(communityDto);
-
+    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        communityService.updateComBoardDetail(communityDto, multipartHttpServletRequest);
         return "redirect:/cBoard/" + cBoardNo;
     }
 

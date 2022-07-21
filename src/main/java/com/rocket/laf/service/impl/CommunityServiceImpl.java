@@ -39,14 +39,17 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public CommunityDto getComBoardDetail(String cBoardNo) throws Exception {
         CommunityDto communityDto = communityMapper.getComBoardDetail(cBoardNo);
-//        List<PictureDto> picList = communityMapper.getComBoardFileList(cBoardNo);
-//        communityDto.setPicList(picList);
         return communityDto;
     }
 
     @Override
-    public void updateComBoardDetail(CommunityDto communityDto) {
+    public void updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         communityMapper.updateComBoardDetail(communityDto);
+        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
+        if (CollectionUtils.isEmpty(list) == false) {
+            communityMapper.writeComBoardFileList(list);
+        }
+
     }
 
     @Override

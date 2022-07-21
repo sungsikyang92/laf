@@ -13,7 +13,7 @@ public interface CommunityService {
 
     CommunityDto getComBoardDetail(String cBoardNo) throws Exception;
 
-    void updateComBoardDetail(CommunityDto communityDto);
+    void updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
 
     int deleteComBoardDetail(String cBoardNo);
 
