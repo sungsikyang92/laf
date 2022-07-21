@@ -61,7 +61,7 @@
             <table>
                 <tr>
                     <div id="image_container"/>
-                    <td><input type="file" name="pic" multiple="multiple" accept="image/*" onchange="setThumbnail(event);"></td>
+                    <td><input type="file" name="pictureUpload" id="pictureUpload" multiple="multiple" accept="image/*" onchange="setThumbnail(event);"></td>
                 </tr>
                 <tr>
                     <td><input type="text" name="cTitle" value="${cbDetail.CTitle}"></td>

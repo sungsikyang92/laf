@@ -32,8 +32,11 @@ public interface CommunityMapper {
             "WHERE cBoardNo = #{cBoardNo} ")
     void updateComBoardDetail(CommunityDto communityDto);
 
-    @Delete(" DELETE FROM Community " +
-            "WHERE cBoardNo = #{cBoardNo}")
+    @Delete(" DELETE FROM c, p " +
+            "USING Community c " +
+            "INNER JOIN Picture p " +
+            "ON c.cBoardNo = p.boardNo " +
+            "WHERE p.boardNo = #{cBoardNo} ")
     int deleteComBoardDetail(String cBoardNo);
 
     @Select(" SELECT MAX(cBoardNo) FROM Community ")
@@ -54,16 +57,6 @@ public interface CommunityMapper {
             "</script>"})
     void writeComBoardFileList(List<PictureDto> list) throws Exception;
 
-    @Update({"<script>" +
-            "Update Picture" +
-            ""})
-    void updateComBoardFileList(List<PictureDto> list) throws Exception;
-
-    @Select(" SELECT picNo, boardNo, originalFileName, storedFileName " +
-            "FROM Picture " +
-            "WHERE boardNo = #{boardNo} " +
-            "AND isDeleted = 0")
-    List<PictureDto> getComBoardFileList(String boardNo) throws Exception;
 }
 
 

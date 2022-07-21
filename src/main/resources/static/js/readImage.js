@@ -34,7 +34,7 @@ function setThumbnail(event) {
             reader.readAsDataURL(image);
         }
     } else {
-        document.getElementById("image").value = null;
+        document.getElementById("pictureUpload").value = null;
         alert("이미지는 5개까지 등록 가능합니다.");
     }
 }

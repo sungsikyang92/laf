@@ -44,7 +44,7 @@
                 <div class="contents_container">
                     <form action="/write" method="post" enctype="multipart/form-data">
                         <div id="image_container"></div>
-                        <input type="file" id="image" name="image" accept="image/*" onchange="setThumbnail(event);"
+                        <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*" onchange="setThumbnail(event);"
                             multiple />
                         <button type="button" onclick="resetFile()">올린파일 초기화</button>
                         <button type="submit"> ddddd </button>

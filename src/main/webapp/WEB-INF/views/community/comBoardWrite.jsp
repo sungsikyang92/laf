@@ -43,9 +43,9 @@
         <form action="/cBoard/write" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
-                    <div id="image_container"></div>
-                    <td><input type="file" name="picCom" id="picCom" multiple="multiple" accept="image/*"
-                               onchange="setThumbnail(event);"></td>
+                    <div id="image_container"/>
+                    <div><input type="file" name="pictureUpload" id="pictureUpload" multiple="multiple" accept="image/*"
+                               onchange="setThumbnail(event);"/></div>
                 </tr>
                 <tr>
                     <div class="uploadResult"></div>
