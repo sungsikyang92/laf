@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
@@ -223,10 +225,22 @@ public class UserController {
     
     //테스트용
     @GetMapping("/secTest")
-    public String moveSecTest() {
+    public String moveSecTest(@AuthenticationPrincipal User userInfo, Authentication auth) throws Exception {
         logger.info("------------------------Controller mapping 'user/secTest'");
 
-        return "/user/secTest";
+        AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
+        if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
+
+
+            System.out.println("익명의 사용자 _________ " +  userInfo);
+            System.out.println("익명의 사용자 인증정보_________ " +  auth);
+
+            return "/user/secTest";
+        }else {
+            System.out.println("로그인한 사용자_________ " +  userInfo);
+            System.out.println("로그인한 사용자 인증정보_________ " +  auth);
+            return "/user/secTest";
+        }
     }
 
 

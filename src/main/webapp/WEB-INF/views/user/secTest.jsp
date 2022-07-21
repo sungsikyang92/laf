@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"  %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,21 +12,53 @@
 </head>
 <body>
     
-    <b>시큐리티 테스트 페이지</b>
+<!--ROLE_USER 권한을 갖는다면 이 글이 보임-->
+<h1 sec:authorize="hasRole('ADMIN')">Has admin Role</h1>
+        
+<!--ROLE_ADMIN 권한을 갖는다면 이 글이 보임-->
+<h1 sec:authorize="hasRole('USER')">Has user Role</h1> 
 
-    <br>
+<!--어떤 권한이건 상관없이 인증이 되었다면 이 글이 보임-->
+<div sec:authorize="isAuthenticated()">
+    Only Authenticated user can see this Text
+</div>
 
-    <p>
-        aaa
+<!--인증시 사용된 객체에 대한 정보-->
+<b>Authenticated DTO:</b>
+<div sec:authentication="principal"></div>
 
-        ${isAuthenticated}
-        ${remoteUser}
+<!--인증시 사용된 객체의 Username (ID)-->
+<b>Authenticated username:</b>
+<div sec:authentication="name"></div>
 
-
-    </p>
-
-    <a class="nav-link" sec:authorize="isAnonymous()">로그인</a>
+<!--객체의 권한-->
+<b>Authenticated user role:</b>
+<div sec:authentication="principal.authorities"></div>
     
+
+<a class="nav-link" sec:authorize="isAnonymous()">로그인</a>
+<a class="nav-link" sec:authorize="isAuthenticated()">로그아웃</a>
+
+
+<sec:authorize access="isAnonymous()">
+  Login
+</sec:authorize>
+
+<sec:authorize access="isAuthenticated()" >
+  Logout
+  <sec:authentication property="principal.username" var="username" />
+  ${username}
+aaaaaa
+
+</sec:authorize>
+
+<!-- <sec:authentication property="principal"/> -->
+
+<!-- <p>principal.username : <sec:authentication property="principal.username"/></p>
+<p>principal.password : <sec:authentication property="principal.password"/></p>
+<p>principal.enabled : <sec:authentication property="principal.enabled"/></p>
+<p>principal.accountNonExpired : <sec:authentication property="principal.accountNonExpired"/>
+</p> -->
 
 </body>
 </html>
