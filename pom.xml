@@ -98,18 +98,11 @@
 
 		<!-- 스프링 시큐리티용 타임리프 start: -->
 			<!-- 웬만하면 안쓰고 싶은데 view단에서 시큐리티에서 넘어오는 인증정보 가져오려면 다른방법을 몰라 어쩔수 없었다.. -->
-		
-		<!-- <dependency>
-        <groupId>org.thymeleaf.extras</groupId>
-        <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-    	</dependency> -->
-
 		<dependency>	
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring-security.version}</version>
 		</dependency>
-
 		<!-- 스프링 시큐리티용 타임리프 end: -->
 
 	</dependencies>

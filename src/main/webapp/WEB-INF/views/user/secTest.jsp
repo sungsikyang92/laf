@@ -35,7 +35,7 @@
 <b>Authenticated user role:</b>
 <div sec:authentication="principal.authorities"></div>
     
-
+<!-- 안먹힘 shit -->
 <a class="nav-link" sec:authorize="isAnonymous()">로그인</a>
 <a class="nav-link" sec:authorize="isAuthenticated()">로그아웃</a>
 
@@ -46,19 +46,14 @@
 
 <sec:authorize access="isAuthenticated()" >
   Logout
-  <sec:authentication property="principal.username" var="username" />
-  ${username}
-aaaaaa
-
+  <sec:authentication property="name" var="username"/>
+  <p>${username}</p>
+  
+  <sec:authentication property="principal" var="pcp"/>
+  <p>${pcp}</p>
 </sec:authorize>
 
-<!-- <sec:authentication property="principal"/> -->
 
-<!-- <p>principal.username : <sec:authentication property="principal.username"/></p>
-<p>principal.password : <sec:authentication property="principal.password"/></p>
-<p>principal.enabled : <sec:authentication property="principal.enabled"/></p>
-<p>principal.accountNonExpired : <sec:authentication property="principal.accountNonExpired"/>
-</p> -->
 
 </body>
 </html>
