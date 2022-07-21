@@ -22,8 +22,6 @@
             <script src='resources/js/naverMapApi.js'></script>
 
             <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
-
-
         </head>
 
         <body class="body_container">
@@ -44,15 +42,12 @@
 
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
-
                     <form action="/write" method="post" enctype="multipart/form-data">
                         <div id="image_container"></div>
                         <input type="file" id="image" name="image" accept="image/*" onchange="setThumbnail(event);"
                             multiple />
                         <button type="button" onclick="resetFile()">올린파일 초기화</button>
                         <button type="submit"> ddddd </button>
-                    </form>
-                    한번만 살려주세요.
                         <br>
                         <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
                         <br>
@@ -87,15 +82,10 @@
                         <h3>
                             오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
                         </h3>
-
-
-
+                    </form>
                     <div id="map" style="width:60%;height:400px;"></div>
 
                 </div>
-
-
-
 
                 <!-- TOP menu -->
                 <div class="sidebar">

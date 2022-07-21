@@ -27,6 +27,7 @@ function setThumbnail(event) {
                 img.setAttribute("height", "125px");
                 img.setAttribute("name", "selectImg");
                 document.querySelector("div#image_container").appendChild(img);
+
             };
 
             console.log(image);
@@ -35,8 +36,5 @@ function setThumbnail(event) {
     } else {
         document.getElementById("image").value = null;
         alert("이미지는 5개까지 등록 가능합니다.");
-
-
-
     }
 }
