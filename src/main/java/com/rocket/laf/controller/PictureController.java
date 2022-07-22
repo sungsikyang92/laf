@@ -31,15 +31,6 @@ public class PictureController {
         return "";
     }
 
-    /*
-     * @GetMapping("/images/{filename}")
-     * public Resource showImage(@PathVariable String filename) throws
-     * MalformedURLException {
-     * 
-     * return new UrlResource("file" + file.getFullPath(filename));
-     * }
-     */
-
     public String getPicture() {
         return "";
     }
@@ -52,6 +43,6 @@ public class PictureController {
     public String deletePicture(@PathVariable (name = "picNo") Long picNo) {
         String boardNo = boardNoService.getBoardNoByPicNo(picNo);
         pictureService.deleteSelectedPic(picNo);
-        return "redirect:/cBoard/" + boardNo;
+        return "redirect:/cBoard/update/" + boardNo;
     }
 }

@@ -13,8 +13,8 @@ public interface BoardNoMapper {
     @Insert(" INSERT INTO BoardNo (cBoardNo) VALUES (#{cBoardNo}) ")
     long addBoardNo(long cBoardNo);
 
-    @Select(" SELECT boardNo" +
-            "FROM Picture" +
+    @Select(" SELECT boardNo " +
+            "FROM Picture " +
             "WHERE picNo = #{picNo} ")
     String getBoardNoByPicNo(long picNo);
 }

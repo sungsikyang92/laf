@@ -53,7 +53,7 @@
                                 </div>
                             </article>
                             <div>
-                                <input type="button" value="삭제" onclick="" class="imgDeleteBtn">
+                                <input type="button" value="삭제" onclick="location.href='/picture/delete/'+${pd.picNo}" class="imgDeleteBtn">
                             </div>
                         </c:forEach>
                     </c:otherwise>

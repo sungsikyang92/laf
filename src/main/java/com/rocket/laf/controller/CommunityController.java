@@ -3,6 +3,8 @@ package com.rocket.laf.controller;
 import com.rocket.laf.dto.*;
 import com.rocket.laf.service.impl.*;
 import com.rocket.laf.dto.CommunityDto;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;

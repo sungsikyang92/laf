@@ -1,6 +1,7 @@
 package com.rocket.laf.common;
 
 import com.rocket.laf.dto.PictureDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -16,10 +17,10 @@ import java.util.Iterator;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class FileUtils {
 
-    @Autowired
-    ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
 
     public List<PictureDto> parseFileInfo(String boardNo, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
