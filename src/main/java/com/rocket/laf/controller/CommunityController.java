@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class CommunityController {
     private final HashTagServiceImpl hashTagService;
     private final UserServiceImpl userService;
     private final BoardNoServiceImpl boardNoService;
+
 
     @GetMapping("")
     public String getComBoardList(Model model) {
@@ -91,6 +93,7 @@ public class CommunityController {
         }
     }
 
+    // @PreAuthorize("hasRole('USER')")
     @GetMapping("/delete/{cBoardNo}")
     public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo) {
         communityService.deleteComBoardDetail(cBoardNo);
