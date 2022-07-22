@@ -16,8 +16,8 @@ public class MypageDto {
 
     //유저 관련 Dto / 유저 아이디, 이름, 지역, 
     private long userNo;
-    private String userId;
-    private String userName;
+    private String userId = "ksw";
+    private String userName = "ksww";
     private String userLocation;
     //동네 설정은 프론트단에서 해보자.
 

@@ -20,15 +20,10 @@ public class MypageController {
     @Autowired
     private MypageService mypageService;
 
-    //콘솔 창에 로그 표시
-    private Logger logger = LoggerFactory.getLogger(MypageController.class);
-
-
-
     //기본 페이지
     @GetMapping("")
-    public String getmypage(Model model) {
-        model.addAttribute("mypageview", mypageService.userinfo(null));
+    public String getmypage(Model model, MypageDto dto) {
+        model.addAttribute("dto", mypageService.userinfo(dto));
         return "/mypage/myPage";
     }
     /* *********************************************************************************************** */
@@ -37,12 +32,10 @@ public class MypageController {
      * 마이페이지에서 내가 찾아준 내역으로 이동 */
     @GetMapping("/foundByme")
     public String FromMypagetoFoundSpecific(){
-        logger.info("+++Go found detail..");
         return "/foundbyme/founddetail";
     }
     @GetMapping("/myreview")
     public String FromMypagetoReviewAll(){
-        logger.info("+++Go Your All Reiview..");
         return "/myreview/reviewdetail";
     }
     /* *********************************************************************************************** */

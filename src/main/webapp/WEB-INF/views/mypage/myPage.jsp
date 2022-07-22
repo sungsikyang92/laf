@@ -17,6 +17,11 @@
     <script src='/resources/js/main_sidebar.js'></script>
 
 </head>
+<style>
+    .mypage_container{
+     margin-left: 300px;
+    }
+</style>
 <body class="body_container">
     <div class="wrapper">
         <div class="section">
@@ -32,6 +37,66 @@
                 </div>
             </div>
         </div>
+
+        <div class = "mypage_container" id="mypage">
+            <ul>
+                <li>
+                    <span class="item">프로필사진</span>
+                </li>
+                <li>
+                    <span class="item">ID = ${dto.userId}</span>
+                </li>
+                <li>
+                    <span class="item">NAME = ${dto.userName}</span>
+                </li>
+                <li>
+                    <span class="item">00동 = ${dto.userLocation}</span>
+                </li>
+                <li>
+                    <span class="item">▼ 〓</span>
+                </li>
+                <li>
+                    <span class="item">동네설정</span>
+                </li>
+                <li>
+                    <span class="item">누적사례금 | 000000 원 = ${dto.pReward}</span>
+                </li>
+                <li>
+                    <span class="item">사례 횟수 | 000 번</span>
+                </li>
+                <li>
+                    <span class="item">사례금 잔액 | 000000 원</span>
+                </li>
+                <li>
+                    <a href = "founddetail">
+                        <span class="item">내가 찾아준 내역 ▷</span>
+                    </a>
+                </li>
+                <li>
+                    <a href = "reviewdetail">
+                        <span class="item">내 후기 모아보기 ▷</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          <!-- TOP menu -->
          <div class="sidebar">
             <div class="sidetop">
@@ -88,4 +153,5 @@
             </ul>
         </div>
     </div>
+
 </html>
