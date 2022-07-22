@@ -22,17 +22,21 @@ public interface CommunityMapper {
     @Options(keyProperty = "cBoardNo")
     void writeComBoard(CommunityDto communityDto);
 
-    @Select(" SELECT * FROM Community " +
-            "WHERE cBoardNo = #{cBoardNo}")
+    @Select(" SELECT * " +
+            "FROM Community " +
+            "WHERE cBoardNo = #{cBoardNo} ")
     CommunityDto getComBoardDetail(String cBoardNo);
 
     @Update(" UPDATE Community " +
-            "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=#{cIsModified} " +
+            "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=1 " +
             "WHERE cBoardNo = #{cBoardNo} ")
-    int updateComBoardDetail(CommunityDto communityDto);
+    void updateComBoardDetail(CommunityDto communityDto);
 
-    @Delete(" DELETE FROM Community " +
-            "WHERE cBoardNo = #{cBoardNo}")
+    @Delete(" DELETE FROM c, p " +
+            "USING Community c " +
+            "INNER JOIN Picture p " +
+            "ON c.cBoardNo = p.boardNo " +
+            "WHERE p.boardNo = #{cBoardNo} ")
     int deleteComBoardDetail(String cBoardNo);
 
     @Select(" SELECT MAX(cBoardNo) FROM Community ")

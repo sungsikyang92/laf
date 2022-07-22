@@ -7,6 +7,7 @@ import com.rocket.laf.mapper.CommunityMapper;
 import com.rocket.laf.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +28,7 @@ public class CommunityServiceImpl implements CommunityService {
         return communityMapper.getComBoardList();
     }
 
+    @Transactional
     @Override
     public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         communityMapper.writeComBoard(communityDto);
@@ -36,28 +38,31 @@ public class CommunityServiceImpl implements CommunityService {
         }
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public CommunityDto getComBoardDetail(String cBoardNo) {
-        return communityMapper.getComBoardDetail(cBoardNo);
+    public CommunityDto getComBoardDetail(String cBoardNo) throws Exception {
+        CommunityDto communityDto = communityMapper.getComBoardDetail(cBoardNo);
+        return communityDto;
     }
 
+    @Transactional
     @Override
-    public int updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
-        if (ObjectUtils.isEmpty(multipartHttpServletRequest) == false) {
-            Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-            String name;
-            while (iterator.hasNext()) {
-                name = iterator.next();
-                List<MultipartFile> list = multipartHttpServletRequest.getFiles(name);
-            }        }
-        return communityMapper.updateComBoardDetail(communityDto);
+    public void updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        communityMapper.updateComBoardDetail(communityDto);
+        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
+        if (CollectionUtils.isEmpty(list) == false) {
+            communityMapper.writeComBoardFileList(list);
+        }
+
     }
 
+    @Transactional
     @Override
     public int deleteComBoardDetail(String cBoardNo) {
         return communityMapper.deleteComBoardDetail(cBoardNo);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public String getLastCBoardNo() {
         return communityMapper.getLastCBoardNo();

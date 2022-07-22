@@ -3,6 +3,7 @@ package com.rocket.laf.dto;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,4 +20,5 @@ public class CommunityDto {
     private long hashNo;
     private long picNo;
     private String storedFilePath;
+    private List<PictureDto> picList;
 }

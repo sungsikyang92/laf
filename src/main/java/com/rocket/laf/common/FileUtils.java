@@ -1,6 +1,7 @@
 package com.rocket.laf.common;
 
 import com.rocket.laf.dto.PictureDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -16,10 +17,10 @@ import java.util.Iterator;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class FileUtils {
 
-    @Autowired
-    ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
 
     public List<PictureDto> parseFileInfo(String boardNo, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
@@ -30,7 +31,7 @@ public class FileUtils {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
         ZonedDateTime current = ZonedDateTime.now();
         //저장되는 Path 설정입니다. 각자의 경로가 다르기에 시스템상으로 Path.of....을 사용하여 경로를 구하고 마지막 저장될 파일 경로를 따로 기입해줍니다.
-        String rootPath="";
+        String rootPath = "";
         if (boardNo.contains("com")) {
             rootPath = "src/main/resources/static/img/communityBoard/";
         } else if (boardNo.contains("l")) {

@@ -10,4 +10,7 @@ public interface PictureService {
 
     // 대표 사진 한장 가져오기
     PictureDto getMainPictureByBoardNo(String boardNo);
+
+    // 선택된 사진 삭제하기
+    void deleteSelectedPic(long picNo);
 }

@@ -19,4 +19,9 @@ public class BoardNoServiceImpl implements BoardNoService {
     public long addBoardNo(long numbering) {
         return boardNoMapper.addBoardNo(numbering);
     }
+
+    @Override
+    public String getBoardNoByPicNo(long picNo) {
+        return boardNoMapper.getBoardNoByPicNo(picNo);
+    }
 }

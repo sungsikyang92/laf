@@ -22,12 +22,16 @@ function setThumbnail(event) {
                 */
 
                 let img = document.createElement("img");
+                let button = document.createElement("input");
                 img.setAttribute("src", event.target.result);
-                img.setAttribute("width", "200px");
-                img.setAttribute("height", "125px");
+                img.setAttribute("width", "300px");
+                img.setAttribute("height", "169px");
                 img.setAttribute("name", "selectImg");
                 document.querySelector("div#image_container").appendChild(img);
-
+                button.setAttribute("type", "button");
+                button.setAttribute("class", "imgDeleteBtn");
+                button.setAttribute("value", "삭제")
+                document.querySelector("div#image_container").appendChild(button);
             };
 
             console.log(image);

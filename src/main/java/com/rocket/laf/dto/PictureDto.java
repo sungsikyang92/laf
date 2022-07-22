@@ -2,6 +2,8 @@ package com.rocket.laf.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
