@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAF커뮤니티</title>
 
+    <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
@@ -38,45 +39,25 @@
 
 
     <div class="contents_container">
-        <table border="1">
-            <tr>
-                <th>BoardNo</th>
-                <th>Title</th>
-                <%--                    <th>Content</th>--%>
-                <th>CreateDate</th>
-                <%--                    <th>IsModified</th>--%>
-                <th>Location</th>
-                <th>Category</th>
-                <%--                    <th>userNo</th>--%>
-                <%--                    <th>hashNo</th>--%>
-                <th>picNo</th>
-                <th>picLoc</th>
-            </tr>
             <c:choose>
                 <c:when test="${empty cbList }">
-                    <tr>
-                        <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                    </tr>
+                    <div>
+                        ----작성된 글이 존재하지 않습니다----
+                    </div>
                 </c:when>
                 <c:otherwise>
                     <c:forEach items="${cbList}" var="cbl">
-                        <tr>
-                            <td>${cbl.CBoardNo}</td>
-                            <td><a href="/cBoard/${cbl.CBoardNo}">${cbl.CTitle}</a></td>
-                                <%--                                <td>${cbl.CContent}</td>--%>
-                            <td>${cbl.CCreateDate}</td>
-                                <%--                                <td>${cbl.CIsModified}</td>--%>
-                            <td>${cbl.CLocation}</td>
-                            <td>${cbl.CCategory}</td>
-                                <%--                                <td>${cbl.userNo}</td>--%>
-                                <%--                                <td>${cbl.hashNo}</td>--%>
-                            <td>${cbl.picNo}</td>
-                            <td><img width="300" height="169" src="${cbl.storedFilePath}" alt="넌병신이야"></td>
-                        </tr>
+                        <div class="comBoardListContainer" onclick="location.href='/cBoard/${cbl.CBoardNo}'">
+                            <div>${cbl.CBoardNo}</div>
+                            <div>${cbl.CTitle}</div>
+                            <div>${cbl.CCreateDate}</div>
+                            <div>${cbl.CLocation}</div>
+                            <div>${cbl.picNo}</div>
+                            <div><img width="300" height="169" src="${cbl.storedFilePath}" alt="넌병신이야"></div>
+                        </div>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>
-        </table>
     </div>
 
 

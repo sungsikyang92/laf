@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.rocket.laf.dto.PictureDto;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface PictureMapper {
@@ -18,4 +19,7 @@ public interface PictureMapper {
             "GROUP BY boardNo " +
             "ORDER BY picNo DESC ")
     PictureDto getMainPictureByBoardNo(String boardNo);
+
+    @Update(" UPDATE Picture Set isModified = 1 WHERE picNo = #{picNo} ")
+    void deleteSelectedPic(long picNo);
 }

@@ -12,14 +12,13 @@
 
     <title>LAF커뮤니티</title>
 
-
+    <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
-
 </head>
 
 <body class="body_container">
@@ -53,9 +52,13 @@
                                     <img width="300" height="169" src="${pd.storedFilePath}" alt="">
                                 </div>
                             </article>
+                            <div>
+                                <input type="button" value="삭제" onclick="" class="imgDeleteBtn">
+                            </div>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
+
             </div>
             <input type="hidden" name="cBoardNo" value="${cbDetail.CBoardNo}">
             <table>
