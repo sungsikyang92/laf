@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService, UserDetailsService, Authent
         if (secUser.getUserGrade().equals("BASIC")){
             auth.add(new SimpleGrantedAuthority("ROLE_USER"));
         }else{
-            auth.add(new SimpleGrantedAuthority("ADMIN"));
+            auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         User secReturnUser = new User(secUser.getUserId(), secUser.getUserPw(), auth);
         System.out.println(secReturnUser);

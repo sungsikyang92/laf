@@ -104,7 +104,6 @@
 			<version>${spring-security.version}</version>
 		</dependency>
 		<!-- 스프링 시큐리티용 타임리프 end: -->
-
 	</dependencies>
 
 	<build>

@@ -18,7 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.rocket.laf.service.UserService;
 import com.rocket.laf.service.impl.UserServiceImpl;
 
-@EnableWebSecurity
+
 @Configuration
 public class SecurityConfig{
 
@@ -28,6 +28,7 @@ public class SecurityConfig{
     
     @Bean
     public WebSecurityCustomizer webSecCustomizer(){
+        //나중에 공부해야함.
         return web -> web.ignoring().antMatchers("/resources/**");
     }
 
@@ -37,10 +38,10 @@ public class SecurityConfig{
             .headers()
                 .frameOptions().disable().and()
             .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/user/**").permitAll()
-                // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
-                .antMatchers("/cBoard").hasRole("USER")
+                .antMatchers("/**").permitAll()
+                // .antMatchers("/user/**").permitAll()
+                // // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
+                // .antMatchers("/cBoard").hasRole("USER")
 
                 // .antMatchers("/user/signUp").permitAll()
                 // .antMatchers("/user/signUpForm").permitAll()
