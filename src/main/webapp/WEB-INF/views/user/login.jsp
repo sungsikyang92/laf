@@ -10,6 +10,10 @@
     <title>Document</title>
 
 	<script src='../resources/js/login.js'></script>
+	<script>
+	// 요놈!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	let param = "${param.error}";
+	</script>
 
 </head>
 
@@ -17,16 +21,16 @@
 <body>
 	<div class="login-box">
 		<h2>Login</h2>
-		<form action="/user/loginChk" method="post" onsubmit="return chkBlank()">
+		<form method="post" onsubmit="return chkBlank()">
 			<div class="user-box">
 				<label>Username</label>
 				<br>
-				<input type="text" name="userId" id="sublogin">
+				<input type="text" name="username" id="sublogin">
 			</div>
 			<div class="user-box">
 				<label>Password</label>
 				<br>
-				<input type="password" name="userPw" >
+				<input type="password" name="password" >
 			</div>
 			<input type="submit" value="로그인" >
 			<input type="button" value="회원가입" onclick="location.href='/user/signUp'">

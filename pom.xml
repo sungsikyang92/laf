@@ -15,6 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<!-- 스프링 시큐리티 버전 추가 -->
+		<spring-security.version>5.7.2</spring-security.version>
 	</properties>
 	<dependencies>
 	<!--
@@ -91,12 +93,21 @@
 
 		<!-- 첨부파일 END -->
 
-		<!-- 스프링 시큐리티 start -->
-		<!-- <dependency>
+		<!-- 스프링 시큐리티 start: -->
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
+		</dependency>
 		<!-- 스프링 시큐리티 end -->
+
+		<!-- 스프링 시큐리티용 타임리프 start: -->
+			<!-- 웬만하면 안쓰고 싶은데 view단에서 시큐리티에서 넘어오는 인증정보 가져오려면 다른방법을 몰라 어쩔수 없었다.. -->
+		<dependency>	
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring-security.version}</version>
+		</dependency>
+		<!-- 스프링 시큐리티용 타임리프 end: -->
 
 	</dependencies>
 

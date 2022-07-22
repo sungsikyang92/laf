@@ -20,4 +20,5 @@ public class UserDto {
     private String userLocation;
     private int userTicket;
     private String userKeyword;
+    private String userGrade;
 }
