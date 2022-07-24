@@ -19,6 +19,38 @@
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
+<%--    ajax를 위한 script--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        let boardNo = "${cbDetail.CBoardNo}";
+    </script>
+    <script type="text/javascript">
+        function getClickId(clickId) {
+            let picNo = clickId;
+            // console.log(picNo);
+            $.ajax({
+                url:"/picture/delete/"+picNo,
+                type:"get",
+                data: "picNo",
+                success: function (data) {
+                    console.log(data);
+                },
+                done: function (data) {
+                    $("#wrapper").replaceWith("/cBoard/update/com00000085");
+                },
+            })
+        }
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js">
+        $(function () {
+            $("#imgDeleteBtn").click(function () {
+                // $.ajax({
+                //
+                // });
+            });
+        });
+    </script>
+
 </head>
 
 <body class="body_container">
@@ -48,12 +80,12 @@
                     <c:otherwise>
                         <c:forEach items="${pDetail}" var="pd">
                             <article class="location-listing">
-                                <div class="location-image">
-                                    <img width="300" height="169" src="${pd.storedFilePath}" alt="">
+                                <div class="location-image" id="test">
+                                    <img width="300" height="169" src="${pd.storedFilePath}" alt="사진을 불러올수가 엄써" class="what"/>
                                 </div>
                             </article>
                             <div>
-                                <input type="button" value="삭제" onclick="location.href='/picture/delete/'+${pd.picNo}" class="imgDeleteBtn">
+                                <input type="button" value="삭제" id="${pd.picNo}" class="imgDeleteBtn" onclick="getClickId(this.id)">
                             </div>
                         </c:forEach>
                     </c:otherwise>

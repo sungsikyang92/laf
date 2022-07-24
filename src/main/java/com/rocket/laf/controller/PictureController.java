@@ -1,7 +1,9 @@
 package com.rocket.laf.controller;
 
 import java.net.MalformedURLException;
+import java.util.List;
 
+import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.mapper.BoardNoMapper;
 import com.rocket.laf.service.BoardNoService;
 import com.rocket.laf.service.impl.BoardNoServiceImpl;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.rocket.laf.service.PictureService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -39,10 +42,19 @@ public class PictureController {
         return "";
     }
 
+    @ResponseBody
     @GetMapping("/delete/{picNo}")
-    public String deletePicture(@PathVariable (name = "picNo") Long picNo) {
+    public String deletePicture(@PathVariable(name = "picNo") Long picNo) {
         String boardNo = boardNoService.getBoardNoByPicNo(picNo);
         pictureService.deleteSelectedPic(picNo);
-        return "redirect:/cBoard/update/" + boardNo;
+//        return "redirect:/cBoard/update/" + boardNo;
+        return "/picture/" + boardNo + ":: #contents_container";
+
+    }
+
+    @GetMapping("/{boardNo}")
+    public List<PictureDto> getPicList(@PathVariable(name = "boardNo") String boardNo) {
+        List<PictureDto> pictureList = pictureService.getAllPictureByBoardNo(boardNo);
+        return pictureList;
     }
 }
