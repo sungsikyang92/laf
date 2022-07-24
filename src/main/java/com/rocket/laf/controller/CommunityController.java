@@ -95,7 +95,7 @@ public class CommunityController {
         model.addAttribute("pDetail", picList);
         model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
-        return "/community/comBoardUpdate";
+        return "/community/comBoardUpdateTest";
     }
 
     @PostMapping("/update/{cBoardNo}")

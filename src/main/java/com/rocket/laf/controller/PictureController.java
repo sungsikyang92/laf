@@ -44,11 +44,18 @@ public class PictureController {
 
     @ResponseBody
     @GetMapping("/delete/{picNo}")
-    public String deletePicture(@PathVariable(name = "picNo") Long picNo) {
+    public List<PictureDto> deletePicture(@PathVariable(name = "picNo") Long picNo) {//사진 삭제 후 리스트 반환
         String boardNo = boardNoService.getBoardNoByPicNo(picNo);
         pictureService.deleteSelectedPic(picNo);
-//        return "redirect:/cBoard/update/" + boardNo;
-        return "/picture/" + boardNo + ":: #contents_container";
+        List<PictureDto> pictureList = pictureService.getAllPictureByBoardNo(boardNo);
+        for (PictureDto pdto : pictureList) {
+            String originPath = pdto.getStoredFilePath();
+            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+        }
+        for (PictureDto pdto : pictureList) {
+            System.out.println(pdto.getStoredFilePath());
+        }
+        return pictureList;
 
     }
 
