@@ -39,8 +39,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/user/**").permitAll()
+
                 // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
-                .antMatchers("/cBoard").hasRole("USER")
 
                 // .antMatchers("/user/signUp").permitAll()
                 // .antMatchers("/user/signUpForm").permitAll()

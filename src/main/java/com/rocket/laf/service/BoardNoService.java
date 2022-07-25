@@ -8,4 +8,5 @@ public interface BoardNoService {
     long getMaxlBoardNo();
 
     long addlBoardNo(long lBoardNo);
+    String getBoardNoByPicNo(long picNo);
 }

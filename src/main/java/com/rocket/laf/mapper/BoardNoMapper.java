@@ -18,4 +18,9 @@ public interface BoardNoMapper {
 
     @Insert("INSERT INTO BoardNo (lBoardNo) VALUES (#{lBoardNo})")
     long addlBoardNo(long lBoardNo);
+    
+    @Select(" SELECT boardNo " +
+            "FROM Picture " +
+            "WHERE picNo = #{picNo} ")
+    String getBoardNoByPicNo(long picNo);
 }
