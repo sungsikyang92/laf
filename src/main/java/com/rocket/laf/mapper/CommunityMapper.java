@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-    @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation, p.storedFilePath, p.picNo " +
+    @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation, p.storedFilePath, p.picNo, p.isDeleted " +
             "FROM Community c " +
             "INNER JOIN Picture p " +
             "ON c.cBoardNo = p.boardNo " +

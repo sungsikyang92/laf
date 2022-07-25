@@ -53,6 +53,8 @@
                             <div>${cbl.CCreateDate}</div>
                             <div>${cbl.CLocation}</div>
                             <div>${cbl.picNo}</div>
+                            <div>${cbl.CIsModified}</div>
+<%--                            <div>${cbl.isDeleted}</div>--%>
                             <div><img width="300" height="169" src="${cbl.storedFilePath}" alt="넌병신이야"></div>
                         </div>
                     </c:forEach>

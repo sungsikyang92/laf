@@ -21,4 +21,5 @@ public class CommunityDto {
     private long picNo;
     private String storedFilePath;
     private List<PictureDto> picList;
+    private boolean isDeleted;
 }
