@@ -10,19 +10,19 @@
 
             <title>Laf Lostwrite</title>
 
+            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
             <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
             <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
             <link rel="stylesheet"
                 href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-            <script src='resources/js/main_sidebar.js'></script>
+            <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
 
             <script type="text/javascript"
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
+            <script type="text/javascript"
+                src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
 
-
-
-            <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
         </head>
 
         <body class="body_container">
@@ -35,56 +35,83 @@
                             </a>
                         </div>
                         <div class="right_nav">
-
+                            <!-- security tags starts-->
+                            <sec:authorize access="isAnonymous()">
+                                <button class="btn" sec:authorize="isAnonymous()"
+                                    onclick="location.href='/user/login'">로그인</button>
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                                <sec:authentication property="principal.username" var="loginUserName" />
+                                <span class="item">${loginUserName}님 환영합니다</span>
+                                <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
+                                <button class="btn" onclick="location.href=''">마이페이지</button>
+                                <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
+                            </sec:authorize>
+                            <!-- security tags ends-->
                         </div>
                     </div>
                 </div>
 
                 <!-- 컨텐츠 삽입부분-->
                 <div class="contents_container">
-                    <form action="/write" method="post" enctype="multipart/form-data">
+                    <form action="write" method="post" enctype="multipart/form-data">
                         <div id="image_container"></div>
                         <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*"
                             onchange="setThumbnail(event);" multiple />
                         <button type="button" onclick="resetFile()">올린파일 초기화</button>
                         <button type="submit"> ddddd </button>
                         <br>
-                        <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id=""> </h2>
+                        <h2>분실<input type="radio" name="" id=""> &nbsp;&nbsp; 습득<input type="radio" name="" id="" />
+                        </h2>
                         <br>
                         <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-                            <input type="text" name="lTitle" placeholder="글 제목을 입력해주세요">
+                            <input type="text" name="lTitle" placeholder="글 제목을 입력해주세요" />
                         </h1>
                         <br>
-                        <h2>글 내용 : <br><textarea cols="150" rows="15" name="lContent"
-                                placeholder="글 내용을 입력해주세요"></textarea>
+                        <h2>글 내용 : <br>
+                            <textarea cols="150" rows="15" name="lContent" placeholder="글 내용을 입력해주세요"></textarea>
                         </h2>
                         <br>
                         <h3 style="border-top:solid 2px rgb(169, 169, 169);">
-                            문제 :<input type="text" name="lQuestion" placeholder="질문을 입력해 주세요">
+                            문제 :<input type="text" name="lQuestion" placeholder="질문을 입력해 주세요" />
                         </h3>
                         <br>
                         <h3>
-                            정답 :<input type="text" name="lAnswers" placeholder="정답을 입력해 주세요">
+                            정답 :<input type="text" name="lAnswers" placeholder="정답을 입력해 주세요" />
                         </h3>
                         <br>
                         <h3>
-                            오답 :<input type="text" name="lAnswers1" placeholder="오답을 입력해 주세요">
+                            오답 :<input type="text" name="lAnswers1" placeholder="오답을 입력해 주세요" />
                         </h3>
                         <br>
                         <h3>
-                            오답 :<input type="text" name="lAnswers2" placeholder="오답을 입력해 주세요">
+                            오답 :<input type="text" name="lAnswers2" placeholder="오답을 입력해 주세요" />
                         </h3>
                         <br>
                         <h3>
-                            오답 :<input type="text" name="lAnswers3" placeholder="오답을 입력해 주세요">
+                            오답 :<input type="text" name="lAnswers3" placeholder="오답을 입력해 주세요" />
                         </h3>
                         <br>
                         <h3>
-                            오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요">
+                            오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요" />
                         </h3>
+                        <br>
+                        <h2>지도</h2>
+                        <div id="map" style="width:60%;height:400px;">
+                            <div class="search">
+                                <input id="address" type="text" placeholder="검색할 주소" value="" />
+                                <input id="addsubmit" type="button" value="주소 검색" />
+                            </div>
+                        </div>
+                        <br>
+                        <div id="location" class="location"></div>
+                        <h4>지도로 위치를 설정하시면 해당위치로 검색시 노출됩니다.</h4>
+                        <br>
+                        <h2>HashTag</h2>
+                        <input id="hashtag" name="hashtag" type="text" size="50" value="검색 노출 태그 입력 ,로 입력해주세요.">
+                        <br>
+                        <button id="submit" type="submit">ㅋㅋ임시제출임</button>
                     </form>
-                    <div id="map" style="width:60%;height:400px;"></div>
-
                 </div>
 
                 <!-- TOP menu -->
@@ -143,7 +170,9 @@
                 </div>
             </div>
             <script src='resources/js/readImage.js'></script>
-            <script src='resources/js/naverMapApiTest2.js'></script>
+            <script src='resources/js/main_sidebar.js'></script>
+            <script src='resources/js/naverMapApiTest3.js'></script>
+
         </body>
 
         </html>
