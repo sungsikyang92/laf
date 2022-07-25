@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +35,8 @@ public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain secFiltChain(HttpSecurity http) throws Exception{
-        return http.csrf().disable()
+        http
+            .csrf().disable()
             .headers()
                 .frameOptions().disable().and()
             .authorizeRequests()
@@ -42,7 +44,6 @@ public class SecurityConfig{
                 // .antMatchers("/user/**").permitAll()
                 // // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
                 // .antMatchers("/cBoard").hasRole("USER")
-
                 // .antMatchers("/user/signUp").permitAll()
                 // .antMatchers("/user/signUpForm").permitAll()
                 // .antMatchers("/user/chkDuplicatedId").permitAll()
@@ -63,7 +64,14 @@ public class SecurityConfig{
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .and()
-            .build();
+            .oauth2Login()
+                .loginPage("/user/login").permitAll()
+                .defaultSuccessUrl("/")
+                .failureUrl("/user/login?error=true")
+                .userInfoEndpoint()
+                .userService(userServiceImpl)
+                ;
+            return http.build();
 
     }
 

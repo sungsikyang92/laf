@@ -72,12 +72,9 @@ function chkDuplicatedId(){
                     document.getElementsByName("userId")[0].parentNode.appendChild(newTag);
                     localStorage.setItem("dupliChk", "invalid")
                     console.log(localStorage.getItem("dupliChk") == "invalid")
-                }
-                
+                }            
             }
-
         }
-
     };
     httpRequest.open('POST', '/user/chkDuplicatedId', true); //비동기통신 콜
     httpRequest.responseType = "json"; //응답 타입 설정 마찬가지로 제이슨
