@@ -49,7 +49,7 @@
                                 <sec:authentication property="principal.username" var="loginUserName"/>
                                 <span class="item">${loginUserName}님 환영합니다</span>
                                 <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
-                                <button class="btn" onclick="location.href=''">마이페이지</button>
+                                <button class="btn" onclick="location.href='/mypage/myPage'">마이페이지</button>
                                 <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
                             </sec:authorize>
                             <!-- security tags ends-->
@@ -104,7 +104,7 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="myPage" class="mypage">
+                            <a href="myPage?userId=${loginUserName}" class="mypage">
                                 <span class="icon"><i class="fi fi-rr-home"></i></span>
                                 <span class="item">마이페이지</span>
                             </a>

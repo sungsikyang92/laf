@@ -8,18 +8,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MypageDto {
+    //유저 관련 Dto / 유저 아이디, 이름, 지역, 
+    private long userNo;
+    private String userId;
+    private String userName;
+    private String userLocation;
+    //동네 설정은 프론트단에서 해보자.
+     
     //프로필 사진 관련 Dto
     // private String originalFineName;
     // private String storedFilePath;
     // private String fileSize;
     private long picNo;
 
-    //유저 관련 Dto / 유저 아이디, 이름, 지역, 
-    private long userNo;
-    private String userId = "ksw";
-    private String userName = "ksww";
-    private String userLocation;
-    //동네 설정은 프론트단에서 해보자.
+   
 
     //누적사례금, 사례횟수, 사례금 잔액관련 Dto .
     private int payNo;

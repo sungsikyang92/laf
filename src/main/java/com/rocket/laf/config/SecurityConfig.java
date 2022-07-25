@@ -37,7 +37,7 @@ public class SecurityConfig{
             .headers()
                 .frameOptions().disable().and()
             .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/user/**").permitAll()
                 // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
                 .antMatchers("/cBoard").hasRole("USER")

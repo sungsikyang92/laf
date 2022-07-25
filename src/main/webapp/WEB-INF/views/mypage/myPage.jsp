@@ -44,13 +44,13 @@
                     <span class="item">프로필사진</span>
                 </li>
                 <li>
-                    <span class="item">ID = ${dto.userId}</span>
+                    <span class="item">ID = ${ulist[0].userId}</span>
                 </li>
                 <li>
-                    <span class="item">NAME = ${dto.userName}</span>
+                    <span class="item">NAME = ${ulist[0].userName}</span>
                 </li>
                 <li>
-                    <span class="item">00동 = ${dto.userLocation}</span>
+                    <span class="item">00동 = ${ulist[0].userLocation}</span>
                 </li>
                 <li>
                     <span class="item">▼ 〓</span>
@@ -59,7 +59,7 @@
                     <span class="item">동네설정</span>
                 </li>
                 <li>
-                    <span class="item">누적사례금 | 000000 원 = ${dto.pReward}</span>
+                    <span class="item">누적사례금 | 000000 원 =</span>
                 </li>
                 <li>
                     <span class="item">사례 횟수 | 000 번</span>

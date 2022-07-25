@@ -74,6 +74,10 @@ public class CommunityController {
         model.addAttribute("pDetail", picList);
         model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
+        System.out.println("dto1=" + comDto );
+        System.out.println("dto2=" + picList );
+        System.out.println("dto3=" + hashTagDto );
+        System.out.println("dto4=" + userDto );
         return "/community/comBoardDetail";
     }
 
