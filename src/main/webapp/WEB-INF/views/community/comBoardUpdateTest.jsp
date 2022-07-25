@@ -37,7 +37,7 @@
                     let tags = '';
                     for (let i = 0; i < pictureList.length; i++) {
                         tags += "<article class='location-listing'>"
-                        tags += "<div class='location-image>";
+                        tags += "<div class='location-image'>";
                         tags += "<img width='300' height='169' src='" + pictureList[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
                         console.log(pictureList[i].storedFilePath);
                         tags += "</div>";
@@ -45,6 +45,7 @@
                         tags += "<div>";
                         tags += "<input type='button' value='삭제' id='" + pictureList[i].picNo + "' class='imgDeleteBtn' onclick='getClickId(this.id)'>";
                         tags += "</div>";
+                        //엘리먼트만 지운다.
                     }
                     $("#imageList").html();
                     $("#imageList").html(tags);
