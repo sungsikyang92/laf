@@ -12,7 +12,7 @@ import com.rocket.laf.dto.LostDto;
 public interface LostMapper {
 
     // Picture AS p ON l.lBoardNo = p.boardNo
-    @Select("SELECT l.lBoardNo,p.storedFilePath,l.lTitle,p.picNo  FROM Lost AS l INNER JOIN Picture AS p ON l.lBoardNo = p.boardNo GROUP BY p.boardNo")
+    @Select("SELECT l.lBoardNo,p.storedFilePath,l.lTitle  FROM Lost AS l INNER JOIN Picture AS p ON l.lBoardNo = p.boardNo GROUP BY p.boardNo")
     List<LostDto> getLostBoardList();
 
     @Select("SELECT * FROM Lost WHERE lBoardNo = #{lBoardNo}")

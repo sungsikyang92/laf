@@ -13,9 +13,9 @@ public interface CommunityService {
 
     void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
 
-    CommunityDto getComBoardDetail(String cBoardNo);
+    CommunityDto getComBoardDetail(String cBoardNo) throws Exception;
 
-    int updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest);
+    void updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
 
     int deleteComBoardDetail(String cBoardNo);
 

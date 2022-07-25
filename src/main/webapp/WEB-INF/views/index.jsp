@@ -1,105 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-    <!-- security teglibrary -->
-    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"  %>
 
-        <!DOCTYPE html>
-        <html lang="en">
+        <!-- security teglibrary -->
+        <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>LaF</title>
+            <!DOCTYPE html>
+            <html lang="en">
 
-            <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
-            <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-            <link rel="stylesheet"
-                href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>LaF</title>
 
-            <link rel="stylesheet" href="resources/css/main.css" type="text/css">
-            <link rel="stylesheet" media="screen and (max-width:390px)" href="resources/css/main_mobile.css"
-                type="text/css">
+                <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
+                <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
+                <link rel="stylesheet"
+                    href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+                <link rel="stylesheet" href="resources/css/main.css" type="text/css">
+                <link rel="stylesheet" media="screen and (max-width:390px)" href="resources/css/main_mobile.css"
+                    type="text/css">
 
 
-            <script src='resources/js/main_sidebar.js'></script>
+                <script src='resources/js/main_sidebar.js'></script>
 
-            
-        </head>
 
-        <body class="body_container">
+            </head>
 
-            
-            
-            <div class="wrapper">
-                <div class="section">
-                    <div class="top_navbar">
-                        <div class="hamburger">
-                            <a href="#">
-                                <i class="fi fi-rr-menu-burger"></i>
-                            </a>
-                        </div>
-                        <div class="right_nav">
-                            <!-- security tags starts-->
-                            <sec:authorize access="isAnonymous()">
-                                <button class="btn" sec:authorize="isAnonymous()" onclick="location.href='/user/login'">로그인</button>
-                            </sec:authorize>
-                            <sec:authorize access="isAuthenticated()" >
-                                <sec:authentication property="principal.username" var="loginUserName"/>
-                                <span class="item">${loginUserName}님 환영합니다</span>
-                                <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
-                                <button class="btn" onclick="location.href='/mypage/myPage'">마이페이지</button>
-                                <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
-                            </sec:authorize>
-                            <!-- security tags ends-->
+            <body class="body_container">
+
+
+
+                <div class="wrapper">
+                    <div class="section">
+                        <div class="top_navbar">
+                            <div class="hamburger">
+                                <a href="#">
+                                    <i class="fi fi-rr-menu-burger"></i>
+                                </a>
+                            </div>
+                            <div class="right_nav">
+                                <!-- security tags starts-->
+                                <sec:authorize access="isAnonymous()">
+                                    <button class="btn" sec:authorize="isAnonymous()"
+                                        onclick="location.href='/user/login'">로그인</button>
+                                </sec:authorize>
+                                <sec:authorize access="isAuthenticated()">
+                                    <sec:authentication property="principal.username" var="loginUserName" />
+                                    <span class="item">${loginUserName}님 환영합니다</span>
+                                    <button class="btn" onclick="location.href='/lostWrite'">글쓰기</button>
+                                    <button class="btn" onclick="location.href=''">마이페이지</button>
+                                    <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
+                                </sec:authorize>
+                                <!-- security tags ends-->
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                
-                <!-- 컨텐츠 삽입부분-->
-                <div class="contents_container">
-
-                    <div class="child-page-listing">
-
-                        <h2 style="text-align: center;">실시간베너 만들것 </h2>
-
-                        <div class="grid-container">
-
-                            <c:choose>
-                                <c:when test="${empty lostlist }">
-                                    <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${lostlist}" var="lostboard">
-                                        <article class="location-listing">
-                                            <a class="location-title"
-                                                href="lostdetail?&lBNo=${lostboard.LBoardNo}&PicNo=${lostboard.picNo}">
-                                                ${lostboard.LTitle} </a>
-                                            <div class="location-image">
-                                                <a href="#">
-                                                    <img width="300" height="169" src="${lostboard.storedFilePath}"
-                                                        alt="${lostboard.LTitle}">
-                                                </a>
-                                            </div>
-                                        </article>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <!-- end grid container -->
-                    </div>
-                </div>
 
 
-                <!-- TOP menu -->
-                <div class="sidebar">
-                    <div class="sidetop">
-                        <div class="sidetop_left">
-                            <a href="/" class="logo">
-                                <img src="resources/img/logo/laf6.png" alt="">
-                            </a>
+                    <!-- 컨텐츠 삽입부분-->
+                    <div class="contents_container">
+
+                        <div class="child-page-listing">
+
+                            <h2 style="text-align: center;">실시간베너 만들것 </h2>
+
+                            <div class="grid-container">
+
+                                <!--
+                                헉 대박 성식님 저 지금 생각난게 잇어요
+                                사진불러올때 사진 No를 가질려면
+                                
+                                == img1
+                                == img2
+                                == img3
+                                이럼 js나 백엔드에서도 접근할 수 잇어요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                -->
+                                <c:choose>
+                                    <c:when test="${empty lostlist }">
+                                        <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach items="${lostlist}" var="lostboard">
+                                            <article class="location-listing">
+                                                <a class="location-title" href="lostDetail?&lBNo=${lostboard.LBoardNo}">
+                                                    ${lostboard.LTitle} </a>
+                                                <div class="location-image">
+                                                    <a href="#">
+                                                        <img width="300" height="169" src="${lostboard.storedFilePath}"
+                                                            alt="${lostboard.LTitle}">
+                                                    </a>
+                                                </div>
+                                            </article>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <!-- end grid container -->
                         </div>
                     </div>
                     <ul>
@@ -147,8 +145,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <!--
+                <!--
         <header class="header_container">
 
         </header>
@@ -158,6 +155,6 @@
         -->
 
 
-        </body>
+            </body>
 
-        </html>
+            </html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
+import com.rocket.laf.service.impl.BoardNoServiceImpl;
 import com.rocket.laf.service.impl.LostServiceImpl;
 import com.rocket.laf.service.impl.PictureServiceImpl;
 
@@ -26,6 +27,8 @@ public class LafController {
     private LostServiceImpl lostserviceImpl;
     @Autowired
     private PictureServiceImpl pictureServiceImpl;
+    @Autowired
+    private final BoardNoServiceImpl boardNoService;
 
     @GetMapping("/")
     public String main(Model model) {
@@ -42,29 +45,36 @@ public class LafController {
         return "index";
     }
 
-    @GetMapping("/Lostwrite")
-    public String Lostwrite() {
-        return "lostcommunity/lostwrite";
-    }
-
-    @GetMapping("/lostdetail")
+    // 성식님한테 {boardNo} 물어볼것.
+    @GetMapping("/lostDetail")
     public String LostDetail(HttpServletRequest req, Model model) {
-
         String boardNo = req.getParameter("lBNo");
-        String picNo = req.getParameter("PicNo");
-
         List<LostDto> lolist = lostserviceImpl.getLostBoardOne(boardNo);
         List<PictureDto> piclist = pictureServiceImpl.getAllPictureByBoardNo(boardNo);
 
         for (int i = 0; i < piclist.size(); i++) {
             String originPath = piclist.get(i).getStoredFilePath();
             piclist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+
         }
         
         model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
 
-        return "lostcommunity/lostdetail";
+        return "lostcommunity/lostDetail";
+    }
+
+    @GetMapping("/lostWrite")
+    public String lostWrite() {
+        return "lostcommunity/lostWrite";
+    }
+
+    @PostMapping("/lostwrite")
+    public String lostWriteform() {
+        String symbol = "l";
+        long bnumbering = boardNoService.getMaxBoardNo() + 1;
+
+        return "redirect:/";
     }
 
     @PostMapping("/post_Quiz")

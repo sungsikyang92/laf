@@ -21,9 +21,13 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-
     public PictureDto getMainPictureByBoardNo(String boardNo) {
         return pictureMapper.getMainPictureByBoardNo(boardNo);
+    }
+
+    @Override
+    public void deleteSelectedPic(long picNo) {
+        pictureMapper.deleteSelectedPic(picNo);
     }
 
 }
