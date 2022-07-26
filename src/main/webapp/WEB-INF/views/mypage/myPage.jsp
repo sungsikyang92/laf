@@ -39,9 +39,15 @@
         </div>
 
         <div class = "mypage_container" id="mypage">
+            <form action = "" method="post" enctype="multipart/form-data">
+                <input type="file" name = "file">
+                <button type="submit">프로필 업데이트</button>
+                <img src = "resources/img/profile/*"
+
+            </form>
             <ul>
                 <li>
-                    <span class="item">프로필사진</span>
+                    <span class="item">${file}</span>
                 </li>
                 <li>
                     <span class="item">ID = ${ulist[0].userId}</span>

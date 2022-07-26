@@ -2,6 +2,8 @@ package com.rocket.laf.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.rocket.laf.dto.MypageDto;
 import com.rocket.laf.dto.UserDto;
 
@@ -12,7 +14,9 @@ public interface MypageService {
     
     public MypageDto userinfo(MypageDto mypagedto);
     MypageDto selectOneforPicture(long picno);
-    String uploadPic(long picno);
+
+    public void picwrite(MypageDto dto, MultipartFile file) throws Exception;
+    
     UserDto selectOneforLocation(String userlocation);
     public int update(MypageDto dto);
 }

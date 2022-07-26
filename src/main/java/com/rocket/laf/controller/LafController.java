@@ -57,7 +57,7 @@ public class LafController {
             piclist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
 
         }
-        
+
         model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
 

@@ -1,11 +1,9 @@
 package com.rocket.laf.service.impl;
 
-import org.springframework.stereotype.Service;
-
 import com.rocket.laf.mapper.BoardNoMapper;
 import com.rocket.laf.service.BoardNoService;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

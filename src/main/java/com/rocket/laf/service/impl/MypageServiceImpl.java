@@ -1,9 +1,12 @@
 package com.rocket.laf.service.impl;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rocket.laf.dto.MypageDto;
 import com.rocket.laf.dto.UserDto;
@@ -16,6 +19,7 @@ public class MypageServiceImpl implements MypageService {
     @Autowired
     private MypageMapper mypageMapper;
 
+
     @Override
     public MypageDto userinfo(MypageDto mypagedto) {
         return mypageMapper.userinfo(mypagedto);
@@ -27,9 +31,21 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public String uploadPic(long picno) {
-        return mypageMapper.uploadPic(picno);
+    public void picwrite(MypageDto dto, MultipartFile file) throws Exception{
+        String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\img\\profile";
+
+        UUID uuid = UUID.randomUUID();
+        // 그냥 앞에 식별자 넣어주는 코드 랜덤.
+
+        String fileName = uuid + "_" + file.getOriginalFilename();
+        // String fileName = file.getOriginalFilename();
+
+        File saveFile = new File(projectPath, fileName);
+
+        file.transferTo(saveFile);
+        System.out.println("filename : " + fileName);
     }
+    
 
     @Override
     public UserDto selectOneforLocation(String userlocation) {
@@ -50,6 +66,5 @@ public class MypageServiceImpl implements MypageService {
     public List<UserDto> selectList(long userNo) {
         return mypageMapper.selectlist(userNo);
     }
-
     
 }

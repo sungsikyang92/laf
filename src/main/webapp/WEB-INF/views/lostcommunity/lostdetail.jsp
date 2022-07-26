@@ -99,7 +99,7 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="myPage" class="mypage">
+                            <a href="MyPage" class="mypage">
                                 <span class="icon"><i class="fi fi-rr-home"></i></span>
                                 <span class="item">마이페이지</span>
                             </a>
