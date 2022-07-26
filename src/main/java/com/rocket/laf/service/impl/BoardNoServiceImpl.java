@@ -23,14 +23,15 @@ public class BoardNoServiceImpl implements BoardNoService {
 
     @Override
     public long getMaxlBoardNo() {
-        // TODO Auto-generated method stub
         return boardNoMapper.getMaxlBoardNo();
     }
 
     @Override
     public long addlBoardNo(long lBoardNo) {
-        // TODO Auto-generated method stub
         return boardNoMapper.addlBoardNo(lBoardNo);
+    }
+
+    @Override
     public String getBoardNoByPicNo(long picNo) {
         return boardNoMapper.getBoardNoByPicNo(picNo);
     }
