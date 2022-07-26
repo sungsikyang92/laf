@@ -72,7 +72,6 @@ public class SecurityConfig {
                 .userService(userServiceImpl)
                 ;
             return http.build();
-
     }
 
     // UserDetailsService에서 실행될 AuthenticationManager 생성.
