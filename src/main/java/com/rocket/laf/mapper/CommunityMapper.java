@@ -9,11 +9,12 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-    @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation, p.storedFilePath, p.picNo, p.isDeleted " +
-            "FROM Community c " +
-            "INNER JOIN Picture p " +
-            "ON c.cBoardNo = p.boardNo " +
-            "GROUP BY p.boardNo ORDER BY p.picNo DESC")
+//    @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation, c.cIsModified, p.storedFilePath, p.picNo, p.picRmd " +
+//            "FROM Community c " +
+//            "INNER JOIN Picture p " +
+//            "ON c.cBoardNo = p.boardNo " +
+//            "GROUP BY p.boardNo ORDER BY p.picNo DESC")
+    @Select(" SELECT * FROM Community ORDER BY cBoardNo DESC ")
     List<CommunityDto> getComBoardList();
 
     @Insert(" INSERT INTO Community " +
@@ -44,14 +45,15 @@ public interface CommunityMapper {
 
     @Insert({"<script>" +
             "INSERT INTO Picture " +
-            "(boardNo,originalFileName, storedFilePath, fileSize, createdDate) VALUES" +
+            "(boardNo,originalFileName, storedFilePath, fileSize, createdDate, picExt) VALUES" +
             "<foreach collection='list' item='item' separator=','>" +
             "(" +
             "#{item.boardNo}," +
             "#{item.originalFileName}," +
             "#{item.storedFilePath}," +
             "#{item.fileSize}," +
-            "NOW()" +
+            "NOW()," +
+            "1" +
             ")" +
             "</foreach> " +
             "</script>"})
