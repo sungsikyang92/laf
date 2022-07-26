@@ -28,7 +28,6 @@ public class CommunityController {
     private final UserServiceImpl userService;
     private final BoardNoServiceImpl boardNoService;
 
-
     @GetMapping("")
     public String getComBoardList(Model model) {
         List<CommunityDto> cDtoList = communityService.getComBoardList();

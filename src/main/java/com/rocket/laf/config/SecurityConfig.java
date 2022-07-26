@@ -20,27 +20,27 @@ import com.rocket.laf.service.impl.UserServiceImpl;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig{
+public class SecurityConfig {
 
-    //로그인 서비스 등록을 해줘야만 서비스임플리먼트에서 UserDetailsService가 작동한다.
+    // 로그인 서비스 등록을 해줘야만 서비스임플리먼트에서 UserDetailsService가 작동한다.
     @Autowired
     private UserServiceImpl userServiceImpl;
-    
+
     @Bean
-    public WebSecurityCustomizer webSecCustomizer(){
+    public WebSecurityCustomizer webSecCustomizer() {
         return web -> web.ignoring().antMatchers("/resources/**");
     }
 
     @Bean
-    public SecurityFilterChain secFiltChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain secFiltChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
-            .headers()
+                .headers()
                 .frameOptions().disable().and()
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/**").permitAll()
-//                .antMatchers("/user/**").permitAll()
+                .antMatchers("/user/**").permitAll()
+
                 // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
-//                .antMatchers("/cBoard/").permitAll()
 
                 // .antMatchers("/user/signUp").permitAll()
                 // .antMatchers("/user/signUpForm").permitAll()
@@ -50,34 +50,32 @@ public class SecurityConfig{
                 // .antMatchers("/user/signUpForm").permitAll()
                 // .antMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated().and()
-            .formLogin()
+                .formLogin()
                 .loginPage("/user/login").permitAll()
-                //.defaultSuccessUrl("/")
+                // .defaultSuccessUrl("/")
                 .successHandler(new UserServiceImpl())
                 .failureUrl("/user/login?error=true")
-                //.failureHandler(new failureclassname())
+                // .failureHandler(new failureclassname())
                 .and()
-            .logout()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .and()
-            .build();
+                .build();
 
     }
 
-    //UserDetailsService에서 실행될 AuthenticationManager 생성.
+    // UserDetailsService에서 실행될 AuthenticationManager 생성.
     @Bean
-    public AuthenticationManager authMng(AuthenticationConfiguration authConfig) throws Exception{
+    public AuthenticationManager authMng(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
-    //UserDetailsService 실행시 encryption 객체없으면 에러남
+    // UserDetailsService 실행시 encryption 객체없으면 에러남
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-
-    
 }

@@ -13,6 +13,12 @@ public interface BoardNoMapper {
     @Insert(" INSERT INTO BoardNo (cBoardNo) VALUES (#{cBoardNo}) ")
     long addBoardNo(long cBoardNo);
 
+    @Select(" SELECT MAX(lBoardNo) FROM BoardNo")
+    long getMaxlBoardNo();
+
+    @Insert("INSERT INTO BoardNo (lBoardNo) VALUES (#{lBoardNo})")
+    long addlBoardNo(long lBoardNo);
+    
     @Select(" SELECT boardNo " +
             "FROM Picture " +
             "WHERE picNo = #{picNo} ")
