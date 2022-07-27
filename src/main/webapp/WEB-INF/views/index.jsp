@@ -47,7 +47,7 @@
                                         onclick="location.href='/user/login'">로그인</button>
                                 </sec:authorize>
                                 <sec:authorize access="isAuthenticated()">
-                                    <sec:authentication property="principal.username" var="loginUserName" />
+                                    <sec:authentication property="name" var="loginUserName" />
                                     <span class="item">${loginUserName}님 환영합니다</span>
                                     <button class="btn" onclick="location.href='/lostWrite'">글쓰기</button>
                                     <button class="btn" onclick="location.href=''">마이페이지</button>
