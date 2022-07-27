@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- security teglibrary -->
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +18,11 @@
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="/resources/css/chat.css" type="text/css"/>
     <script src='/resources/js/main_sidebar.js'></script>
+    <script src='/resources/js/chat.js'></script>
 
 </head>
-
 <body class="body_container">
 <div class="wrapper">
     <div class="section">
@@ -34,53 +33,25 @@
                 </a>
             </div>
             <div class="right_nav">
-                <!-- security tags starts-->
-                <sec:authorize access="isAnonymous()">
-                    <button class="btn" sec:authorize="isAnonymous()"
-                            onclick="location.href='/user/login'">로그인</button>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username" var="loginUserName" />
-                    <span class="item">${loginUserName}님 환영합니다</span>
-                    <button class="btn" onclick="location.href='/lostWrite'">글쓰기</button>
-                    <button class="btn" onclick="location.href=''">마이페이지</button>
-                    <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
-                </sec:authorize>
-                <!-- security tags ends-->
+                <button class="btn" onclick="location.href='/cBoard/write'">글쓰기</button>
+                <button class="btn">로그인/마이페이지</button>
             </div>
         </div>
     </div>
 
 
     <div class="contents_container">
-        <form action="/cBoard/write" method="post" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <div id="image_container"/>
-                    <div><input type="file" name="pictureUpload" id="pictureUpload" multiple="multiple" accept="image/*"
-                               onchange="setThumbnail(event);"/></div>
-                </tr>
-                <tr>
-                    <div class="uploadResult"></div>
-                </tr>
-                <tr>
-                    <td><input type="text" name="cTitle" placeholder="글 제목을 입력해주세요"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="cCategory" placeholder="카테고리 입력"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <textarea name="cContent" placeholder="글 내용을 입력해주세요"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="button" value="취소" onclick="location.href='/cBoard'">
-                        <input type="submit" value="확인"></td>
-                </tr>
-            </table>
-        </form>
+        <div id = "chat">
+            <h1>채채팅팅팅</h1>
+            <input type="text" id="mid" value="홍길동"/>
+            <input type="button" value="로그인" id="btnLogin"/>
+            <br/>
+            <div id="talk"></div>
+            <div id="sendZone">
+                <textarea id="msg" value="메세지를 입력해주세요"></textarea>
+                <input type="button" value="전송" id="btnSend"/>
+            </div>
+        </div>
     </div>
 
 
@@ -139,8 +110,6 @@
         </ul>
     </div>
 </div>
-<script src='/resources/js/readImage.js'></script>
-
 </body>
 
 </html>

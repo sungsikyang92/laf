@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-        <!-- security teglibrary -->
-        <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <!-- security teglibrary -->
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
             <!DOCTYPE html>
             <html lang="en">
@@ -143,7 +143,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="Chat" class="chat">
+                                <a href="chat" class="chat">
                                     <span class="icon"><i class="fi fi-rr-smartphone"></i></span>
                                     <span class="item">진행중인 1:1 채팅</span>
                                 </a>

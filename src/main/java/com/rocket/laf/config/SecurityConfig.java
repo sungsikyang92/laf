@@ -37,10 +37,10 @@ public class SecurityConfig {
                 .headers()
                 .frameOptions().disable().and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/","/cBoard","/picture").permitAll()
+//                .antMatchers("/user/**").permitAll()
 
-                // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
+                 .antMatchers("/cBoard/**").hasRole("USER")
 
                 // .antMatchers("/user/signUp").permitAll()
                 // .antMatchers("/user/signUpForm").permitAll()
