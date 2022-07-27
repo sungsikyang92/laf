@@ -1,17 +1,15 @@
 package com.rocket.laf.controller;
 
-import com.rocket.laf.dto.*;
+import com.rocket.laf.dto.HashTagDto;
+import com.rocket.laf.dto.PictureDto;
+import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.service.impl.*;
 import com.rocket.laf.dto.CommunityDto;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,12 +31,24 @@ public class CommunityController {
     @GetMapping("")
     public String getComBoardList(Model model) {
         List<CommunityDto> cDtoList = communityService.getComBoardList();
-        for (CommunityDto cDto : cDtoList) {
-            String originPath = cDto.getStoredFilePath();
-            cDto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
-        }
+//        List<PictureDto> pictureDtoList = new ArrayList<>();
+//        for (CommunityDto cDto : cDtoList) {
+//            String boardNo = cDto.getCBoardNo();
+            List<PictureDto> tmpPictureDtoList = pictureService.getMainPictureForCom();
+            for (PictureDto pDto : tmpPictureDtoList) {
+                if (pDto.isPicExt() == true) {
+                    String picOriginPath = pDto.getStoredFilePath();
+                    pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+//                    tmpPictureDtoList.add(pDto);
+                } else {
+//                    tmpPictureDtoList.add(pDto);
+                    continue;
+                }
+            }
+//        }
         model.addAttribute("cbList", cDtoList);
-        return "/community/comBoardList";
+        model.addAttribute("picList", tmpPictureDtoList);
+        return "/community/comBoardListTest";
     }
 
     @GetMapping("/write")
@@ -64,11 +74,21 @@ public class CommunityController {
         CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
+        List<PictureDto> pictureDtoList = new ArrayList<>();
         List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
-        for (PictureDto pdto : picList) {
-            String originPath = pdto.getStoredFilePath();
-            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+        for (PictureDto pDto : picList) {
+            if (pDto.isPicExt() == true) {
+                String picOriginPath = pDto.getStoredFilePath();
+                pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+                pictureDtoList.add(pDto);
+            } else {
+                pictureDtoList.add(pDto);
+            }
         }
+//        for (PictureDto pdto : picList) {
+//            String originPath = pdto.getStoredFilePath();
+//            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+//        }
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
@@ -94,7 +114,7 @@ public class CommunityController {
         model.addAttribute("pDetail", picList);
         model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
-        return "/community/comBoardUpdateTest";
+        return "/community/comBoardUpdate";
     }
 
     @PostMapping("/update/{cBoardNo}")
