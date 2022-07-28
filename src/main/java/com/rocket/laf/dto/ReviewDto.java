@@ -1,16 +1,20 @@
 package com.rocket.laf.dto;
 
+import java.util.Date;
+
 import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
-public class ReviewDto {
-    private int reviewNo;
-    private String rContent;
-    private int rScore;
-    private UserDto userDto;
+public class ReviewDto extends UserDto {
 
-}
+    private int reviewNo;
+    private Date rDate;
+    private String rUserId;
+    private String rRevieweeId;
+    private String rContent;
+    private String rOption;
+    private int rScore;
+
+ }

@@ -149,7 +149,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="MyReviews" class="myreviews">
+                                <a href="review" class="myreviews">
                                     <span class="icon"><i class="fi fi-rr-book-alt"></i></span>
                                     <span class="item">내 후기 모아보기</span>
                                 </a>
