@@ -1,5 +1,7 @@
 package com.rocket.laf.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public int saveReview(ReviewDto dto) {
         return reviewMapper.saveReview(dto);
+    }
+
+    @Override
+    public List<ReviewDto> getReviewList(String userId) {
+        // TODO Auto-generated method stub
+        return reviewMapper.getReviewList(userId);
     }
     
 }

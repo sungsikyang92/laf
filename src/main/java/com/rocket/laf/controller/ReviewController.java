@@ -1,19 +1,29 @@
 package com.rocket.laf.controller;
 
+import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.nimbusds.oauth2.sdk.Response;
 import com.rocket.laf.dto.ReviewDto;
 import com.rocket.laf.service.ReviewService;
 
@@ -42,39 +52,48 @@ public class ReviewController {
     
     //28일 시작 (내가쓴 후기 목록보여주기)
     @GetMapping("")
-    public String reviewList(HttpServletRequest request) {
+    public String reviewList(@AuthenticationPrincipal User userInfo, Authentication auth, Model model) throws Exception {
         logger.info("logger _______________ mapped to reviewList");
+
+        AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
+        if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
+            return "redirect:";
+        }else {
+            System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
+            String userId = userInfo.getUsername();
+            List<ReviewDto> reviewListReturned = reviewService.getReviewList(userId);
+            model.addAttribute("reviewList", reviewListReturned);
+
+            return "/review/reviewList";
+        }
+
+
        
-        // 아래 save review에서 넘기는 모델이나  서블릿 리퀘스트나 둘중하나 방법으로 해본다
         //넘겨받은 아이디 값기준으로 서비스로 매퍼실행해서 리스트 제네릭 타입으로 받아온다.
         //리스트 모델에 저장해 뷰로 전달한다.
         //뷰에서는 C for문사용해서 뿌려준다. (뷰에서 후기번호 보여줄때는 숫자 1부터 증가해서 보여준다
         //실제번호는 히든처리한다)
 
         //String loginId = request.getParameter("view에서 보내는 id 네임값");
-        
-        return "/review/reviewList";
 
     }
 
     //27일 완료
     @GetMapping("saveReview")
-    public String saveReview(ReviewDto dto, HttpServletRequest request) {
+    public void saveReview(ReviewDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("logger _______________ mapped to saveReview");
 
-        String requested  = request.getParameter("rOption");
-        System.out.println(requested);
-        System.out.println(dto);
-
         int res = reviewService.saveReview(dto);
+        
+        UserController alert = new UserController();
+        
+        if (res == 1){
+            alert.alertToJsp(response, "후기등록이 정상 처리 되었습니다.", 0, "/review");
+        }else{
+            alert.alertToJsp(response, "후기등록에 실패하였습니다. 다시시도하여 주세요", 1, "/review/write");
+        }
 
-        System.out.println("res ________________ " + res);
-
-        //모델에 담아서 리다이렉트 시킬지, 서블렛에 담아서 넘길지 생각해보자
-
-
-        return "redirect:/review"; // 페이지 리로드
-
+   
     }
 
     //28일 시작
@@ -84,6 +103,8 @@ public class ReviewController {
 
         return "/review/reviewDetail";
     }
+
+
     
 
     

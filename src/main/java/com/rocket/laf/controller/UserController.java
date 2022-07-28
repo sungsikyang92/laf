@@ -106,7 +106,7 @@ public class UserController {
 
     // 회원가입 페이지 입력정보 db에 저장
     @PostMapping("/regUser")
-    public String resUser(UserDto userRegDto, HttpServletRequest request, HttpServletResponse response)
+    public void resUser(UserDto userRegDto, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         logger.info("------------------------Controller mapping 'regUser'");
         String userBirth = combineBirth(request);
@@ -119,13 +119,13 @@ public class UserController {
         int res = userService.regUser(userRegDto);
 
         if (res == 1) {
-            alertToJsp(response, "회원가입을 축하드립니다.  로그인 페이지로 이동합니다.", 0);
-            return "/user/login";
+            alertToJsp(response, "회원가입을 축하드립니다.  로그인 페이지로 이동합니다.", 0, "/user/login");
+            //return "redirect:/user/login";
         } else {
-            alertToJsp(response, "예상치 못하게 에러가 발생했습니다. 회원가입을 다시진행해 주십시오", 1);
-            return "/user/login";
+            alertToJsp(response, "예상치 못하게 에러가 발생했습니다. 회원가입을 다시진행해 주십시오", 1, "/user/login");
         }
-    }
+        }
+    
 
     @GetMapping("/signOut")
     public String userSignOut() {
@@ -207,7 +207,7 @@ public class UserController {
         return userLocation;
     }
 
-    public String alertToJsp(HttpServletResponse response, String msg, int option) throws IOException {
+    public void alertToJsp(HttpServletResponse response, String msg, int option, String redirect) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = response.getWriter();
         writer.println("<script type='text/javascript'>");
@@ -215,13 +215,11 @@ public class UserController {
         if (option == 1) {
             writer.println("history.back();");
         } else {
+            writer.println("location.href='"+ redirect +"';");
         }
         writer.println("</script>");
         writer.flush();
-
-        return null;
     }
-
     
     //테스트용
     @GetMapping("/secTestGgl")
@@ -238,6 +236,7 @@ public class UserController {
             return "/user/secTest";
         }else {
             System.out.println("로그인한 사용자_________ " +  userInfo);
+            System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
             System.out.println("로그인한 사용자 인증정보_________ " +  auth);
             return "/user/secTestGgl";
         }

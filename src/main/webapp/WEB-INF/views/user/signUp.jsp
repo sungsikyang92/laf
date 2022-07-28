@@ -20,7 +20,7 @@
 
 	<body>
 
-		<jsp:include page="UI/topMenu.jsp" flush="true" />
+		<jsp:include page="../UI/topMenu.jsp" flush="true" />
 
 		<div class="userReg-box">
 			<h2>회원가입</h2>
@@ -107,7 +107,7 @@
 				<input type="submit" value="회원가입">
 			</form>
 		</div>
-		<jsp:include page="UI/sideMenu.jsp" flush="true" />
+		<jsp:include page="../UI/sideMenu.jsp" flush="true" />
 
 	</body>
 
