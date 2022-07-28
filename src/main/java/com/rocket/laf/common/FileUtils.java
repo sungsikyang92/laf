@@ -47,7 +47,6 @@ public class FileUtils {
         }
 
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-
         String newFileName, originalFileExtension, contentType;
 
         while (iterator.hasNext()) {

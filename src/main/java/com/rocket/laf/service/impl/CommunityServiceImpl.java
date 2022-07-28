@@ -32,7 +32,8 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Transactional
     @Override
-    public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest)
+            throws Exception {
         List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             communityMapper.writeComBoard(communityDto);
@@ -52,7 +53,8 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Transactional
     @Override
-    public void updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public void updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest)
+            throws Exception {
         communityMapper.updateComBoardDetail(communityDto);
         List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {

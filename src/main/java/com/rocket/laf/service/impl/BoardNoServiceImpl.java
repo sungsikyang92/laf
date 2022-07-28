@@ -37,4 +37,3 @@ public class BoardNoServiceImpl implements BoardNoService {
     }
 
 }
-
