@@ -36,4 +36,5 @@ public class BoardNoServiceImpl implements BoardNoService {
     public String getBoardNoByPicNo(long picNo) {
         return boardNoMapper.getBoardNoByPicNo(picNo);
     }
+
 }

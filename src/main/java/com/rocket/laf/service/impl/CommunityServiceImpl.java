@@ -4,6 +4,7 @@ import com.rocket.laf.common.FileUtils;
 import com.rocket.laf.dto.CommunityDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.mapper.CommunityMapper;
+import com.rocket.laf.mapper.PictureMapper;
 import com.rocket.laf.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.List;
 public class CommunityServiceImpl implements CommunityService {
 
     private final CommunityMapper communityMapper;
+    private final PictureMapper pictureMapper;
     private final FileUtils fileUtils;
 
     @Override
@@ -28,16 +30,17 @@ public class CommunityServiceImpl implements CommunityService {
         return communityMapper.getComBoardList();
     }
 
+    @Transactional
     @Override
     public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
-
         List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
-            communityMapper.writeComBoardFileList(list);
             communityMapper.writeComBoard(communityDto);
+            communityMapper.writeComBoardFileList(list);
         } else {
             communityMapper.writeComBoard(communityDto);
+            pictureMapper.insertPicBoardNo(communityDto.getCBoardNo());
         }
     }
 

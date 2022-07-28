@@ -4,7 +4,8 @@ import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PictureDto {
@@ -14,4 +15,5 @@ public class PictureDto {
     private String storedFilePath;
     private long fileSize;
     private boolean picRmd;
+    private boolean picExt;
 }

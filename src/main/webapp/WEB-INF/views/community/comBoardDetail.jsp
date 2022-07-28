@@ -27,57 +27,36 @@
                     <jsp:include page="UI/topMenu.jsp" flush="true" />
 
 
-
-                    <div class="contents_container">
-                        <table border="1">
-                            <tr>
-                                <c:choose>
-                                    <c:when test="${empty pDetail}">
-                                        <td>등록된 사진이 없습니다</td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forEach items="${pDetail}" var="pd">
-                                            <article class="location-listing">
-                                                <div class="location-image">
-                                                    <img width="300" height="169" src="${pd.storedFilePath}" alt="">
-                                                </div>
-                                            </article>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                </c:choose>
-                            </tr>
-                            <tr>
-                                <td>${uDetail.userName}유저네임</td>
-                            </tr>
-                            <tr>
-                                <td>${cbDetail.CLocation}</td>
-                            </tr>
-                            <tr>
-                                <td>${cbDetail.CTitle}</td>
-                            </tr>
-                            <tr>
-                                <td>${cbDetail.CCategory}</td>
-                            </tr>
-                            <tr>
-                                <td>${cbDetail.CCreateDate}</td>
-                            </tr>
-                            <tr>
-                                <td>${cbDetail.CContent}</td>
-                            </tr>
-                            <tr>
-                                <td>${hDetail.hashKeyword}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="button" value="목록" onclick="location.href='/cBoard'">
-                                    <input type="button" value="수정"
-                                        onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
-                                    <input type="button" value="삭제"
-                                        onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+    <div class="contents_container">
+        <div>
+            <c:choose>
+                <c:when test="${empty pDetail}">
+                    <div><img width="300" height="169" src="/resources/img/woo.png"></div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach items="${pDetail}" var="pd">
+                        <article class="location-listing">
+                            <div class="location-image">
+                                <img id ="${pd.picNo}" width="300" height="169" src="${pd.storedFilePath}" alt="사진등록해줘용">
+                            </div>
+                        </article>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div>${uDetail.userName}유저네임</div>
+        <div>${cbDetail.CLocation}</div>
+        <div>${cbDetail.CTitle}</div>
+        <div>${cbDetail.CCategory}</div>
+        <div>${cbDetail.CCreateDate}</div>
+        <div>${cbDetail.CContent}</div>
+        <div>${hDetail.hashKeyword}</div>
+        <div>
+            <input type="button" value="목록" onclick="location.href='/cBoard'">
+            <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
+            <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
+        </div>
+    </div>
 
 
                     <jsp:include page="UI/sideMenu.jsp" flush="true" />
