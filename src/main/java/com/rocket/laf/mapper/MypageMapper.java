@@ -24,7 +24,7 @@ public interface MypageMapper {
     
     //회원가입 시 선택한 프로필 사진
     @Select ("SELECT * FROM Picture Where picNo = #{picNo}")
-    MypageDto selectOneforPicture(long picno);
+    MypageDto selectOneforPicture(MypageDto dto);
 
     //프로필 사진 수정
     @Insert( "INSERT INTO Picture(picNo)VALUE = #{picNo}")

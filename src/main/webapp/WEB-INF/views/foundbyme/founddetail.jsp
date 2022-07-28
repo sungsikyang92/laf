@@ -12,11 +12,18 @@
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="/resources/css/foundDetail.css" type="text/css">
     <script src='/resources/js/main_sidebar.js'></script>
+    
+    <script src='../resources/js/foundDetail.js'></script>
 
 </head>
+<style>
+    .founddetail_container{
+     margin-left: 300px;
+    }
+</style>
 <body class="body_container">
     <div class="wrapper">
         <div class="section">
@@ -44,7 +51,7 @@
 
             <ul>
                 <li>
-                    <a href="myPage" class="mypage">
+                    <a href="/myPage" class="mypage">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
                         <span class="item">마이페이지</span>
                     </a>
@@ -87,5 +94,25 @@
                 </li>
             </ul>
         </div>
+    </div>
+</body>
+<div class = "founddetail_container" id="mypage">
+    <div specific>
+        <h3> 내가 찾아준 내역 </h3>
+    </div>
+    <div>
+        <select id="dataPerPage">
+            <option value="10">10개씩보기</option>
+            <option value="15">15개씩보기</option>
+            <option value="20">20개씩보기</option>
+        </select>
+        
+        <ul id="pagingul">
+        </ul>
+
+        <span>게시글 1</span> <span>게시글 2</span><br>
+        <span>게시글 3</span> <span>게시글 4</span><br>
+        <span>게시글 5</span> <span>게시글 6</span><br>
+    </div>
     </div>
 </html>

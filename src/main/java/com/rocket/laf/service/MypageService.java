@@ -12,9 +12,8 @@ public interface MypageService {
     public List<UserDto> selectList(long userNo);
     public List<UserDto> selectOne(String userId);
     
-    public MypageDto userinfo(MypageDto mypagedto);
-    MypageDto selectOneforPicture(long picno);
-
+    public MypageDto userinfo(MypageDto dto);
+    public MypageDto selectOneforPicture(MypageDto dto);
     public void picwrite(MypageDto dto, MultipartFile file) throws Exception;
     
     UserDto selectOneforLocation(String userlocation);

@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="/resources/css/myPage.css" type="text/css">
+
     <script src='/resources/js/main_sidebar.js'></script>
+    <script src='../resources/js/myPage.js'></script>
 
 </head>
 <style>
@@ -39,12 +41,17 @@
         </div>
 
         <div class = "mypage_container" id="mypage">
+            <!-- post -->
             <form action = "" method="post" enctype="multipart/form-data">
                 <input type="file" name = "file">
                 <button type="submit">프로필 업데이트</button>
-                <img src = "resources/img/profile/*"
-
             </form>
+            <h3>------ GET POST 경계 -------</h3>
+            <h3>프로필</h3>
+            <form action = "" method="get" enctype="multipart/form-data">
+                <img src = "resources/img/profile/${img.originalFileName}">
+            </form>
+            <!-- get -->
             <ul>
                 <li>
                     <span class="item">${file}</span>
@@ -74,12 +81,12 @@
                     <span class="item">사례금 잔액 | 000000 원</span>
                 </li>
                 <li>
-                    <a href = "founddetail">
+                    <a href = "/myPage/founddetail">
                         <span class="item">내가 찾아준 내역 ▷</span>
                     </a>
                 </li>
                 <li>
-                    <a href = "reviewdetail">
+                    <a href = "/myPage/reviewdetail">
                         <span class="item">내 후기 모아보기 ▷</span>
                     </a>
                 </li>
@@ -159,5 +166,6 @@
             </ul>
         </div>
     </div>
+</body>
 
 </html>

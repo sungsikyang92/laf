@@ -26,24 +26,35 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public MypageDto selectOneforPicture(long picno) {
-        return mypageMapper.selectOneforPicture(picno);
+    public MypageDto selectOneforPicture(MypageDto dto) {
+           
+        return mypageMapper.selectOneforPicture(dto);
     }
 
     @Override
     public void picwrite(MypageDto dto, MultipartFile file) throws Exception{
         String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\img\\profile";
 
-        UUID uuid = UUID.randomUUID();
+        // UUID uuid = UUID.randomUUID();
         // 그냥 앞에 식별자 넣어주는 코드 랜덤.
 
-        String fileName = uuid + "_" + file.getOriginalFilename();
-        // String fileName = file.getOriginalFilename();
+        // String fileName = uuid + "_" + file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
 
         File saveFile = new File(projectPath, fileName);
 
         file.transferTo(saveFile);
+        
+
         System.out.println("filename : " + fileName);
+        System.out.println("projectPath : " + projectPath);
+        // System.out.println("uuid : " + uuid);
+        System.out.println("saveFile : " + saveFile);
+        
+        dto.setOriginalFileName(fileName);
+        dto.setStoredFilePath("/img/profile/" + fileName);
+        dto.getOriginalFileName();
+        System.out.println("get file name : " +dto.getOriginalFileName());
     }
     
 

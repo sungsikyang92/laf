@@ -33,7 +33,7 @@ public class MypageController {
     //유저넘버 받아오는 방법.
 
     @GetMapping("")
-    public String viemypage(HttpServletRequest request, Model model) {
+    public String viemypage(HttpServletRequest request, Model model, MypageDto dto) {
         String user_id = request.getParameter("userId");
         System.out.println("아이디 : " + user_id);
         List<UserDto> uslist = mypageServiceImpl.selectOne(user_id);
@@ -42,40 +42,31 @@ public class MypageController {
         System.out.println("********************************************************************");
         System.out.println(uslist);
         System.out.println("********************************************************************");
-
-
-
+        
+        System.out.println("dto 내역들 = " + dto);
         return "mypage/myPage";
     }
+    
     @PostMapping("")
     public String mypage(MypageDto dto, Model model, MultipartFile file, HttpServletRequest request) throws Exception{
-        System.out.println("post!!!!");
         mypageServiceImpl.picwrite(dto, file);
-        System.out.println("post post2");
-        model.addAttribute("message", file);
-        System.out.println("post post3");
-        model.addAttribute("searchUrl", "board");
-        System.out.println("post post4");
-        
+
         String user_id = request.getParameter("userId");
         System.out.println("아이디 : " + user_id);
         List<UserDto> uslist = mypageServiceImpl.selectOne(user_id);
         
         model.addAttribute("ulist", uslist);
+        System.out.println("Controller file = " + file);
+        System.out.println("Controller dto = " + dto);
+        System.out.println("filename ? = " +dto.getOriginalFileName());
+        System.out.println("filepath ? = " +dto.getStoredFilePath());
+        
+        model.addAttribute("img",dto);
+        System.out.println("Postdto=" +dto);
         return "mypage/myPage";
     }
 
-    // @PostMapping("")
-    // public String mpage(HttpServletRequest request, HttpServletResponse response) throws Exception{
-    //     request.setCharacterEncoding("utf-8");
-    //     String user_id = request.getParameter("userId");
-    //     String user_name = request.getParameter("userName");
-    //     System.out.println("아이디 = " + user_id);
-    //     System.out.println("이름 = " + user_name);
-    //     return "mypage/myPage";
-    // }
-
-
+    
 
 
     /* *********************************************************************************************** */
@@ -83,11 +74,11 @@ public class MypageController {
      * 1. 내가 찾아준 내역, 2. 내 후기 모아보기
      * 마이페이지에서 내가 찾아준 내역으로 이동 */
 
-    @GetMapping("/foundByme")
-    public String FromMypagetoFoundSpecific(){
+    @GetMapping("/founddetail")
+    public String MypagetoFounddetail(Model model){
         return "/foundbyme/founddetail";
     }
-    @GetMapping("/myreview")
+    @GetMapping("/reviewdetail")
     public String FromMypagetoReviewAll(){
         return "/myreview/reviewdetail";
     }
