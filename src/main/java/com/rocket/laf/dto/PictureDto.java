@@ -13,5 +13,5 @@ public class PictureDto {
     private String originalFileName;
     private String storedFilePath;
     private long fileSize;
-    private boolean isDeleted;
+    private boolean picRmd;
 }

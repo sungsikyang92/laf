@@ -31,6 +31,8 @@ public class BoardNoServiceImpl implements BoardNoService {
     public long addlBoardNo(long lBoardNo) {
         // TODO Auto-generated method stub
         return boardNoMapper.addlBoardNo(lBoardNo);
+    }
+
     public String getBoardNoByPicNo(long picNo) {
         return boardNoMapper.getBoardNoByPicNo(picNo);
     }

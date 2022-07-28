@@ -30,15 +30,48 @@ public class CommunityController {
     private final UserServiceImpl userService;
     private final BoardNoServiceImpl boardNoService;
 
+    /*
+     * @GetMapping("")
+     * public String getComBoardList(Model model) {
+     * List<CommunityDto> cDtoList = communityService.getComBoardList();
+     * for (CommunityDto cDto : cDtoList) {
+     * String originPath = cDto.getStoredFilePath();
+     * cDto.setStoredFilePath("/resources/img/communityBoard/" +
+     * originPath.substring(45));
+     * }
+     * model.addAttribute("cbList", cDtoList);
+     * return "/community/comBoardList";
+     * }
+     */
+    
+
+    
     @GetMapping("")
     public String getComBoardList(Model model) {
         List<CommunityDto> cDtoList = communityService.getComBoardList();
+        List<PictureDto> pictureDtoList = new ArrayList<>();
         for (CommunityDto cDto : cDtoList) {
-            String originPath = cDto.getStoredFilePath();
-            cDto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+            String boardNo = cDto.getCBoardNo();
+            pictureDtoList = pictureService.getAllPictureByBoardNo(boardNo);
+            if (pictureDtoList.isEmpty()) {
+                continue;
+            } else {
+                for (PictureDto pDto : pictureDtoList) {
+                    String picOriginPath = pDto.getStoredFilePath();
+                    pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+                    // pictureDtoList.add(pDto);
+                 
+                }
+            }
         }
+        // for (CommunityDto cDto : cDtoList) {
+        // String originPath = cDto.getStoredFilePath();
+        // cDto.setStoredFilePath("/resources/img/communityBoard/" +
+        // originPath.substring(45));
+        // }
         model.addAttribute("cbList", cDtoList);
-        return "/community/comBoardList";
+        model.addAttribute("picList", pictureDtoList);
+        return "/community/comBoardListTest";
     }
 
     @GetMapping("/write")
@@ -84,7 +117,7 @@ public class CommunityController {
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
         List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
-        for (PictureDto pdto : picList){
+        for (PictureDto pdto : picList) {
             String originPath = pdto.getStoredFilePath();
             pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
         }
@@ -98,7 +131,8 @@ public class CommunityController {
     }
 
     @PostMapping("/update/{cBoardNo}")
-    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto,
+            MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         communityService.updateComBoardDetail(communityDto, multipartHttpServletRequest);
         return "redirect:/cBoard/" + cBoardNo;
     }

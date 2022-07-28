@@ -9,54 +9,52 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-    @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation, p.storedFilePath, p.picNo, p.isDeleted " +
-            "FROM Community c " +
-            "INNER JOIN Picture p " +
-            "ON c.cBoardNo = p.boardNo " +
-            "GROUP BY p.boardNo ORDER BY p.picNo DESC")
-    List<CommunityDto> getComBoardList();
+        @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation, p.storedFilePath, p.picNo, p.picRmd " +
+                        "FROM Community c " +
+                        "INNER JOIN Picture p " +
+                        "ON c.cBoardNo = p.boardNo " +
+                        "GROUP BY p.boardNo ORDER BY p.picNo DESC")
+        List<CommunityDto> getComBoardList();
 
-    @Insert(" INSERT INTO Community " +
-            "(cBoardNo, cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
-            "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
-    @Options(keyProperty = "cBoardNo")
-    void writeComBoard(CommunityDto communityDto);
+        @Insert(" INSERT INTO Community " +
+                        "(cBoardNo, cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
+                        "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
+        @Options(keyProperty = "cBoardNo")
+        void writeComBoard(CommunityDto communityDto);
 
-    @Select(" SELECT * " +
-            "FROM Community " +
-            "WHERE cBoardNo = #{cBoardNo} ")
-    CommunityDto getComBoardDetail(String cBoardNo);
+        @Select(" SELECT * " +
+                        "FROM Community " +
+                        "WHERE cBoardNo = #{cBoardNo} ")
+        CommunityDto getComBoardDetail(String cBoardNo);
 
-    @Update(" UPDATE Community " +
-            "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=1 " +
-            "WHERE cBoardNo = #{cBoardNo} ")
-    void updateComBoardDetail(CommunityDto communityDto);
+        @Update(" UPDATE Community " +
+                        "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=1 " +
+                        "WHERE cBoardNo = #{cBoardNo} ")
+        void updateComBoardDetail(CommunityDto communityDto);
 
-    @Delete(" DELETE FROM c, p " +
-            "USING Community c " +
-            "INNER JOIN Picture p " +
-            "ON c.cBoardNo = p.boardNo " +
-            "WHERE p.boardNo = #{cBoardNo} ")
-    int deleteComBoardDetail(String cBoardNo);
+        @Delete(" DELETE FROM c, p " +
+                        "USING Community c " +
+                        "INNER JOIN Picture p " +
+                        "ON c.cBoardNo = p.boardNo " +
+                        "WHERE p.boardNo = #{cBoardNo} ")
+        int deleteComBoardDetail(String cBoardNo);
 
-    @Select(" SELECT MAX(cBoardNo) FROM Community ")
-    String getLastCBoardNo();
+        @Select(" SELECT MAX(cBoardNo) FROM Community ")
+        String getLastCBoardNo();
 
-    @Insert({"<script>" +
-            "INSERT INTO Picture " +
-            "(boardNo,originalFileName, storedFilePath, fileSize, createdDate) VALUES" +
-            "<foreach collection='list' item='item' separator=','>" +
-            "(" +
-            "#{item.boardNo}," +
-            "#{item.originalFileName}," +
-            "#{item.storedFilePath}," +
-            "#{item.fileSize}," +
-            "NOW()" +
-            ")" +
-            "</foreach> " +
-            "</script>"})
-    void writeComBoardFileList(List<PictureDto> list) throws Exception;
+        @Insert({ "<script>" +
+                        "INSERT INTO Picture " +
+                        "(boardNo,originalFileName, storedFilePath, fileSize, createdDate) VALUES" +
+                        "<foreach collection='list' item='item' separator=','>" +
+                        "(" +
+                        "#{item.boardNo}," +
+                        "#{item.originalFileName}," +
+                        "#{item.storedFilePath}," +
+                        "#{item.fileSize}," +
+                        "NOW()" +
+                        ")" +
+                        "</foreach> " +
+                        "</script>" })
+        void writeComBoardFileList(List<PictureDto> list) throws Exception;
 
 }
-
-
