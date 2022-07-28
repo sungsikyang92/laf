@@ -48,7 +48,7 @@ public class CommunityController {
 //        }
         model.addAttribute("cbList", cDtoList);
         model.addAttribute("picList", tmpPictureDtoList);
-        return "/community/comBoardList";
+        return "/community/comBoardListTest";
     }
 
     @GetMapping("/write")

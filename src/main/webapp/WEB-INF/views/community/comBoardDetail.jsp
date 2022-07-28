@@ -36,10 +36,11 @@
                 <!-- security tags starts-->
                 <sec:authorize access="isAnonymous()">
                     <button class="btn" sec:authorize="isAnonymous()"
-                            onclick="location.href='/user/login'">로그인</button>
+                            onclick="location.href='/user/login'">로그인
+                    </button>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username" var="loginUserName" />
+                    <sec:authentication property="principal.username" var="loginUserName"/>
                     <span class="item">${loginUserName}님 환영합니다</span>
                     <button class="btn" onclick="location.href='/lostWrite'">글쓰기</button>
                     <button class="btn" onclick="location.href=''">마이페이지</button>
@@ -61,7 +62,7 @@
                     <c:forEach items="${pDetail}" var="pd">
                         <article class="location-listing">
                             <div class="location-image">
-                                <img id ="${pd.picNo}" width="300" height="169" src="${pd.storedFilePath}" alt="사진등록해줘용">
+                                <img id="${pd.picNo}" width="300" height="169" src="${pd.storedFilePath}" alt="사진등록해줘용">
                             </div>
                         </article>
                     </c:forEach>
