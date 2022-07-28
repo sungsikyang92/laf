@@ -48,7 +48,7 @@ public class CommunityController {
         // }
         model.addAttribute("cbList", cDtoList);
         model.addAttribute("picList", tmpPictureDtoList);
-        return "/community/comBoardListTest";
+        return "/community/comBoardList";
     }
 
     @GetMapping("/write")
@@ -85,11 +85,6 @@ public class CommunityController {
                 pictureDtoList.add(pDto);
             }
         }
-        // for (PictureDto pdto : picList) {
-        // String originPath = pdto.getStoredFilePath();
-        // pdto.setStoredFilePath("/resources/img/communityBoard/" +
-        // originPath.substring(45));
-        // }
         HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
