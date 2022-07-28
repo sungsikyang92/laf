@@ -25,11 +25,12 @@
 
 <body class="body_container">
 
-<jsp:include page="../UI/topMenu.jsp" flush="true"/>
-
+<jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
 
 <div class="contents_container">
     <form action="/cBoard/write" method="post" enctype="multipart/form-data">
+        <sec:authentication property="username"
+        <input type="hidden" name="userNo" value="${}">
         <table>
             <tr>
                 <div id="image_container"></div>

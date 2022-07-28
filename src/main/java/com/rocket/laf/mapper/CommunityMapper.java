@@ -9,12 +9,6 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-        // @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation,
-        // c.cIsModified, p.storedFilePath, p.picNo, p.picRmd " +
-        // "FROM Community c " +
-        // "INNER JOIN Picture p " +
-        // "ON c.cBoardNo = p.boardNo " +
-        // "GROUP BY p.boardNo ORDER BY p.picNo DESC")
         @Select(" SELECT * FROM Community ORDER BY cBoardNo DESC ")
         List<CommunityDto> getComBoardList();
 

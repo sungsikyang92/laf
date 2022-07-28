@@ -31,23 +31,17 @@ public class CommunityController {
     @GetMapping("")
     public String getComBoardList(Model model) {
         List<CommunityDto> cDtoList = communityService.getComBoardList();
-        // List<PictureDto> pictureDtoList = new ArrayList<>();
-        // for (CommunityDto cDto : cDtoList) {
-        // String boardNo = cDto.getCBoardNo();
-        List<PictureDto> tmpPictureDtoList = pictureService.getMainPictureForCom();
-        for (PictureDto pDto : tmpPictureDtoList) {
+        List<PictureDto> PictureDtoList = pictureService.getMainPictureForCom();
+        for (PictureDto pDto : PictureDtoList) {
             if (pDto.isPicExt() == true) {
                 String picOriginPath = pDto.getStoredFilePath();
                 pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
-                // tmpPictureDtoList.add(pDto);
             } else {
-                // tmpPictureDtoList.add(pDto);
                 continue;
             }
         }
-        // }
         model.addAttribute("cbList", cDtoList);
-        model.addAttribute("picList", tmpPictureDtoList);
+        model.addAttribute("picList", PictureDtoList);
         return "/community/comBoardList";
     }
 

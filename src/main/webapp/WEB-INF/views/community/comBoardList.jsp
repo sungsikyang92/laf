@@ -56,7 +56,7 @@
 </head>
 
 <body class="body_container">
-<jsp:include page="../UI/topMenu.jsp" flush="true"/>
+<jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
 <div class="contents_container">
     <c:choose>
         <c:when test="${empty cbList }">

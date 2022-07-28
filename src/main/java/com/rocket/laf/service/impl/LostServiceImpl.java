@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LostServiceImpl implements LostService {
 
-    @Autowired
     private final LostMapper lostMapper;
     private final FileUtils fileUtils;
 
