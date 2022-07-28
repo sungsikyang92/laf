@@ -12,24 +12,24 @@
             </head>
 
             <body class="body_container">
-                <!-- TOP menu -->
+                <!-- TOP menu  ?userId=${loginUserName}-->
                 <div class="sidebar">
                     <div class="sidetop">
                         <div class="sidetop_left">
                             <a href="/" class="logo">
-                                <img src="resources/img/logo/laf6.png" alt="">
+                                <img src="/resources/img/logo/laf6.png" alt="">
                             </a>
                         </div>
                     </div>
                     <ul>
                         <li>
-                            <a href="MyPage" class="mypage">
+                            <a href="myPage?userId=${loginUserName}" class="mypage">
                                 <span class="icon"><i class="fi fi-rr-home"></i></span>
                                 <span class="item">마이페이지</span>
                             </a>
                         </li>
                         <li>
-                            <a href="cBoard" class="cboard">
+                            <a href="/cBoard" class="cboard">
                                 <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
                                 <span class="item">커뮤니티</span>
                             </a>
@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="Chat" class="chat">
+                            <a href="/chat" class="chat">
                                 <span class="icon"><i class="fi fi-rr-smartphone"></i></span>
                                 <span class="item">진행중인 1:1 채팅</span>
                             </a>

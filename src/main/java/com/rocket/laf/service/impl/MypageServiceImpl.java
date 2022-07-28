@@ -18,19 +18,24 @@ public class MypageServiceImpl implements MypageService {
     
     @Autowired
     private MypageMapper mypageMapper;
-
-
+    
+    
     @Override
     public MypageDto userinfo(MypageDto mypagedto) {
         return mypageMapper.userinfo(mypagedto);
     }
-
+    
     @Override
     public MypageDto selectOneforPicture(MypageDto dto) {
-           
+        
         return mypageMapper.selectOneforPicture(dto);
     }
-
+    
+    @Override
+    public UserDto selectOne(String userId) {
+        return mypageMapper.selectOne(userId);
+    }
+    
     @Override
     public void picwrite(MypageDto dto, MultipartFile file) throws Exception{
         String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\img\\profile";
@@ -64,18 +69,13 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public List<UserDto> selectOne(String userId) {
-        return mypageMapper.selectOne(userId);
-    }
-
-    @Override
     public int update(MypageDto dto) {
         return mypageMapper.update(dto);
     }
 
     @Override
-    public List<UserDto> selectList(long userNo) {
-        return mypageMapper.selectlist(userNo);
+    public List<UserDto> selectList() {
+        return mypageMapper.selectlist();
     }
     
 }

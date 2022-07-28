@@ -12,11 +12,11 @@ import com.rocket.laf.dto.UserDto;
 
 @Mapper
 public interface MypageMapper {
-    @Select( "SELECT * FROM User")
-    List<UserDto> selectlist(long userNo);
+    @Select( "SELECT * FROM User Order by userNo DESC")
+    List<UserDto> selectlist();
 
-    @Select(" SELECT * FROM User WHERE userId=#{userId}")
-    List<UserDto> selectOne(String userId);
+    @Select(" SELECT * FROM User WHERE userId = #{userId}")
+    UserDto selectOne(String userId);
 
     //회원가입 시 기입한 아이디, 이름, 지역
     @Select ( "SELECT * FROM User WHERE UserId = #{userId} and UserName = #{userName} and UserLocation = #{userLocation} and UserNo = #{userNo}")

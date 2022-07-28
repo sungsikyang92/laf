@@ -9,8 +9,8 @@ import com.rocket.laf.dto.UserDto;
 
 public interface MypageService {
 
-    public List<UserDto> selectList(long userNo);
-    public List<UserDto> selectOne(String userId);
+    public List<UserDto> selectList();
+    UserDto selectOne(String userId);
     
     public MypageDto userinfo(MypageDto dto);
     public MypageDto selectOneforPicture(MypageDto dto);
