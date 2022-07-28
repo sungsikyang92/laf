@@ -3,14 +3,10 @@ package com.rocket.laf.dto;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class LostDto {
