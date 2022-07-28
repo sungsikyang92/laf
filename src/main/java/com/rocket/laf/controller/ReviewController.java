@@ -62,6 +62,7 @@ public class ReviewController {
             System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
             String userId = userInfo.getUsername();
             List<ReviewDto> reviewListReturned = reviewService.getReviewList(userId);
+            System.out.println(reviewListReturned);
             model.addAttribute("reviewList", reviewListReturned);
 
             return "/review/reviewList";
@@ -96,7 +97,7 @@ public class ReviewController {
    
     }
 
-    //28일 시작
+    //29일 시작
     @GetMapping(value="details")
     public String reviewDetails(int reviewNo) {
         //클릭하면 후기번호를 기준으로 찾아오는것으로 하자

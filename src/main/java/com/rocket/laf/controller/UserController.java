@@ -228,8 +228,8 @@ public class UserController {
 
         AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
-
-
+            
+            
             System.out.println("익명의 사용자 _________ " +  userInfo);
             System.out.println("익명의 사용자 인증정보_________ " +  auth);
 
