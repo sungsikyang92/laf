@@ -1,6 +1,7 @@
 package com.rocket.laf.controller;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.rocket.laf.dto.PictureDto;
@@ -28,18 +29,32 @@ public class PictureController {
     private final PictureServiceImpl pictureService;
     private final BoardNoServiceImpl boardNoService;
 
+//    @GetMapping("")
+//    public String addPicture() {
+//
+//        return "";
+//    }
+
+    @ResponseBody
     @GetMapping("")
-    public String addPicture() {
-
-        return "";
-    }
-
-    public String getPicture() {
-        return "";
-    }
-
-    public String getMainPicture() {
-        return "";
+    public List<PictureDto> getMainPictureByBoardNo() {
+//        List<PictureDto> mainPicList = pictureService.getMainPictureByBoardNo();
+//        for (PictureDto pdto : mainPicList) {
+//            String originPath = pdto.getStoredFilePath();
+//            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+//        }
+        List<PictureDto> pictureDtoList = new ArrayList<>();
+        List<PictureDto> mainPicList = pictureService.getMainPictureForCom();
+        for (PictureDto pDto : mainPicList) {
+            if (pDto.isPicExt() == true) {
+                String picOriginPath = pDto.getStoredFilePath();
+                pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+                pictureDtoList.add(pDto);
+            } else {
+                pictureDtoList.add(pDto);
+            }
+        }
+        return pictureDtoList;
     }
 
     @ResponseBody
@@ -52,16 +67,16 @@ public class PictureController {
             String originPath = pdto.getStoredFilePath();
             pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
         }
-        for (PictureDto pdto : pictureList) {
-            System.out.println(pdto.getStoredFilePath());
-        }
+//        for (PictureDto pdto : pictureList) {
+//            System.out.println(pdto.getStoredFilePath());
+//        }
         return pictureList;
 
     }
 
-    @GetMapping("/{boardNo}")
-    public List<PictureDto> getPicList(@PathVariable(name = "boardNo") String boardNo) {
-        List<PictureDto> pictureList = pictureService.getAllPictureByBoardNo(boardNo);
-        return pictureList;
-    }
+//    @GetMapping("/{boardNo}")
+//    public List<PictureDto> getPicList(@PathVariable(name = "boardNo") String boardNo) {
+//        List<PictureDto> pictureList = pictureService.getAllPictureByBoardNo(boardNo);
+//        return pictureList;
+//    }
 }

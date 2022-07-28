@@ -13,8 +13,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>LaF</title>
 
-                <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
-                <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
+
                 <link rel="stylesheet"
                     href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
@@ -22,8 +21,11 @@
                 <link rel="stylesheet" media="screen and (max-width:390px)" href="resources/css/main_mobile.css"
                     type="text/css">
 
-
                 <script src='resources/js/main_sidebar.js'></script>
+
+                <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
+                <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
+
 
 
             </head>
@@ -32,30 +34,39 @@
 
 
 
-                <div class="wrapper">
-                    <div class="section">
-                        <div class="top_navbar">
-                            <div class="hamburger">
-                                <a href="#">
-                                    <i class="fi fi-rr-menu-burger"></i>
-                                </a>
-                            </div>
-                            <div class="right_nav">
-                                <!-- security tags starts-->
-                                <sec:authorize access="isAnonymous()">
-                                    <button class="btn" sec:authorize="isAnonymous()"
-                                        onclick="location.href='/user/login'">로그인</button>
-                                </sec:authorize>
-                                <sec:authorize access="isAuthenticated()">
-                                    <sec:authentication property="name" var="loginUserName" />
-                                    <span class="item">${loginUserName}님 환영합니다</span>
-                                    <button class="btn" onclick="location.href='/lostWrite'">글쓰기</button>
-                                    <button class="btn" onclick="location.href=''">마이페이지</button>
-                                    <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
-                                </sec:authorize>
-                                <!-- security tags ends-->
-                            </div>
+                <jsp:include page="UI/topMenu.jsp" flush="true" />
+
+
+                <!-- 컨텐츠 삽입부분-->
+                <div class="contents_container">
+
+                    <div class="child-page-listing">
+
+                        <h2 style="text-align: center;">실시간베너 만들것 </h2>
+
+                        <div class="grid-container">
+
+                            <c:choose>
+                                <c:when test="${empty lostlist }">
+                                    <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${lostlist}" var="lostboard">
+                                        <article class="location-listing">
+                                            <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">
+                                                ${lostboard.LTitle} </a>
+                                            <div class="location-image">
+                                                <a href="#">
+                                                    <img width="300" height="169" src="${lostboard.storedFilePath}"
+                                                        alt="${lostboard.LTitle}">
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
+<<<<<<< HEAD
                     </div>
 
 
@@ -155,16 +166,15 @@
                                 </a>
                             </li>
                         </ul>
+=======
+                        <!-- end grid container -->
+>>>>>>> 7fdaf6660b43cbbc0661a40f5f6357c5b26b8128
                     </div>
                 </div>
-                <!--
-        <header class="header_container">
 
-        </header>
-        <footer class="footer_container">
+                <jsp:include page="UI/sideMenu.jsp" flush="true" />
 
-        </footer>
-        -->
+
 
 
             </body>

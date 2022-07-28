@@ -21,8 +21,13 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public PictureDto getMainPictureByBoardNo(String boardNo) {
-        return pictureMapper.getMainPictureByBoardNo(boardNo);
+    public List<PictureDto> getMainPictureForCom() {
+        return pictureMapper.getMainPictureForCom();
+    }
+
+    @Override
+    public List<PictureDto> getMainPictureForLost() {
+        return pictureMapper.getMainPictureForLost();
     }
 
     @Override

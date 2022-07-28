@@ -85,8 +85,8 @@ function searchCoordinateToAddress(latlng) {
             document.querySelector("div#location").removeChild(document.querySelector("div#location").firstChild);
         }
         let input_address = document.createElement("input");
-        input_address.setAttribute("name", "selectAddress");
-        input_address.setAttribute("class", "selectAddress");
+        input_address.setAttribute("name", "lLocation");
+        input_address.setAttribute("class", "lLocation");
         input_address.setAttribute("value", address.jibunAddress);
         var resize = address.jibunAddress.length;
         console.log(resize);
@@ -143,8 +143,8 @@ function searchAddressToCoordinate(address) {
         }
 
         let input_address = document.createElement("input");
-        input_address.setAttribute("name", "selectAddress");
-        input_address.setAttribute("class", "selectAddress");
+        input_address.setAttribute("name", "lLocation");
+        input_address.setAttribute("class", "lLocation");
         input_address.setAttribute("value", item.jibunAddress);
         document.querySelector("div#location").appendChild(input_address);
 
