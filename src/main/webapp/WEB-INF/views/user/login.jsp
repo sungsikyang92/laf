@@ -35,6 +35,8 @@
 			<input type="submit" value="로그인" >
 			<input type="button" value="회원가입" onclick="location.href='/user/signUp'">
 		</form>
+		<br>
+		<a href="/oauth2/authorization/google">구글 로그인</a>
 	</div>
 </body>
 </html>

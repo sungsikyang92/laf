@@ -224,7 +224,7 @@ public class UserController {
 
     
     //테스트용
-    @GetMapping("/secTest")
+    @GetMapping("/secTestGgl")
     public String moveSecTest(@AuthenticationPrincipal User userInfo, Authentication auth) throws Exception {
         logger.info("------------------------Controller mapping 'user/secTest'");
 
@@ -239,7 +239,7 @@ public class UserController {
         }else {
             System.out.println("로그인한 사용자_________ " +  userInfo);
             System.out.println("로그인한 사용자 인증정보_________ " +  auth);
-            return "/user/secTest";
+            return "/user/secTestGgl";
         }
     }
 

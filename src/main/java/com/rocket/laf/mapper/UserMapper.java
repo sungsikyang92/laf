@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.rocket.laf.dto.UserDto;
+import com.rocket.laf.dto.UserSocialDto;
 
 @Mapper
 public interface UserMapper {
@@ -26,5 +27,10 @@ public interface UserMapper {
     @Select( "select * from User where userId=#{userId} " )
     UserDto secLogin(String userId);
 
+    @Select( "select * from UserSocial where socialEmail = #{socialEmail}" )
+    UserSocialDto chkUserSocialData(String socialEmail);
+
+    @Insert( "insert into UserSocial (socialProvider, socialId, socialEmail, socialName) values (#{socialProvider}, #{socialId}, #{socialEmail}, #{socialName})" ) 
+    int regUserSocial(UserSocialDto dto);
 
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- security teglibrary -->
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +14,7 @@
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='/resources/js/main_sidebar.js'></script>
     <%--    ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -54,28 +52,28 @@
 
 <body class="body_container">
 
-<div class="wrapper">
-    <div class="section">
-        <div class="top_navbar">
-            <div class="hamburger">
-                <a href="#">
-                    <i class="fi fi-rr-menu-burger"></i>
-                </a>
-            </div>
-            <div class="right_nav">
-                <!-- security tags starts-->
-                <sec:authorize access="isAnonymous()">
-                    <button class="btn" sec:authorize="isAnonymous()"
-                            onclick="location.href='/user/login'">로그인</button>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username" var="loginUserName" />
-                    <span class="item">${loginUserName}님 환영합니다</span>
-                    <button class="btn" onclick="location.href='/lostWrite'">글쓰기</button>
-                    <button class="btn" onclick="location.href=''">마이페이지</button>
-                    <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
-                </sec:authorize>
-                <!-- security tags ends-->
+    <div class="wrapper">
+        <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#">
+                        <i class="fi fi-rr-menu-burger"></i>
+                    </a>
+                </div>
+                <div class="right_nav">
+                     <!-- security tags starts-->
+                     <sec:authorize access="isAnonymous()">
+                        <button class="btn" sec:authorize="isAnonymous()" onclick="location.href='/user/login'">로그인</button>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()" >
+                        <sec:authentication property="name" var="loginUserName"/>
+                        <span class="item">${loginUserName}님 환영합니다</span>
+                        <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
+                        <button class="btn" onclick="location.href=''">마이페이지</button>
+                        <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
+                    </sec:authorize>
+                    <!-- security tags ends-->
+                </div>
             </div>
         </div>
     </div>
@@ -98,23 +96,6 @@
                             <div id="comBoardListMainImg${cbl.CBoardNo}">
                                 이미지
                             </div>
-<%--                            <c:choose>--%>
-<%--                                <c:when test=""--%>
-<%--                            </c:choose>--%>
-<%--                            <div><img width="300" height="169" src="/resources/img/woo.png"></div>--%>
-<%--                            <div>사진 : ${cbl.picRmd}</div>--%>
-<%--                            <div><img id="${cbl.picNo}" width="300" height="169" src="${cbl.storedFilePath}" alt="/resources/img/woo.png"></div>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${cbl.picRmd == 'true'}">--%>
-<%--                                    <div>보여줘! : ${cbl.picRmd}</div>--%>
-<%--                                    <div><img id="${cbl.picNo}" width="300" height="169" src="${cbl.storedFilePath}"></div>--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    <div>보여줄게없어 : ${cbl.picRmd}</div>--%>
-<%--                                    <div><img id="no_img" width="300" height="169" src="/resources/img/woo.png"></div>--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
-<%--                            <div>사진번호 : ${picList[0].picNo}</div>--%>
                         </div>
                     </c:forEach>
                 </c:otherwise>
