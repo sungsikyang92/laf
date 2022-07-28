@@ -17,11 +17,11 @@
             <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
             <script>
-                let answer1 = "${boardDetail[0].LAnswers1}";
-                let answer2 = "${boardDetail[0].LAnswers2}";
-                let answer3 = "${boardDetail[0].LAnswers3}";
-                let answer4 = "${boardDetail[0].LAnswers4}";
-                let answer = "${boardDetail[0].LAnswers}";
+                let answer1 = "${boardDetail.LAnswers1}";
+                let answer2 = "${boardDetail.LAnswers2}";
+                let answer3 = "${boardDetail.LAnswers3}";
+                let answer4 = "${boardDetail.LAnswers4}";
+                let answer = "${boardDetail.LAnswers}";
             </script>
 
 
@@ -30,119 +30,57 @@
         </head>
 
         <body class="body_container">
-            <div class="wrapper">
-                <div class="section">
-                    <div class="top_navbar">
-                        <div class="hamburger">
-                            <a href="#">
-                                <i class="fi fi-rr-menu-burger"></i>
-                            </a>
-                        </div>
-                        <div class="right_nav"></div>
-                    </div>
-                </div>
+            <jsp:include page="UI/topMenu.jsp" flush="true" />
 
 
-                <!-- 컨텐츠 삽입부분-->
-                <div class="contents_container">
-                    <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-                        ${boardDetail[0].LTitle}</h1>
+            <!-- 컨텐츠 삽입부분-->
+            <div class="contents_container">
+                <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
+                    ${boardDetail.LTitle}</h1>
+                <br>
+                <h2>현재 동네 : ${boardDetail.LLocation}</h2>
+                <div class="child-page-listing">
                     <br>
-                    <h2>현재 동네 : ${boardDetail[0].LLocation}</h2>
-                    <div class="child-page-listing">
-                        <br>
-                        <br>
-                        <h2>사진 </h2>
-                        <div class="grid-container"
-                            style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;padding-top:20px">
-                            <c:choose>
-                                <c:when test="${empty picturelist }">
-                                    <td colspan="4">----사진이 없다----</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${picturelist}" var="plist">
-
-                                        <article class="location-listing">
-                                            <div class="location-title" href="">사진 </div>
-                                            <div class="location-image">
-                                                <img width="300" height="169" src="${plist.storedFilePath}" alt="">
-                                            </div>
-                                        </article>
-                                    </c:forEach>
-
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <!-- end grid container -->
-                    </div>
                     <br>
-                    <h2>작성일 : ${boardDetail[0].LCreateDate}</h2>
-                    <h3>글내용 : ${boardDetail[0].LContent}</h3>
-                    <br>
-                    <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail[0].LQuestion}</h3>
+                    <h2>사진 </h2>
+                    <div class="grid-container"
+                        style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;padding-top:20px">
+                        <c:choose>
+                            <c:when test="${empty picturelist }">
+                                <td colspan="4">----사진이 없다----</td>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${picturelist}" var="plist">
 
-                    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);"
-                        method="post"><br>
-                    </form>
+                                    <article class="location-listing">
+                                        <div class="location-title" href="">사진 </div>
+                                        <div class="location-image">
+                                            <img width="300" height="169" src="${plist.storedFilePath}" alt="">
+                                        </div>
+                                    </article>
+                                </c:forEach>
 
-                </div>
-
-
-                <!-- TOP menu -->
-                <div class=" sidebar">
-                    <div class="sidetop">
-                        <div class="sidetop_left">
-                            <a href="/" class="logo">
-                                <img src="resources/img/logo/laf6.png" alt="">
-                            </a>
-                        </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
-                    <ul>
-                        <li>
-                            <a href="MyPage" class="mypage">
-                                <span class="icon"><i class="fi fi-rr-home"></i></span>
-                                <span class="item">마이페이지</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="cBoard" class="cboard">
-                                <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
-                                <span class="item">커뮤니티</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="QnA" class="qna">
-                                <span class="icon"><i class="fi fi-rr-comment-alt"></i></span>
-                                <span class="item">QnA</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Menual" class="menual">
-                                <span class="icon"><i class="fi fi-rr-document"></i></span>
-                                <span class="item">분실물 대처 방안</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="PayReward" class="payreward">
-                                <span class="icon"><i class="fi fi-rr-credit-card"></i></span>
-                                <span class="item">사례금 환급 받기</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Chat" class="chat">
-                                <span class="icon"><i class="fi fi-rr-smartphone"></i></span>
-                                <span class="item">진행중인 1:1 채팅</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="MyReviews" class="myreviews">
-                                <span class="icon"><i class="fi fi-rr-book-alt"></i></span>
-                                <span class="item">내 후기 모아보기</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <!-- end grid container -->
                 </div>
+                <br>
+                <h2>작성일 : ${boardDetail.LCreateDate}</h2>
+                <h3>글내용 : ${boardDetail.LContent}</h3>
+                <br>
+                <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.LQuestion}</h3>
+
+                <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post">
+                    <br>
+                    <input type="hidden" name="boardNo" value="${boardDetail.LBoardNo}">
+                </form>
+
             </div>
+
+            <jsp:include page="UI/sideMenu.jsp" flush="true" />
+
+
             <script src='resources/js/lostQuestion.js'></script>
         </body>
 

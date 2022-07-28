@@ -7,11 +7,8 @@
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
             <title>Laf Lostwrite</title>
-
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
             <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
             <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
             <link rel="stylesheet"
@@ -26,8 +23,8 @@
         </head>
 
         <body class="body_container">
-
             <jsp:include page="UI/topMenu.jsp" flush="true" />
+
 
             <!-- 컨텐츠 삽입부분-->
             <div class="contents_container">
@@ -90,8 +87,8 @@
                     <button id="submit" type="submit">ㅋㅋ임시제출임</button>
                 </form>
             </div>
-            <jsp:include page="UI/sideMenu.jsp" flush="true" />
 
+            <jsp:include page="UI/sideMenu.jsp" flush="true" />
 
             <script src='resources/js/readImage.js'></script>
             <script src='resources/js/main_sidebar.js'></script>
