@@ -76,16 +76,6 @@
                 </c:when>
                 <c:otherwise>
                     <c:forEach items="${pDetail}" var="pd">
-<%--                        <article class="location-listing">--%>
-<%--                            <div class="location-image">--%>
-<%--                                <img width="300" height="169" src="${pd.storedFilePath}"--%>
-<%--                                     alt="사진을 불러올수가 엄써" class="img"/>--%>
-<%--                            </div>--%>
-<%--                        </article>--%>
-<%--                        <div>--%>
-<%--                            <input type="button" value="삭제" id="${pd.picNo}" class="imgDeleteBtn"--%>
-<%--                                   onclick="getClickId(this.id)">--%>
-<%--                        </div>--%>
                         <article class="location-listing">
                             <div class="location-image">
                                 <img width="300" height="169" src="${pd.storedFilePath}"
