@@ -40,7 +40,7 @@ public class CommunityServiceImpl implements CommunityService {
             communityMapper.writeComBoardFileList(list);
         } else {
             communityMapper.writeComBoard(communityDto);
-            pictureMapper.insertPicBoardNo(communityDto.getCBoardNo());
+//            pictureMapper.insertPicBoardNo(communityDto.getCBoardNo());
         }
     }
 
@@ -58,6 +58,9 @@ public class CommunityServiceImpl implements CommunityService {
         communityMapper.updateComBoardDetail(communityDto);
         List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
+            for (PictureDto pictureDto : list) {
+                System.out.println(pictureDto.getOriginalFileName());
+            }
             communityMapper.writeComBoardFileList(list);
         }
 
