@@ -27,18 +27,21 @@
 
         <body class="body_container">
 
-            <jsp:include page="UI/topMenu.jsp" flush="true" />
+            <jsp:include page="../UI/topMenu.jsp" flush="true" />
 
             <!-- 컨텐츠 삽입부분-->
             <div class="contents_container">
-                <form action="/lostwrite" method="post" enctype="multipart/form-data">
+                <form action="/write" method="post" enctype="multipart/form-data">
                     <div id="image_container"></div>
                     <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*"
                         onchange="setThumbnail(event);" multiple />
                     <button type="button" onclick="resetFile()">올린파일 초기화</button>
                     <br>
-                    <h2>분실<input type="radio" name="lCategory" id="" value="분실"> &nbsp;&nbsp; 습득<input type="radio"
-                            name="lCategory" id="" value="습득" />
+                    <h2>
+                        분실
+                        <input type="radio" name="lCategory" id="" value="분실" />
+                        &nbsp;&nbsp; 습득
+                        <input type="radio" name="lCategory" id="" value="습득" checked="checked" />
                     </h2>
                     <br>
                     <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
@@ -85,12 +88,12 @@
                     <h4>지도로 위치를 설정하시면 해당위치로 검색시 노출됩니다.</h4>
                     <br>
                     <h2>HashTag</h2>
-                    <input id="hashtag" name="hashtag" type="text" size="50" value="검색 노출 태그 입력 ,로 입력해주세요.">
+                    <input id="hashtag" name="hashtag" type="text" size="50" placeholder="검색 노출 태그 입력 ,로 입력해주세요.">
                     <br>
                     <button id="submit" type="submit">ㅋㅋ임시제출임</button>
                 </form>
             </div>
-            <jsp:include page="UI/sideMenu.jsp" flush="true" />
+            <jsp:include page="../UI/sideMenu.jsp" flush="true" />
 
 
             <script src='resources/js/readImage.js'></script>

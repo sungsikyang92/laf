@@ -109,13 +109,26 @@ public class LafController {
     }
 
     @GetMapping("/update/{lBoardNo}")
-    public String updatelBoardNo() {
-        return "";
+    public String updatelBoardNo(@PathVariable(name = "lBoardNo") String lBoardNo, Model model) {
+
+        LostDto lostDto = lostserviceImpl.getLostBoardOne(lBoardNo);
+        List<PictureDto> picList = pictureServiceImpl.getAllPictureByBoardNo(lBoardNo);
+        for (PictureDto pdto : picList) {
+            String originPath = pdto.getStoredFilePath();
+            pdto.setStoredFilePath("/resources/" + originPath.substring(26));
+        }
+
+        model.addAttribute("lboard", lostDto);
+        model.addAttribute("pDetail", picList);
+
+        return "lostcommunity/lostUpdate";
     }
 
-    @PutMapping("/update/{lBoardNo}")
-    public String updatelBoard() {
-        return "";
+    @PostMapping("/update/{lBoardNo}")
+    public String updatelBoard(@PathVariable(name = "lBoardNo") String lBoardNo, LostDto lostDto,
+            MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
+        return "redirect:/"+lBoardNo;
     }
 
 }

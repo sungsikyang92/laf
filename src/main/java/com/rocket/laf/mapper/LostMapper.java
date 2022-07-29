@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
@@ -37,5 +38,10 @@ public interface LostMapper {
                         "</foreach> " +
                         "</script>" })
         void writelBoardFileList(List<PictureDto> list) throws Exception;
+
+        @Update(" UPDATE Lost "+
+                        "SET lTitle=#{lTitle}, lContent=#{lContent}, lIsModified = 1, lLocation=#{lLocation}, lCategory=#{lCategory},lQuestion=#{lQuestion}, lAnswers=#{lAnswers}, lAnswers1=#{lAnswers1},lAnswers2=#{lAnswers2},lAnswers3=#{lAnswers3},lAnswers4=#{lAnswers4}"+
+                        "WHERE lBoardNo = #{lBoardNo}")
+        void updatelBoardDetail(LostDto lostDto);
 
 }
