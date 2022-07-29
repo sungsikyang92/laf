@@ -40,7 +40,7 @@
                     <c:forEach items="${pDetail}" var="pd">
                         <article class="location-listing">
                             <div class="location-image">
-                                <img width="300" height="169" src="/src/main/resources/static/img/profile/songokuf.gif" alt="">
+                                <img width="300" height="169" src="../resources/img/profile/songokuf.gif" alt="">
                             </div>
                         </article>
                     </c:forEach>

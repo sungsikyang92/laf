@@ -52,6 +52,9 @@ public class LafController {
         // List<PictureDto> piclist =
         // pictureServiceImpl.getMainPictureByBoardNo(lostlist.get(0).getLBoardNo());
         // model.addAttribute("picture", piclist);
+        
+        
+
         return "index";
     }
 
@@ -71,8 +74,7 @@ public class LafController {
         logger.log(Level.INFO, numbering);
         String lBoardNo = symbol + numbering;
         logger.log(Level.INFO, lBoardNo);
-
-        lostDto.setLBoardNo(lBoardNo);
+        
         lostserviceImpl.insertLostBoard(lostDto, multipartHttpServletRequest);
         return "redirect:/";
     }

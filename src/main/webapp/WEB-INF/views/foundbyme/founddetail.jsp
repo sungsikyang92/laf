@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,22 +35,26 @@
     
     <div class = mypage_container>
     <table border = "1">
-    <c:choose>
+        <h3>${clist[1].cBoardNo}</h3>
+    <!-- <c:choose>
         <c:when test="${empty list}">
             <tr>
                 <td colspan="4">-------작성된 글이 존재하지 않습니다.-------</td>
             </tr>
         </c:when>
         <c:otherwise>
-            <c:forEach items="${list}" var="dto">
+            <h3>${piclist.originalFileName}</h3>
+            <c:forEach items="${list}" var="dto" varStatus = "status">
                 <tr>
                     <td><img src = ../resources/img/profile/songokug.jpg style = "width : 50px; height :50px;"></td>
                     <td>${dto.userNo }</td>
                     <td>${dto.userName }</td>
+                    
                 </tr>
             </c:forEach>
         </c:otherwise>
-    </c:choose>
+    </c:choose> -->
+   
 </table> 
 </div>   
     

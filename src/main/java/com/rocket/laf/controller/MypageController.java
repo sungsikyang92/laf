@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rocket.laf.dto.CommunityDto;
 import com.rocket.laf.dto.MypageDto;
+import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.dto.UserDto;
+import com.rocket.laf.service.CommunityService;
 import com.rocket.laf.service.MypageService;
-import com.rocket.laf.service.UserService;
+import com.rocket.laf.service.PictureService;
 import com.rocket.laf.service.impl.MypageServiceImpl;
-import com.rocket.laf.service.impl.UserServiceImpl;
 
 @Controller
 @RequestMapping("/myPage") //로컬호스트 뜨고 마이페이지 경로로 가는데,
@@ -32,72 +34,34 @@ public class MypageController {
     
     @Autowired
     private MypageServiceImpl mypageServiceImpl;
-    
-    @Autowired
-    private UserServiceImpl userServiceImpl;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private MypageService mypageService;
 
-    //기본 페이지 넘어오는 파라미터 X.
-    //requsetParam으로도 해보기
-    //유저넘버 받아오는 방법.
+    @Autowired
+    private PictureService pictureService;
 
-    // @GetMapping("")
-    // public String vvv(){
-    //     return "/mypage/myPage";
-    // }
+    @Autowired
+    private CommunityService communityService;
 
     @GetMapping("")
     public String viemypage(HttpServletRequest request, Model model, @AuthenticationPrincipal User userInfo, Authentication auth) throws Exception {
         AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
-
-
             System.out.println("익명의 사용자 _________ " +  userInfo);
             System.out.println("익명의 사용자 인증정보_________ " +  auth);
-
             return "/user/secTest";
         }else {
             System.out.println("로그인한 사용자_________ " +  userInfo.getUsername());
             System.out.println("로그인한 사용자 인증정보_________ " +  auth);
-
             String name = userInfo.getUsername();
             UserDto name1= mypageService.selectOne(name);
-            
             model.addAttribute("dto", name1);
             System.out.println("name = " + name);
-
-            
             return "/mypage/myPage";
         }
     }
-    //     UserDto userid = mypageService.selectOne(userId);
-    //     List<UserDto> uu = mypageService.selectList(userNo);
-    //     model.addAttribute("userId",userid);
-    //     Model asd = model.addAttribute("userId",uu);
-    //     System.out.println("********************************************************************");
-    //     System.out.println("Login ID =" + userid);
-    //     System.out.println("UserDTO =" + asd);
-    //     System.out.println("********************************************************************");
-        
-    //     return "mypage/myPage";
 
-        // System.out.println("아이디 : " + userInfo);
-        // // List<UserDto> uslist = mypageServiceImpl.selectOne(user_id);
-        
-        // model.addAttribute("ulist", );
-        // System.out.println("********************************************************************");
-        // System.out.println(uslist);
-        // System.out.println("********************************************************************");
-        
-        // System.out.println("dto 내역들 = " + dto);
-        // return "mypage/myPage";
-    // // }
-    
     @PostMapping("")
     public String mypage(MypageDto dto, Model model, MultipartFile file, HttpServletRequest request, @AuthenticationPrincipal User userInfo) throws Exception{
         mypageServiceImpl.picwrite(dto, file);
@@ -119,19 +83,24 @@ public class MypageController {
         model.addAttribute("img",dto);
         System.out.println("Postdto=" +dto);
         return "mypage/myPage";
-    }
-
-    
-
-
-    /* *********************************************************************************************** */
-     /* 페이지 전환할 것들 
-     * 1. 내가 찾아준 내역, 2. 내 후기 모아보기
-     * 마이페이지에서 내가 찾아준 내역으로 이동 */
+    }  
 
     @GetMapping("/founddetail")
-    public String MypagetoFounddetail(Model model){
-        model.addAttribute("list",mypageService.selectList());
+    public String MypagetoFounddetail(Model model, HttpServletRequest request) throws Exception{
+        //cBoardNo 쓸라고.
+        List<CommunityDto> cl = communityService.getComBoardList();
+        model.addAttribute("clist",cl);
+        
+        //cBoardNo에 맞는 사진 가져오기.
+        String cBoardNo = request.getParameter("cl.cBoardNo");
+        List<PictureDto> ctop = pictureService.getAllPictureByBoardNo(cBoardNo);
+        model.addAttribute("pPath",ctop);
+
+
+        System.out.println("cl = " + cl);
+        System.out.println("ctop = " +ctop);
+        
+
         
         return "/foundbyme/founddetail";
     }
