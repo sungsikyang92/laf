@@ -36,10 +36,8 @@
                                 tags += "<div class='location-image'>";
                                 tags += "<img width='300' height='169' src='" + pictureList[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
                                 tags += "</div>";
-                                tags += "</article>";
-                                tags += "<div>";
                                 tags += "<input type='button' value='삭제' id='" + pictureList[i].picNo + "' class='imgDeleteBtn' onclick='getClickId(this.id)'>";
-                                tags += "</div>";
+                                tags += "</article>";
                                 //엘리먼트만 지운다.
                             }
                             $("#imageList").html();
@@ -59,8 +57,6 @@
             <div class="contents_container">
                 <form action="/update/${lboard.LBoardNo}" method="post" enctype="multipart/form-data">
 
-
-
                     <div id="image_container">
                         <div id="imageList">
                             <c:choose>
@@ -77,11 +73,10 @@
                                             <input type="button" value="삭제" id="${pd.picNo}" class="imgDeleteBtn"
                                                 onclick="getClickId(this.id)">
                                         </article>
-
+                                        
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
-
                         </div>
                     </div>
                     <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*"
@@ -96,35 +91,35 @@
                     </c:if>
                     <br>
                     <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-                        <input type="text" name="lTitle" placeholder="${lboard.LTitle}" />
+                        <input type="text" name="lTitle" value="${lboard.LTitle}" />
                     </h1>
                     <br>
                     <h2>글 내용 : <br>
-                        <textarea cols="150" rows="15" name="lContent" placeholder="${lboard.LContent}"></textarea>
+                        <textarea cols="150" rows="15" name="lContent" value="${lboard.LContent}"></textarea>
                     </h2>
                     <br>
                     <h3 style="border-top:solid 2px rgb(169, 169, 169);">
-                        문제 :<input type="text" name="lQuestion" placeholder="${lboard.LQuestion}" />
+                        문제 :<input type="text" name="lQuestion" value="${lboard.LQuestion}" />
                     </h3>
                     <br>
                     <h3>
-                        정답 :<input type="text" name="lAnswers" placeholder="${lboard.LAnswers}" />
+                        정답 :<input type="text" name="lAnswers" value="${lboard.LAnswers}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers1" placeholder="${lboard.LAnswers1}" />
+                        오답 :<input type="text" name="lAnswers1" value="${lboard.LAnswers1}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers2" placeholder="${lboard.LAnswers2}" />
+                        오답 :<input type="text" name="lAnswers2" value="${lboard.LAnswers2}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers3" placeholder="${lboard.LAnswers3}" />
+                        오답 :<input type="text" name="lAnswers3" value="${lboard.LAnswers3}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers4" placeholder="${lboard.LAnswers4}" />
+                        오답 :<input type="text" name="lAnswers4" value="${lboard.LAnswers4}" />
                     </h3>
                     <br>
                     <h2>지도</h2>
@@ -139,7 +134,7 @@
                     <h4>지도로 위치를 설정하시면 해당위치로 검색시 노출됩니다.</h4>
                     <br>
                     <h2>HashTag</h2>
-                    <input id="hashtag" name="hashtag" type="text" size="50" placeholder="검색 노출 태그 입력 ,로 입력해주세요.">
+                    <input id="hashtag" name="hashtag" type="text" size="50" value="검색 노출 태그 입력 ,로 입력해주세요.">
                     <br>
                     <button id="submit" type="submit">ㅋㅋ임시제출임</button>
                 </form>
