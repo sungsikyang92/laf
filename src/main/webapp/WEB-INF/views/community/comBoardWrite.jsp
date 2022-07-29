@@ -29,8 +29,8 @@
 
 <div class="contents_container">
     <form action="/cBoard/write" method="post" enctype="multipart/form-data">
-        <sec:authentication property="username"
-        <input type="hidden" name="userNo" value="${}">
+        <sec:authentication property="principal.userNo" var="userNo"/>
+        <input type="hidden" name="userNo" value="${userNo}">
         <table>
             <tr>
                 <div id="image_container"></div>

@@ -18,5 +18,5 @@ public class LafApplication {
 	@Bean
 	public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
 		return new HiddenHttpMethodFilter();
-	}
+}
 }

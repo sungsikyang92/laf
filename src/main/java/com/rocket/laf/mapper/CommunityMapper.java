@@ -14,7 +14,7 @@ public interface CommunityMapper {
 
         @Insert(" INSERT INTO Community " +
                         "(cBoardNo, cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
-                        "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
+                        "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},#{userNo},1) ")
         @Options(keyProperty = "cBoardNo")
         void writeComBoard(CommunityDto communityDto);
 

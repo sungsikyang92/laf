@@ -1,16 +1,26 @@
 package com.rocket.laf.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import com.rocket.laf.dto.ChatRoom;
+import com.rocket.laf.service.impl.ChatService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RequiredArgsConstructor
+@RestController
 @RequestMapping("/chat")
 public class ChatController {
 
-    @GetMapping("")
-    public String chat() {
-        return "/chat/chat";
+    private final ChatService chatService;
+
+    @PostMapping
+    public ChatRoom createRoom(@RequestParam String name) {
+        return chatService.createRoom(name);
+    }
+
+    @GetMapping
+    public List<ChatRoom> findAllRoom() {
+        return chatService.findAllRoom();
     }
 }

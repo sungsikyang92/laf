@@ -22,8 +22,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 
 @Configuration
-@EnableWebSocket
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig{
 
     // 로그인 서비스 등록을 해줘야만 서비스임플리먼트에서 UserDetailsService가 작동한다.
     @Autowired
@@ -40,11 +39,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.csrf().disable()
             .headers()
                 .frameOptions().disable().and()
-                .authorizeRequests()
-                .antMatchers("/","/cBoard","/picture").permitAll()
-//                .antMatchers("/user/**").permitAll()
+            .authorizeRequests()
+//                .antMatchers("/","/cBoard","/picture","/chat").permitAll()
+                .antMatchers("/**","/","/chat").permitAll()
+                // .antMatchers("/user/**").permitAll()
+//                  .antMatchers( "/cBoard/**").hasRole("USER")
+                // .antMatchers("/cBoard").permitAll()
+                // .antMatchers("/cBoard/wrtie").hasRole("USER")
 
-                 .antMatchers("/cBoard/**").hasRole("USER")
                 // .antMatchers("/user/signUp").permitAll()
                 // .antMatchers("/user/signUpForm").permitAll()
                 // .antMatchers("/user/chkDuplicatedId").permitAll()
@@ -53,14 +55,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 // .antMatchers("/user/signUpForm").permitAll()
                 // .antMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated().and()
-                .formLogin()
+            .formLogin()
                 .loginPage("/user/login").permitAll()
                 // .defaultSuccessUrl("/")
                 .successHandler(new UserServiceImpl())
                 .failureUrl("/user/login?error=true")
                 // .failureHandler(new failureclassname())
                 .and()
-                .logout()
+            .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
@@ -73,7 +75,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .userService(userServiceImpl)
                 ;
             return http.build();
-
     }
 
     // UserDetailsService에서 실행될 AuthenticationManager 생성.

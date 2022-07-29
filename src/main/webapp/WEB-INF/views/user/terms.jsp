@@ -15,7 +15,7 @@
 
 	<body>
 
-		<jsp:include page="UI/topMenu.jsp" flush="true" />
+		<jsp:include page="../UI/topMenu.jsp" flush="true" />
 
 		<form id="allchked" method="post" action="/user/signUpForm">
 			<table border="1">
@@ -62,7 +62,7 @@
 				</tr>
 			</table>
 		</form>
-		<jsp:include page="UI/sideMenu.jsp" flush="true" />
+		<jsp:include page="../UI/sideMenu.jsp" flush="true" />
 
 	</body>
 

@@ -33,6 +33,7 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.SystemPropertyUtils;
 
+import com.rocket.laf.common.UserExtension;
 import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.dto.UserSocialDto;
 import com.rocket.laf.mapper.UserMapper;
@@ -92,7 +93,7 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         } else {
             auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
-        User secReturnUser = new User(secUser.getUserId(), secUser.getUserPw(), auth);
+        User secReturnUser = new UserExtension(secUser.getUserId(), secUser.getUserPw(), auth, secUser.getUserNo());
         System.out.println(secReturnUser);
         return secReturnUser;
     }

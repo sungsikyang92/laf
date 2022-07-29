@@ -8,6 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class UserDto {
+
+    
+    
     private long userNo;
     private String userName;
     private String userId;
@@ -21,4 +24,5 @@ public class UserDto {
     private int userTicket;
     private String userKeyword;
     private String userGrade;
+    
 }
