@@ -12,10 +12,6 @@
     <sec:authentication property="name" var="loginUserName" />
 </head>
 <body>
-        <div>
-            ${reviewList}
-        </div>
-
         <table border="1">
             <colgroup>
                 <col width="200">
@@ -38,7 +34,7 @@
                     <c:forEach items="${reviewList }" var="list">
                         <tr>
                             <td>
-                                <a href="/review/detail?reviewNo=${list.reviewNo }">${list.RContent }
+                                <a href="/review/details?reviewNo=${list.reviewNo }">${list.RContent }
                                 </a>
                             </td>
                             <td>${list.RDate }
