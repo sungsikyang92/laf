@@ -39,14 +39,20 @@
                 success: function (pictureList) {
                     let tags = '';
                     for (let i = 0; i < pictureList.length; i++) {
+                        // tags += "<article class='location-listing'>"
+                        // tags += "<div class='location-image'>";
+                        // tags += "<img width='300' height='169' src='" + pictureList[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                        // tags += "</div>";
+                        // tags += "</article>";
+                        // tags += "<div>";
+                        // tags += "<input type='button' value='삭제' id='" + pictureList[i].picNo + "' class='imgDeleteBtn' onclick='getClickId(this.id)'>";
+                        // tags += "</div>";
                         tags += "<article class='location-listing'>"
                         tags += "<div class='location-image'>";
                         tags += "<img width='300' height='169' src='" + pictureList[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
-                        tags += "</div>";
-                        tags += "</article>";
-                        tags += "<div>";
                         tags += "<input type='button' value='삭제' id='" + pictureList[i].picNo + "' class='imgDeleteBtn' onclick='getClickId(this.id)'>";
                         tags += "</div>";
+                        tags += "</article>";
                         //엘리먼트만 지운다.
                     }
                     $("#imageList").html();
@@ -59,8 +65,7 @@
 
 
 <body class="body_container">
-<jsp:include page="../UI/topMenu.jsp" flush="true"/>
-
+<jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
 
 <div class="contents_container">
     <form action="/cBoard/update/${cbDetail.CBoardNo}" method="post" enctype="multipart/form-data">
@@ -75,12 +80,9 @@
                             <div class="location-image">
                                 <img width="300" height="169" src="${pd.storedFilePath}"
                                      alt="사진을 불러올수가 엄써" class="img"/>
+                                <input type="button" value="삭제" id="${pd.picNo}" class="imgDeleteBtn" onclick="getClickId(this.id)">
                             </div>
                         </article>
-                        <div>
-                            <input type="button" value="삭제" id="${pd.picNo}" class="imgDeleteBtn"
-                                   onclick="getClickId(this.id)">
-                        </div>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>

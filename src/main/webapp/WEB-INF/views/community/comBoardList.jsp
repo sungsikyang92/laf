@@ -56,7 +56,7 @@
 </head>
 
 <body class="body_container">
-<jsp:include page="../UI/topMenu.jsp" flush="true"/>
+<jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
 <div class="contents_container">
     <c:choose>
         <c:when test="${empty cbList }">
@@ -72,7 +72,12 @@
                     <div>${cbl.CLocation}</div>
                     <div>글 : ${cbl.CIsModified}</div>
                     <div id="comBoardListMainImg${cbl.CBoardNo}">
-                        이미지
+                        <c:choose>
+                            <c:when test="${empty picList}">
+                                <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />
+                            </c:when>
+                            <c:otherwise>사진있어용</c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </c:forEach>

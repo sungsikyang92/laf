@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.mapper.LostMapper;
+import com.rocket.laf.mapper.PictureMapper;
 import com.rocket.laf.service.LostService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LostServiceImpl implements LostService {
 
-    @Autowired
     private final LostMapper lostMapper;
+    private final PictureMapper pictureMapper;
     private final FileUtils fileUtils;
 
     @Override
@@ -36,14 +37,29 @@ public class LostServiceImpl implements LostService {
 
     @Transactional
     @Override
-    public int insertLostBoard(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
+    public void insertLostBoard(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
-        lostMapper.insertLostBoard(LostDto);
         List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             lostMapper.writelBoardFileList(list);
+            lostMapper.insertLostBoard(LostDto);
+        } else {
+            lostMapper.insertLostBoard(LostDto);
+            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
         }
-        return 0;
+    }
+
+    @Override
+    public void updatelBoardDetail(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
+            throws Exception {
+        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
+        if (CollectionUtils.isEmpty(list) == false) {
+            lostMapper.updatelBoardDetail(LostDto);
+            lostMapper.writelBoardFileList(list);
+        } else {
+            lostMapper.updatelBoardDetail(LostDto);
+            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
+        }
     }
 
 }
