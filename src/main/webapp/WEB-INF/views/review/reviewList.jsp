@@ -14,10 +14,13 @@
 <body>
         <table border="1">
             <colgroup>
-                <col width="200">
                 <col width="50">
+                <col width="200">
+                <col width="300">
             </colgroup>
             <tr>
+                <th>번호
+                </th>
                 <th>내가 남긴 후기
                 </th>
                 <th>일시
@@ -31,8 +34,11 @@
                     </tr>
                 </c:when>
                 <c:otherwise>
-                    <c:forEach items="${reviewList }" var="list">
+                    <c:forEach items="${reviewList }" var="list" varStatus="number">
                         <tr>
+                            <td>
+                                ${number.count }
+                            </td>
                             <td>
                                 <a href="/review/details?reviewNo=${list.reviewNo }">${list.RContent }
                                 </a>
