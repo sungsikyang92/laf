@@ -27,7 +27,7 @@ function setThumbnail(event) {
                 document.querySelector("div#image_container").appendChild(img);
                 button.setAttribute("type", "button");
                 button.setAttribute("class", "imgDeleteBtn");
-                button.setAttribute("value", "삭제")
+                button.setAttribute("value", "삭제");
                 document.querySelector("div#image_container").appendChild(button);
             };
 
@@ -58,6 +58,5 @@ function resetFile() {
     }
     */
     //추가할것
-
 }
-
+// 삭제 하는 거 추가할껏
