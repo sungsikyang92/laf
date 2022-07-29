@@ -16,6 +16,11 @@ window.onload = function () {
         button.setAttribute("type", "submit")
         button.innerHTML = "1:1대화";
         formq.appendChild(button);
+        let updateButton = document.createElement('button');
+        updateButton.setAttribute("type", "button")
+        updateButton.innerHTML = "수정하기";
+        updateButton.setAttribute("onclick", "location.href='/update/" + boardNo + "'");
+        formq.appendChild(updateButton);
     }
     function shuffle(array) {
 

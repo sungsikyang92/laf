@@ -106,7 +106,7 @@ public class MypageController {
     }
     @GetMapping("/reviewdetail")
     public String FromMypagetoReviewAll(){
-        return "/myreview/reviewdetail";
+        return "/review/reviewList";
     }
     /* *********************************************************************************************** */
     //기능들git s
