@@ -153,6 +153,7 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         OAuth2User res = transOAuth2User(dtoRes);
 
         // 나중에 약관은 동의 처리받는것이 좋겠다.
+        System.out.println("OAuth2User result _________________ " + res);
 
         return res;
     }

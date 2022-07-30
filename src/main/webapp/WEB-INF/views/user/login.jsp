@@ -39,6 +39,8 @@
 					<input type="button" value="회원가입" onclick="location.href='/user/signUp'">
 				</form>
 			</div>
+			
+			<input type="button" value="구글 로그인" onclick="location.href='/oauth2/authorization/google'">
 
 			<jsp:include page="../UI/sideMenu.jsp" flush="true" />
 
