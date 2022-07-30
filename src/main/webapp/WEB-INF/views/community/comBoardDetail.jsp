@@ -27,8 +27,7 @@
 
 <body class="body_container">
 <div class="wrapper">
-    <jsp:include page="../UI/topMenu.jsp" flush="true"/>
-
+    <jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
 
     <div class="contents_container">
         <div>
@@ -56,8 +55,14 @@
         <div>${hDetail.hashKeyword}</div>
         <div>
             <input type="button" value="목록" onclick="location.href='/cBoard'">
-            <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
-            <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
+            <sec:authentication property="name" var="loginUserName"/>
+            ${loginUserName}ㅅㅣ큐리티 아이디
+            <br>
+            ${uDetail.userId} 로그인아이디
+            <c:if test="${uDetail.userId == loginUserName}">
+                <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
+                <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
+            </c:if>
         </div>
     </div>
 

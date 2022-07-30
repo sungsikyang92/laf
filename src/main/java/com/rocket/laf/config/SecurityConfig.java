@@ -18,10 +18,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.rocket.laf.service.UserService;
 import com.rocket.laf.service.impl.UserServiceImpl;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig{
 
     // 로그인 서비스 등록을 해줘야만 서비스임플리먼트에서 UserDetailsService가 작동한다.
     @Autowired
@@ -35,14 +36,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain secFiltChain(HttpSecurity http) throws Exception{
-        http
-            .csrf().disable()
+        http.csrf().disable()
             .headers()
                 .frameOptions().disable().and()
             .authorizeRequests()
-                .antMatchers("/**").permitAll()
+//                .antMatchers("/","/cBoard","/picture","/chat").permitAll()
+                .antMatchers("/**","/","/chat").permitAll()
                 // .antMatchers("/user/**").permitAll()
-                // // .antMatchers("/cBoard", "/cBoard/**").hasAuthority("USER")
+//                  .antMatchers( "/cBoard/**").hasRole("USER")
                 // .antMatchers("/cBoard").permitAll()
                 // .antMatchers("/cBoard/wrtie").hasRole("USER")
 

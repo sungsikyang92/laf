@@ -9,18 +9,12 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-        // @Select("SELECT c.cBoardNo, c.cTitle, c.cCreateDate, c.cLocation,
-        // c.cIsModified, p.storedFilePath, p.picNo, p.picRmd " +
-        // "FROM Community c " +
-        // "INNER JOIN Picture p " +
-        // "ON c.cBoardNo = p.boardNo " +
-        // "GROUP BY p.boardNo ORDER BY p.picNo DESC")
         @Select(" SELECT * FROM Community ORDER BY cBoardNo DESC ")
         List<CommunityDto> getComBoardList();
 
         @Insert(" INSERT INTO Community " +
                         "(cBoardNo, cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
-                        "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},1,1) ")
+                        "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},#{userNo},1) ")
         @Options(keyProperty = "cBoardNo")
         void writeComBoard(CommunityDto communityDto);
 

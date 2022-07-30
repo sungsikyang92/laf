@@ -35,4 +35,9 @@ public class PictureServiceImpl implements PictureService {
         pictureMapper.deleteSelectedPic(picNo);
     }
 
+    @Override
+    public void deleteNullPic(long picNo) {
+        pictureMapper.deleteNullPic(picNo);
+    }
+
 }
