@@ -16,4 +16,7 @@ public interface PictureService {
 
     // 선택된 사진 삭제하기
     void deleteSelectedPic(long picNo);
+
+    // NULL값 사진 삭제하기
+    void deleteNullPic(long picNo);
 }

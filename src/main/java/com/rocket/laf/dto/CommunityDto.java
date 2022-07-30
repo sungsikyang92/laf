@@ -18,7 +18,4 @@ public class CommunityDto {
     private String cCategory;
     private long userNo;
     private long hashNo;
-//    private String storedFilePath;
-//    private List<PictureDto> picList;
-//    private boolean picRmd;
 }
