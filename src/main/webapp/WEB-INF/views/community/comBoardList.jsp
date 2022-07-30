@@ -56,34 +56,37 @@
 </head>
 
 <body class="body_container">
-<jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
-<div class="contents_container">
-    <c:choose>
-        <c:when test="${empty cbList }">
-            <div><img width="300" height="169" src="/resources/img/woo.png"></div>
-            <div>----작성된 글이 존재하지 않습니다----</div>
-        </c:when>
-        <c:otherwise>
-            <c:forEach items="${cbList}" var="cbl">
-                <div class="comBoardListContainer" onclick="location.href='/cBoard/${cbl.CBoardNo}'">
-                    <div>${cbl.CBoardNo}</div>
-                    <div>${cbl.CTitle}</div>
-                    <div>${cbl.CCreateDate}</div>
-                    <div>${cbl.CLocation}</div>
-                    <div>글 : ${cbl.CIsModified}</div>
-                    <div id="comBoardListMainImg${cbl.CBoardNo}">
-                        <c:choose>
-                            <c:when test="${empty picList}">
-                                <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />
-                            </c:when>
-                            <c:otherwise>사진있어용</c:otherwise>
-                        </c:choose>
+<div class="wrapper">
+    <jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
+    <div class="contents_container">
+        <c:choose>
+            <c:when test="${empty cbList }">
+                <div><img width="300" height="169" src="/resources/img/woo.png"></div>
+                <div>----작성된 글이 존재하지 않습니다----</div>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${cbList}" var="cbl">
+                    <div class="comBoardListContainer" onclick="location.href='/cBoard/${cbl.CBoardNo}'">
+                        <div>${cbl.CBoardNo}</div>
+                        <div>${cbl.CTitle}</div>
+                        <div>${cbl.CCreateDate}</div>
+                        <div>${cbl.CLocation}</div>
+                        <div>글 : ${cbl.CIsModified}</div>
+                        <div id="comBoardListMainImg${cbl.CBoardNo}">
+                            <c:choose>
+                                <c:when test="${empty picList}">
+                                    <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
+                                         class='img'/>
+                                </c:when>
+                                <c:otherwise>사진있어용</c:otherwise>
+                            </c:choose>
+                        </div>
                     </div>
-                </div>
-            </c:forEach>
-        </c:otherwise>
-    </c:choose>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+    </div>
+    <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
 </div>
-<jsp:include page="../UI/sideMenu.jsp" flush="true"/>
 </body>
 </html>
