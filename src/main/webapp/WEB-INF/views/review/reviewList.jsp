@@ -10,6 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <sec:authentication property="name" var="loginUserName" />
+    <script src="../resources/js/reviewList.js"></script>
+    <script>
+        var list = "${reviewList}";
+        console.log(typeof(list));
+
+
+    </script>
+
+
 </head>
 <body>
         <table border="1">
