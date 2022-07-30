@@ -30,45 +30,45 @@
 </head>
 
 <body class="body_container">
+<div class="wrapper">
+
+    <jsp:include page="UI/topMenu.jsp" flush="true"/>
 
 
-<jsp:include page="UI/topMenu.jsp" flush="true"/>
+    <!-- 컨텐츠 삽입부분-->
+    <div class="contents_container">
 
+        <div class="child-page-listing">
 
-<!-- 컨텐츠 삽입부분-->
-<div class="contents_container">
+            <h2 style="text-align: center;">실시간베너 만들것 </h2>
 
-    <div class="child-page-listing">
+            <div class="grid-container">
 
-        <h2 style="text-align: center;">실시간베너 만들것 </h2>
-
-        <div class="grid-container">
-
-            <c:choose>
-                <c:when test="${empty lostlist }">
-                    <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                </c:when>
-                <c:otherwise>
-                    <c:forEach items="${lostlist}" var="lostboard">
-                        <article class="location-listing">
-                            <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">
-                                    ${lostboard.LTitle} </a>
-                            <div class="location-image">
-                                <a href="#">
-                                    <img width="300" height="169" src="${lostboard.storedFilePath}"
-                                         alt="${lostboard.LTitle}">
-                                </a>
-                            </div>
-                        </article>
-                    </c:forEach>
-                </c:otherwise>
-            </c:choose>
+                <c:choose>
+                    <c:when test="${empty lostlist }">
+                        <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${lostlist}" var="lostboard">
+                            <article class="location-listing">
+                                <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">
+                                        ${lostboard.LTitle} </a>
+                                <div class="location-image">
+                                    <a href="#">
+                                        <img width="300" height="169" src="${lostboard.storedFilePath}"
+                                             alt="${lostboard.LTitle}">
+                                    </a>
+                                </div>
+                            </article>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
     </div>
+
+    <jsp:include page="UI/sideMenu.jsp" flush="true"/>
 </div>
-
-<jsp:include page="UI/sideMenu.jsp" flush="true"/>
-
 
 </body>
 
