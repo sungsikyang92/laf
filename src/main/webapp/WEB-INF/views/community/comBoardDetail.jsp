@@ -28,7 +28,6 @@
 <body class="body_container">
 <div class="wrapper">
     <jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
-
     <div class="contents_container">
         <div>
             <c:choose>
