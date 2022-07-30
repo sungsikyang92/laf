@@ -11,5 +11,8 @@ public interface LostService {
 
     LostDto getLostBoardOne(String lBoardNo);
 
-    int insertLostBoard(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
+    void insertLostBoard(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
+
+    void updatelBoardDetail(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
+
 }

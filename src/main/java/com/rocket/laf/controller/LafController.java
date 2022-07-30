@@ -71,6 +71,9 @@ public class LafController {
         // List<PictureDto> piclist =
         // pictureServiceImpl.getMainPictureByBoardNo(lostlist.get(0).getLBoardNo());
         // model.addAttribute("picture", piclist);
+        
+        
+
         return "index";
     }
 
@@ -90,8 +93,7 @@ public class LafController {
         logger.log(Level.INFO, numbering);
         String lBoardNo = symbol + numbering;
         logger.log(Level.INFO, lBoardNo);
-
-        lostDto.setLBoardNo(lBoardNo);
+        
         lostserviceImpl.insertLostBoard(lostDto, multipartHttpServletRequest);
         return "redirect:/";
     }
@@ -128,13 +130,26 @@ public class LafController {
     }
 
     @GetMapping("/update/{lBoardNo}")
-    public String updatelBoardNo() {
-        return "";
+    public String updatelBoardNo(@PathVariable(name = "lBoardNo") String lBoardNo, Model model) {
+
+        LostDto lostDto = lostserviceImpl.getLostBoardOne(lBoardNo);
+        List<PictureDto> picList = pictureServiceImpl.getAllPictureByBoardNo(lBoardNo);
+        for (PictureDto pdto : picList) {
+            String originPath = pdto.getStoredFilePath();
+            pdto.setStoredFilePath("/resources/" + originPath.substring(26));
+        }
+
+        model.addAttribute("lboard", lostDto);
+        model.addAttribute("pDetail", picList);
+
+        return "lostcommunity/lostUpdate";
     }
 
-    @PutMapping("/update/{lBoardNo}")
-    public String updatelBoard() {
-        return "";
+    @PostMapping("/update/{lBoardNo}")
+    public String updatelBoard(@PathVariable(name = "lBoardNo") String lBoardNo, LostDto lostDto,
+            MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
+        return "redirect:/"+lBoardNo;
     }
 
 }

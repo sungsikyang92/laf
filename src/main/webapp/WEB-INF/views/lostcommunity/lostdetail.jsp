@@ -22,6 +22,7 @@
                 let answer3 = "${boardDetail.LAnswers3}";
                 let answer4 = "${boardDetail.LAnswers4}";
                 let answer = "${boardDetail.LAnswers}";
+                let boardNo = "${boardDetail.LBoardNo}";
             </script>
 
 
@@ -30,7 +31,7 @@
         </head>
 
         <body class="body_container">
-            <jsp:include page="UI/topMenu.jsp" flush="true" />
+            <jsp:include page="../UI/topMenu.jsp" flush="true" />
 
 
             <!-- 컨텐츠 삽입부분-->
@@ -78,7 +79,7 @@
 
             </div>
 
-            <jsp:include page="UI/sideMenu.jsp" flush="true" />
+            <jsp:include page="../UI/sideMenu.jsp" flush="true" />
 
 
             <script src='resources/js/lostQuestion.js'></script>
