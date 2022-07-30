@@ -39,7 +39,7 @@
                     <c:forEach items="${pDetail}" var="pd">
                         <article class="location-listing">
                             <div class="location-image">
-                                <img id="${pd.picNo}" width="300" height="169" src="${pd.storedFilePath}" alt="사진등록해줘용">
+                                <img width="300" height="169" src="../resources/img/profile/songokuf.gif" alt="">
                             </div>
                         </article>
                     </c:forEach>
