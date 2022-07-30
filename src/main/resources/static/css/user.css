@@ -1,0 +1,12 @@
+body {
+    background: #f5f6fa;
+}
+
+.login-box {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+}

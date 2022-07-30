@@ -63,12 +63,8 @@
                 <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
             </c:if>
         </div>
-    </div>
-
-
+    </div><%-- contents_container --%>
     <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
-
-</div>
+</div><%--wrapper--%>
 </body>
-
 </html>
