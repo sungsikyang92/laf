@@ -137,6 +137,29 @@
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 			<version>2.6.1</version>
 		</dependency>
+		<!-- REDIS START 1:1 채팅 내용 저장과 다른 서버의 클라이언트와 메세지를 주고받을 수 있게 함 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<version>2.7.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/it.ozimov/embedded-redis -->
+		<dependency>
+			<groupId>it.ozimov</groupId>
+			<artifactId>embedded-redis</artifactId>
+			<version>0.7.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>it.ozimov</groupId>
+			<artifactId>embedded-redis</artifactId>
+			<version>0.7.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- REDIS END -->
+
+
 
 	</dependencies>
 
