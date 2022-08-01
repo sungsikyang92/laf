@@ -6,7 +6,5 @@ body {
     width: 70%;
     margin: auto;
     margin-top: 40px;
-    display: flex;
-    /*align-items: center;*/
-    justify-content: center;
+    margin-left: 300px;
 }

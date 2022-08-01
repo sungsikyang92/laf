@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resources/css/reviewWrite.css" type="text/css">
-    <script src="../resources/js/review.js"></script>
+    <script src="../resources/js/reviewDetail.js"></script>
     <script>
         let option = "${reviewDetail.ROption}";
         let score = "${reviewDetail.RScore}";

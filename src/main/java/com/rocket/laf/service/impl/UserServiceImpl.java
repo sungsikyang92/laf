@@ -35,7 +35,6 @@ import org.springframework.util.SystemPropertyUtils;
 
 import com.rocket.laf.common.UserExtension;
 import com.rocket.laf.dto.UserDto;
-import com.rocket.laf.dto.UserSocialDto;
 import com.rocket.laf.mapper.UserMapper;
 import com.rocket.laf.service.UserService;
 
@@ -70,12 +69,12 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     }
 
     @Override
-    public UserSocialDto chkUserSocialData(String socialEmail) {
-        return userMapper.chkUserSocialData(socialEmail);
+    public UserDto chkUserSocialData(String userEmail) {
+        return userMapper.chkUserSocialData(userEmail);
     }
 
     @Override
-    public int regUserSocial(UserSocialDto dto) {
+    public int regUserSocial(UserDto dto) {
         return userMapper.regUserSocial(dto);
     }
 
@@ -136,15 +135,19 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         // 오바라이드라 함수이름 못바꾼다.
         // 1. email 추출하여 한번 있는사용자인지 훑어보고 있으면 dto로 가져오고
         OAuth2User oauth2User = super.loadUser(userRequest); // OAuth2 통해서 로그인한 유저정보 전체
+        System.out.println("oauth2User _____ " + oauth2User);
         String userEmail = oauth2User.getAttribute("email");
-        UserSocialDto dtoRes = chkUserSocialData(userEmail);
+        UserDto dtoRes = chkUserSocialData(userEmail);
+        System.out.println("dtoRes _____ " + dtoRes);
 
         // 2. 없으면 usersocialDto에 묻지고 따지지도 않고 가입시킨다음 다시 1번으로가서 Dto 가져오고
         if (dtoRes == null) { // 사용자 정보가 없다는 뜻
-            UserSocialDto dto = transferToDto(userRequest, oauth2User); // 아래 DTO 함수실행
+            UserDto dto = transferToDto(userRequest, oauth2User); // 아래 DTO 함수실행
+            System.out.println("dto _____ " + dto);
             int res = regUserSocial(dto);
+            System.out.println("res _____ " + res);
             if (res == 1) { // db에 회원정보 저장 성공
-                dtoRes = chkUserSocialData(dto.getSocialEmail());
+                dtoRes = chkUserSocialData(dto.getUserEmail());
             } else { // db에 회원정보 저장 실패
                 throw new OAuth2AuthenticationException("404: 소셜로그인으로 서비스 회원가입중 시스템 장애가 발생했습니다.");
             }
@@ -153,27 +156,30 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         OAuth2User res = transOAuth2User(dtoRes);
 
         // 나중에 약관은 동의 처리받는것이 좋겠다.
+        System.out.println("OAuth2User result _________________ " + res);
 
         return res;
     }
 
-    private UserSocialDto transferToDto(OAuth2UserRequest userRequest, OAuth2User oauth2User) {
-        UserSocialDto userSocialDto = new UserSocialDto();
-        userSocialDto.setSocialProvider(userRequest.getClientRegistration().getRegistrationId());
+    private UserDto transferToDto(OAuth2UserRequest userRequest, OAuth2User oauth2User) {
+        UserDto userDto = new UserDto();
+        userDto.setSocialProvider(userRequest.getClientRegistration().getRegistrationId());
         // userSocialDto.setSocialId(oauth2User.getAttribute("sub"));
-        userSocialDto.setSocialId("8888888888");
-        userSocialDto.setSocialEmail(oauth2User.getAttribute("email"));
-        userSocialDto.setSocialName(oauth2User.getAttribute("name"));
-        return userSocialDto;
+        String maxUserNo = Integer.toString(userMapper.getMaxUserNo());
+        String milSec = Long.toString(System.currentTimeMillis()); 
+        userDto.setUserId("s_"+maxUserNo+"_"+milSec);
+        userDto.setUserEmail(oauth2User.getAttribute("email"));
+        userDto.setUserName(oauth2User.getAttribute("name"));
+        return userDto;
     }
 
-    private OAuth2User transOAuth2User(UserSocialDto dto) {
+    private OAuth2User transOAuth2User(UserDto dto) {
 
         Map<String, Object> userDetails = new HashMap<>();
         userDetails.put("provider", dto.getSocialProvider());
-        userDetails.put("sub", dto.getSocialId());
-        userDetails.put("email", dto.getSocialEmail());
-        userDetails.put("username", dto.getSocialName());
+        userDetails.put("sub", dto.getUserId());
+        userDetails.put("email", dto.getUserEmail());
+        userDetails.put("username", dto.getUserName());
 
         Collection<GrantedAuthority> auth = new ArrayList<>();
         auth.add(new SimpleGrantedAuthority("ROLE_USER"));

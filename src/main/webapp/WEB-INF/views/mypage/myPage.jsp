@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href = "/myPage/reviewdetail">
+                    <a href = "/review">
                         <span class="item">내 후기 모아보기 ▷</span>
                     </a>
                 </li>

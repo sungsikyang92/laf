@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.nimbusds.oauth2.sdk.Response;
 import com.rocket.laf.dto.ReviewDto;
 import com.rocket.laf.service.ReviewService;
+import com.rocket.laf.service.impl.ReviewServiceImpl;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 
@@ -36,7 +37,7 @@ public class ReviewController {
     private Logger logger = LoggerFactory.getLogger(ReviewController.class);
    
     @Autowired
-    private ReviewService reviewService;
+    private ReviewServiceImpl reviewServiceImpl;
 
     //27일 완료
     @GetMapping("/write")
@@ -61,8 +62,10 @@ public class ReviewController {
         }else {
             System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
             String userId = userInfo.getUsername();
-            List<ReviewDto> reviewListReturned = reviewService.getReviewList(userId);
+            List<ReviewDto> reviewListReturned = reviewServiceImpl.getReviewList(userId);
             model.addAttribute("reviewList", reviewListReturned);
+            System.out.println(reviewListReturned.size());
+            model.addAttribute("reviewSize", reviewListReturned.size());
 
             return "/review/reviewList";
         }
@@ -73,7 +76,7 @@ public class ReviewController {
     public void saveReview(ReviewDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("logger _______________ mapped to saveReview");
 
-        int res = reviewService.saveReview(dto);
+        int res = reviewServiceImpl.saveReview(dto);
         
         UserController alert = new UserController();
         
@@ -91,7 +94,7 @@ public class ReviewController {
     public String reviewDetails(int reviewNo, HttpServletRequest request, Model model) {
         logger.info("logger _______________ mapped to review/details");
         reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-        ReviewDto reviewDetail = reviewService.selectReview(reviewNo);
+        ReviewDto reviewDetail = reviewServiceImpl.selectReview(reviewNo);
         model.addAttribute("reviewDetail", reviewDetail);
 
         System.out.println("review details __________ " + reviewDetail);
