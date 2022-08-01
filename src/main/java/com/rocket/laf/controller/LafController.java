@@ -38,11 +38,8 @@ import java.util.logging.Logger;
 @RequestMapping("/")
 public class LafController {
 
-    @Autowired
-    private LostServiceImpl lostserviceImpl;
-    @Autowired
-    private PictureServiceImpl pictureServiceImpl;
-    @Autowired
+    private final LostServiceImpl lostserviceImpl;
+    private final PictureServiceImpl pictureServiceImpl;
     private final BoardNoServiceImpl boardNoServiceImpl;
 
     private final static Logger logger = Logger.getGlobal();
@@ -52,28 +49,31 @@ public class LafController {
     public String main(Model model, @AuthenticationPrincipal User userInfo, Authentication auth) {
         AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
-            System.out.println("익명의 사용자 _________ " +  userInfo);
-            System.out.println("익명의 사용자 인증정보_________ " +  auth);
-        }else {
-            System.out.println("로그인한 사용자_________ " +  userInfo);
+            System.out.println("익명의 사용자 _________ " + userInfo);
+            System.out.println("익명의 사용자 인증정보_________ " + auth);
+        } else {
+            System.out.println("로그인한 사용자_________ " + userInfo);
             //System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
             //System.out.println("로그인한 사용자 번호_________ " +  userInfo.getUserNo());
-            System.out.println("로그인한 사용자 인증정보_________ " +  auth);
+            System.out.println("로그인한 사용자 인증정보_________ " + auth);
         }
-        
 
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
-
-        for (int i = 0; i < lostlist.size(); i++) {
-            String originPath = lostlist.get(i).getStoredFilePath();
-            lostlist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+        List<PictureDto> PictureDtoList = pictureServiceImpl.getMainPictureForLost();
+        for (PictureDto pDto : PictureDtoList) {
+            if (pDto.isPicExt() == true) {
+                String picOriginPath = pDto.getStoredFilePath();
+                pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+            } else {
+                continue;
+            }
         }
+//        for (int i = 0; i < lostlist.size(); i++) {
+//            String originPath = lostlist.get(i).getStoredFilePath();
+//            lostlist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+//        }
+
         model.addAttribute("lostlist", lostlist);
-        // List<PictureDto> piclist =
-        // pictureServiceImpl.getMainPictureByBoardNo(lostlist.get(0).getLBoardNo());
-        // model.addAttribute("picture", piclist);
-        
-        
 
         return "index";
     }
@@ -91,10 +91,8 @@ public class LafController {
         boardNoServiceImpl.addlBoardNo(bnumbering);
 
         String numbering = String.format("%08d", bnumbering);
-        logger.log(Level.INFO, numbering);
         String lBoardNo = symbol + numbering;
-        logger.log(Level.INFO, lBoardNo);
-        
+        lostDto.setLBoardNo(lBoardNo);
         lostserviceImpl.insertLostBoard(lostDto, multipartHttpServletRequest);
         return "redirect:/";
     }
@@ -148,9 +146,9 @@ public class LafController {
 
     @PostMapping("/update/{lBoardNo}")
     public String updatelBoard(@PathVariable(name = "lBoardNo") String lBoardNo, LostDto lostDto,
-            MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+                               MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
-        return "redirect:/"+lBoardNo;
+        return "redirect:/" + lBoardNo;
     }
 
 }
