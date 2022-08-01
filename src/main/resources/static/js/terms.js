@@ -27,7 +27,7 @@ function checkSelectAll()  {
 
 
  //약관동의 전체선택 JS
- function selectAll(selectAll)  {
+function selectAll(selectAll)  {
     var checkboxs = document.querySelectorAll('input[type="checkbox"]');
     
     console.log("select all 실행");
@@ -47,7 +47,7 @@ function cfmReg()  {
         document.getElementById("allchked").submit();
         
         
-       return false;
+      return false;
        //return "/user/signUpForm";
        //폼에서 액션에 리턴페이지 입력하지않고 리턴으로 입력하면 서브밋한데이터가 서버로 넘어가지 않는다.
 
