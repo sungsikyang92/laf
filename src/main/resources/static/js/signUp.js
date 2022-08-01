@@ -104,7 +104,7 @@ function bankIdentification(){
 
 function submitBtn(){
     console.log("TBD_______calling submit()");
-    console.log(localStorage.getItem("dupliChk"))
+    console.log(localStorage.getItem("dupliChk"));
     
 
     if (document.querySelector("p") != null) {
@@ -130,6 +130,14 @@ function submitBtn(){
         document.getElementById("birthDay").value == "일 선택"){
         var newTag = setEmptyMsg("생년월일을 확인해 주세요", "red");
         document.getElementById("birthDay").parentNode.appendChild(newTag);
+        emptyRes = false;
+    }
+
+    //이메일 검증
+    var mailLogic = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if (document.getElementsByName("userEmail")[0].value.match(mailLogic) == null){
+        var newTag = setEmptyMsg("유효하지 않은 이메일 형식입니다.", "red");
+        document.getElementsByName("userEmail")[0].parentNode.appendChild(newTag);
         emptyRes = false;
     }
 

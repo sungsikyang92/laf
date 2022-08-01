@@ -33,7 +33,7 @@
                 <h3>채팅</h3>
             </div>
         </div>
-<%--        <div class="input-group">--%>
+<!-- <%--        <div class="input-group">--%>
 <%--            <div class="input-group-prepend">--%>
 <%--                <label class="input-group-text">방제목</label>--%>
 <%--            </div>--%>
@@ -43,7 +43,7 @@
 <%--                    <button class="chatInputBtn" type="button" onclick="createRoom(this.id)"></button>--%>
 <%--                </div>--%>
 <%--            </form>--%>
-<%--        </div>--%>
+<%--        </div>--%> -->
         <div class="chat_list">
             <c:choose>
                 <c:when test="${empty chatRoomList}">
@@ -51,12 +51,14 @@
                 </c:when>
                 <c:otherwise>
                    <c:forEach items="${chatRoomList}" var="crl">
-                       <div onclick="location.href='/chat/room/enter/${crl.roomId}">${crl.name}</div>
+                       <div onclick="location.href='/chat/room/enter/${crl.roomId}'">${crl.name}</div>
                    </c:forEach>
                 </c:otherwise>
             </c:choose>
         </div>
-    </div><%-- contents_container --%>
-</div><%--wrapper--%>
+    </div>
+    <!-- <%-- contents_container --%> -->
+</div>
+<!-- <%--wrapper--%> -->
 </body>
 </html>

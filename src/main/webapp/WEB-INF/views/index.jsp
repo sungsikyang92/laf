@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <jsp:include page="UI/sideMenu.jsp" flush="true"/>
+    <jsp:include page="" flush="true"/>
 </div>
 
 </body>

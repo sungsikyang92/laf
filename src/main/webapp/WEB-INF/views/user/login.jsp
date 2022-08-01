@@ -49,7 +49,8 @@
         <input type="button" value="구글 로그인" onclick="location.href='/oauth2/authorization/google'">
     </div>
 
-    <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
+    <!-- <jsp:include page="../UI/sideMenu.jsp" flush="true"/> -->
+    
 </div>
 </body>
 
