@@ -79,7 +79,7 @@ public class LafController {
 
     @GetMapping("/write")
     public String lostWrite() {
-        return "lostcommunity/lostWrite";
+        return "lost/lostWrite";
     }
 
     @PostMapping("/write")
@@ -109,7 +109,7 @@ public class LafController {
         }
         model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
-        return "lostcommunity/lostDetail";
+        return "lost/lostDetail";
     }
 
     @PostMapping("/post_Quiz")
@@ -142,7 +142,7 @@ public class LafController {
         model.addAttribute("lboard", lostDto);
         model.addAttribute("pDetail", picList);
 
-        return "lostcommunity/lostUpdate";
+        return "lost/lostUpdate";
     }
 
     @PostMapping("/update/{lBoardNo}")

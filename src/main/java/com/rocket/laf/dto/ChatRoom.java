@@ -1,34 +1,19 @@
 package com.rocket.laf.dto;
 
-import com.rocket.laf.service.impl.ChatService;
-import lombok.Builder;
-import lombok.Getter;
-import org.springframework.web.socket.WebSocketSession;
+import lombok.Data;
+import java.util.UUID;
 
-import java.util.HashSet;
-import java.util.Set;
-
-@Getter
+@Data
 public class ChatRoom {
+    private static final long serialVersionUID = 6494678977089006639L;
+
     private String roomId;
     private String name;
-    private Set<WebSocketSession> sessions = new HashSet<>();
 
-    @Builder
-    public ChatRoom(String roomId, String name) {
-        this.roomId = roomId;
-        this.name = name;
-    }
-
-    public void handleActions(WebSocketSession session, ChatMessage chatMessage, ChatService chatService) {
-        if (chatMessage.getType().equals(ChatMessage.MessageType.ENTER)) {
-            sessions.add(session);
-            chatMessage.setMessage(chatMessage.getSender() + "님 두둥등장!");
-        }
-        sendMessage(chatMessage, chatService);
-    }
-
-    public <T> void sendMessage(T message, ChatService chatService) {
-        sessions.parallelStream().forEach(session -> chatService.sendMessage(session, message));
+    public static ChatRoom create(String name) {
+        ChatRoom chatRoom = new ChatRoom();
+        chatRoom.roomId = UUID.randomUUID().toString();
+        chatRoom.name = name;
+        return chatRoom;
     }
 }
