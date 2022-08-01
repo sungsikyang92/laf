@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.rocket.laf.dto.UserDto;
-import com.rocket.laf.dto.UserSocialDto;
 
 @Mapper
 public interface UserMapper {
@@ -13,7 +12,7 @@ public interface UserMapper {
     @Select( "select * from User where userId=#{userId} and userPw=#{userPw}" )
     UserDto login(UserDto userDto);
 
-    @Insert( "insert into User (userName, userId, userEmail, userPw, userPhone, userBirth, userSex, userAcc, userLocation, userTicket, userKeyword) VALUES ( #{userName}, #{userId}, #{userEmail}, #{userPw}, #{userPhone}, #{userBirth}, #{userSex}, #{userAcc}, #{userLocation}, #{userTicket}, #{userKeyword} )")
+    @Insert( "insert into User (userName, userId, userEmail, userPw, userPhone, userTicket, socialProvider) VALUES ( #{userName}, #{userId}, #{userEmail}, #{userPw}, #{userPhone}, #{userTicket}, 'laf' )")
     int register(UserDto dto);
     //리턴타입 매퍼함수이름(매개변수타입 사용할매개변수명)
 
@@ -27,10 +26,13 @@ public interface UserMapper {
     @Select( "select * from User where userId=#{userId} " )
     UserDto secLogin(String userId);
 
-    @Select( "select * from UserSocial where socialEmail = #{socialEmail}" )
-    UserSocialDto chkUserSocialData(String socialEmail);
+    @Select( "select * from User where userEmail = #{userEmail}" )
+    UserDto chkUserSocialData(String userEmail);
 
-    @Insert( "insert into UserSocial (socialProvider, socialId, socialEmail, socialName) values (#{socialProvider}, #{socialId}, #{socialEmail}, #{socialName})" ) 
-    int regUserSocial(UserSocialDto dto);
+    @Insert( "insert into User (userName, userId, userEmail, userPw, userPhone, userTicket, socialProvider) VALUES ( #{userName}, #{userId}, #{userEmail}, 'empty', 'empty', #{userTicket}, #{socialProvider} )")
+    int regUserSocial(UserDto dto);
+
+    @Select (" select max(userNo) from User")
+    int getMaxUserNo();
 
 }

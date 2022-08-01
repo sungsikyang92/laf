@@ -1,7 +1,6 @@
 package com.rocket.laf.service;
 
 import com.rocket.laf.dto.UserDto;
-import com.rocket.laf.dto.UserSocialDto;
 
 public interface UserService {
 
@@ -9,6 +8,6 @@ public interface UserService {
     public int regUser(UserDto dto);
     public int chkDuplicatedId(String idFromJson);
     UserDto getUserById(long userNo);
-    public int regUserSocial(UserSocialDto dto);
-    public UserSocialDto chkUserSocialData(String socialEmail);
+    public int regUserSocial(UserDto dto);
+    public UserDto chkUserSocialData(String userEmail);
 }

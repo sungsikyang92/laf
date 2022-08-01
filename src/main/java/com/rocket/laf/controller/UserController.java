@@ -109,10 +109,12 @@ public class UserController {
     public void resUser(UserDto userRegDto, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         logger.info("------------------------Controller mapping 'regUser'");
-        String userBirth = combineBirth(request);
-        userRegDto.setUserBirth(userBirth);
-        String userLocation = combineLocation(request);
-        userRegDto.setUserLocation(userLocation);
+        
+        // FIX: 001
+        // String userBirth = combineBirth(request);
+        // userRegDto.setUserBirth(userBirth);
+        // String userLocation = combineLocation(request);
+        // userRegDto.setUserLocation(userLocation);
         BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
         userRegDto.setUserPw(pwdEncoder.encode(userRegDto.getUserPw()));
 
@@ -167,13 +169,6 @@ public class UserController {
         return "user/terms";
     }
 
-    // @GetMapping("/logout")
-    // public String userLogOut() {
-    //     logger.info("------------------------Controller mapping 'logout'");
-
-    //     return "";
-    // }
-
     @GetMapping("/socialLogin")
     public String userSocialLogin() {
         logger.info("------------------------Controller mapping 'socialLogin'");
@@ -181,31 +176,32 @@ public class UserController {
         return "";
     }
 
-    public String combineBirth(HttpServletRequest request) {
-        int birthY_int = Integer.parseInt(request.getParameter("bY"));
-        int birthM_int = Integer.parseInt(request.getParameter("bM"));
-        int birthD_int = Integer.parseInt(request.getParameter("bD"));
-        String birthM_str = "";
-        String birthD_str = "";
-        if (birthM_int >= 1 && birthM_int < 10) {
-            birthM_str = "0" + Integer.toString(birthM_int);
-        } else {
-            birthM_str = request.getParameter("bM");
-        }
-        if (birthD_int >= 1 && birthD_int < 10) {
-            birthD_str = "0" + Integer.toString(birthD_int);
-        } else {
-            birthD_str = request.getParameter("bD");
-        }
-        String userBirth = request.getParameter("bY") + birthM_str + birthD_str;
-        return userBirth;
-    }
+    // FIX: 001
+    // public String combineBirth(HttpServletRequest request) {
+    //     int birthY_int = Integer.parseInt(request.getParameter("bY"));
+    //     int birthM_int = Integer.parseInt(request.getParameter("bM"));
+    //     int birthD_int = Integer.parseInt(request.getParameter("bD"));
+    //     String birthM_str = "";
+    //     String birthD_str = "";
+    //     if (birthM_int >= 1 && birthM_int < 10) {
+    //         birthM_str = "0" + Integer.toString(birthM_int);
+    //     } else {
+    //         birthM_str = request.getParameter("bM");
+    //     }
+    //     if (birthD_int >= 1 && birthD_int < 10) {
+    //         birthD_str = "0" + Integer.toString(birthD_int);
+    //     } else {
+    //         birthD_str = request.getParameter("bD");
+    //     }
+    //     String userBirth = request.getParameter("bY") + birthM_str + birthD_str;
+    //     return userBirth;
+    // }
 
-    public String combineLocation(HttpServletRequest request) {
-        String userLocation = request.getParameter("userLocation") + request.getParameter("userLocation_2nd");
+    // public String combineLocation(HttpServletRequest request) {
+    //     String userLocation = request.getParameter("userLocation") + request.getParameter("userLocation_2nd");
 
-        return userLocation;
-    }
+    //     return userLocation;
+    // }
 
     public void alertToJsp(HttpServletResponse response, String msg, int option, String redirect) throws IOException {
         response.setContentType("text/html; charset=UTF-8");

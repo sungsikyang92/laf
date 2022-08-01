@@ -65,8 +65,7 @@ public class ReviewController {
             List<ReviewDto> reviewListReturned = reviewServiceImpl.getReviewList(userId);
             model.addAttribute("reviewList", reviewListReturned);
             System.out.println(reviewListReturned.size());
-            
-            // model.addAttribute("reviewSize", reviewListReturned);
+            model.addAttribute("reviewSize", reviewListReturned.size());
 
             return "/review/reviewList";
         }
