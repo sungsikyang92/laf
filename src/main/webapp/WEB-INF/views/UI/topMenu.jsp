@@ -22,7 +22,7 @@
                         </a>
                     </div>
 
-                                    <!-- TOP menu  ?userId=${loginUserName}-->
+                                    <!-- TOP menu  ?userId=${loginUserName} -->
                 <div class="sidebar">
                     <div class="sidetop">
                         <div class="sidetop_left">

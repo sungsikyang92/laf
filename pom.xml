@@ -148,11 +148,12 @@
 			<version>2.4.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/it.ozimov/embedded-redis -->
+		
 		<dependency>
 			<groupId>it.ozimov</groupId>
 			<artifactId>embedded-redis</artifactId>
 			<version>0.7.3</version>
-
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>it.ozimov</groupId>
@@ -160,6 +161,7 @@
 			<version>0.7.3</version>
 			<scope>compile</scope>
 		</dependency>
+
 		<!-- REDIS END -->
 
 
