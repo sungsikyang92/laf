@@ -3,15 +3,10 @@
 <!-- security teglibrary -->
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-
 </head>
-
 <body class="body_container">
 <div class="wrapper">
     <div class="section">
@@ -52,6 +47,7 @@
                 </span>
             </div>
 
+            <!-- 오른쪽 네비게이션 바 -->
             <div class="right_nav">
                 <!-- security tags starts-->
                 <sec:authorize access="isAnonymous()">
@@ -68,15 +64,6 @@
                 </sec:authorize>
                 <!-- security tags ends-->
             </div>
-
-           
-
-            
-
-
-
         </div>
-    </div>
-</div>
-</body>
+    </body>
 </html>

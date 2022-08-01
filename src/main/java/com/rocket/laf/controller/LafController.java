@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import lombok.RequiredArgsConstructor;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
@@ -48,15 +49,15 @@ public class LafController {
 
     //팀장님, 로그인 유저정보 로그 확인을 위해서 Authentication 추가 했습니다.
     @GetMapping("")
-    public String main(Model model, @AuthenticationPrincipal UserExtension userInfo, Authentication auth) {
+    public String main(Model model, @AuthenticationPrincipal User userInfo, Authentication auth) {
         AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
             System.out.println("익명의 사용자 _________ " +  userInfo);
             System.out.println("익명의 사용자 인증정보_________ " +  auth);
         }else {
             System.out.println("로그인한 사용자_________ " +  userInfo);
-            System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
-            System.out.println("로그인한 사용자 번호_________ " +  userInfo.getUserNo());
+            //System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
+            //System.out.println("로그인한 사용자 번호_________ " +  userInfo.getUserNo());
             System.out.println("로그인한 사용자 인증정보_________ " +  auth);
         }
         
@@ -79,7 +80,7 @@ public class LafController {
 
     @GetMapping("/write")
     public String lostWrite() {
-        return "lostcommunity/lostwrite";
+        return "lost/lostWrite";
     }
 
     @PostMapping("/write")
@@ -109,7 +110,7 @@ public class LafController {
         }
         model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
-        return "lostcommunity/lostdetail";
+        return "lost/lostDetail";
     }
 
     @PostMapping("/post_Quiz")
@@ -142,7 +143,7 @@ public class LafController {
         model.addAttribute("lboard", lostDto);
         model.addAttribute("pDetail", picList);
 
-        return "lostcommunity/lostUpdate";
+        return "lost/lostUpdate";
     }
 
     @PostMapping("/update/{lBoardNo}")

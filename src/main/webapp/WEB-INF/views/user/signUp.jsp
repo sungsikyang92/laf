@@ -50,7 +50,7 @@
 					<input type="text" name="userName" title="이름">
 					<!--dto2-->
 				</div>
-				<div class="birth-box">
+				<!-- <div class="birth-box">
 					<label>생년월일</label>
 					<br>
 					<select id="birthYear" name="bY">
@@ -67,16 +67,14 @@
 					<label>성별</label>
 					<br>
 					<input type="text" name="userSex" title="성별">
-					<!--dto7-->
 				</div>
 				<div class="address-box">
 					<label>주소</label>
 					<br>
 					<input type="text" name="userLocation" title="주소 상단">
-					<!--dto8-->
 					<br>
 					<input type="text" name="userLocation_2nd" title="주소 하단">
-				</div>
+				</div> -->
 				<div class="contact-box">
 					<label>전화번호</label>
 					<br>
@@ -92,7 +90,7 @@
 					<input type="text" name="userEmail" title="이메일">
 					<!--dto 4-->
 				</div>
-				<div class="acc-box">
+				<!-- <div class="acc-box">
 					<label>사례금 환급 계좌 (선택)</label>
 					<br>
 					<input type="text" name="userAcc" title="사례금 환급 계좌">
@@ -102,7 +100,7 @@
 					<br>
 					<span>주의: 입력시 본인계좌가 아닌경우 회원가입이 어렵습니다.</span>
 					<input type="button" value="계좌인증" onclick="bankIdentification()">
-				</div>
+				</div> -->
 				<input type="button" value="취소" onclick="location.href='/user/login'">
 				<input type="submit" value="회원가입">
 			</form>

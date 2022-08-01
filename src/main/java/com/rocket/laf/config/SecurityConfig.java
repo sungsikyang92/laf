@@ -41,7 +41,7 @@ public class SecurityConfig{
                 .frameOptions().disable().and()
             .authorizeRequests()
 //                .antMatchers("/","/cBoard","/picture","/chat").permitAll()
-                .antMatchers("/**","/","/chat").permitAll()
+                .antMatchers("/**").permitAll()
                 // .antMatchers("/user/**").permitAll()
 //                  .antMatchers( "/cBoard/**").hasRole("USER")
                 // .antMatchers("/cBoard").permitAll()

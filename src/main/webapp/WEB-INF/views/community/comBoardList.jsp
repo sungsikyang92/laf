@@ -85,6 +85,7 @@
                 </c:forEach>
             </c:otherwise>
         </c:choose>
+        <div id=""></div>
     </div>
     <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
 </div>
