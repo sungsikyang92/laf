@@ -58,6 +58,7 @@ public class MypageController {
             UserDto name1= mypageService.selectOne(name);
             model.addAttribute("dto", name1);
             System.out.println("name = " + name);
+            System.out.println("dto = " + name1);
             return "/mypage/myPage";
         }
     }
@@ -106,7 +107,7 @@ public class MypageController {
     }
     @GetMapping("/reviewdetail")
     public String FromMypagetoReviewAll(){
-        return "/review/reviewList";
+        return "/review";
     }
     /* *********************************************************************************************** */
     //기능들git s

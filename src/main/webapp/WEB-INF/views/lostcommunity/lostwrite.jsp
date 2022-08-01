@@ -39,8 +39,10 @@
                     <br>
                     <h2>
                         분실
+                        <!--찾아줄게요로-->
                         <input type="radio" name="lCategory" id="" value="분실" />
                         &nbsp;&nbsp; 습득
+                        <!--찾아주세요로-->
                         <input type="radio" name="lCategory" id="" value="습득" checked="checked" />
                     </h2>
                     <br>
