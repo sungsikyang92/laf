@@ -80,7 +80,7 @@ public class LafController {
 
     @GetMapping("/write")
     public String lostWrite() {
-        return "lostcommunity/lostwrite";
+        return "lostcommunity/lostWrite";
     }
 
     @PostMapping("/write")
