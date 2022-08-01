@@ -40,11 +40,11 @@ public class LostServiceImpl implements LostService {
             throws Exception {
         List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
-            lostMapper.writelBoardFileList(list);
             lostMapper.insertLostBoard(LostDto);
+            lostMapper.writelBoardFileList(list);
         } else {
             lostMapper.insertLostBoard(LostDto);
-            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
+//            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
         }
     }
 
