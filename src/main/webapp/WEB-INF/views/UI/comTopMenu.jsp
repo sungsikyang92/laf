@@ -33,7 +33,7 @@
                     <sec:authentication property="principal.username" var="loginUserName"/>
                     <span class="item">${loginUserName}님 환영합니다</span>
                     <button class="btn" onclick="location.href='/cBoard/write'">글쓰기</button>
-                    <button class="btn" onclick="location.href=''">마이페이지</button>
+                    <button class="btn" onclick="location.href='myPage?userId=${loginUserName}'">마이페이지</button>
                     <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
                 </sec:authorize>
                 <!-- security tags ends-->
