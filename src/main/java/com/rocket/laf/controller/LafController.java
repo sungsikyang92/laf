@@ -80,7 +80,7 @@ public class LafController {
 
     @GetMapping("/write")
     public String lostWrite() {
-        return "lostcommunity/lostwrite";
+        return "lostcommunity/lostWrite";
     }
 
     @PostMapping("/write")
@@ -110,7 +110,7 @@ public class LafController {
         }
         model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
-        return "lostcommunity/lostdetail";
+        return "lostcommunity/lostDetail";
     }
 
     @PostMapping("/post_Quiz")
@@ -126,7 +126,7 @@ public class LafController {
         if (lost.getLAnswers().equals(answer)) {
             return "redirect:/";
         } else {
-            return "redirect:/lostdetail";
+            return "redirect:/lostDetail";
         }
     }
 
