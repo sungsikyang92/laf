@@ -28,6 +28,7 @@
         $(document).ready(function () {
             $.ajax({
                 type: "get",
+                data: {"boardNo":"com"},
                 dataType: "json",
                 url: "/picture",
                 success: function (mainPicList) {
