@@ -63,18 +63,14 @@ public class LafController {
         for (PictureDto pDto : PictureDtoList) {
             if (pDto.isPicExt() == true) {
                 String picOriginPath = pDto.getStoredFilePath();
-                pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+                pDto.setStoredFilePath("/resources/img/lostBoard/" + picOriginPath.substring(40));
             } else {
                 continue;
             }
         }
-//        for (int i = 0; i < lostlist.size(); i++) {
-//            String originPath = lostlist.get(i).getStoredFilePath();
-//            lostlist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
-//        }
 
         model.addAttribute("lostlist", lostlist);
-
+        model.addAttribute("picList", PictureDtoList);
         return "index";
     }
 
