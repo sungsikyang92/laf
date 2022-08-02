@@ -13,6 +13,7 @@
 
             <body class="body_container">
                 <!-- TOP menu  ?userId=${loginUserName}-->
+                
                 <div class="sidebar">
                     <div class="sidetop">
                         <div class="sidetop_left">
@@ -59,7 +60,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/review" class="myreviews">
+                            <a href="MyReviews" class="myreviews">
                                 <span class="icon"><i class="fi fi-rr-book-alt"></i></span>
                                 <span class="item">내 후기 모아보기</span>
                             </a>
