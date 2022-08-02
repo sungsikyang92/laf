@@ -53,8 +53,6 @@ public class LafController {
             System.out.println("익명의 사용자 인증정보_________ " + auth);
         } else {
             System.out.println("로그인한 사용자_________ " + userInfo);
-            //System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
-            //System.out.println("로그인한 사용자 번호_________ " +  userInfo.getUserNo());
             System.out.println("로그인한 사용자 인증정보_________ " + auth);
         }
 
