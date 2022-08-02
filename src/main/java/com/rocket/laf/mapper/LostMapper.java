@@ -26,14 +26,15 @@ public interface LostMapper {
 
     @Insert({"<script>" +
             "INSERT INTO Picture " +
-            "(boardNo,originalFileName, storedFilePath, fileSize, createdDate) VALUES" +
+            "(boardNo,originalFileName, storedFilePath, fileSize, createdDate, picExt) VALUES" +
             "<foreach collection='list' item='item' separator=','>" +
             "(" +
             "#{item.boardNo}," +
             "#{item.originalFileName}," +
             "#{item.storedFilePath}," +
             "#{item.fileSize}," +
-            "NOW()" +
+            "NOW()," +
+            "1" +
             ")" +
             "</foreach> " +
             "</script>"})
