@@ -23,8 +23,8 @@
 
     <script src='resources/js/main_sidebar.js'></script>
 
-    <!-- <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css"> -->
+    <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
 
 
 </head>

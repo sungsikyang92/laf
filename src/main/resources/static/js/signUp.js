@@ -9,8 +9,8 @@ var x = function(){
 x();
 window.onload = function(){
     
-    onloadCalan();
-    onloadBank();
+    // onloadCalan();
+    // onloadBank();
     localStorage.setItem("dupliChk", "")
     console.log(localStorage.getItem("dupliChk"));
 
@@ -125,13 +125,13 @@ function submitBtn(){
     });
     
     //생년월일 옵션 확인
-    if (document.getElementById("birthYear").value == "년 선택" || 
-        document.getElementById("birthMonth").value == "월 선택" || 
-        document.getElementById("birthDay").value == "일 선택"){
-        var newTag = setEmptyMsg("생년월일을 확인해 주세요", "red");
-        document.getElementById("birthDay").parentNode.appendChild(newTag);
-        emptyRes = false;
-    }
+    // if (document.getElementById("birthYear").value == "년 선택" || 
+    //     document.getElementById("birthMonth").value == "월 선택" || 
+    //     document.getElementById("birthDay").value == "일 선택"){
+    //     var newTag = setEmptyMsg("생년월일을 확인해 주세요", "red");
+    //     document.getElementById("birthDay").parentNode.appendChild(newTag);
+    //     emptyRes = false;
+    // }
 
     //이메일 검증
     var mailLogic = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
