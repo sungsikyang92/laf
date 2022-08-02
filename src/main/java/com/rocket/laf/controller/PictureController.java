@@ -14,12 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import com.rocket.laf.service.PictureService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequiredArgsConstructor
 @Controller
@@ -29,33 +28,54 @@ public class PictureController {
     private final PictureServiceImpl pictureService;
     private final BoardNoServiceImpl boardNoService;
 
-//    @GetMapping("")
-//    public String addPicture() {
-//
-//        return "";
-//    }
 
     @ResponseBody
     @GetMapping("")
-    public List<PictureDto> getMainPictureByBoardNo() {
-//        List<PictureDto> mainPicList = pictureService.getMainPictureByBoardNo();
-//        for (PictureDto pdto : mainPicList) {
-//            String originPath = pdto.getStoredFilePath();
-//            pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
-//        }
+    public List<PictureDto> getMainPictureByBoardNo(HttpServletRequest request) {
+        String boardNo = request.getParameter("boardNo");
         List<PictureDto> pictureDtoList = new ArrayList<>();
-        List<PictureDto> mainPicList = pictureService.getMainPictureForCom();
-        for (PictureDto pDto : mainPicList) {
-            if (pDto.isPicExt() == true) {
-                String picOriginPath = pDto.getStoredFilePath();
-                pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
-                pictureDtoList.add(pDto);
-            } else {
-                pictureDtoList.add(pDto);
+        if (boardNo.equals("l")) {
+            List<PictureDto> mainPicList = pictureService.getMainPictureForLost();
+            for (PictureDto pDto : mainPicList) {
+                if (pDto.isPicExt() == true) {
+                    String picOriginPath = pDto.getStoredFilePath();
+                    pDto.setStoredFilePath("/resources/img/lostBoard/" + picOriginPath.substring(40));
+                    pictureDtoList.add(pDto);
+                } else {
+                    pictureDtoList.add(pDto);
+                }
             }
+            return pictureDtoList;
+        } else {
+            List<PictureDto> mainPicList = pictureService.getMainPictureForCom();
+            for (PictureDto pDto : mainPicList) {
+                if (pDto.isPicExt() == true) {
+                    String picOriginPath = pDto.getStoredFilePath();
+                    pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+                    pictureDtoList.add(pDto);
+                } else {
+                    pictureDtoList.add(pDto);
+                }
+            }
+            return pictureDtoList;
         }
-        return pictureDtoList;
     }
+//    @ResponseBody
+//    @GetMapping("")
+//    public List<PictureDto> getMainPictureByBoardNo() {
+//        List<PictureDto> pictureDtoList = new ArrayList<>();
+//        List<PictureDto> mainPicList = pictureService.getMainPictureForCom();
+//        for (PictureDto pDto : mainPicList) {
+//            if (pDto.isPicExt() == true) {
+//                String picOriginPath = pDto.getStoredFilePath();
+//                pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+//                pictureDtoList.add(pDto);
+//            } else {
+//                pictureDtoList.add(pDto);
+//            }
+//        }
+//        return pictureDtoList;
+//    }
 
     @ResponseBody
     @GetMapping("/delete/{picNo}")

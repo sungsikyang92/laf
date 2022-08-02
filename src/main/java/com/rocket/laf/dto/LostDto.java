@@ -25,6 +25,4 @@ public class LostDto {
     private String lAnswers4;
     private long userNo;
     private long hashNo;
-    private String storedFilePath;
-    private long picNo;
 }
