@@ -72,7 +72,8 @@
                 <br>
                 <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.LQuestion}</h3>
 
-                <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post">
+                <!-- 성식님 1:1대화 눌렀을때 체팅으로 연결되야 되는데 action을 어떻게 잡을지 확인 부탁해요~~ -->
+                <form action="/chat" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post" onsubmit="return lostSubmitBtn()">
                     <br>
                     <input type="hidden" name="boardNo" value="${boardDetail.LBoardNo}">
                 </form>

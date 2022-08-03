@@ -1,5 +1,6 @@
 window.onload = function () {
 
+    sessionStorage.setItem("wrongCountJson", JSON.stringify([{name: '', value: ''}]));
     function Quiz(answer1, answer2, answer3, answer4, answer) {
 
         let QArray = [answer1, answer2, answer3, answer4, answer];
@@ -13,7 +14,7 @@ window.onload = function () {
             addforminput(formq, QArray[i], i);
         }
         let button = document.createElement('button');
-        button.setAttribute("type", "submit")
+        button.setAttribute("type", "submit");
         button.innerHTML = "1:1대화";
         formq.appendChild(button);
         let updateButton = document.createElement('button');
@@ -55,5 +56,38 @@ window.onload = function () {
     Quiz(answer1, answer2, answer3, answer4, answer);
 
 
+}
+
+wrongCount = 0;
+
+function lostSubmitBtn(){
+    console.log("JS funtion call _________ lostSubmitBtn")
+
+    if (document.querySelector('input:checked').value != answer){ //오답
+        var wrongCntObj = JSON.parse(sessionStorage.getItem("wrongCountJson"));
+        
+        wrongCount = wrongCount + 1;
+        var wrongCntCurObj = {name: boardNo, value: wrongCount}
+        wrongCntObj = wrongCntObj.push(wrongCntCurObj);
+        
+        console.log(wrongCntObj);
+
+        console.log(Object.keys(wrongCntObj));
+        console.log(Object.values(wrongCntObj));
+
+        // wrongCount = wrongCount + 1;
+        // var odab = [boardNo = {name: "count", value: wrongCount}];
+        // console.log(typeof(odab));
+        // console.log(Object.keys(odab));
+        // console.log(Object.values(odab));
+        // console.log("오답 실행");
+        
+
+
+        return false;
+    }else{ //정답
+        console.log("else 실행")
+        return ture;
+    }
 }
 
