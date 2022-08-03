@@ -20,7 +20,7 @@
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
             <script type="text/javascript"
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
-    <script src='/resources/js/main_sidebar.js'></script>
+    <script src='../resources/js/main_sidebar.js'></script>
     <script src='../resources/js/myPage.js'></script>
 
 </head>
@@ -28,8 +28,35 @@
     .mypage_container{
      margin-left: 300px;
     }
+   .button {
+      border : none;
+      cursor : pointer;
+      background-color :whitesmoke;
+   }
+    input {
+        
+      cursor : pointer;
+    }
+    .container{
+        display:flex;
+    }
+    img{
+        width : 300px;
+        height : 300px;
+    }
+    hr{
+        margin-top : 70px;
+        margin-bottom: 30px;
+        width : 200px;
+        size :30px;
+    }
+
+    .mypage_container>.container>.item2>ul>li{
+        margin-left: 30px;
+    }
 </style>
 <body class="body_container">
+    <div class="wrapper">
     <jsp:include page="../UI/topMenu.jsp" flush="true" />
     <!-- security tags starts-->
     <sec:authorize access="isAnonymous()">
@@ -41,48 +68,36 @@
         
     </sec:authorize>
     <!-- security tags ends-->
-    
+    <br><br><br><br>
+
+    <!--mypage start-->
     <div class = "mypage_container" id="mypage">
-            <!-- post -->
-            <form action = "" method="post" enctype="multipart/form-data">
-                <input type="file" name = "file">
-                <button type="submit">프로필 업데이트</button>
-            </form>
-            <h3>------ GET POST 경계 -------</h3>
-            <h3>프로필</h3>
-            <form action = "" method="get" enctype="multipart/form-data">
-                <img src = "resources/img/profile/${img.originalFileName}">
-            </form>
-            <!-- get -->
+            <div class = "container">
+                <div class = "item">
+                    <form action = "" method="get" enctype="multipart/form-data">
+                        <img id = "img1" src = "resources/img/profile/${img.originalFileName}">
+                        
+                    </form>
+                </div>
+                <div class = "item2">
+                    <ul>
+                        <li style ="margin-top:50px">ID <strong>${loginUserName}</strong></li>
+                        <br>
+                        <hr>
+                        <br>
+                        <li>NAME <strong>${dto.userName}</strong></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class = "item3">
+                <form action = "" method="post" enctype="multipart/form-data">
+                    <input type="file" name = "file">
+                    <button type="submit" class = "button">프로필 업데이트</button>
+                 </form>
+            </div>
+         <br>
             <ul>
-                <li>
-                    <span class="item">${file}</span>
-                </li>
-                <li>
-                    <span class="item">No = ${dto.userNo}</span>
-                    <span class="item">ID = ${loginUserName}</span>
-                </li>
-                <li>
-                    <span class="item">NAME = ${dto.userName}</span>
-                </li>
-                <li>
-                    <span class="item">00동 = ${dto.userLocation}</span>
-                </li>
-                <li>
-                    <span class="item">▼ 〓</span>
-                </li>
-                <li>
-                    <span class="item">동네설정</span>
-                </li>
-                <li>
-                    <span class="item">누적사례금 | 000000 원 =</span>
-                </li>
-                <li>
-                    <span class="item">사례 횟수 | 000 번</span>
-                </li>
-                <li>
-                    <span class="item">사례금 잔액 | 000000 원</span>
-                </li>
                 <li>
                     <a href = "/myPage/founddetail">
                         <span class="item">내가 찾아준 내역 ▷</span>
@@ -95,15 +110,15 @@
                 </li>
             </ul>
         </div>
+
+
         <jsp:include page="../UI/sideMenu.jsp" flush="true" />
-
-
-            <script src='resources/js/readImage.js'></script>
-            <script src='resources/js/main_sidebar.js'></script>
-            <script src='resources/js/naverMapApiTest3.js'></script>
+            <script src='../resources/js/readImage.js'></script>
+            <script src='../resources/js/main_sidebar.js'></script>
+            <script src='../resources/js/naverMapApiTest3.js'></script>
 
         
-    
+        </div>
 </body>
 
 </html>
