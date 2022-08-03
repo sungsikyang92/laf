@@ -10,11 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--반응형 웹 만들기 위한 태그. 헤더 네에 있을 것.-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--반응형 웹 태그-->
-
     <title>LaF</title>
+
 
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
@@ -22,7 +20,6 @@
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <!-- <script src='/resources/js/main_sidebar.js'></script> -->
 
     <!-- ajax를 위한 script START-->
@@ -81,8 +78,16 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${lostlist}" var="lostboard">
-
-
+<!-- <%--                            <article class="location-listing">--%>
+<%--                                <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">--%>
+<%--                                        ${lostboard.LTitle} </a>--%>
+<%--                                <div class="location-image">--%>
+<%--                                    <a href="#">--%>
+<%--                                        <img width="300" height="169" src="${lostboard.storedFilePath}"--%>
+<%--                                             alt="${lostboard.LTitle}">--%>
+<%--                                    </a>--%>
+<%--                                </div>--%>
+<%--                            </article>--%> -->
                             <div class="lostBoardListContainer" onclick="location.href='/${lostboard.LBoardNo}'">
                                 <div>${lostboard.LBoardNo}</div>
                                 <div>${lostboard.LTitle}</div>

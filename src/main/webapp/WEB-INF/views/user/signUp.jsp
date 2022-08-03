@@ -7,8 +7,13 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-
+		<title>signUp</title>
+		<link rel="stylesheet" href="/resources/css/button.css" type="text/css">
+		<link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
+		<link rel="stylesheet" href="/resources/css/user.css" type="text/css">
+		<link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
+		<link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
+		<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 		<script>
 			let policyOn = "${policyOn}";
 		</script>
@@ -18,38 +23,39 @@
 
 	</head>
 
-	<body>
-
+	<body class="body_container">
+		<div class="wrapper">
 		<jsp:include page="../UI/topMenu.jsp" flush="true" />
 
 		<div class="userReg-box">
-			<h2>회원가입</h2>
+			<h1>회원가입</h1>
 			<!-- 리턴연결필요 submitBtn() -->
+			<hr><br><br>
 			<form action="/user/regUser" method="post" onsubmit="return submitBtn()" id="formTag">
 				<div class="id-box">
-					<label>아이디</label>
-					<br>
+					<label><h3>아이디</h3></label>
 					<input type="text" name="userId" title="아이디">
 					<!--dto3-->
 					<input type="button" name="chkDuplicatedID" value="중복확인" onclick="chkDuplicatedId();">
 				</div>
+				<hr><br><br>
 				<div class="pw-box">
-					<label>비밀번호</label>
-					<br>
+					<label><h3>비밀번호</h3></label>
 					<input type="password" name="userPw" id="비밀번호" title="비밀번호">
 					<!--dto5-->
 				</div>
+				<hr><br><br>
 				<div class="pw-box">
-					<label>비밀번호 재확인</label>
-					<br>
+					<label><h3>비밀번호 재확인</h3></label>
 					<input type="password" name="userPwChk" title="비밀번호 재확인">
 				</div>
+				<hr><br><br>
 				<div class="name-box">
-					<label>이름</label>
-					<br>
+					<label><h3>이름</h3></label>
 					<input type="text" name="userName" title="이름">
 					<!--dto2-->
 				</div>
+				<hr><br><br>
 				<!-- <div class="birth-box">
 					<label>생년월일</label>
 					<br>
@@ -76,17 +82,16 @@
 					<input type="text" name="userLocation_2nd" title="주소 하단">
 				</div> -->
 				<div class="contact-box">
-					<label>전화번호</label>
-					<br>
+					<label><h3>전화번호</h3></label>
 					<input type="text" name="userPhone" title="전화번호">
 					<!--dto6-->
 					<input type="button" value="인증번호 받기" onclick="contactIdentification()" title="전화 번호">
 					<br>
 					<input type="text" name="contactCertNo" placeholder="인증번호를 입력해주세요" title="인증번호">
 				</div>
+				<hr><br><br>
 				<div class="email-box">
-					<label>이메일</label>
-					<br>
+					<label><h3>이메일</h3></label>
 					<input type="text" name="userEmail" title="이메일">
 					<!--dto 4-->
 				</div>
@@ -101,12 +106,12 @@
 					<span>주의: 입력시 본인계좌가 아닌경우 회원가입이 어렵습니다.</span>
 					<input type="button" value="계좌인증" onclick="bankIdentification()">
 				</div> -->
-				<input type="button" value="취소" onclick="location.href='/user/login'">
-				<input type="submit" value="회원가입">
+				<br>
+				<input id="inp" type="button" value="취소" onclick="location.href='/user/login'">
+				<input id="inp" type="submit" value="회원가입">
 			</form>
 		</div>
-		<jsp:include page="../UI/sideMenu.jsp" flush="true" />
-
+		<!-- <jsp:include page="../UI/sideMenu.jsp" flush="true" /> -->
+		</div>	
 	</body>
-
-	</html>
+</html>

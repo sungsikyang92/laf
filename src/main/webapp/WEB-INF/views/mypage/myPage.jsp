@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mypage</title>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
@@ -22,39 +22,13 @@
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
     <script src='../resources/js/main_sidebar.js'></script>
     <script src='../resources/js/myPage.js'></script>
+    <script>
+        var img = "${img.originalFileName}";
+
+    </script>
 
 </head>
-<style>
-    .mypage_container{
-     margin-left: 300px;
-    }
-   .button {
-      border : none;
-      cursor : pointer;
-      background-color :whitesmoke;
-   }
-    input {
-        
-      cursor : pointer;
-    }
-    .container{
-        display:flex;
-    }
-    img{
-        width : 300px;
-        height : 300px;
-    }
-    hr{
-        margin-top : 70px;
-        margin-bottom: 30px;
-        width : 200px;
-        size :30px;
-    }
 
-    .mypage_container>.container>.item2>ul>li{
-        margin-left: 30px;
-    }
-</style>
 <body class="body_container">
     <div class="wrapper">
     <jsp:include page="../UI/topMenu.jsp" flush="true" />
@@ -75,7 +49,7 @@
             <div class = "container">
                 <div class = "item">
                     <form action = "" method="get" enctype="multipart/form-data">
-                        <img id = "img1" src = "resources/img/profile/${img.originalFileName}">
+                        <img id = "img1" onclick="changeImage()" border="0" src = "resources/img/profile/${img.originalFileName}">
                         
                     </form>
                 </div>

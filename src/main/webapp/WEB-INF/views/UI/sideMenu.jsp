@@ -4,17 +4,16 @@
         <!-- security teglibrary -->
         <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-            <!DOCTYPE html>
+            <!-- <!DOCTYPE html>
             <html lang="en">
 
             <head>
 
             </head>
 
-            <body class="body_container">
+            <body class="body_container"> -->
                 <!-- TOP menu  ?userId=${loginUserName}-->
-                
-                <div class="sidebar">
+                <!-- <div class="sidebar">
                     <div class="sidetop">
                         <div class="sidetop_left">
                             <a href="/" class="logo">
@@ -70,4 +69,4 @@
                 </div>
             </body>
 
-            </html>
+            </html> -->

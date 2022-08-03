@@ -159,7 +159,7 @@
 			<artifactId>embedded-redis</artifactId>
 			<version>0.7.3</version>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> 
 		<!-- REDIS END -->
 
 

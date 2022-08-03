@@ -23,14 +23,14 @@
             <!--가운데 네비게이션 바-->
             <div class = "center_nav">
                 <span>
-                    <a href="myPage?userId=${loginUserName}" class="mypage">
+                    <a href="canfound" class="canfound">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
                         <span class="item">찾아줄게요</span>
                     </a>
                 </span>
 
                 <span>
-                    <a href="/cBoard" class="cboard">
+                    <a href="helpfound" class="helpfound">
                         <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
                         <span class="item">찾아주세요</span>
                     </a>
