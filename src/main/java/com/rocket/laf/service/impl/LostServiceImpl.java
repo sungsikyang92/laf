@@ -30,6 +30,16 @@ public class LostServiceImpl implements LostService {
         return lostMapper.getLostBoardList();
     }
 
+    @Override
+    public List<LostDto> getLostBoardLostList() {
+        return lostMapper.getLostBoardLostList();
+    }
+
+    @Override
+    public List<LostDto> getLostBoardFindList() {
+        return lostMapper.getLostBoardFindList();
+    }
+
     public LostDto getLostBoardOne(String lBoardNo) {
         return lostMapper.getLostBoardOne(lBoardNo);
     }
@@ -40,11 +50,11 @@ public class LostServiceImpl implements LostService {
             throws Exception {
         List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
-            lostMapper.writelBoardFileList(list);
             lostMapper.insertLostBoard(LostDto);
+            lostMapper.writelBoardFileList(list);
         } else {
             lostMapper.insertLostBoard(LostDto);
-            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
+//            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
         }
     }
 

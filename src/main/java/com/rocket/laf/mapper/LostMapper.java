@@ -17,6 +17,12 @@ public interface LostMapper {
     @Select("SELECT l.lBoardNo,p.storedFilePath,l.lTitle FROM Lost AS l INNER JOIN Picture AS p ON l.lBoardNo = p.boardNo GROUP BY p.boardNo ORDER BY l.lBoardNo DESC")
     List<LostDto> getLostBoardList();
 
+    @Select(" SELECT * FROM Lost WHERE lCategory = '분실' ORDER BY lBoardNo DESC ")
+    List<LostDto> getLostBoardLostList();
+
+    @Select(" SELECT * FROM Lost WHERE lCategory = '습득' ORDER BY lBoardNo DESC ")
+    List<LostDto> getLostBoardFindList();
+
     @Select("SELECT * FROM Lost WHERE lBoardNo = #{lBoardNo}")
     LostDto getLostBoardOne(String lBoardNo);
 
