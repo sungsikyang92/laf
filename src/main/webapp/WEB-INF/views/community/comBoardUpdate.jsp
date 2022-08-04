@@ -89,11 +89,11 @@
                            accept="image/*" onchange="setThumbnail(event);"></td>
             </tr>
             <tr>
-                <td><input type="text" name="cTitle" value="${cbDetail.title}"></td>
+                <td><input type="text" name="title" value="${cbDetail.title}"></td>
             </tr>
             <tr>
                 <td>
-                    <textarea name="cContent">${cbDetail.content}</textarea>
+                    <textarea name="content">${cbDetail.content}</textarea>
                 </td>
             </tr>
             <tr>
