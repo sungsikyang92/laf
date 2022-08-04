@@ -18,6 +18,7 @@
 
 //     private RedisServer redisServer;
 
+<<<<<<< HEAD
 //     // @PostConstruct
 //     // public void redisServer() {
 //     //     //redisServer = new RedisServer(redisPort);
@@ -35,6 +36,18 @@
 //         redisServer.start();
 //     }
 
+=======
+//     @PostConstruct
+//     public void redisServer() {
+// //        redisServer = new RedisServer(redisPort);
+//         redisServer = RedisServer.builder()
+//                 .port(redisPort)
+//                 .setting("maxmemory 128M")
+//                 .build();
+//         redisServer.start();
+//     }
+
+>>>>>>> 60ada13c7de88f8a2cc6ce95b9019aa9b3599c64
 //     @PreDestroy
 //     public void stopRedis() {
 //         if (redisServer != null) {

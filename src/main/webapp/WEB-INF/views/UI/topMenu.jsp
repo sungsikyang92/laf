@@ -8,7 +8,7 @@
 <head>
 </head>
 <body class="body_container">
-<div class="wrapper">
+
     <div class="section">
         <div class="top_navbar">
 
@@ -65,5 +65,7 @@
                 <!-- security tags ends-->
             </div>
         </div>
+    
+    
     </body>
 </html>

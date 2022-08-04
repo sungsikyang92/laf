@@ -38,11 +38,8 @@ import java.util.logging.Logger;
 @RequestMapping("/")
 public class LafController {
 
-    @Autowired
-    private LostServiceImpl lostserviceImpl;
-    @Autowired
-    private PictureServiceImpl pictureServiceImpl;
-    @Autowired
+    private final LostServiceImpl lostserviceImpl;
+    private final PictureServiceImpl pictureServiceImpl;
     private final BoardNoServiceImpl boardNoServiceImpl;
 
     private final static Logger logger = Logger.getGlobal();
@@ -88,10 +85,8 @@ public class LafController {
         boardNoServiceImpl.addlBoardNo(bnumbering);
 
         String numbering = String.format("%08d", bnumbering);
-        logger.log(Level.INFO, numbering);
         String lBoardNo = symbol + numbering;
-        logger.log(Level.INFO, lBoardNo);
-        
+        lostDto.setLBoardNo(lBoardNo);
         lostserviceImpl.insertLostBoard(lostDto, multipartHttpServletRequest);
         return "redirect:/";
     }
@@ -145,9 +140,9 @@ public class LafController {
 
     @PostMapping("/update/{lBoardNo}")
     public String updatelBoard(@PathVariable(name = "lBoardNo") String lBoardNo, LostDto lostDto,
-            MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+                               MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
-        return "redirect:/"+lBoardNo;
+        return "redirect:/" + lBoardNo;
     }
 
 }

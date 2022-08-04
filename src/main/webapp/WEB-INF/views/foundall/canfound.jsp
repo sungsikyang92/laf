@@ -10,11 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--반응형 웹 만들기 위한 태그. 헤더 네에 있을 것.-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--반응형 웹 태그-->
-
     <title>LaF</title>
+
 
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
@@ -22,7 +20,6 @@
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <!-- <script src='/resources/js/main_sidebar.js'></script> -->
 
     <!-- ajax를 위한 script START-->
@@ -59,55 +56,63 @@
         });
     </script>
 </head>
-    <body class="body_container">
-        <div class="wrapper">
-            <jsp:include page="UI/topMenu.jsp" flush="true"/>
-            <%--<jsp:include page="UI/sideMenu.jsp" flush="true"/>--%>
-            <jsp:include page="UI/sideMenu.jsp" flush="true"/>
-            
-            <!-- 컨텐츠 삽입부분-->
-                <div class="contents_container">
-                    <div class="child-page-listing">
-                        <h2 style="text-align: center;">실시간베너 만들것 </h2>
-                        <div class="grid-container">        
-                            <c:choose>
-                                <c:when test="${empty lostlist }">
-                                    <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${lostlist}" var="lostboard">
-                                        <div class="lostBoardListContainer" onclick="location.href='/${lostboard.LBoardNo}'">
-                                            <div>${lostboard.LBoardNo}</div>
-                                            <div>${lostboard.LTitle}</div>
-                                            <div>${lostboard.LCreateDate}</div>
-                                            <div>${lostboard.LLocation}</div>
-                                            <div id="lostBoardListMainImg${lostboard.LBoardNo}">
-                                                <c:choose>
-                                                    <c:when test="${empty picList}">
-                                                        <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
-                                                            class='img'/>
-                                                    </c:when>
-                                                    <c:otherwise>사진있어용</c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
-                </div>
+
+<body class="body_container">
+<div class="wrapper">
+
+    <jsp:include page="UI/topMenu.jsp" flush="true"/>
+
+
+    <!-- 컨텐츠 삽입부분-->
+    <div class="contents_container">
+
+        <div class="child-page-listing">
+
+            <h2 style="text-align: center;">실시간베너 만들것 </h2>
+
+            <div class="grid-container">
+
+                <c:choose>
+                    <c:when test="${empty lostlist }">
+                        <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${lostlist}" var="lostboard">
+<!-- <%--                            <article class="location-listing">--%>
+<%--                                <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">--%>
+<%--                                        ${lostboard.LTitle} </a>--%>
+<%--                                <div class="location-image">--%>
+<%--                                    <a href="#">--%>
+<%--                                        <img width="300" height="169" src="${lostboard.storedFilePath}"--%>
+<%--                                             alt="${lostboard.LTitle}">--%>
+<%--                                    </a>--%>
+<%--                                </div>--%>
+<%--                            </article>--%> -->
+                            <div class="lostBoardListContainer" onclick="location.href='/${lostboard.LBoardNo}'">
+                                <div>${lostboard.LBoardNo}</div>
+                                <div>${lostboard.LTitle}</div>
+                                <div>${lostboard.LCreateDate}</div>
+                                <div>${lostboard.LLocation}</div>
+                                <div id="lostBoardListMainImg${lostboard.LBoardNo}">
+                                    <c:choose>
+                                        <c:when test="${empty picList}">
+                                            <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
+                                                 class='img'/>
+                                        </c:when>
+                                        <c:otherwise>사진있어용</c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
-<<<<<<< HEAD
     </div>
 
-    <jsp:include page="" flush="true"/>
+    <jsp:include page="UI/sideMenu.jsp" flush="true"/>
 </div>
 
 </body>
 
-=======
-    </body>
->>>>>>> 60ada13c7de88f8a2cc6ce95b9019aa9b3599c64
 </html>
