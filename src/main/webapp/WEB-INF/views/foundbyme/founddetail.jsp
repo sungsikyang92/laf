@@ -35,7 +35,7 @@
     
     <div class = mypage_container>
     <table border = "1">
-        <h3>${clist[1].cBoardNo}</h3>
+        <h3>${clist[1].boardNo}</h3>
     <!-- <c:choose>
         <c:when test="${empty list}">
             <tr>

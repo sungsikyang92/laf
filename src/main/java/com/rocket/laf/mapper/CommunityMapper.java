@@ -9,34 +9,34 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
 
-        @Select(" SELECT * FROM Community ORDER BY cBoardNo DESC ")
+        @Select(" SELECT * FROM Community ORDER BY boardNo DESC ")
         List<CommunityDto> getComBoardList();
 
         @Insert(" INSERT INTO Community " +
-                        "(cBoardNo, cTitle, cContent, cCreateDate, cLocation, cCategory, userNo, hashNo) " +
-                        "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{cTitle},#{cContent},now(),#{cLocation},#{cCategory},#{userNo},1) ")
-        @Options(keyProperty = "cBoardNo")
+                        "(boardNo, title, content, createDate, location, category, userNo, hashNo) " +
+                        "VALUES (CONCAT('com', LPAD((SELECT MAX(cBoardNo) FROM BoardNo),8,'0')),#{title},#{content},now(),#{location},#{category},#{userNo},1) ")
+        @Options(keyProperty = "boardNo")
         void writeComBoard(CommunityDto communityDto);
 
         @Select(" SELECT * " +
                         "FROM Community " +
-                        "WHERE cBoardNo = #{cBoardNo} ")
-        CommunityDto getComBoardDetail(String cBoardNo);
+                        "WHERE boardNo = #{boardNo} ")
+        CommunityDto getComBoardDetail(String boardNo);
 
         @Update(" UPDATE Community " +
-                        "SET cTitle=#{cTitle}, cContent=#{cContent}, cIsModified=1 " +
-                        "WHERE cBoardNo = #{cBoardNo} ")
+                        "SET title=#{title}, content=#{content}, modified=1 " +
+                        "WHERE boardNo = #{boardNo} ")
         void updateComBoardDetail(CommunityDto communityDto);
 
         @Delete(" DELETE FROM c, p " +
                         "USING Community c " +
                         "INNER JOIN Picture p " +
-                        "ON c.cBoardNo = p.boardNo " +
-                        "WHERE p.boardNo = #{cBoardNo} ")
-        int deleteComBoardDetail(String cBoardNo);
+                        "ON c.boardNo = p.boardNo " +
+                        "WHERE p.boardNo = #{boardNo} ")
+        int deleteComBoardDetail(String boardNo);
 
-        @Select(" SELECT MAX(cBoardNo) FROM Community ")
-        String getLastCBoardNo();
+        @Select(" SELECT MAX(boardNo) FROM Community ")
+        String getLastBoardNo();
 
         @Insert({ "<script>" +
                         "INSERT INTO Picture " +

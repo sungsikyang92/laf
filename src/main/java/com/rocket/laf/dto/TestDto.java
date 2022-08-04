@@ -11,15 +11,20 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TestDto {
-    private String cBoardNo;
-    private String cTitle;
-    private String cContent;
-    private LocalDateTime cCreateDate;
-    private boolean cIsModified;
-    private String cLocation;
-    private String cCategory;
+    private String boardNo;
+    private String title;
+    private String content;
+    private LocalDateTime createDate;
+    private boolean modified;
+    private String location;
+    private String category;
     private long userNo;
     private long hashNo;
-    private List<PictureDto> pictureList;
-
+//    private List<PictureDto> pictureList;
+    private long picNo;
+    private String originalFileName;
+    private String storedFilePath;
+    private long fileSize;
+    private boolean picRmd;
+    private boolean picExt;
 }

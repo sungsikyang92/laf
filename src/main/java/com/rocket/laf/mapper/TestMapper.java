@@ -9,6 +9,6 @@ import java.util.List;
 @Mapper
 public interface TestMapper {
 
-    @Select(" SELECT ")
-    List<TestDto> getComListData();
+    @Select(" select * from Community c INNER JOIN Picture p WHERE c.boardNo = p.boardNo GROUP BY c.boardNo ORDER BY boardNo DESC ")
+    List<TestDto> getTestComBoardList();
 }

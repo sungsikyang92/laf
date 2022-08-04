@@ -87,13 +87,13 @@ public class MypageController {
 
     @GetMapping("/founddetail")
     public String MypagetoFounddetail(Model model, HttpServletRequest request) throws Exception{
-        //cBoardNo 쓸라고.
+        //boardNo 쓸라고.
         List<CommunityDto> cl = communityService.getComBoardList();
         model.addAttribute("clist",cl);
         
-        //cBoardNo에 맞는 사진 가져오기.
-        String cBoardNo = request.getParameter("cl.cBoardNo");
-        List<PictureDto> ctop = pictureService.getAllPictureByBoardNo(cBoardNo);
+        //boardNo에 맞는 사진 가져오기.
+        String boardNo = request.getParameter("cl.boardNo");
+        List<PictureDto> ctop = pictureService.getAllPictureByBoardNo(boardNo);
         model.addAttribute("pPath",ctop);
 
 

@@ -15,7 +15,7 @@ public class TestServiceImpl implements TestService {
     private final TestMapper testMapper;
 
     @Override
-    public List<TestDto> getComListData() {
-        return testMapper.getComListData();
+    public List<TestDto> getTestComBoardList() {
+        return testMapper.getTestComBoardList();
     }
 }

@@ -42,14 +42,14 @@
                 <div class="uploadResult"></div>
             </tr>
             <tr>
-                <td><input type="text" name="cTitle" placeholder="글 제목을 입력해주세요"></td>
+                <td><input type="text" name="title" placeholder="글 제목을 입력해주세요"></td>
             </tr>
             <tr>
-                <td><input type="text" name="cCategory" placeholder="카테고리 입력"></td>
+                <td><input type="text" name="category" placeholder="카테고리 입력"></td>
             </tr>
             <tr>
                 <td>
-                    <textarea name="cContent" placeholder="글 내용을 입력해주세요"></textarea>
+                    <textarea name="content" placeholder="글 내용을 입력해주세요"></textarea>
                 </td>
             </tr>
             <tr>

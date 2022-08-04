@@ -46,11 +46,11 @@
             </c:choose>
         </div>
         <div>${uDetail.userName}유저네임</div>
-        <div>${cbDetail.CLocation}</div>
-        <div>${cbDetail.CTitle}</div>
-        <div>${cbDetail.CCategory}</div>
-        <div>${cbDetail.CCreateDate}</div>
-        <div>${cbDetail.CContent}</div>
+        <div>${cbDetail.location}</div>
+        <div>${cbDetail.title}</div>
+        <div>${cbDetail.category}</div>
+        <div>${cbDetail.createDate}</div>
+        <div>${cbDetail.content}</div>
         <div>${hDetail.hashKeyword}</div>
         <div>
             <input type="button" value="목록" onclick="location.href='/cBoard'">
@@ -59,8 +59,8 @@
             <br>
             ${uDetail.userId} 작성자 아이디
             <c:if test="${uDetail.userId == loginUserName}">
-                <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
-                <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
+                <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.boardNo}'">
+                <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.boardNo}'">
             </c:if>
         </div>
     </div><%-- contents_container --%>
