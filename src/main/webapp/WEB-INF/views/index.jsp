@@ -59,55 +59,45 @@
         });
     </script>
 </head>
-
-<body class="body_container">
-<div class="wrapper">
-
-    <jsp:include page="UI/topMenu.jsp" flush="true"/>
-
-
-    <!-- 컨텐츠 삽입부분-->
-    <div class="contents_container">
-
-        <div class="child-page-listing">
-
-            <h2 style="text-align: center;">실시간베너 만들것 </h2>
-
-            <div class="grid-container">
-
-                <c:choose>
-                    <c:when test="${empty lostlist }">
-                        <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach items="${lostlist}" var="lostboard">
-
-
-                            <div class="lostBoardListContainer" onclick="location.href='/${lostboard.LBoardNo}'">
-                                <div>${lostboard.LBoardNo}</div>
-                                <div>${lostboard.LTitle}</div>
-                                <div>${lostboard.LCreateDate}</div>
-                                <div>${lostboard.LLocation}</div>
-                                <div id="lostBoardListMainImg${lostboard.LBoardNo}">
-                                    <c:choose>
-                                        <c:when test="${empty picList}">
-                                            <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
-                                                 class='img'/>
-                                        </c:when>
-                                        <c:otherwise>사진있어용</c:otherwise>
-                                    </c:choose>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
+    <body class="body_container">
+        <div class="wrapper">
+            <jsp:include page="UI/topMenu.jsp" flush="true"/>
+            <%--<jsp:include page="UI/sideMenu.jsp" flush="true"/>--%>
+            <jsp:include page="UI/sideMenu.jsp" flush="true"/>
+            
+            <!-- 컨텐츠 삽입부분-->
+                <div class="contents_container">
+                    <div class="child-page-listing">
+                        <h2 style="text-align: center;">실시간베너 만들것 </h2>
+                        <div class="grid-container">        
+                            <c:choose>
+                                <c:when test="${empty lostlist }">
+                                    <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${lostlist}" var="lostboard">
+                                        <div class="lostBoardListContainer" onclick="location.href='/${lostboard.LBoardNo}'">
+                                            <div>${lostboard.LBoardNo}</div>
+                                            <div>${lostboard.LTitle}</div>
+                                            <div>${lostboard.LCreateDate}</div>
+                                            <div>${lostboard.LLocation}</div>
+                                            <div id="lostBoardListMainImg${lostboard.LBoardNo}">
+                                                <c:choose>
+                                                    <c:when test="${empty picList}">
+                                                        <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
+                                                            class='img'/>
+                                                    </c:when>
+                                                    <c:otherwise>사진있어용</c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <jsp:include page="UI/sideMenu.jsp" flush="true"/>
-</div>
-
-</body>
-
+    </body>
 </html>
