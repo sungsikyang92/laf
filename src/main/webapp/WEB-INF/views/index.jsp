@@ -29,7 +29,7 @@
         $(document).ready(function () {
             $.ajax({
                 type: "get",
-                data: {"boardNo":"l"},
+                data: {"boardNo": "l"},
                 dataType: "json",
                 url: "/picture",
                 success: function (mainPicList) {
@@ -78,16 +78,16 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${lostlist}" var="lostboard">
-<%--                            <article class="location-listing">--%>
-<%--                                <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">--%>
-<%--                                        ${lostboard.LTitle} </a>--%>
-<%--                                <div class="location-image">--%>
-<%--                                    <a href="#">--%>
-<%--                                        <img width="300" height="169" src="${lostboard.storedFilePath}"--%>
-<%--                                             alt="${lostboard.LTitle}">--%>
-<%--                                    </a>--%>
-<%--                                </div>--%>
-<%--                            </article>--%>
+                            <%--                            <article class="location-listing">--%>
+                            <%--                                <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">--%>
+                            <%--                                        ${lostboard.LTitle} </a>--%>
+                            <%--                                <div class="location-image">--%>
+                            <%--                                    <a href="#">--%>
+                            <%--                                        <img width="300" height="169" src="${lostboard.storedFilePath}"--%>
+                            <%--                                             alt="${lostboard.LTitle}">--%>
+                            <%--                                    </a>--%>
+                            <%--                                </div>--%>
+                            <%--                            </article>--%>
                             <div class="lostBoardListContainer" onclick="location.href='/${lostboard.LBoardNo}'">
                                 <div>${lostboard.LBoardNo}</div>
                                 <div>${lostboard.LTitle}</div>
@@ -96,10 +96,13 @@
                                 <div id="lostBoardListMainImg${lostboard.LBoardNo}">
                                     <c:choose>
                                         <c:when test="${empty picList}">
-                                            <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
+                                            <img width='300' height='169' src='/resources/img/woo.png'
+                                                 alt='사진을 불러올수가 엄써'
                                                  class='img'/>
                                         </c:when>
-                                        <c:otherwise>사진있어용</c:otherwise>
+                                        <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
+                                                          alt='사진을 불러올수가 엄써'
+                                                          class='img'/></c:otherwise>
                                     </c:choose>
                                 </div>
                             </div>

@@ -79,7 +79,9 @@
                                     <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
                                          class='img'/>
                                 </c:when>
-                                <c:otherwise>사진있어용</c:otherwise>
+                                <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
+                                                  alt='사진을 불러올수가 엄써'
+                                                  class='img'/></c:otherwise>
                             </c:choose>
                         </div>
                     </div>
