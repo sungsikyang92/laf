@@ -106,6 +106,9 @@
     .wrapper .section .sidebar{
         display:none;
     }
+    .wrapper .section .ulside{
+        display:none;
+    }
 } 
     
 
@@ -113,8 +116,13 @@
 
 .wrapper .ulside {
     background: #6667AB;
+    position:absolute;
+    z-index:1;
+    display:flex;
 }
-
+.wrapper .ulside ul li{
+    list-style:none;
+}
 .wrapper .sidebar {
     /* display:flex; 
     flex-direction:row; */
