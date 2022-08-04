@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -33,8 +34,12 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.SystemPropertyUtils;
 
+import com.nimbusds.jose.shaded.json.JSONArray;
+import com.nimbusds.jose.shaded.json.JSONObject;
 import com.rocket.laf.common.UserExtension;
+import com.rocket.laf.dto.PenaltyDto;
 import com.rocket.laf.dto.UserDto;
+import com.rocket.laf.mapper.PenaltyMapper;
 import com.rocket.laf.mapper.UserMapper;
 import com.rocket.laf.service.UserService;
 
@@ -47,6 +52,8 @@ public class UserServiceImpl extends DefaultOAuth2UserService
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private PenaltyMapper penaltyMapper;
 
     @Override
     public UserDto login(UserDto dto) {
@@ -94,6 +101,7 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         }
         User secReturnUser = new UserExtension(secUser.getUserId(), secUser.getUserPw(), auth, secUser.getUserNo());
         System.out.println(secReturnUser);
+        
         return secReturnUser;
     }
 
@@ -101,7 +109,6 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
-        System.out.println("잘연결됬습니깡? 넵");
 
         WebAuthenticationDetails web = (WebAuthenticationDetails) authentication.getDetails();
         System.out.println("Session ID ________ " + web.getSessionId());
@@ -125,6 +132,17 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         } else if (dataFromIndex != null && dataFromIndex.equals("")) {
             uri = dataFromIndex;
         }
+
+        HttpSession session = request.getSession();
+        List<PenaltyDto> penaltyList = new ArrayList<>();
+        penaltyList = penaltyMapper.getCurPenalty(authentication.getName());
+        
+        JSONArray penaltyObj = new JSONArray();
+        penaltyObj.add(penaltyList);
+        
+        System.out.println("________penaltyObj_________________________" + penaltyObj);
+        session.setAttribute("penaltyObj", penaltyObj);
+
         response.sendRedirect(uri);
     }
     // Spring Security form login end

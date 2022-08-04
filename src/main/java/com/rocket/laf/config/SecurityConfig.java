@@ -57,7 +57,7 @@ public class SecurityConfig{
                 // .anyRequest().authenticated().and()
             .formLogin()
                 .loginPage("/user/login").permitAll()
-                .successHandler(new UserServiceImpl())
+                .successHandler(userServiceImpl)
                 .failureUrl("/user/login?error=true")
                 .and()
             .logout()
@@ -86,5 +86,6 @@ public class SecurityConfig{
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
 
 }

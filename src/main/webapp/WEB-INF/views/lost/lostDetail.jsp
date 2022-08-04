@@ -23,6 +23,13 @@
                 let answer4 = "${boardDetail.LAnswers4}";
                 let answer = "${boardDetail.LAnswers}";
                 let boardNo = "${boardDetail.LBoardNo}";
+
+                var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
+                var penaltyArrList = JSON.parse(penaltyObj);
+
+                //console.log(Object.values(penaltyArrList));
+              
+
             </script>
 
 

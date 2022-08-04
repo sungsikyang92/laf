@@ -176,6 +176,18 @@ public class UserController {
         return "";
     }
 
+    @PostMapping("/penalty/ajaxcall")
+    @ResponseBody
+    public Map<String, Boolean> penaltySaveSession (@RequestBody Map<String, Object> penaltyJson){
+        logger.info("------------------------Controller mapping /penalty/ajaxcall");
+        
+        
+        System.out.println(penaltyJson);
+        System.out.println(penaltyJson.get("param1"));
+        
+        return null;
+    }
+
     // FIX: 001
     // public String combineBirth(HttpServletRequest request) {
     //     int birthY_int = Integer.parseInt(request.getParameter("bY"));
