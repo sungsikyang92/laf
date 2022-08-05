@@ -10,8 +10,6 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-/* wrapper */
-
 .wrapper .sidetop{
     border-bottom: #2b0548d3 solid 7px;
     height:100px;
@@ -21,7 +19,148 @@
     height: 100px;
     /* border-bottom: #2b0548d3 solid 7px; */
 }
+.top_navbar{
+    display:flex;
+    flex-direction:row;
+    /* align-items:center; */
+    justify-content: space-between;
+    height: 50px;
+    padding: 1em;
+    position:relative;
+}
+/*checkbox toggle*/
+.menu-button-container {
+    display: none;
+    height: 100%;
+    width: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+#menu-toggle {
+    display: none;
+}
+.menu-button,
+.menu-button::before,
+.menu-button::after {
+display: block;
+background-color: #fff;
+position: absolute;
+height: 4px;
+width: 30px;
+transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+border-radius: 2px;
+margin-top:2rem;
+margin-right:-9rem;
+}
 
+.menu-button::before {
+content: '';
+margin-top: -8px;
+}
+
+.menu-button::after {
+content: '';
+margin-top: 8px;
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::before {
+margin-top: 0px;
+transform: rotate(405deg);
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button {
+background: rgba(255, 255, 255, 0);
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::after {
+margin-top: 0px;
+transform: rotate(-405deg);
+}
+
+                /************미디어쿼리 시작************/
+@media (max-width: 700px) {
+.menu-button-container {
+    display: flex;
+}
+.center_nav {
+    position: absolute;
+    top: 70%;
+    margin-top: 0;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+#menu-toggle ~ .center_nav span {
+    z-index:1;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+#menu-toggle:checked ~ .center_nav>span {
+    border-top: 1px solid  #313265;
+    height: 5em;
+    padding: 0.5em;
+    transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.top_navbar .right_nav {
+    /* display:flex; */
+    width:100px;
+}
+.center_nav > span {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0.5em 0;
+    width: 100%;
+    /* color: white; */
+    background-color:#6667AB;
+}
+.center_nav > span:not(:last-child) {
+    border-bottom: 1px solid #444;
+}
+.right_nav .item{
+    margin-left:-2rem;
+}
+.right_nav .btn{
+    padding:0;
+    line-height:30px;
+    text-align:center;
+    width:8rem;
+    margin-left:-2rem;
+}
+.top_navbar .left_nav img{
+    width:5rem!important;
+    height:5rem!important;
+}
+
+
+
+}
+                /************미디어쿼리 끝************/
+
+
+                /*CENTER_NAV*/
+.wrapper .section .top_navbar .center_nav{
+    display:flex;
+    float : left;
+    margin-left : auto;
+    margin-right: auto;
+    margin-top : 60px;
+}
+.wrapper .section .top_navbar .center_nav span{
+    margin:0 0.5rem;
+    overflow:hidden;
+}
 .wrapper .section .top_navbar .center_nav span a {
     display: inline;
     padding: 13px 30px;
@@ -62,7 +201,7 @@
     background: #6667AB;
     height: 10%;
     width: 100%;
-    padding: 0 30px;
+    padding: 3px 5px 3px 5px;
     border-bottom: #2b0548d3 solid 7px;
 }
 
@@ -75,14 +214,7 @@
     
 }
 
-.wrapper .section .top_navbar .center_nav{
-    float : left;
-    margin-left : auto;
-    margin-right: auto;
-    margin-top : 60px;
 
-    
-}
 
 .top_navbar .right_nav {
     float: right;
@@ -92,7 +224,7 @@
 
 
 
-@media(max-width:600px),(max-height:800px){
+/* @media(max-width:600px),(max-height:800px){
     .wrapper .section .top_navbar .left_nav img{
         width : 50%;
         height: 70%;
@@ -109,7 +241,7 @@
     .wrapper .section .ulside{
         display:none;
     }
-} 
+}  */
     
 
 /*side*/
@@ -138,7 +270,7 @@
     flex-wrap :wrap;
 }
 
-.wrapper .section .logo{
+/* .wrapper .section .logo{
     float:right;
     width:225px;
     height:100px;
@@ -148,7 +280,7 @@
 .wrapper .section .logo img{
     height:90px;
     width:225px;
-}
+} */
 
 
 .wrapper .section .hamburger {
@@ -207,4 +339,9 @@ body.active .wrapper .ulside {
 body.active .wrapper .section {
     margin-left: 0;
     width: 100%;
+}
+/*responsive 실험*/
+html, body{
+    margin:0;
+    height:100%;
 }
