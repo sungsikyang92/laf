@@ -1,28 +1,29 @@
 package com.rocket.laf.dto;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LostDto {
+public class MainListDto {
     private String boardNo;
     private String title;
     private String content;
-    private Date createDate;
-    private String modified;
+    private LocalDateTime createDate;
+    private boolean modified;
     private String location;
     private String category;
-    private String question;
-    private String answers;
-    private String answers1;
-    private String answers2;
-    private String answers3;
-    private String answers4;
     private long userNo;
     private long hashNo;
+//    private List<PictureDto> pictureList;
+    private long picNo;
+    private String originalFileName;
+    private String storedFilePath;
+    private long fileSize;
+    private boolean picRmd;
+    private boolean picExt;
 }

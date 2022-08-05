@@ -28,6 +28,7 @@
         $(document).ready(function () {
             $.ajax({
                 type: "get",
+                data: {"boardNo":"com"},
                 dataType: "json",
                 url: "/picture",
                 success: function (mainPicList) {
@@ -66,19 +67,21 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${cbList}" var="cbl">
-                    <div class="comBoardListContainer" onclick="location.href='/cBoard/${cbl.CBoardNo}'">
-                        <div>${cbl.CBoardNo}</div>
-                        <div>${cbl.CTitle}</div>
-                        <div>${cbl.CCreateDate}</div>
-                        <div>${cbl.CLocation}</div>
-                        <div>글 : ${cbl.CIsModified}</div>
-                        <div id="comBoardListMainImg${cbl.CBoardNo}">
+                    <div class="comBoardListContainer" onclick="location.href='/cBoard/${cbl.boardNo}'">
+                        <div>${cbl.boardNo}</div>
+                        <div>${cbl.title}</div>
+                        <div>${cbl.createDate}</div>
+                        <div>${cbl.location}</div>
+                        <div>글 : ${cbl.modified}</div>
+                        <div id="comBoardListMainImg${cbl.boardNo}">
                             <c:choose>
                                 <c:when test="${empty picList}">
                                     <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
                                          class='img'/>
                                 </c:when>
-                                <c:otherwise>사진있어용</c:otherwise>
+                                <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
+                                                  alt='사진을 불러올수가 엄써'
+                                                  class='img'/></c:otherwise>
                             </c:choose>
                         </div>
                     </div>

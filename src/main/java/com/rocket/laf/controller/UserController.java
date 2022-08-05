@@ -209,13 +209,26 @@ public class UserController {
         System.out.println("boardNoList" + boardNoList);
         if (boardNoList.contains(penaltyJson.get("param1"))){
             System.out.println("이프콘솔실행");
+            
             JSONArray penaltyObj = new JSONArray();
             penaltyObj.add(penaltyList);
-            
+            System.out.println("________penaltyObj__유저컨트롤러_______________________" + penaltyObj);
             session.setAttribute("penaltyObj", penaltyObj);
+            
             return null;
+        
         }else{
             System.out.println("엘스콘솔실행");
+
+            if (penaltyList.isEmpty()){
+                PenaltyDto element = setPenalty(penaltyJson, penaltyList);
+                List<PenaltyDto> penaltyListNew = new ArrayList<>();
+                
+                
+                
+            } 
+
+
 
 
             return null;
@@ -261,6 +274,15 @@ public class UserController {
         }
         writer.println("</script>");
         writer.flush();
+    }
+
+    public PenaltyDto setPenalty(@RequestBody Map<String, Object> penaltyJson, List<PenaltyDto> penaltyList) {
+        PenaltyDto pDto = new PenaltyDto();
+        pDto.setPBoardNo(penaltyJson.get("param1").toString());
+        pDto.setPenaltyCnt(Integer.valueOf((String) penaltyJson.get("param2")));
+        pDto.setPUserId(penaltyList.get(0).getPUserId());
+
+        return pDto;
     }
     
     //테스트용

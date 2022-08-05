@@ -26,7 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%-- ajax를 위한 script END--%>
     <script type="text/javascript">
-        let boardNo = "${cbDetail.CBoardNo}";
+        let boardNo = "${cbDetail.boardNo}";
     </script>
     <script type="text/javascript">
         function getClickId(clickId) {
@@ -39,7 +39,7 @@
                 success: function (pictureList) {
                     let tags = '';
                     for (let i = 0; i < pictureList.length; i++) {
-                        tags += "<article class='location-listing'>"
+                        tags += "<article class='location-listing'>";
                         tags += "<div class='location-image'>";
                         tags += "<img width='300' height='169' src='" + pictureList[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
                         tags += "<input type='button' value='삭제' id='" + pictureList[i].picNo + "' class='imgDeleteBtn' onclick='getClickId(this.id)'>";
@@ -60,7 +60,7 @@
 <jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
 
 <div class="contents_container">
-    <form action="/cBoard/update/${cbDetail.CBoardNo}" method="post" enctype="multipart/form-data">
+    <form action="/cBoard/update/${cbDetail.boardNo}" method="post" enctype="multipart/form-data">
         <div id="imageList">
             <c:choose>
                 <c:when test="${empty pDetail}">
@@ -80,7 +80,7 @@
             </c:choose>
 
         </div>
-        <input type="hidden" name="cBoardNo" value="${cbDetail.CBoardNo}">
+        <input type="hidden" name="boardNo" value="${cbDetail.boardNo}">
         <table>
             <tr>
                 <div id="image_container"></div>
@@ -89,11 +89,11 @@
                            accept="image/*" onchange="setThumbnail(event);"></td>
             </tr>
             <tr>
-                <td><input type="text" name="cTitle" value="${cbDetail.CTitle}"></td>
+                <td><input type="text" name="title" value="${cbDetail.title}"></td>
             </tr>
             <tr>
                 <td>
-                    <textarea name="cContent">${cbDetail.CContent}</textarea>
+                    <textarea name="content">${cbDetail.content}</textarea>
                 </td>
             </tr>
             <tr>

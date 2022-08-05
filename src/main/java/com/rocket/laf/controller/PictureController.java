@@ -60,22 +60,6 @@ public class PictureController {
             return pictureDtoList;
         }
     }
-//    @ResponseBody
-//    @GetMapping("")
-//    public List<PictureDto> getMainPictureByBoardNo() {
-//        List<PictureDto> pictureDtoList = new ArrayList<>();
-//        List<PictureDto> mainPicList = pictureService.getMainPictureForCom();
-//        for (PictureDto pDto : mainPicList) {
-//            if (pDto.isPicExt() == true) {
-//                String picOriginPath = pDto.getStoredFilePath();
-//                pDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
-//                pictureDtoList.add(pDto);
-//            } else {
-//                pictureDtoList.add(pDto);
-//            }
-//        }
-//        return pictureDtoList;
-//    }
 
     @ResponseBody
     @GetMapping("/delete/{picNo}")
@@ -87,16 +71,8 @@ public class PictureController {
             String originPath = pdto.getStoredFilePath();
             pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
         }
-//        for (PictureDto pdto : pictureList) {
-//            System.out.println(pdto.getStoredFilePath());
-//        }
         return pictureList;
 
     }
 
-//    @GetMapping("/{boardNo}")
-//    public List<PictureDto> getPicList(@PathVariable(name = "boardNo") String boardNo) {
-//        List<PictureDto> pictureList = pictureService.getAllPictureByBoardNo(boardNo);
-//        return pictureList;
-//    }
 }
