@@ -28,8 +28,4 @@
 //         // Websocket에 발행된 메시지를 redis로 발행한다(publish)
 //         redisPublisher.publish(chatRoomRepository.getTopic(message.getRoomId()), message);
 //     }
-<<<<<<< HEAD
 // }
-=======
-// }
->>>>>>> 60ada13c7de88f8a2cc6ce95b9019aa9b3599c64

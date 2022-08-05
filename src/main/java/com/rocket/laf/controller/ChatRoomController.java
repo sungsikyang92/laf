@@ -50,8 +50,4 @@
 //     public ChatRoom roomInfo(@PathVariable String roomId) {
 //         return chatRoomRepository.findRoomById(roomId);
 //     }
-<<<<<<< HEAD
 // }
-=======
-// }
->>>>>>> 60ada13c7de88f8a2cc6ce95b9019aa9b3599c64

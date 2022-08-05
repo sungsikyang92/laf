@@ -99,15 +99,5 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-
-    <jsp:include page="" flush="true"/>
-</div>
-
-</body>
-
-=======
     </body>
->>>>>>> 60ada13c7de88f8a2cc6ce95b9019aa9b3599c64
 </html>

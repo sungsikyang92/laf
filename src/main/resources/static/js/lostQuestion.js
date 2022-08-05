@@ -134,6 +134,7 @@ function lostSubmitBtn(){
     //BLOCK 4. 누적페널티가 3 이상인경우   
     }else{
         console.log("엘스실행");
+        callAjax(boardNo,wrongCnt);
     }
 
 

@@ -57,6 +57,7 @@ public class SecurityConfig{
                 // .anyRequest().authenticated().and()
             .formLogin()
                 .loginPage("/user/login").permitAll()
+                //lost010: mapper 실행문제로 핸들러 객체수정
                 .successHandler(userServiceImpl)
                 .failureUrl("/user/login?error=true")
                 .and()

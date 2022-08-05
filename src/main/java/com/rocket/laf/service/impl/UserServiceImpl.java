@@ -136,7 +136,8 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         HttpSession session = request.getSession();
         List<PenaltyDto> penaltyList = new ArrayList<>();
         penaltyList = penaltyMapper.getCurPenalty(authentication.getName());
-        
+        System.out.println("_______penaltyList_________________________" + penaltyList);
+
         JSONArray penaltyObj = new JSONArray();
         penaltyObj.add(penaltyList);
         

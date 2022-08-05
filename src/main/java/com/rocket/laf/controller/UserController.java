@@ -3,13 +3,17 @@ package com.rocket.laf.controller;
 import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +36,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nimbusds.jose.shaded.json.JSONArray;
+import com.rocket.laf.dto.PenaltyDto;
 import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.service.TermsService;
 import com.rocket.laf.service.UserService;
@@ -176,16 +182,44 @@ public class UserController {
         return "";
     }
 
+    //3회이상 틀렸을시 ajax 호출받는 곳
     @PostMapping("/penalty/ajaxcall")
     @ResponseBody
-    public Map<String, Boolean> penaltySaveSession (@RequestBody Map<String, Object> penaltyJson){
+    public Map<String, Boolean> penaltySaveSession (@RequestBody Map<String, Object> penaltyJson, HttpServletRequest request){
         logger.info("------------------------Controller mapping /penalty/ajaxcall");
         
+        HttpSession session = request.getSession();
+        List<PenaltyDto> penaltyDtoTemp = new ArrayList<>();
+        penaltyDtoTemp = (ArrayList<PenaltyDto>) session.getAttribute("penaltyObj");
+
+        JSONArray penaltyArr = (JSONArray)session.getAttribute("penaltyObj");
+        List<PenaltyDto> penaltyList = (ArrayList<PenaltyDto>) penaltyArr.get(0);
         
-        System.out.println(penaltyJson);
-        System.out.println(penaltyJson.get("param1"));
+        List<String> boardNoList = new ArrayList<>(); 
+        for(int i = 0; i < penaltyList.size(); i++){
+            if (penaltyList.get(i).getPBoardNo().equals(penaltyJson.get("param1"))){
+                String newCnt = penaltyJson.get("param2").toString();
+                int newCnt2 = Integer.parseInt(newCnt);
+                System.out.println("newCnt _____________ " + newCnt + " type ");
+                penaltyList.get(i).setPenaltyCnt(newCnt2);
+            }
+            boardNoList.add(penaltyList.get(i).getPBoardNo());
+        }
         
-        return null;
+        System.out.println("boardNoList" + boardNoList);
+        if (boardNoList.contains(penaltyJson.get("param1"))){
+            System.out.println("이프콘솔실행");
+            JSONArray penaltyObj = new JSONArray();
+            penaltyObj.add(penaltyList);
+            
+            session.setAttribute("penaltyObj", penaltyObj);
+            return null;
+        }else{
+            System.out.println("엘스콘솔실행");
+
+
+            return null;
+        }
     }
 
     // FIX: 001
