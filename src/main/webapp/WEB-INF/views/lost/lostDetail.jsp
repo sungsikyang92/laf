@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
     <script>
-        let answer1 = "${boardDetail.LAnswers1}";
-        let answer2 = "${boardDetail.LAnswers2}";
-        let answer3 = "${boardDetail.LAnswers3}";
-        let answer4 = "${boardDetail.LAnswers4}";
-        let answer = "${boardDetail.LAnswers}";
-        let boardNo = "${boardDetail.LBoardNo}";
+        let answer1 = "${boardDetail.answers1}";
+        let answer2 = "${boardDetail.answers2}";
+        let answer3 = "${boardDetail.answers3}";
+        let answer4 = "${boardDetail.answers4}";
+        let answer = "${boardDetail.answers}";
+        let boardNo = "${boardDetail.boardNo}";
     </script>
 
 
@@ -38,9 +38,9 @@
 <!-- 컨텐츠 삽입부분-->
 <div class="contents_container">
     <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-        ${boardDetail.LTitle}</h1>
+        ${boardDetail.title}</h1>
     <br>
-    <h2>현재 동네 : ${boardDetail.LLocation}</h2>
+    <h2>현재 동네 : ${boardDetail.location}</h2>
     <div class="child-page-listing">
         <br>
         <br>
@@ -69,14 +69,14 @@
     </div>
     <br>
     <h3>작정자 : ${writerInfo.userName}</h3>
-    <h2>작성일 : ${boardDetail.LCreateDate}</h2>
-    <h3>글내용 : ${boardDetail.LContent}</h3>
+    <h2>작성일 : ${boardDetail.createDate}</h2>
+    <h3>글내용 : ${boardDetail.content}</h3>
     <br>
-    <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.LQuestion}</h3>
+    <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.question}</h3>
 
     <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post">
         <br>
-        <input type="hidden" name="boardNo" value="${boardDetail.LBoardNo}">
+        <input type="hidden" name="boardNo" value="${boardDetail.boardNo}">
         <input type="hidden" name="writerName" value="${writerInfo.userName}">
         <sec:authentication property="name" var="loginUserName"/>
         <input type="hidden" name="loginUserName" value="${loginUserName}"/>

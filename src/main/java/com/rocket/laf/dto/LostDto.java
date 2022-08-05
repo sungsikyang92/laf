@@ -10,19 +10,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LostDto {
-    private String lBoardNo;
-    private String lTitle;
-    private String lContent;
-    private Date lCreateDate;
-    private String lIsModified;
-    private String lLocation;
-    private String lCategory;
-    private String lQuestion;
-    private String lAnswers;
-    private String lAnswers1;
-    private String lAnswers2;
-    private String lAnswers3;
-    private String lAnswers4;
+    private String boardNo;
+    private String title;
+    private String content;
+    private Date createDate;
+    private String modified;
+    private String location;
+    private String category;
+    private String question;
+    private String answers;
+    private String answers1;
+    private String answers2;
+    private String answers3;
+    private String answers4;
     private long userNo;
     private long hashNo;
 }

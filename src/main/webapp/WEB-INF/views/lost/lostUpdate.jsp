@@ -84,42 +84,42 @@
                     <button type="button" onclick="resetFile()">올린파일 초기화</button>
                     <br>
                     <c:if test="${lboard.LCategory eq '분실'}">
-                        <h2>분실<input type="radio" name="lCategory" id="" value="분실" checked="checked" /></h2>
+                        <h2>분실<input type="radio" name="category" id="" value="분실" checked="checked" /></h2>
                     </c:if>
                     <c:if test="${lboard.LCategory eq '습득'}">
-                        <h2>습득<input type="radio" name="lCategory" id="" value="습득" checked="checked" /></h2>
+                        <h2>습득<input type="radio" name="category" id="" value="습득" checked="checked" /></h2>
                     </c:if>
                     <br>
                     <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-                        <input type="text" name="lTitle" value="${lboard.LTitle}" />
+                        <input type="text" name="title" value="${lboard.title}" />
                     </h1>
                     <br>
                     <h2>글 내용 : <br>
-                        <textarea cols="150" rows="15" name="lContent" value="${lboard.LContent}"></textarea>
+                        <textarea cols="150" rows="15" name="content" value="${lboard.content}"></textarea>
                     </h2>
                     <br>
                     <h3 style="border-top:solid 2px rgb(169, 169, 169);">
-                        문제 :<input type="text" name="lQuestion" value="${lboard.LQuestion}" />
+                        문제 :<input type="text" name="question" value="${lboard.question}" />
                     </h3>
                     <br>
                     <h3>
-                        정답 :<input type="text" name="lAnswers" value="${lboard.LAnswers}" />
+                        정답 :<input type="text" name="answers" value="${lboard.answers}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers1" value="${lboard.LAnswers1}" />
+                        오답 :<input type="text" name="answers1" value="${lboard.answers1}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers2" value="${lboard.LAnswers2}" />
+                        오답 :<input type="text" name="answers2" value="${lboard.answers2}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers3" value="${lboard.LAnswers3}" />
+                        오답 :<input type="text" name="answers3" value="${lboard.answers3}" />
                     </h3>
                     <br>
                     <h3>
-                        오답 :<input type="text" name="lAnswers4" value="${lboard.LAnswers4}" />
+                        오답 :<input type="text" name="answers4" value="${lboard.answers4}" />
                     </h3>
                     <br>
                     <h2>지도</h2>

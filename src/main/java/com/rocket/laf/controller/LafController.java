@@ -105,7 +105,7 @@ public class LafController {
 
         String numbering = String.format("%08d", bnumbering);
         String lBoardNo = symbol + numbering;
-        lostDto.setLBoardNo(lBoardNo);
+        lostDto.setBoardNo(lBoardNo);
         lostserviceImpl.insertLostBoard(lostDto, multipartHttpServletRequest);
         return "redirect:/";
     }
@@ -139,7 +139,7 @@ public class LafController {
 //        logger.log(Level.INFO, answer);
 //        logger.log(Level.INFO, bNo);
         LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
-        if (lost.getLAnswers().equals(answer)) {
+        if (lost.getAnswers().equals(answer)) {
             ChatRoom createdRoom = chatRoomRepository.createChatRoom(userA + "님과 " + userB + "님의 대화방");
 //            String roomId = createdRoom.getRoomId();
 //            chatRoomRepository.enterChatRoom(createdRoom.getRoomId());

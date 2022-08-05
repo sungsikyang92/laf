@@ -48,7 +48,7 @@ public class LostServiceImpl implements LostService {
     @Override
     public void insertLostBoard(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
-        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
+        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             lostMapper.insertLostBoard(LostDto);
             lostMapper.writelBoardFileList(list);
@@ -61,13 +61,13 @@ public class LostServiceImpl implements LostService {
     @Override
     public void updatelBoardDetail(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
-        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
+        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             lostMapper.updatelBoardDetail(LostDto);
             lostMapper.writelBoardFileList(list);
         } else {
             lostMapper.updatelBoardDetail(LostDto);
-            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
+            pictureMapper.insertPicBoardNo(LostDto.getBoardNo());
         }
     }
 

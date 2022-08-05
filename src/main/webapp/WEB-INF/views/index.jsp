@@ -54,6 +54,56 @@
             })
         });
     </script>
+    <%-- 찾아줄게요 버튼 ajax --%>
+    <script type="text/javascript">
+        function getFoundId(data) {
+            let found = data;
+            $.ajax({
+                type: "get",
+                data: "lCategory=" + found,
+                dataType: "json",
+                url: "/lafList/found/" + found,
+                success: function (mainFoundListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < mainFoundListDtos.length; i++) {
+                        tags += "<div class='lostBoardListContainer' onclick='location.href=/"+mainFoundListDtos[i].boardNo+"'>";
+                        tags += "<div>"+mainFoundListDtos[i].boardNo+"</div>";
+                        tags += "<div>"+mainFoundListDtos[i].title+"</div>";
+                        tags += "<div>"+mainFoundListDtos[i].createDate+"</div>";
+                        tags += "<div>"+mainFoundListDtos[i].location+"</div>";
+                        tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                        tags += "</div>";
+                    }
+                    $("#test").html(tags);
+                }
+            })
+        }
+    </script>
+    <%-- 찾아주세요 버튼 ajax --%>
+    <script type="text/javascript">
+        function getFoundId(data) {
+            let lost = data;
+            $.ajax({
+                type: "get",
+                data: "lCategory=" + lost,
+                dataType: "json",
+                url: "/lafList/lost/" + lost,
+                success: function (mainFoundListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < mainFoundListDtos.length; i++) {
+                        tags += "<div class='lostBoardListContainer' onclick='location.href=/"+mainFoundListDtos[i].boardNo+"'>";
+                        tags += "<div>"+mainFoundListDtos[i].boardNo+"</div>";
+                        tags += "<div>"+mainFoundListDtos[i].title+"</div>";
+                        tags += "<div>"+mainFoundListDtos[i].createDate+"</div>";
+                        tags += "<div>"+mainFoundListDtos[i].location+"</div>";
+                        tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                        tags += "</div>";
+                    }
+                    $("#test").html(tags);
+                }
+            })
+        }
+    </script>
 </head>
 
 <body class="body_container">
@@ -61,15 +111,17 @@
 
     <jsp:include page="UI/topMenu.jsp" flush="true"/>
 
-
     <!-- 컨텐츠 삽입부분-->
     <div class="contents_container">
 
         <div class="child-page-listing">
 
             <h2 style="text-align: center;">실시간베너 만들것 </h2>
-
-            <div class="grid-container">
+            <div>
+                <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>
+                <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getFoundId('분실')"/>
+            </div>
+            <div class="grid-container" id="test">
 
                 <c:choose>
                     <c:when test="${empty lostlist }">
@@ -77,22 +129,12 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${lostlist}" var="lostboard">
-                            <%--                            <article class="location-listing">--%>
-                            <%--                                <a class="location-title" href="${lostboard.LBoardNo}" name="lBoardNo">--%>
-                            <%--                                        ${lostboard.LTitle} </a>--%>
-                            <%--                                <div class="location-image">--%>
-                            <%--                                    <a href="#">--%>
-                            <%--                                        <img width="300" height="169" src="${lostboard.storedFilePath}"--%>
-                            <%--                                             alt="${lostboard.LTitle}">--%>
-                            <%--                                    </a>--%>
-                            <%--                                </div>--%>
-                            <%--                            </article>--%>
-                            <div class="lostBoardListContainer" onclick="location.href='/${lostboard.LBoardNo}'">
-                                <div>${lostboard.LBoardNo}</div>
-                                <div>${lostboard.LTitle}</div>
-                                <div>${lostboard.LCreateDate}</div>
-                                <div>${lostboard.LLocation}</div>
-                                <div id="lostBoardListMainImg${lostboard.LBoardNo}">
+                            <div class="lostBoardListContainer" onclick="location.href='/${lostboard.boardNo}'">
+                                <div>${lostboard.boardNo}</div>
+                                <div>${lostboard.title}</div>
+                                <div>${lostboard.createDate}</div>
+                                <div>${lostboard.location}</div>
+                                <div id="lostBoardListMainImg${lostboard.boardNo}">
                                     <c:choose>
                                         <c:when test="${empty picList}">
                                             <img width='300' height='169' src='/resources/img/woo.png'

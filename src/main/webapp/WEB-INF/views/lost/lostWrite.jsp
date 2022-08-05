@@ -44,41 +44,41 @@
         <br>
         <h2>
             분실
-            <input type="radio" name="lCategory" id="" value="분실"/>
+            <input type="radio" name="category" id="" value="분실"/>
             &nbsp;&nbsp; 습득
-            <input type="radio" name="lCategory" id="" value="습득" checked="checked"/>
+            <input type="radio" name="category" id="" value="습득" checked="checked"/>
         </h2>
         <br>
         <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
-            <input type="text" name="lTitle" placeholder="글 제목을 입력해주세요"/>
+            <input type="text" name="title" placeholder="글 제목을 입력해주세요"/>
         </h1>
         <br>
         <h2>글 내용 : <br>
-            <textarea cols="150" rows="15" name="lContent" placeholder="글 내용을 입력해주세요"></textarea>
+            <textarea cols="150" rows="15" name="content" placeholder="글 내용을 입력해주세요"></textarea>
         </h2>
         <br>
         <h3 style="border-top:solid 2px rgb(169, 169, 169);">
-            문제 :<input type="text" name="lQuestion" placeholder="질문을 입력해 주세요"/>
+            문제 :<input type="text" name="question" placeholder="질문을 입력해 주세요"/>
         </h3>
         <br>
         <h3>
-            정답 :<input type="text" name="lAnswers" placeholder="정답을 입력해 주세요"/>
+            정답 :<input type="text" name="answers" placeholder="정답을 입력해 주세요"/>
         </h3>
         <br>
         <h3>
-            오답 :<input type="text" name="lAnswers1" placeholder="오답을 입력해 주세요"/>
+            오답 :<input type="text" name="answers1" placeholder="오답을 입력해 주세요"/>
         </h3>
         <br>
         <h3>
-            오답 :<input type="text" name="lAnswers2" placeholder="오답을 입력해 주세요"/>
+            오답 :<input type="text" name="answers2" placeholder="오답을 입력해 주세요"/>
         </h3>
         <br>
         <h3>
-            오답 :<input type="text" name="lAnswers3" placeholder="오답을 입력해 주세요"/>
+            오답 :<input type="text" name="answers3" placeholder="오답을 입력해 주세요"/>
         </h3>
         <br>
         <h3>
-            오답 :<input type="text" name="lAnswers4" placeholder="오답을 입력해 주세요"/>
+            오답 :<input type="text" name="answers4" placeholder="오답을 입력해 주세요"/>
         </h3>
         <br>
         <h2>지도</h2>

@@ -15,20 +15,20 @@ public interface LostMapper {
 
   // Picture AS p ON l.lBoardNo = p.boardNo
 //    @Select("SELECT l.lBoardNo,p.storedFilePath,l.lTitle FROM Lost AS l INNER JOIN Picture AS p ON l.lBoardNo = p.boardNo GROUP BY p.boardNo ORDER BY l.lBoardNo DESC")
-    @Select(" SELECT * FROM Lost ORDER BY lBoardNo DESC ")
+    @Select(" SELECT * FROM Lost ORDER BY boardNo DESC ")
     List<LostDto> getLostBoardList();
 
-    @Select(" SELECT * FROM Lost WHERE lCategory = '분실' ORDER BY lBoardNo DESC ")
+    @Select(" SELECT * FROM Lost WHERE category = '분실' ORDER BY boardNo DESC ")
     List<LostDto> getLostBoardLostList();
 
-    @Select(" SELECT * FROM Lost WHERE lCategory = '습득' ORDER BY lBoardNo DESC ")
+    @Select(" SELECT * FROM Lost WHERE category = '습득' ORDER BY boardNo DESC ")
     List<LostDto> getLostBoardFindList();
 
-    @Select("SELECT * FROM Lost WHERE lBoardNo = #{lBoardNo}")
+    @Select("SELECT * FROM Lost WHERE boardNo = #{lBoardNo}")
     LostDto getLostBoardOne(String lBoardNo);
 
-    @Insert("INSERT INTO Lost (lBoardNo ,lTitle, lContent, lCreateDate, lLocation, lCategory, lQuestion, lAnswers, lAnswers1,lAnswers2,lAnswers3,lAnswers4, userNo, hashNo) "
-            + "VALUES (#{lBoardNo}, #{lTitle}, #{lContent},  now(), #{lLocation}, #{lCategory},#{lQuestion} ,#{lAnswers} ,#{lAnswers1} ,#{lAnswers2} ,#{lAnswers3} ,#{lAnswers4} , #{userNo}, 1) ")
+    @Insert("INSERT INTO Lost (boardNo ,title, content, createDate, location, category, question, answers, answers1,answers2,answers3,answers4, userNo, hashNo) "
+            + "VALUES (#{boardNo}, #{title}, #{content},  now(), #{location}, #{category},#{question} ,#{answers} ,#{answers1} ,#{answers2} ,#{answers3} ,#{answers4} , #{userNo}, 1) ")
     int insertLostBoard(LostDto LostDto);
 
     @Insert({"<script>" +
@@ -48,8 +48,8 @@ public interface LostMapper {
     void writelBoardFileList(List<PictureDto> list) throws Exception;
 
     @Update(" UPDATE Lost " +
-            "SET lTitle=#{lTitle}, lContent=#{lContent}, lIsModified = 1, lLocation=#{lLocation}, lCategory=#{lCategory},lQuestion=#{lQuestion}, lAnswers=#{lAnswers}, lAnswers1=#{lAnswers1},lAnswers2=#{lAnswers2},lAnswers3=#{lAnswers3},lAnswers4=#{lAnswers4}" +
-            "WHERE lBoardNo = #{lBoardNo}")
+            "SET title=#{title}, content=#{content}, modified = 1, location=#{location}, category=#{category},question=#{question}, answers=#{answers}, answers1=#{answers1},answers2=#{answers2},answers3=#{answers3},answers4=#{answers4}" +
+            "WHERE boardNo = #{boardNo}")
     void updatelBoardDetail(LostDto lostDto);
 
 }
