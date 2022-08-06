@@ -1,10 +1,9 @@
 package com.rocket.laf.controller;
 
-import java.io.Console;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +22,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +29,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nimbusds.jose.shaded.json.JSONArray;
@@ -153,10 +148,15 @@ public class UserController {
             String uri = request.getHeader("Referer");
             //정상적인 login요청을 받고오면 index(메인페이지) 속성을 추가해준다.
             if (uri == null) {
+                System.out.println("눌실행");
                 request.getSession().setAttribute("index", request.getHeader(""));
+                System.out.println(request.getSession().getAttribute("index"));
             }else if (!uri.contains("/login")){
+                System.out.println("눌실행");
                 request.getSession().setAttribute("index", request.getHeader("Referer"));
+                System.out.println(request.getSession().getAttribute("index"));
             }
+            System.out.println("컨트롤러 문제없음");
             return "/user/login";
         }else {
             System.out.println("세션살아있음");
@@ -185,83 +185,96 @@ public class UserController {
     //3회이상 틀렸을시 ajax 호출받는 곳
     @PostMapping("/penalty/ajaxcall")
     @ResponseBody
-    public Map<String, Boolean> penaltySaveSession (@RequestBody Map<String, Object> penaltyJson, HttpServletRequest request){
+    public Map<String, String> penaltySaveSession (@RequestBody Map<String, Object> penaltyJson, HttpServletRequest request, Authentication authentication){
         logger.info("------------------------Controller mapping /penalty/ajaxcall");
         
         HttpSession session = request.getSession();
-        List<PenaltyDto> penaltyDtoTemp = new ArrayList<>();
-        penaltyDtoTemp = (ArrayList<PenaltyDto>) session.getAttribute("penaltyObj");
 
         JSONArray penaltyArr = (JSONArray)session.getAttribute("penaltyObj");
         List<PenaltyDto> penaltyList = (ArrayList<PenaltyDto>) penaltyArr.get(0);
+        System.out.println("최초 penalty list _______________ " + penaltyList);
+        int newCnt = Integer.parseInt(penaltyJson.get("param2").toString());
         
         List<String> boardNoList = new ArrayList<>(); 
         for(int i = 0; i < penaltyList.size(); i++){
             if (penaltyList.get(i).getPBoardNo().equals(penaltyJson.get("param1"))){
-                String newCnt = penaltyJson.get("param2").toString();
-                int newCnt2 = Integer.parseInt(newCnt);
-                System.out.println("newCnt _____________ " + newCnt + " type ");
-                penaltyList.get(i).setPenaltyCnt(newCnt2);
+                penaltyList.get(i).setPenaltyCnt(newCnt);
             }
             boardNoList.add(penaltyList.get(i).getPBoardNo());
         }
-        
+
+        Map<String, String> jsonResponse = new HashMap<String, String>();
+        JSONArray penaltyObj = new JSONArray();
         System.out.println("boardNoList" + boardNoList);
         if (boardNoList.contains(penaltyJson.get("param1"))){
-            System.out.println("이프콘솔실행");
-            
-            JSONArray penaltyObj = new JSONArray();
             penaltyObj.add(penaltyList);
             System.out.println("________penaltyObj__유저컨트롤러_______________________" + penaltyObj);
             session.setAttribute("penaltyObj", penaltyObj);
+
+            System.out.println("넘어온숫자: " + Integer.parseInt(penaltyJson.get("param2").toString()));
             
-            return null;
-        
+            
+            if (newCnt == 0){
+                jsonResponse.put("res", "correct");
+                return jsonResponse;
+            }else if (newCnt < 3){
+                jsonResponse.put("res", "wrong");
+                return jsonResponse;
+            }else{
+                jsonResponse.put("res", "block");
+                return jsonResponse;
+            }
+            
         }else{
-            System.out.println("엘스콘솔실행");
+            PenaltyDto element = setPenalty(penaltyJson, authentication);
+            penaltyList.add(element);
+            System.out.println("이후 penalty list _______________ " + penaltyList);
+            penaltyObj.add(penaltyList);
+            System.out.println("________penaltyObjElse__유저컨트롤러_______________________" + penaltyObj);
+            session.setAttribute("penaltyObj", penaltyObj);
 
-            if (penaltyList.isEmpty()){
-                PenaltyDto element = setPenalty(penaltyJson, penaltyList);
-                List<PenaltyDto> penaltyListNew = new ArrayList<>();
-                
-                
-                
-            } 
-
-
-
-
-            return null;
+            if (newCnt == 0){
+                jsonResponse.put("res", "correct");
+                return jsonResponse;
+            }else if (newCnt < 3){
+                jsonResponse.put("res", "wrong");
+                return jsonResponse;
+            }else{
+                jsonResponse.put("res", "block");
+                return jsonResponse;
+            }
         }
+
     }
+    
 
     // FIX: 001
     // public String combineBirth(HttpServletRequest request) {
-    //     int birthY_int = Integer.parseInt(request.getParameter("bY"));
-    //     int birthM_int = Integer.parseInt(request.getParameter("bM"));
-    //     int birthD_int = Integer.parseInt(request.getParameter("bD"));
-    //     String birthM_str = "";
-    //     String birthD_str = "";
-    //     if (birthM_int >= 1 && birthM_int < 10) {
-    //         birthM_str = "0" + Integer.toString(birthM_int);
-    //     } else {
-    //         birthM_str = request.getParameter("bM");
-    //     }
-    //     if (birthD_int >= 1 && birthD_int < 10) {
-    //         birthD_str = "0" + Integer.toString(birthD_int);
-    //     } else {
-    //         birthD_str = request.getParameter("bD");
-    //     }
-    //     String userBirth = request.getParameter("bY") + birthM_str + birthD_str;
-    //     return userBirth;
-    // }
-
+        //     int birthY_int = Integer.parseInt(request.getParameter("bY"));
+        //     int birthM_int = Integer.parseInt(request.getParameter("bM"));
+        //     int birthD_int = Integer.parseInt(request.getParameter("bD"));
+        //     String birthM_str = "";
+        //     String birthD_str = "";
+        //     if (birthM_int >= 1 && birthM_int < 10) {
+            //         birthM_str = "0" + Integer.toString(birthM_int);
+            //     } else {
+                //         birthM_str = request.getParameter("bM");
+                //     }
+                //     if (birthD_int >= 1 && birthD_int < 10) {
+                    //         birthD_str = "0" + Integer.toString(birthD_int);
+                    //     } else {
+                        //         birthD_str = request.getParameter("bD");
+                        //     }
+                        //     String userBirth = request.getParameter("bY") + birthM_str + birthD_str;
+                        //     return userBirth;
+                        // }
+                        
     // public String combineLocation(HttpServletRequest request) {
     //     String userLocation = request.getParameter("userLocation") + request.getParameter("userLocation_2nd");
-
+    
     //     return userLocation;
     // }
-
+    
     public void alertToJsp(HttpServletResponse response, String msg, int option, String redirect) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = response.getWriter();
@@ -275,16 +288,20 @@ public class UserController {
         writer.println("</script>");
         writer.flush();
     }
-
-    public PenaltyDto setPenalty(@RequestBody Map<String, Object> penaltyJson, List<PenaltyDto> penaltyList) {
+    
+    public PenaltyDto setPenalty(@RequestBody Map<String, Object> penaltyJson, Authentication authentication) {
         PenaltyDto pDto = new PenaltyDto();
         pDto.setPBoardNo(penaltyJson.get("param1").toString());
-        pDto.setPenaltyCnt(Integer.valueOf((String) penaltyJson.get("param2")));
-        pDto.setPUserId(penaltyList.get(0).getPUserId());
-
+        System.out.println("param1 작동함");
+        pDto.setPenaltyCnt(Integer.valueOf(penaltyJson.get("param2").toString()));
+        System.out.println("param2 작동함");
+        pDto.setPUserId(authentication.getName());
+        
         return pDto;
     }
     
+
+
     //테스트용
     @GetMapping("/secTestGgl")
     public String moveSecTest(@AuthenticationPrincipal User userInfo, Authentication auth) throws Exception {
@@ -296,7 +313,7 @@ public class UserController {
             
             System.out.println("익명의 사용자 _________ " +  userInfo);
             System.out.println("익명의 사용자 인증정보_________ " +  auth);
-
+            
             return "/user/secTest";
         }else {
             System.out.println("로그인한 사용자_________ " +  userInfo);
@@ -305,6 +322,6 @@ public class UserController {
             return "/user/secTestGgl";
         }
     }
-
-
+    
+    
 }

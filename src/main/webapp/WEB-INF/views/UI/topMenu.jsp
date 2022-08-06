@@ -18,14 +18,17 @@
                     <img src="/resources/img/logo/laf6.png" alt="">
                 </a>
             </div>
-
-
+            <input id="menu-toggle" type = "checkbox"/>
+            <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
             <!--가운데 네비게이션 바-->
+            
+            </label>
             <div class = "center_nav">
                 <span>
                     <a href="canfound" class="canfound">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
-                        <span class="item">찾아줄게요</span>
+                        <span type = "text" class="item">찾아줄게요</span>
                     </a>
                 </span>
 
@@ -35,10 +38,11 @@
                         <span class="item">찾아주세요</span>
                     </a>
                 </span>
-
-                <input type = "text">
-                 검색
-                </input>
+                <span>
+                    <input type = "text">
+                    검색
+                    </input>
+                </span>
                 <span>
                     <a href="QnA" class="qna">
                         <span class="icon"><i class="fi fi-rr-comment-alt"></i></span>

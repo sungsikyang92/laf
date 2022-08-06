@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    
+          <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <!-- <script src='/resources/js/main_sidebar.js'></script> -->
     <script src='../resources/js/login.js'></script>
     <script>
@@ -56,12 +56,8 @@
         
     </div>
 
-<<<<<<< HEAD
     <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
     
-=======
-    <!-- <jsp:include page="../UI/sideMenu.jsp" flush="true"/> -->
->>>>>>> 60ada13c7de88f8a2cc6ce95b9019aa9b3599c64
 </div>
 </body>
 

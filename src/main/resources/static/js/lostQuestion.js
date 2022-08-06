@@ -103,47 +103,43 @@ function lostSubmitBtn(){
         console.log("wrongCnt < 3 이프실행");
         //(1)오답을 눌렀을 경우 누적페널티를 추가하여 세션에 저장한다.
         if (document.querySelector('input:checked').value != answer){
-            console.log("wrongCnt2 _________" + wrongCnt);
+            console.log("wrongCnt2 if > if_________" + wrongCnt);
             wrongCnt = parseInt(wrongCnt) + 1;
-            console.log("wrongCnt3 _________" + wrongCnt);
+            console.log("wrongCnt3 if > if _________" + wrongCnt);
             localStorage.setItem("wrongCnt", wrongCnt);
             if (wrongCnt < 3) { //오답이 아직 3미만 일때 다시 되돌린다.
+                console.log("wrongCnt4 if > if > if _________" + wrongCnt);
+                callAjax(boardNo,wrongCnt);
                 return false;
             }else{ //오답이 3이상일때 세션에 저장하고 1:1버튼을 지운다.
-
+                console.log("wrongCnt5 if > if > else _________" + wrongCnt);
                 //보드 번호와 숫자 3을 비동기통신으로 컨트롤러로 보낸다.
                 callAjax(boardNo,wrongCnt);
-                //컨트롤러에서는 동일한 "penaltyObj"이름으로 세션을 어레이 리스트 타입으로 셋어트리뷰트한다.
-
-                //
-
-
-                // const toChatBtn = document.getElementById("toChatBtn");
-                // console.log(toChatBtn);
-                // toChatBtn.remove();
- 
-                
+                const toChatBtn = document.getElementById("toChatBtn");
+                console.log(toChatBtn);
+                toChatBtn.remove();
+                let backBtn = document.createElement('button');
+                backBtn.setAttribute("type", "button");
+                backBtn.setAttribute("onclick", "history.back()");
+                backBtn.innerHTML = "뒤로가기";
+                let formq = document.getElementById('form_Q');
+                formq.appendChild(backBtn);
+                return false;
             }
 
 
         //(2). 정답을 눌렀을 경우 누적페널티를 세션에서 삭제하고 1:1 체팅으로 연결된다.
         }else{
-            
+            callAjax(boardNo,wrongCnt=0);
+            return true;
         }
 
     //BLOCK 4. 누적페널티가 3 이상인경우   
     }else{
         console.log("엘스실행");
         callAjax(boardNo,wrongCnt);
+        return false;
     }
-
-
-    
-    //5. 로그아웃시에 세션에 저장된 값을 DB로 업데이트한다.
-
-
-
-    return false;
 }
 
 function callAjax(param1, param2){
@@ -157,25 +153,12 @@ function callAjax(param1, param2){
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 if (httpRequest.status === 200){
                     var jsonFromController = httpRequest.response;
-                    if (jsonFromController.res == true){
-                        var newTag = setEmptyMsg("사용가능한 아이디 입니다", "blue");
-                        var himSelf = document.querySelector(".id-box").querySelector("#emptyMsg");
-                        if (himSelf != null) {
-                            himSelf.parentNode.removeChild(himSelf);
-                        }
-                        document.getElementsByName("userId")[0].parentNode.appendChild(newTag);
-                        localStorage.setItem("dupliChk", "vaild")
-                        console.log(localStorage.getItem("dupliChk") == "invalid")
-                        
+                    if (jsonFromController.res == "correct"){
+                        window.alert("정답을 입니다. 1:1채팅으로 이동합니다.");
+                    }else if (jsonFromController.res == "wrong"){
+                        window.alert("오답을 선택하셨군요. 다시선택하여 주십시오.");
                     }else{
-                        var newTag = setEmptyMsg("이미존재하는 아이디이거나, 사용 불가능한 아이디 입니다", "red");
-                        var himSelf = document.querySelector(".id-box").querySelector("#emptyMsg");
-                        if (himSelf != null) {
-                            himSelf.parentNode.removeChild(himSelf);
-                        }
-                        document.getElementsByName("userId")[0].parentNode.appendChild(newTag);
-                        localStorage.setItem("dupliChk", "invalid")
-                        console.log(localStorage.getItem("dupliChk") == "invalid")
+                        window.alert("이런 사기꾼 색기!");
                     }            
                 }
             }
