@@ -124,6 +124,41 @@
             })
         }
     </script>
+<%--    검색결과 화면 Ajax--%>
+    <script type="text/javascript">
+        function searchArg(data) {
+            let searchArg = data;
+            $.ajax({
+                type: "get",
+                data: "searchArg=" + searchArg,
+                dataType: "json",
+                url: "/search/" + searchArg,
+                success: function (searchListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < searchListDtos.length; i++) {
+                        if (searchListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + searchListDtos[i].boardNo + "'>";
+                            tags += "<div>" + searchListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + searchListDtos[i].title + "</div>";
+                            tags += "<div>" + searchListDtos[i].createDate + "</div>";
+                            tags += "<div>" + searchListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/"+searchListDtos[i].boardNo+"'>";
+                            tags += "<div>"+searchListDtos[i].boardNo+"</div>";
+                            tags += "<div>"+searchListDtos[i].title+"</div>";
+                            tags += "<div>"+searchListDtos[i].createDate+"</div>";
+                            tags += "<div>"+searchListDtos[i].location+"</div>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        }
+                    }
+                    $("#test").html(tags);
+                }
+            })
+        }
+    </script>
 </head>
 
 <body class="body_container">
