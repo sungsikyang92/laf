@@ -24,8 +24,8 @@ public interface LostMapper {
     @Select(" SELECT * FROM Lost WHERE category = '습득' ORDER BY boardNo DESC ")
     List<LostDto> getLostBoardFindList();
 
-    @Select("SELECT * FROM Lost WHERE boardNo = #{lBoardNo}")
-    LostDto getLostBoardOne(String lBoardNo);
+    @Select("SELECT * FROM Lost WHERE boardNo = #{boardNo}")
+    LostDto getLostBoardOne(String boardNo);
 
     @Insert("INSERT INTO Lost (boardNo ,title, content, createDate, location, category, question, answers, answers1,answers2,answers3,answers4, userNo, hashNo) "
             + "VALUES (#{boardNo}, #{title}, #{content},  now(), #{location}, #{category},#{question} ,#{answers} ,#{answers1} ,#{answers2} ,#{answers3} ,#{answers4} , #{userNo}, 1) ")

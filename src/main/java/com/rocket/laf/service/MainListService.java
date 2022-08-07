@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface MainListService {
     List<MainListDto> getTestComBoardList();
-    List<MainListDto> getBoardListByCategory(String category);
+    List<MainListDto> getBoardFoundListByCategory(String category);
+    List<MainListDto> getBoardLostListByCategory(String category);
 }

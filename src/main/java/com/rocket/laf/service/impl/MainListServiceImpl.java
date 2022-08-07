@@ -20,7 +20,12 @@ public class MainListServiceImpl implements MainListService {
     }
 
     @Override
-    public List<MainListDto> getBoardListByCategory(String category) {
-        return mainListMapper.getBoardListByCategory(category);
+    public List<MainListDto> getBoardFoundListByCategory(String category) {
+        return mainListMapper.getBoardFoundListByCategory(category);
+    }
+
+    @Override
+    public List<MainListDto> getBoardLostListByCategory(String category) {
+        return mainListMapper.getBoardLostListByCategory(category);
     }
 }

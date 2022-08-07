@@ -6,14 +6,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.rocket.laf.dto.ChatRoom;
 import com.rocket.laf.dto.UserDto;
-import com.rocket.laf.repository.ChatRoomRepository;
 import com.rocket.laf.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
@@ -24,14 +21,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.rocket.laf.common.UserExtension;
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.service.impl.BoardNoServiceImpl;
 import com.rocket.laf.service.impl.LostServiceImpl;
 import com.rocket.laf.service.impl.PictureServiceImpl;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
@@ -43,7 +38,6 @@ public class LafController {
     private final PictureServiceImpl pictureServiceImpl;
     private final BoardNoServiceImpl boardNoServiceImpl;
     private final UserServiceImpl userService;
-    private final ChatRoomRepository chatRoomRepository;
 
     private final static Logger logger = Logger.getGlobal();
 
@@ -110,19 +104,24 @@ public class LafController {
         return "redirect:/";
     }
 
-    @GetMapping("/{lBoardNo}")
-    public String LostDetail(@PathVariable(name = "lBoardNo") String lBoardNo, Model model) {
-        String boardNo = lBoardNo;
-        LostDto lolist = lostserviceImpl.getLostBoardOne(boardNo);
-        Long writerNo = lolist.getUserNo();
+    @GetMapping("/{boardNo}")
+    public String LostDetail(@PathVariable(name = "boardNo") String boardNo, Model model) {
+        LostDto lostDto = lostserviceImpl.getLostBoardOne(boardNo);
+        long writerNo = lostDto.getUserNo();
         UserDto writerInfo = userService.getUserById(writerNo);
+        List<PictureDto> pictureDtoList = new ArrayList<>();
         List<PictureDto> piclist = pictureServiceImpl.getAllPictureByBoardNo(boardNo);
-        for (int i = 0; i < piclist.size(); i++) {
-            String originPath = piclist.get(i).getStoredFilePath();
-            piclist.get(i).setStoredFilePath("/resources/" + originPath.substring(26));
+        for (PictureDto pDto : piclist) {
+            if (pDto.isPicExt() == true) {
+                String originPath = pDto.getStoredFilePath();
+                pDto.setStoredFilePath("/resources/img/lostBoard/" + originPath.substring(40));
+                pictureDtoList.add(pDto);
+            } else {
+                pictureDtoList.add(pDto);
+            }
         }
         model.addAttribute("picturelist", piclist);
-        model.addAttribute("boardDetail", lolist);
+        model.addAttribute("boardDetail", lostDto);
         model.addAttribute("writerInfo", writerInfo);
         return "lost/lostDetail";
     }
@@ -140,12 +139,8 @@ public class LafController {
 //        logger.log(Level.INFO, bNo);
         LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
         if (lost.getAnswers().equals(answer)) {
-            ChatRoom createdRoom = chatRoomRepository.createChatRoom(userA + "님과 " + userB + "님의 대화방");
 //            String roomId = createdRoom.getRoomId();
 //            chatRoomRepository.enterChatRoom(createdRoom.getRoomId());
-            model.addAttribute("userA", userA);
-            model.addAttribute("userB", userB);
-            model.addAttribute("roomInfo", createdRoom);
             return "chat/chatDetail";
 //            return "redirect:/chat/room/enter/"+roomId;
         } else {
