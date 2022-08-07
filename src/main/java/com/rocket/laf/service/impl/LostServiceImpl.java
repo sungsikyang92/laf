@@ -54,7 +54,7 @@ public class LostServiceImpl implements LostService {
             lostMapper.writelBoardFileList(list);
         } else {
             lostMapper.insertLostBoard(LostDto);
-//            pictureMapper.insertPicBoardNo(LostDto.getBoardNo());
+            pictureMapper.insertPicBoardNo(LostDto.getBoardNo());
         }
     }
 

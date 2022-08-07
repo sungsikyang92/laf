@@ -25,28 +25,26 @@ public class MainListController {
     @GetMapping("/found/{lCategory}")
     public List<MainListDto> getFoundBoardList(@PathVariable String lCategory) {
         List<MainListDto> mainFoundListDtos = mainListService.getBoardFoundListByCategory(lCategory);
-        System.out.println(mainFoundListDtos);
         for (MainListDto mainListDto : mainFoundListDtos) {
             if (mainListDto.isPicExt() == true) {
                 String picOriginPath = mainListDto.getStoredFilePath();
                 mainListDto.setStoredFilePath("/resources/img/lostBoard/" + picOriginPath.substring(40));
+            } else {
+                continue;
             }
         }
-        System.out.println(mainFoundListDtos);
         return mainFoundListDtos;
     }
 
     @GetMapping("/lost/{lCategory}")
     public List<MainListDto> getLostBoardList(@PathVariable String lCategory) {
         List<MainListDto> mainLostListDtos = mainListService.getBoardLostListByCategory(lCategory);
-        System.out.println(mainLostListDtos);
         for (MainListDto mainListDto : mainLostListDtos) {
             if (mainListDto.isPicExt() == true) {
                 String picOriginPath = mainListDto.getStoredFilePath();
                 mainListDto.setStoredFilePath("/resources/img/lostBoard/" + picOriginPath.substring(40));
             }
         }
-        System.out.println(mainLostListDtos);
         return mainLostListDtos;
     }
 //    @GetMapping("/lost")
