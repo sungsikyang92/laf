@@ -95,8 +95,6 @@
 
 <script src='resources/js/lostQuestion.js'></script>
 
-<input type="button" onclick="logout();" value="test"/>
-
 </body>
 
 </html>
