@@ -171,5 +171,6 @@ function callAjax(param1, param2){
 }
 
 window.addEventListener("beforeunload", function (e) {
-    this.location.href("/user/logout")
+    console.log("beforeunload 호출");
+    location.href = "/user/logout";
 });

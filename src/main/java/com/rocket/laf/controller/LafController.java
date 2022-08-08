@@ -126,27 +126,27 @@ public class LafController {
         return "lost/lostDetail";
     }
 
-//     @PostMapping("/post_Quiz")
-//     public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, Principal principal) {
+    @PostMapping("/post_Quiz")
+    public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, Principal principal) {
 
-//         String answer = req.getParameter("ans");
-//         String bNo = req.getParameter("boardNo");
-//         String userA = req.getParameter("writerName");
-//         String userB = loginUserName;
+        String answer = req.getParameter("ans");
+        String bNo = req.getParameter("boardNo");
+        String userA = req.getParameter("writerName");
+        String userB = loginUserName;
 
 
 //        logger.log(Level.INFO, answer);
 //        logger.log(Level.INFO, bNo);
-       // LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
-      //  if (lost.getAnswers().equals(answer)) {
+        LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
+        if (lost.getAnswers().equals(answer)) {
 //            String roomId = createdRoom.getRoomId();
 //            chatRoomRepository.enterChatRoom(createdRoom.getRoomId());
-        //    return "chat/chatDetail";
+            return "chat/chatDetail";
 //            return "redirect:/chat/room/enter/"+roomId;
-    //     } else {
-    //         return "redirect:/lostDetail";
-    //     }
-    // }
+        } else {
+            return "redirect:/lostDetail";
+        }
+    }
 
 
     @GetMapping("/update/{lBoardNo}")
