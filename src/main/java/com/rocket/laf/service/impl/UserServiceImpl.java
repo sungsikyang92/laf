@@ -27,7 +27,6 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
@@ -44,7 +43,7 @@ import com.rocket.laf.service.UserService;
 
 @Service
 public class UserServiceImpl extends DefaultOAuth2UserService
-        implements UserService, UserDetailsService, AuthenticationSuccessHandler, LogoutHandler {
+        implements UserService, UserDetailsService, AuthenticationSuccessHandler {
 
     @Autowired
     private UserMapper userMapper;
@@ -205,22 +204,18 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     }
     // Spring Security OAuth2 ggl login end
 
-    //로그아웃 헨들러
     @Override
-    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        System.out.println("로그아웃 핸들러 실행");
+    public void deletePenalty(String userId) {
+       penaltyMapper.deletePenalty(userId);
+    }
 
-        JSONArray penaltyObj = (JSONArray) request.getSession().getAttribute("penaltyObj");
-        List<PenaltyDto> penaltyList = (ArrayList<PenaltyDto>) penaltyObj.get(0);
-
-        penaltyMapper.deletePenalty(authentication.getName());
+    @Override
+    public void updatePenalty(List<PenaltyDto> list) {
         try {
-            penaltyMapper.updatePenalty(penaltyList);
-            System.out.println(penaltyList);
+            penaltyMapper.updatePenalty(list);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 
 }

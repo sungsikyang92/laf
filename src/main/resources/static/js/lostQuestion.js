@@ -89,7 +89,6 @@ window.onload = function () {
         formq.appendChild(backBtn);
     }
 
-
 }
 
 function lostSubmitBtn(){
@@ -169,8 +168,3 @@ function callAjax(param1, param2){
         httpRequest.send(JSON.stringify(reqJson)); //요청시 제이슨 데이터를 넣어서 전송
 
 }
-
-window.addEventListener("beforeunload", function (e) {
-    console.log("beforeunload 호출");
-    location.href = "/user/logout";
-});
