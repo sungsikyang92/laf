@@ -5,8 +5,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>    
 </head>
+
 <body class="body_container">
 
     <div class="section">
@@ -26,14 +27,16 @@
             </label>
             <div class = "center_nav">
                 <span>
-                    <a href="canfound" class="canfound">
+                    <%--<a href="canfound" class="canfound">--%>
+                    <a href='#' class='canfound' onclick="getFoundId('습득')">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
                         <span type = "text" class="item">찾아줄게요</span>
                     </a>
                 </span>
 
                 <span>
-                    <a href="helpfound" class="helpfound">
+                    <%--<a href="helpfound" class="helpfound">--%>
+                    <a href="#" class="helpfound" onclick="getLostId('분실')">
                         <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
                         <span class="item">찾아주세요</span>
                     </a>

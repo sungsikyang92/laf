@@ -21,7 +21,6 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script src='/resources/js/main_sidebar.js'></script>
 
-
     <%-- ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%-- ajax를 위한 script END--%>
@@ -92,7 +91,7 @@
     </script>
     <%-- 찾아주세요 버튼 ajax --%>
     <script type="text/javascript">
-        function getFoundId(data) {
+        function getLostId(data) {
             let lost = data;
             $.ajax({
                 type: "get",
@@ -175,7 +174,7 @@
             <h2 style="text-align: center;">실시간베너 만들것 </h2>
             <div>
                 <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>
-                <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getFoundId('분실')"/>
+                <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>
             </div>
             <div class="grid-container" id="test">
 
@@ -210,7 +209,6 @@
         </div>
     </div>
 
-<%--    <jsp:include page="UI/sideMenu.jsp" flush="true"/>--%>
 </div>
 
 </body>
