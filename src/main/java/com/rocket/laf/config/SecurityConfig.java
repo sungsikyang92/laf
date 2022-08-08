@@ -6,19 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.rocket.laf.service.UserService;
 import com.rocket.laf.service.impl.UserServiceImpl;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
+// import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 
 @Configuration
@@ -40,31 +35,31 @@ public class SecurityConfig{
             .headers()
                 .frameOptions().disable().and()
             .authorizeRequests()
-//                .antMatchers("/","/cBoard","/picture","/chat").permitAll()
+            //개발할땐 이걸 키고
                 .antMatchers("/**").permitAll()
-                // .antMatchers("/user/**").permitAll()
-//                  .antMatchers( "/cBoard/**").hasRole("USER")
-                // .antMatchers("/cBoard").permitAll()
-                // .antMatchers("/cBoard/wrtie").hasRole("USER")
-
-                // .antMatchers("/user/signUp").permitAll()
-                // .antMatchers("/user/signUpForm").permitAll()
-                // .antMatchers("/user/chkDuplicatedId").permitAll()
-                // .antMatchers("/cBoard").hasRole("USER")
-                // .antMatchers("/user/signUp").permitAll()
-                // .antMatchers("/user/signUpForm").permitAll()
-                // .antMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated().and()
+            // //22.08.02 업데이트) 시연할땐 이걸 키고
+                // .antMatchers("/chat").hasRole("USER")
+                // .antMatchers("/mypage").hasRole("USER")
+                // .antMatchers("/review").hasRole("USER")
+                // .antMatchers("/user/**").permitAll()
+                // .antMatchers("/cBoard").permitAll()
+                // .antMatchers("/cBoard/**").hasRole("USER")
+                // .antMatchers("/").permitAll()
+                // .antMatchers("/picture").permitAll()
+                // .antMatchers("/picture/**").hasRole("USER")
+                // .antMatchers("/**").hasRole("USER")
+                // .anyRequest().authenticated().and()
             .formLogin()
                 .loginPage("/user/login").permitAll()
-                // .defaultSuccessUrl("/")
-                .successHandler(new UserServiceImpl())
+                //lost010: mapper 실행문제로 핸들러 객체수정
+                .successHandler(userServiceImpl)
                 .failureUrl("/user/login?error=true")
-                // .failureHandler(new failureclassname())
                 .and()
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/")
+                .addLogoutHandler(userServiceImpl)
                 .invalidateHttpSession(true)
                 .and()
             .oauth2Login()
@@ -88,5 +83,6 @@ public class SecurityConfig{
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
 
 }

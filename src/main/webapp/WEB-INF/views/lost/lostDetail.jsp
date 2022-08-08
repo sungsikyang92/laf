@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+          <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+
     <script src='resources/js/main_sidebar.js'></script>
     <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
@@ -26,6 +29,12 @@
         let answer4 = "${boardDetail.answers4}";
         let answer = "${boardDetail.answers}";
         let boardNo = "${boardDetail.boardNo}";
+
+        var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
+                var penaltyArrList = JSON.parse(penaltyObj);
+                
+                console.log(typeof(penaltyArrList));
+
     </script>
 
 
@@ -71,7 +80,7 @@
     <br>
     <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.question}</h3>
 
-    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post">
+    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post" onsubmit="return lostSubmitBtn();">
         <br>
         <input type="hidden" name="boardNo" value="${boardDetail.boardNo}">
         <input type="hidden" name="writerName" value="${writerInfo.userName}">

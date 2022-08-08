@@ -1,0 +1,29 @@
+.mypage_container{
+    margin-left: 550px;
+   }
+  .button {
+     border : none;
+     cursor : pointer;
+     background-color :whitesmoke;
+  }
+   input {
+       
+     cursor : pointer;
+   }
+   .container{
+       display:flex;
+   }
+   img{
+       width : 300px;
+       height : 300px;
+   }
+   hr{
+       margin-top : 70px;
+       margin-bottom: 30px;
+       width : 200px;
+       size :30px;
+   }
+
+   .mypage_container>.container>.item2>ul>li{
+       margin-left: 30px;
+   }

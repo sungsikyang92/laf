@@ -4,7 +4,63 @@ body {
 
 .login-box {
     width: 70%;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 40px;
     margin-left: 300px;
+}
+
+.login-box h2{
+    font-size: 50px;
+}
+
+.user-box{
+    font-size : 30px;
+    font-weight:bold;
+}
+
+.user-box input{
+    width : 10%;
+}
+
+#login{
+    font-size:large;
+    width:10%;
+}
+
+#logon{
+    font-size:large;
+    width:10%;
+}
+#google{
+    font-size:large;
+    width:10%;
+}
+.userReg-box{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-left: 300px;
+}
+
+#allchked{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-left: 700px;
+}
+
+#check1{
+    margin-left:50px;
+}
+
+#allchked #vol{
+    margin-left:50px;
+    width:129px;
+    margin-top:10px;
+}
+
+.userReg-box>form>#inp{
+    width:10%;
+    font-size:large;
+
 }

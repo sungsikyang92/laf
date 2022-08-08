@@ -18,4 +18,5 @@ public interface CommunityService {
     int deleteComBoardDetail(String boardNo);
 
     String getLastCBoardNo();
+
 }

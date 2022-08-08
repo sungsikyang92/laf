@@ -148,6 +148,7 @@ public class LafController {
         }
     }
 
+
     @GetMapping("/update/{lBoardNo}")
     public String updatelBoardNo(@PathVariable(name = "lBoardNo") String lBoardNo, Model model) {
 

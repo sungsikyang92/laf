@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    <script src='/resources/js/main_sidebar.js'></script>
+          <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- <script src='/resources/js/main_sidebar.js'></script> -->
     <script src='../resources/js/login.js'></script>
     <script>
         // 요놈!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -32,24 +33,31 @@
     <jsp:include page="../UI/topMenu.jsp" flush="true"/>
     <div class="login-box">
         <h2>Login</h2>
+        <hr><br><br><br>
         <form method="post" onsubmit="return chkBlank()">
             <div class="user-box">
                 <label>Username</label>
                 <br>
                 <input type="text" name="username" id="sublogin">
             </div>
+            <hr><br><br><br>
             <div class="user-box">
                 <label>Password</label>
                 <br>
                 <input type="password" name="password">
             </div>
-            <input type="submit" value="로그인">
-            <input type="button" value="회원가입" onclick="location.href='/user/signUp'">
+            <hr><br><br>
+            <div class="login_logon">
+                <input id="login" type="submit" value="로그인">
+                <input id="google" type="button" value="구글 로그인" onclick="location.href='/oauth2/authorization/google'">
+                <input id="logon" type="button" value="회원가입" onclick="location.href='/user/signUp'">
+            </div>
         </form>
-        <input type="button" value="구글 로그인" onclick="location.href='/oauth2/authorization/google'">
+        
     </div>
 
     <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
+    
 </div>
 </body>
 
