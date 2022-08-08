@@ -33,7 +33,6 @@
         var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
                 var penaltyArrList = JSON.parse(penaltyObj);
                 
-                console.log(typeof(penaltyArrList));
 
     </script>
 

@@ -208,7 +208,8 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     //로그아웃 헨들러
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        
+        System.out.println("로그아웃 핸들러 실행");
+
         JSONArray penaltyObj = (JSONArray) request.getSession().getAttribute("penaltyObj");
         List<PenaltyDto> penaltyList = (ArrayList<PenaltyDto>) penaltyObj.get(0);
 
@@ -217,7 +218,6 @@ public class UserServiceImpl extends DefaultOAuth2UserService
             penaltyMapper.updatePenalty(penaltyList);
             System.out.println(penaltyList);
         } catch (Exception e) {
-            System.out.println("_________ah ssibxx________");
             e.printStackTrace();
         }
         
