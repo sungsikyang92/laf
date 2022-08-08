@@ -55,23 +55,20 @@
         <h2>사진 </h2>
         <div class="grid-container"
              style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;padding-top:20px">
-            <c:choose>
-                <c:when test="${empty picturelist }">
-                    <td colspan="4">----사진이 없다----</td>
-                </c:when>
-                <c:otherwise>
-                    <c:forEach items="${picturelist}" var="plist">
-
+            <c:forEach items="${picturelist}" var="plist">
+                <c:choose>
+                    <c:when test="${empty plist.storedFilePath}">
+                        <div><img width="300" height="169" src="/resources/img/woo.png"></div>
+                    </c:when>
+                    <c:otherwise>
                         <article class="location-listing">
-                            <div class="location-title" href="">사진</div>
                             <div class="location-image">
                                 <img width="300" height="169" src="${plist.storedFilePath}" alt="">
                             </div>
                         </article>
-                    </c:forEach>
-
-                </c:otherwise>
-            </c:choose>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
         </div>
         <!-- end grid container -->
     </div>

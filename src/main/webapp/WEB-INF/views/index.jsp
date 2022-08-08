@@ -17,10 +17,9 @@
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-          <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-          <script src='/resources/js/main_sidebar.js'></script>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src='/resources/js/main_sidebar.js'></script>
 
     <%-- ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -67,13 +66,23 @@
                 success: function (mainFoundListDtos) {
                     let tags = '';
                     for (let i = 0; i < mainFoundListDtos.length; i++) {
-                        tags += "<div class='lostBoardListContainer' onclick='location.href=/"+mainFoundListDtos[i].boardNo+"'>";
-                        tags += "<div>"+mainFoundListDtos[i].boardNo+"</div>";
-                        tags += "<div>"+mainFoundListDtos[i].title+"</div>";
-                        tags += "<div>"+mainFoundListDtos[i].createDate+"</div>";
-                        tags += "<div>"+mainFoundListDtos[i].location+"</div>";
-                        tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
-                        tags += "</div>";
+                        if (mainFoundListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + mainFoundListDtos[i].boardNo + "'>";
+                            tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].title + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + mainFoundListDtos[i].boardNo + "'>";
+                            tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].title + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        }
                     }
                     $("#test").html(tags);
                 }
@@ -89,16 +98,61 @@
                 data: "lCategory=" + lost,
                 dataType: "json",
                 url: "/lafList/lost/" + lost,
-                success: function (mainFoundListDtos) {
+                success: function (mainLostListDtos) {
                     let tags = '';
-                    for (let i = 0; i < mainFoundListDtos.length; i++) {
-                        tags += "<div class='lostBoardListContainer' onclick='location.href=/"+mainFoundListDtos[i].boardNo+"'>";
-                        tags += "<div>"+mainFoundListDtos[i].boardNo+"</div>";
-                        tags += "<div>"+mainFoundListDtos[i].title+"</div>";
-                        tags += "<div>"+mainFoundListDtos[i].createDate+"</div>";
-                        tags += "<div>"+mainFoundListDtos[i].location+"</div>";
-                        tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
-                        tags += "</div>";
+                    for (let i = 0; i < mainLostListDtos.length; i++) {
+                        if (mainLostListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + mainLostListDtos[i].boardNo + "'>";
+                            tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].title + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/"+mainLostListDtos[i].boardNo+"'>";
+                            tags += "<div>"+mainLostListDtos[i].boardNo+"</div>";
+                            tags += "<div>"+mainLostListDtos[i].title+"</div>";
+                            tags += "<div>"+mainLostListDtos[i].createDate+"</div>";
+                            tags += "<div>"+mainLostListDtos[i].location+"</div>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        }
+                    }
+                    $("#test").html(tags);
+                }
+            })
+        }
+    </script>
+<%--    검색결과 화면 Ajax--%>
+    <script type="text/javascript">
+        function searchArg(data) {
+            let searchArg = data;
+            $.ajax({
+                type: "get",
+                data: "searchArg=" + searchArg,
+                dataType: "json",
+                url: "/search/" + searchArg,
+                success: function (searchListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < searchListDtos.length; i++) {
+                        if (searchListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + searchListDtos[i].boardNo + "'>";
+                            tags += "<div>" + searchListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + searchListDtos[i].title + "</div>";
+                            tags += "<div>" + searchListDtos[i].createDate + "</div>";
+                            tags += "<div>" + searchListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/"+searchListDtos[i].boardNo+"'>";
+                            tags += "<div>"+searchListDtos[i].boardNo+"</div>";
+                            tags += "<div>"+searchListDtos[i].title+"</div>";
+                            tags += "<div>"+searchListDtos[i].createDate+"</div>";
+                            tags += "<div>"+searchListDtos[i].location+"</div>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</div>";
+                        }
                     }
                     $("#test").html(tags);
                 }
@@ -155,7 +209,7 @@
         </div>
     </div>
 
-    <jsp:include page="UI/sideMenu.jsp" flush="true"/>
+<%--    <jsp:include page="UI/sideMenu.jsp" flush="true"/>--%>
 </div>
 
 </body>
