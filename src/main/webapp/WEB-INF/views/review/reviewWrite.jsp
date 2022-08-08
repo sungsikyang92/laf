@@ -11,12 +11,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="../resources/css/reviewWrite.css" type="text/css">
 
-    <title>Document</title>
+    <title>reviewWrite</title>
 </head>
-<body>
+
+<body class="body_container">
+    <div class="wrapper">
+        <jsp:include page="../UI/topMenu.jsp" flush="true" />
     <!-- security tags starts-->
     <sec:authorize access="isAnonymous()">
         <!-- <button class="btn" sec:authorize="isAnonymous()"

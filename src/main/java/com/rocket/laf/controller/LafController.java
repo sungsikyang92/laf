@@ -1,10 +1,15 @@
 package com.rocket.laf.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rocket.laf.dto.ChatRoom;
+import com.rocket.laf.dto.UserDto;
+// import com.rocket.laf.repository.ChatRoomRepository;
+import com.rocket.laf.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 import org.apache.catalina.User;
@@ -16,11 +21,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rocket.laf.common.UserExtension;
@@ -41,6 +42,8 @@ public class LafController {
     private final LostServiceImpl lostserviceImpl;
     private final PictureServiceImpl pictureServiceImpl;
     private final BoardNoServiceImpl boardNoServiceImpl;
+    private final UserServiceImpl userService;
+    // private final ChatRoomRepository chatRoomRepository;
 
     private final static Logger logger = Logger.getGlobal();
 
@@ -74,6 +77,9 @@ public class LafController {
         return "index";
     }
 
+//    @GetMapping("/lost")
+//    public List<>
+
     @GetMapping("/write")
     public String lostWrite() {
         return "lost/lostWrite";
@@ -82,13 +88,24 @@ public class LafController {
     @PostMapping("/write")
     public String lostWriteform(LostDto lostDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
+//        String symbol = "l";
+//        long bnumbering = boardNoServiceImpl.getMaxlBoardNo() + 1;
+//        boardNoServiceImpl.addlBoardNo(bnumbering);
+//
+//        String numbering = String.format("%08d", bnumbering);
+//        logger.log(Level.INFO, numbering);
+//        String lBoardNo = symbol + numbering;
+//        logger.log(Level.INFO, lBoardNo);
+//
+//        lostserviceImpl.insertLostBoard(lostDto, multipartHttpServletRequest);
+//        return "redirect:/";
         String symbol = "l";
         long bnumbering = boardNoServiceImpl.getMaxlBoardNo() + 1;
         boardNoServiceImpl.addlBoardNo(bnumbering);
 
         String numbering = String.format("%08d", bnumbering);
         String lBoardNo = symbol + numbering;
-        lostDto.setLBoardNo(lBoardNo);
+        lostDto.setBoardNo(lBoardNo);
         lostserviceImpl.insertLostBoard(lostDto, multipartHttpServletRequest);
         return "redirect:/";
     }
@@ -97,6 +114,8 @@ public class LafController {
     public String LostDetail(@PathVariable(name = "lBoardNo") String lBoardNo, Model model) {
         String boardNo = lBoardNo;
         LostDto lolist = lostserviceImpl.getLostBoardOne(boardNo);
+        Long writerNo = lolist.getUserNo();
+        UserDto writerInfo = userService.getUserById(writerNo);
         List<PictureDto> piclist = pictureServiceImpl.getAllPictureByBoardNo(boardNo);
         for (int i = 0; i < piclist.size(); i++) {
             String originPath = piclist.get(i).getStoredFilePath();
@@ -104,25 +123,35 @@ public class LafController {
         }
         model.addAttribute("picturelist", piclist);
         model.addAttribute("boardDetail", lolist);
+        model.addAttribute("writerInfo", writerInfo);
         return "lost/lostDetail";
     }
 
-    @PostMapping("/post_Quiz")
-    public String LostCreate(HttpServletRequest req) {
+    // @PostMapping("/post_Quiz")
+    // public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, Principal principal) {
 
-        String answer = req.getParameter("ans");
-        String bNo = req.getParameter("boardNo");
+    //     String answer = req.getParameter("ans");
+    //     String bNo = req.getParameter("boardNo");
+    //     String userA = req.getParameter("writerName");
+    //     String userB = loginUserName;
 
-        logger.log(Level.INFO, answer);
-        logger.log(Level.INFO, bNo);
 
-        LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
-        if (lost.getLAnswers().equals(answer)) {
-            return "redirect:/";
-        } else {
-            return "redirect:/lostDetail";
-        }
-    }
+//        logger.log(Level.INFO, answer);
+//        logger.log(Level.INFO, bNo);
+        // LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
+        // if (lost.getAnswers().equals(answer)) {
+        //     ChatRoom createdRoom = chatRoomRepository.createChatRoom(userA + "님과 " + userB + "님의 대화방");
+//            String roomId = createdRoom.getRoomId();
+//            chatRoomRepository.enterChatRoom(createdRoom.getRoomId());
+            // model.addAttribute("userA", userA);
+            // model.addAttribute("userB", userB);
+            // model.addAttribute("roomInfo", createdRoom);
+            // return "chat/chatDetail";
+//            return "redirect:/chat/room/enter/"+roomId;
+    //     } else {
+    //         return "redirect:/lostDetail";
+    //     }
+    // }
 
     @GetMapping("/update/{lBoardNo}")
     public String updatelBoardNo(@PathVariable(name = "lBoardNo") String lBoardNo, Model model) {

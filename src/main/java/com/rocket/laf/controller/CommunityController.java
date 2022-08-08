@@ -58,18 +58,18 @@ public class CommunityController {
         boardNoService.addBoardNo(bnumbering);
         String numbering = String.format("%08d", bnumbering);
         String comBoardNo = symbol + numbering;
-        communityDto.setCBoardNo(comBoardNo);
+        communityDto.setBoardNo(comBoardNo);
         communityService.writeComBoard(communityDto, multipartHttpServletRequest);
         return "redirect:/cBoard";
     }
 
-    @GetMapping("/{cBoardNo}")
-    public String getComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, Model model) throws Exception {
-        CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
+    @GetMapping("/{boardNo}")
+    public String getComBoardDetail(@PathVariable(name = "boardNo") String boardNo, Model model) throws Exception {
+        CommunityDto comDto = communityService.getComBoardDetail(boardNo);
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
         List<PictureDto> pictureDtoList = new ArrayList<>();
-        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
+        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(boardNo);
         for (PictureDto pDto : picList) {
             if (pDto.isPicExt() == true) {
                 String picOriginPath = pDto.getStoredFilePath();
@@ -88,12 +88,12 @@ public class CommunityController {
         return "/community/comBoardDetail";
     }
 
-    @GetMapping("/update/{cBoardNo}")
-    public String updateComBoardForm(@PathVariable(name = "cBoardNo") String cBoardNo, Model model) throws Exception {
-        CommunityDto comDto = communityService.getComBoardDetail(cBoardNo);
+    @GetMapping("/update/{boardNo}")
+    public String updateComBoardForm(@PathVariable(name = "boardNo") String boardNo, Model model) throws Exception {
+        CommunityDto comDto = communityService.getComBoardDetail(boardNo);
         long hashNo = comDto.getHashNo();
         long userNo = comDto.getUserNo();
-        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
+        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(boardNo);
         for (PictureDto pdto : picList) {
             String originPath = pdto.getStoredFilePath();
             if (originPath != null)
@@ -115,10 +115,10 @@ public class CommunityController {
         return "/community/comBoardUpdate";
     }
 
-    @PostMapping("/update/{cBoardNo}")
-    public String updateComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo, CommunityDto communityDto,
+    @PostMapping("/update/{boardNo}")
+    public String updateComBoardDetail(@PathVariable(name = "boardNo") String boardNo, CommunityDto communityDto,
             MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
-//        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(cBoardNo);
+//        List<PictureDto> picList = pictureService.getAllPictureByBoardNo(boardNo);
 //        for (PictureDto pdto : picList) {
 //            if (pdto.getStoredFilePath() == null) {
 //                pictureService.deleteNullPic(pdto.getPicNo());
@@ -127,13 +127,13 @@ public class CommunityController {
 //            }
 //        }
         communityService.updateComBoardDetail(communityDto, multipartHttpServletRequest);
-        return "redirect:/cBoard/" + cBoardNo;
+        return "redirect:/cBoard/" + boardNo;
     }
 
     // @PreAuthorize("hasRole('USER')")
-    @GetMapping("/delete/{cBoardNo}")
-    public String deleteComBoardDetail(@PathVariable(name = "cBoardNo") String cBoardNo) {
-        communityService.deleteComBoardDetail(cBoardNo);
+    @GetMapping("/delete/{boardNo}")
+    public String deleteComBoardDetail(@PathVariable(name = "boardNo") String boardNo) {
+        communityService.deleteComBoardDetail(boardNo);
         return "redirect:/cBoard";
     }
 }

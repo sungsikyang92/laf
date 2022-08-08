@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class BoardNoDto {
-    private long cBoardNo;
+    private long boardNo;
     private long lBoardNo;
 }

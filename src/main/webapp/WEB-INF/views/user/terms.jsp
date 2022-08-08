@@ -19,8 +19,8 @@
 
 	</head>
 
-	<body>
-
+	<body class="body_container">
+		<div class="wrapper">
 		<jsp:include page="../UI/topMenu.jsp" flush="true" />
 
 		<form id="allchked" method="post" action="/user/signUpForm">

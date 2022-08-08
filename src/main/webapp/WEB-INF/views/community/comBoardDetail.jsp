@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LAF커뮤니티</title>
+    <title>LAF커뮤니티게시글보기</title>
 
 
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
@@ -38,7 +38,7 @@
                     <c:forEach items="${pDetail}" var="pd">
                         <article class="location-listing">
                             <div class="location-image">
-                                <img width="300" height="169" src="../resources/img/profile/songokuf.gif" alt="">
+                                <img width="300" height="169" src="${pd.storedFilePath}" alt="">
                             </div>
                         </article>
                     </c:forEach>
@@ -46,21 +46,21 @@
             </c:choose>
         </div>
         <div>${uDetail.userName}유저네임</div>
-        <div>${cbDetail.CLocation}</div>
-        <div>${cbDetail.CTitle}</div>
-        <div>${cbDetail.CCategory}</div>
-        <div>${cbDetail.CCreateDate}</div>
-        <div>${cbDetail.CContent}</div>
+        <div>${cbDetail.location}</div>
+        <div>${cbDetail.title}</div>
+        <div>${cbDetail.category}</div>
+        <div>${cbDetail.createDate}</div>
+        <div>${cbDetail.content}</div>
         <div>${hDetail.hashKeyword}</div>
         <div>
             <input type="button" value="목록" onclick="location.href='/cBoard'">
             <sec:authentication property="name" var="loginUserName"/>
-            ${loginUserName}ㅅㅣ큐리티 아이디
+            ${loginUserName} 현재보는사람 아이디
             <br>
-            ${uDetail.userId} 로그인아이디
+            ${uDetail.userId} 작성자 아이디
             <c:if test="${uDetail.userId == loginUserName}">
-                <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.CBoardNo}'">
-                <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.CBoardNo}'">
+                <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.boardNo}'">
+                <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.boardNo}'">
             </c:if>
         </div>
     </div><%-- contents_container --%>

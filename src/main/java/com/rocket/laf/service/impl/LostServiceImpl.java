@@ -30,6 +30,16 @@ public class LostServiceImpl implements LostService {
         return lostMapper.getLostBoardList();
     }
 
+    @Override
+    public List<LostDto> getLostBoardLostList() {
+        return lostMapper.getLostBoardLostList();
+    }
+
+    @Override
+    public List<LostDto> getLostBoardFindList() {
+        return lostMapper.getLostBoardFindList();
+    }
+
     public LostDto getLostBoardOne(String lBoardNo) {
         return lostMapper.getLostBoardOne(lBoardNo);
     }
@@ -38,26 +48,26 @@ public class LostServiceImpl implements LostService {
     @Override
     public void insertLostBoard(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
-        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
+        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
-            lostMapper.writelBoardFileList(list);
             lostMapper.insertLostBoard(LostDto);
+            lostMapper.writelBoardFileList(list);
         } else {
             lostMapper.insertLostBoard(LostDto);
-            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
+//            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
         }
     }
 
     @Override
     public void updatelBoardDetail(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
-        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getLBoardNo(), multipartHttpServletRequest);
+        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             lostMapper.updatelBoardDetail(LostDto);
             lostMapper.writelBoardFileList(list);
         } else {
             lostMapper.updatelBoardDetail(LostDto);
-            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
+            pictureMapper.insertPicBoardNo(LostDto.getBoardNo());
         }
     }
 
