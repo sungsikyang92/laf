@@ -67,20 +67,24 @@
                     let tags = '';
                     for (let i = 0; i < mainFoundListDtos.length; i++) {
                         if (mainFoundListDtos[i].picExt == true) {
-                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + mainFoundListDtos[i].boardNo + "'>";
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainFoundListDtos[i].boardNo +"'>"
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].location + "</div>";
                             tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
                             tags += "</div>";
                         } else {
-                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + mainFoundListDtos[i].boardNo + "'>";
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainFoundListDtos[i].boardNo +"'>"
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].location + "</div>";
                             tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
                             tags += "</div>";
                         }
                     }
@@ -102,20 +106,24 @@
                     let tags = '';
                     for (let i = 0; i < mainLostListDtos.length; i++) {
                         if (mainLostListDtos[i].picExt == true) {
-                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + mainLostListDtos[i].boardNo + "'>";
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainLostListDtos[i].boardNo +"'>"
                             tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainLostListDtos[i].title + "</div>";
                             tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainLostListDtos[i].location + "</div>";
                             tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
                             tags += "</div>";
                         } else {
-                            tags += "<div class='lostBoardListContainer' onclick='location.href=/"+mainLostListDtos[i].boardNo+"'>";
-                            tags += "<div>"+mainLostListDtos[i].boardNo+"</div>";
-                            tags += "<div>"+mainLostListDtos[i].title+"</div>";
-                            tags += "<div>"+mainLostListDtos[i].createDate+"</div>";
-                            tags += "<div>"+mainLostListDtos[i].location+"</div>";
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainLostListDtos[i].boardNo +"'>"
+                            tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].title + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].location + "</div>";
                             tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
                             tags += "</div>";
                         }
                     }
@@ -124,7 +132,7 @@
             })
         }
     </script>
-<%--    검색결과 화면 Ajax--%>
+    <%--    검색결과 화면 Ajax--%>
     <script type="text/javascript">
         function searchArg(data) {
             let searchArg = data;
@@ -145,11 +153,11 @@
                             tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
                             tags += "</div>";
                         } else {
-                            tags += "<div class='lostBoardListContainer' onclick='location.href=/"+searchListDtos[i].boardNo+"'>";
-                            tags += "<div>"+searchListDtos[i].boardNo+"</div>";
-                            tags += "<div>"+searchListDtos[i].title+"</div>";
-                            tags += "<div>"+searchListDtos[i].createDate+"</div>";
-                            tags += "<div>"+searchListDtos[i].location+"</div>";
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + searchListDtos[i].boardNo + "'>";
+                            tags += "<div>" + searchListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + searchListDtos[i].title + "</div>";
+                            tags += "<div>" + searchListDtos[i].createDate + "</div>";
+                            tags += "<div>" + searchListDtos[i].location + "</div>";
                             tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
                             tags += "</div>";
                         }
@@ -171,11 +179,11 @@
 
         <div class="child-page-listing">
 
-            <h2 style="text-align: center;">실시간베너 만들것 </h2>
-            <div>
-                <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>
-                <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>
-            </div>
+            <%--            <h2 style="text-align: center;">실시간베너 만들것 </h2>--%>
+            <%--            <div>--%>
+<%--                            <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>--%>
+<%--                            <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>--%>
+            <%--            </div>--%>
             <div class="grid-container" id="test">
 
                 <c:choose>

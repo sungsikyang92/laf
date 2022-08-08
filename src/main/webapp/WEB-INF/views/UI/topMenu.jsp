@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>    
+<head>
 </head>
 
 <body class="body_container">
@@ -23,17 +23,18 @@
             <label class='menu-button-container' for="menu-toggle">
                 <div class='menu-button'></div>
             <!--가운데 네비게이션 바-->
-            
+
             </label>
             <div class = "center_nav">
                 <span>
                     <%--<a href="canfound" class="canfound">--%>
-                    <a href='#' class='canfound' onclick="getFoundId('습득')">
+<%--                    <a href='#' class='canfound' onclick="getFoundId('습득')">--%>
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
-                        <span type = "text" class="item">찾아줄게요</span>
-                    </a>
+                        <span type = "text" class="item" onclick="getFoundId('습득')">찾아줄게요</span>
+<%--                    </a>--%>
                 </span>
-
+                <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>
+                <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>
                 <span>
                     <%--<a href="helpfound" class="helpfound">--%>
                     <a href="#" class="helpfound" onclick="getLostId('분실')">
@@ -72,7 +73,7 @@
                 <!-- security tags ends-->
             </div>
         </div>
-    
-    
+
+
     </body>
 </html>
