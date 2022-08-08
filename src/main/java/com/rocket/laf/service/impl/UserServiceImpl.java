@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,32 +22,34 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.util.SystemPropertyUtils;
 
+import com.nimbusds.jose.shaded.json.JSONArray;
 import com.rocket.laf.common.UserExtension;
+import com.rocket.laf.dto.PenaltyDto;
 import com.rocket.laf.dto.UserDto;
+import com.rocket.laf.mapper.PenaltyMapper;
 import com.rocket.laf.mapper.UserMapper;
 import com.rocket.laf.service.UserService;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import lombok.RequiredArgsConstructor;
 
 @Service
 public class UserServiceImpl extends DefaultOAuth2UserService
-        implements UserService, UserDetailsService, AuthenticationSuccessHandler {
+        implements UserService, UserDetailsService, AuthenticationSuccessHandler, LogoutHandler {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private PenaltyMapper penaltyMapper;
 
     @Override
     public UserDto login(UserDto dto) {
@@ -94,6 +97,7 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         }
         User secReturnUser = new UserExtension(secUser.getUserId(), secUser.getUserPw(), auth, secUser.getUserNo());
         System.out.println(secReturnUser);
+        
         return secReturnUser;
     }
 
@@ -101,7 +105,6 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
-        System.out.println("잘연결됬습니깡? 넵");
 
         WebAuthenticationDetails web = (WebAuthenticationDetails) authentication.getDetails();
         System.out.println("Session ID ________ " + web.getSessionId());
@@ -125,6 +128,18 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         } else if (dataFromIndex != null && dataFromIndex.equals("")) {
             uri = dataFromIndex;
         }
+
+        HttpSession session = request.getSession();
+        List<PenaltyDto> penaltyList = new ArrayList<>();
+        penaltyList = penaltyMapper.getCurPenalty(authentication.getName());
+        System.out.println("_______penaltyList_________________________" + penaltyList);
+
+        JSONArray penaltyObj = new JSONArray();
+        penaltyObj.add(penaltyList);
+        
+        System.out.println("________penaltyObj_________________________" + penaltyObj);
+        session.setAttribute("penaltyObj", penaltyObj);
+
         response.sendRedirect(uri);
     }
     // Spring Security form login end
@@ -189,5 +204,23 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         return transedOA2User;
     }
     // Spring Security OAuth2 ggl login end
+
+    //로그아웃 헨들러
+    @Override
+    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        
+        JSONArray penaltyObj = (JSONArray) request.getSession().getAttribute("penaltyObj");
+        List<PenaltyDto> penaltyList = (ArrayList<PenaltyDto>) penaltyObj.get(0);
+
+        penaltyMapper.deletePenalty(authentication.getName());
+        try {
+            penaltyMapper.updatePenalty(penaltyList);
+            System.out.println(penaltyList);
+        } catch (Exception e) {
+            System.out.println("_________ah ssibxx________");
+            e.printStackTrace();
+        }
+        
+    }
 
 }

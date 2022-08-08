@@ -166,9 +166,9 @@ public class LafController {
 
     @PostMapping("/update/{lBoardNo}")
     public String updatelBoard(@PathVariable(name = "lBoardNo") String lBoardNo, LostDto lostDto,
-                               MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+            MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
-        return "redirect:/" + lBoardNo;
+        return "redirect:/"+lBoardNo;
     }
 
 }

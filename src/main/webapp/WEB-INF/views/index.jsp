@@ -12,14 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaF</title>
 
-
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script src='/resources/js/main_sidebar.js'></script>
 
@@ -211,7 +209,6 @@
         </div>
     </div>
     <%--<jsp:include page="UI/sideMenu.jsp" flush="true"/>--%>
-
 </div>
 
 </body>

@@ -33,7 +33,7 @@
 			<form action="/user/regUser" method="post" onsubmit="return submitBtn()" id="formTag">
 				<div class="id-box">
 					<label><h3>아이디</h3></label>
-					<input type="text" name="userId" title="아이디">
+					<input type="text" name="userId" title="아이디" blur="chkIdJs();">
 					<!--dto3-->
 					<input type="button" name="chkDuplicatedID" value="중복확인" onclick="chkDuplicatedId();">
 				</div>
@@ -110,7 +110,7 @@
 				<input class="inp" type="submit" value="회원가입">
 			</form>
 		</div>
-		<!-- <jsp:include page="../UI/sideMenu.jsp" flush="true" /> -->
+		<%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 		</div>	
 	</body>
 </html>
