@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- security teglibrary -->
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<div%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -185,22 +185,24 @@
                     <c:otherwise>
                         <c:forEach items="${lostlist}" var="lostboard">
                             <div class="lostBoardListContainer" onclick="location.href='/${lostboard.boardNo}'">
-                                <div>${lostboard.boardNo}</div>
-                                <div>${lostboard.title}</div>
-                                <div>${lostboard.createDate}</div>
-                                <div>${lostboard.location}</div>
                                 <div id="lostBoardListMainImg${lostboard.boardNo}">
                                     <c:choose>
                                         <c:when test="${empty picList}">
                                             <img width='300' height='169' src='/resources/img/woo.png'
-                                                alt='사진을 불러올수가 엄써'
-                                                class='img'/>
+                                            alt='사진을 불러올수가 엄써'
+                                            class='img'/>
                                         </c:when>
                                         <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
-                                                        alt='사진을 불러올수가 엄써'
-                                                        class='img'/></c:otherwise>
+                                        alt='사진을 불러올수가 엄써'
+                                        class='img'/></c:otherwise>
                                     </c:choose>
+                                    
                                 </div>
+                                
+                                <div>${lostboard.boardNo}</div>
+                                <div>${lostboard.title}</div>
+                                <div>${lostboard.createDate}</div>
+                                <div>${lostboard.location}</div>
                             </div>
                         </c:forEach>
                     </c:otherwise>
