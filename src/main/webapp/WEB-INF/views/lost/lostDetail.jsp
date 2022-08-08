@@ -40,8 +40,9 @@
 </head>
 
 <body class="body_container">
-<jsp:include page="../UI/topMenu.jsp" flush="true"/>
+<div class="wrapper">
 
+<jsp:include page="../UI/topMenu.jsp" flush="true"/>
 
 <!-- 컨텐츠 삽입부분-->
 <div class="contents_container">
@@ -88,7 +89,7 @@
     </form>
 
 </div>
-
+</div>
 <%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 

@@ -13,8 +13,6 @@
 		<link rel="stylesheet" href="/resources/css/user.css" type="text/css">
 		<link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
 		<link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-		<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-		<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 		<script>
 			let policyOn = "${policyOn}";
 		</script>
@@ -34,9 +32,11 @@
 			<hr><br><br>
 			<form action="/user/regUser" method="post" onsubmit="return submitBtn()" id="formTag">
 				<div class="id-box">
+
 					<label>아이디</label>
 					<br>
 					<input type="text" name="userId" title="아이디" blur="chkIdJs();"> 
+
 					<!--dto3-->
 					<input type="button" name="chkDuplicatedID" value="중복확인" onclick="chkDuplicatedId();">
 				</div>

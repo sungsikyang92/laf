@@ -10,13 +10,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resources/css/reviewWrite.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
     <script src="../resources/js/reviewDetail.js"></script>
     <script>
         let option = "${reviewDetail.ROption}";
         let score = "${reviewDetail.RScore}";
     </script>
 
-    <title>Document</title>
+    <title>reviewDetail</title>
 </head>
 <body>
         <sec:authentication property="name" var="loginUserName" />

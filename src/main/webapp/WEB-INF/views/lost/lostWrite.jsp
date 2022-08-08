@@ -29,10 +29,11 @@
 </head>
 
 <body class="body_container">
-
+    <div class="wrapper">
 <jsp:include page="../UI/topMenu.jsp" flush="true"/>
 
 <!-- 컨텐츠 삽입부분-->
+
 <div class="contents_container">
     <form action="/write" method="post" enctype="multipart/form-data">
         <sec:authentication property="principal.userNo" var="userNo"/>
@@ -98,7 +99,8 @@
         <button id="submit" type="submit">ㅋㅋ임시제출임</button>
     </form>
 </div>
-<jsp:include page="../UI/sideMenu.jsp" flush="true"/>
+</div>
+<%--<jsp:inlude page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 
 <script src='resources/js/readImage.js'></script>
