@@ -17,15 +17,15 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
 
-    <script type="text/javascript"
-            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
-    <script type="text/javascript"
-            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
+    <script type="text/javascript" src="../resources/js/lostWrite.js"></script>
 
+    
 </head>
 
 <body class="body_container">
@@ -35,7 +35,8 @@
 <!-- 컨텐츠 삽입부분-->
 
 <div class="contents_container">
-    <form action="/write" method="post" enctype="multipart/form-data">
+    <!-- question001: id="formTag" onsubmit="return submitBtn();" 추가 -->
+    <form action="/write" method="post" enctype="multipart/form-data" id="formTag" onsubmit="return submitBtn();">
         <sec:authentication property="principal.userNo" var="userNo"/>
         <input type="hidden" name="userNo" value="${userNo}">
         <div id="image_container"></div>
@@ -58,7 +59,16 @@
             <textarea cols="150" rows="15" name="content" placeholder="글 내용을 입력해주세요"></textarea>
         </h2>
         <br>
+        <!-- 문제 유형 선택 업데이트 question001 start -->
         <h3 style="border-top:solid 2px rgb(169, 169, 169);">
+            문제 선택
+            <select id="quesQuery" onchange="selectBoxChange(this.value);">
+                <option>선택하세요</option>
+            </select>
+        </h3>
+        <br>
+        <!-- 문제 유형 선택 업데이트 question001 ens -->
+        <h3>
             문제 :<input type="text" name="question" placeholder="질문을 입력해 주세요"/>
         </h3>
         <br>
@@ -100,11 +110,13 @@
     </form>
 </div>
 </div>
+
 <%--<jsp:inlude page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 
 <script src='resources/js/readImage.js'></script>
-<script src='resources/js/main_sidebar.js'></script>
+<!-- main_sidebar js 에러뜸 주석처리 question001 -->
+<%-- <script src='resources/js/main_sidebar.js'></script> --%> 
 <script src='resources/js/naverMapApiTest3.js'></script>
 
 </body>
