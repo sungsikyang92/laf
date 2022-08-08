@@ -24,11 +24,13 @@ public class MainListController {
 
     @GetMapping("/found/{lCategory}")
     public List<MainListDto> getFoundBoardList(@PathVariable String lCategory) {
-        List<MainListDto> mainFoundListDtos = mainListService.getBoardListByCategory(lCategory);
+        List<MainListDto> mainFoundListDtos = mainListService.getBoardFoundListByCategory(lCategory);
         for (MainListDto mainListDto : mainFoundListDtos) {
             if (mainListDto.isPicExt() == true) {
                 String picOriginPath = mainListDto.getStoredFilePath();
-                mainListDto.setStoredFilePath("/resources/img/communityBoard/" + picOriginPath.substring(45));
+                mainListDto.setStoredFilePath("/resources/img/lostBoard/" + picOriginPath.substring(40));
+            } else {
+                continue;
             }
         }
         return mainFoundListDtos;
@@ -36,11 +38,11 @@ public class MainListController {
 
     @GetMapping("/lost/{lCategory}")
     public List<MainListDto> getLostBoardList(@PathVariable String lCategory) {
-        List<MainListDto> mainLostListDtos = mainListService.getBoardListByCategory(lCategory);
+        List<MainListDto> mainLostListDtos = mainListService.getBoardLostListByCategory(lCategory);
         for (MainListDto mainListDto : mainLostListDtos) {
             if (mainListDto.isPicExt() == true) {
-                String testPicOriginPath = mainListDto.getStoredFilePath();
-                mainListDto.setStoredFilePath("/resources/img/communityBoard/" + testPicOriginPath.substring(45));
+                String picOriginPath = mainListDto.getStoredFilePath();
+                mainListDto.setStoredFilePath("/resources/img/lostBoard/" + picOriginPath.substring(40));
             }
         }
         return mainLostListDtos;

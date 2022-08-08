@@ -53,13 +53,13 @@ body {
     margin-left:50px;
 }
 
-#allchked #vol{
+#allchked .vol{
     margin-left:50px;
     width:129px;
     margin-top:10px;
 }
 
-.userReg-box>form>#inp{
+.userReg-box>form>.inp{
     width:10%;
     font-size:large;
 

@@ -60,8 +60,8 @@
 				</tr>
 				<tr>
 					<td colspan="1">
-						<input id="vol" type="button" value="취소" onclick="location.href='/user/login'">
-						<input id="vol" type="button" value="확인" onclick="cfmReg()">
+						<input class="vol" type="button" value="취소" onclick="location.href='/user/login'">
+						<input class="vol" type="button" value="확인" onclick="cfmReg()">
 
 
 					</td>

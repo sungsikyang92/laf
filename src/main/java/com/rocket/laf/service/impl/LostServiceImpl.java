@@ -40,8 +40,8 @@ public class LostServiceImpl implements LostService {
         return lostMapper.getLostBoardFindList();
     }
 
-    public LostDto getLostBoardOne(String lBoardNo) {
-        return lostMapper.getLostBoardOne(lBoardNo);
+    public LostDto getLostBoardOne(String boardNo) {
+        return lostMapper.getLostBoardOne(boardNo);
     }
 
     @Transactional
@@ -54,7 +54,7 @@ public class LostServiceImpl implements LostService {
             lostMapper.writelBoardFileList(list);
         } else {
             lostMapper.insertLostBoard(LostDto);
-//            pictureMapper.insertPicBoardNo(LostDto.getLBoardNo());
+            pictureMapper.insertPicBoardNo(LostDto.getBoardNo());
         }
     }
 

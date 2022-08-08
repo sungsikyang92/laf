@@ -106,8 +106,8 @@
 					<input type="button" value="계좌인증" onclick="bankIdentification()">
 				</div> -->
 				<br>
-				<input id="inp" type="button" value="취소" onclick="location.href='/user/login'">
-				<input id="inp" type="submit" value="회원가입">
+				<input class="inp" type="button" value="취소" onclick="location.href='/user/login'">
+				<input class="inp" type="submit" value="회원가입">
 			</form>
 		</div>
 		<!-- <jsp:include page="../UI/sideMenu.jsp" flush="true" /> -->

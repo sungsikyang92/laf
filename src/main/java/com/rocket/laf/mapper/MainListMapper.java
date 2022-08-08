@@ -13,5 +13,8 @@ public interface MainListMapper {
     List<MainListDto> getTestComBoardList();
 
     @Select(" SELECT * FROM Lost l INNER JOIN Picture p WHERE l.boardNo = p.boardNo AND l.category = #{category} GROUP BY l.boardNo ORDER BY l.boardNo DESC ")
-    List<MainListDto> getBoardListByCategory(String category);
+    List<MainListDto> getBoardFoundListByCategory(String category);
+
+    @Select(" SELECT * FROM Lost l INNER JOIN Picture p WHERE l.boardNo = p.boardNo AND l.category = #{category} GROUP BY l.boardNo ORDER BY l.boardNo DESC ")
+    List<MainListDto> getBoardLostListByCategory(String category);
 }

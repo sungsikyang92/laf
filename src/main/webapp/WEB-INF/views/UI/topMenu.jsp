@@ -42,7 +42,7 @@
                     </a>
                 </span>
                 <span>
-                    <input type = "text">
+                    <input type = "text" onclick="searchArg('title')">
                     검색
                     </input>
                 </span>
