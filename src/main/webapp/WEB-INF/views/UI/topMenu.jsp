@@ -47,8 +47,8 @@
     <div class="section">
         <div class="top_navbar">
 
-             <!--왼쪽 네비게이션 바-->
-             <div class = "left_nav">
+            <!--왼쪽 네비게이션 바-->
+            <div class = "left_nav">
                 <a href="/" class="logo">
                     <img src="/resources/img/logo/laf6.png" alt="">
                 </a>
