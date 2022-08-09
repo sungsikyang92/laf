@@ -75,3 +75,36 @@ document.addEventListener('keydown', function(event) {
     };
   }, true);
 
+
+
+
+
+// function objDect(){
+
+//     var express = require('express');
+//     var app = express();
+//     var client_id = 'YOUR_CLIENT_ID';
+//     var client_secret = 'YOUR_CLIENT_SECRET';
+//     var fs = require('fs');
+//     app.get('/face', function (req, res) {
+//        var request = require('request');
+//        var api_url = 'https://naveropenapi.apigw.ntruss.com/vision-obj/v1/detect'; // 객체 인식
+    
+//        var _formData = {
+//          image:'image',
+//          image: fs.createReadStream(__dirname + 'YOUR_FILE_NAME') // FILE 이름
+//        };
+//         var _req = request.post({url:api_url, formData:_formData,
+//           headers: {'X-NCP-APIGW-API-KEY-ID':client_id, 'X-NCP-APIGW-API-KEY': client_secret}}).on('response', function(response) {
+//            console.log(response.statusCode) // 200
+//            console.log(response.headers['content-type'])
+//         });
+//         console.log( request.head  );
+//         _req.pipe(res); // 브라우저로 출력
+//      });
+    
+//      app.listen(3000, function () {
+//        console.log('http://127.0.0.1:3000/face app listening on port 3000!');
+//      });
+
+// }

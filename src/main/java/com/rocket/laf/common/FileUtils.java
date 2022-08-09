@@ -1,21 +1,30 @@
 package com.rocket.laf.common;
 
+import com.rocket.laf.controller.PictureController;
 import com.rocket.laf.dto.PictureDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//objdect001 --
+@Slf4j
+//--
 @Component
 @RequiredArgsConstructor
 public class FileUtils {
@@ -84,4 +93,22 @@ public class FileUtils {
         }
         return fileList;
     }
+
+    //objdect001--
+    public List<File> createTempFile (MultipartFile file) throws IOException, InterruptedException{
+        log.info("createTempFile 실행");
+        File path = new File(System.getProperty("java.io.tmpdir"));
+        String fileName = file.getOriginalFilename();
+        File tempFile = File.createTempFile("file", fileName, path);
+        FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(tempFile));
+        List<File> tempList = new ArrayList<>();
+        tempList.add(path);
+        tempList.add(tempFile);
+        return tempList;
+    }
+
+    public void deleteTempFile (File tempFile) throws InterruptedException{
+        tempFile.delete();
+    }
+
 }
