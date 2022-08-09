@@ -106,7 +106,7 @@
         <h2>HashTag</h2>
         <input id="hashtag" name="hashtag" type="text" size="50" placeholder="검색 노출 태그 입력 ,로 입력해주세요.">
         <br>
-        <button id="submit" type="submit">ㅋㅋ임시제출임</button>
+        <button id="submit" type="submit">작성완료</button>
     </form>
 </div>
 </div>

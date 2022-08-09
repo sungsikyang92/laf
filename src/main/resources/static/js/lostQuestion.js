@@ -21,6 +21,9 @@ window.onload = function () {
         formq.appendChild(button);
         let updateButton = document.createElement('button');
         updateButton.setAttribute("type", "button")
+        //lostfix010 --
+        updateButton.setAttribute("id", "updateBtn")
+        //--
         updateButton.innerHTML = "수정하기";
         updateButton.setAttribute("onclick", "location.href='/update/" + boardNo + "'");
         formq.appendChild(updateButton);
@@ -34,7 +37,6 @@ window.onload = function () {
     }
 
     function addforminput(formq, nm, i) {
-
         let input = document.createElement('input');
         let div = document.createElement('div');
         let br = document.createElement('br');
@@ -52,7 +54,6 @@ window.onload = function () {
         div.appendChild(input);
         div.appendChild(h3);
         formq.appendChild(br);
-
     }
 
     Quiz(answer1, answer2, answer3, answer4, answer);
@@ -60,7 +61,6 @@ window.onload = function () {
     //BLOCK 1. 현재접속해 있는 보드 넘버를 가져온다. -> jsp에 boardNo로 저장됨
     //BLOCK 2. 로그인한 사용자가 현재 보드넘버에서 누적 페널티를 확인한다.
     var wrongCnt = 0;
-    
     
     if (penaltyArrList != null){
         penaltyArrList[0].forEach(function(element){
@@ -73,15 +73,19 @@ window.onload = function () {
     }else{
         wrongCnt = null;
     }
-
+    
+    //lostfix010 ---
+    const toChatBtn = document.getElementById("toChatBtn");
+    const updateBtn = document.getElementById("updateBtn");
+    let backBtn = document.createElement('button');
     //BLOCK 3. 누적페널티 값이 3이면 1:1 버튼을 안보이게 하고 뒤로가기 버튼을 만든다.
     if (wrongCnt == 3 || wrongCnt == null){
         console.log("이프실행");
-        const toChatBtn = document.getElementById("toChatBtn");
         console.log(toChatBtn);
-        toChatBtn.remove();
+        toChatBtn.setAttribute("type", "button");
+        toChatBtn.innerHTML = "1:1 대화 불가";
+        //toChatBtn.remove();
 
-        let backBtn = document.createElement('button');
         backBtn.setAttribute("type", "button");
         backBtn.setAttribute("onclick", "history.back()");
         backBtn.innerHTML = "뒤로가기";
@@ -89,6 +93,18 @@ window.onload = function () {
         formq.appendChild(backBtn);
     }
 
+    if (userNo == boardUserNo) {
+        toChatBtn.remove();
+        backBtn.setAttribute("type", "button");
+        backBtn.setAttribute("onclick", "history.back()");
+        backBtn.innerHTML = "뒤로가기";
+        let formq = document.getElementById('form_Q');
+        formq.appendChild(backBtn);  
+    }else{
+        updateBtn.remove();
+
+    }
+    // ---
 }
 
 function lostSubmitBtn(){
@@ -116,7 +132,10 @@ function lostSubmitBtn(){
                 callAjax(boardNo,wrongCnt);
                 const toChatBtn = document.getElementById("toChatBtn");
                 console.log(toChatBtn);
-                toChatBtn.remove();
+                //lostfix010 --
+                toChatBtn.setAttribute("type", "button");
+                toChatBtn.innerHTML = "1:1 대화 불가";
+                // --
                 let backBtn = document.createElement('button');
                 backBtn.setAttribute("type", "button");
                 backBtn.setAttribute("onclick", "history.back()");

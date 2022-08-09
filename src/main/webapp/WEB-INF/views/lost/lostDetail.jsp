@@ -31,11 +31,15 @@
         let boardNo = "${boardDetail.boardNo}";
 
         var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
-                var penaltyArrList = JSON.parse(penaltyObj);
-                
+        var penaltyArrList = JSON.parse(penaltyObj);
 
+        //lostfix010 --
+        <sec:authorize access="isAuthenticated()">
+            let userNo = "<sec:authentication property='principal.userNo'/>";
+        </sec:authorize>
+        let boardUserNo = "${boardDetail.userNo}";
+        //--
     </script>
-
 
 </head>
 
