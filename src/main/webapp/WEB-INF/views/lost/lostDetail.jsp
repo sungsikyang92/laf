@@ -33,7 +33,7 @@
         var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
         var penaltyArrList = JSON.parse(penaltyObj);
 
-        //lostfix010 --
+        //lostfix001 --
         <sec:authorize access="isAuthenticated()">
             let userNo = "<sec:authentication property='principal.userNo'/>";
         </sec:authorize>

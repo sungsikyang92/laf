@@ -21,7 +21,7 @@ window.onload = function () {
         formq.appendChild(button);
         let updateButton = document.createElement('button');
         updateButton.setAttribute("type", "button")
-        //lostfix010 --
+        //lostfix001 --
         updateButton.setAttribute("id", "updateBtn")
         //--
         updateButton.innerHTML = "수정하기";
@@ -74,7 +74,7 @@ window.onload = function () {
         wrongCnt = null;
     }
     
-    //lostfix010 ---
+    //lostfix001 ---
     const toChatBtn = document.getElementById("toChatBtn");
     const updateBtn = document.getElementById("updateBtn");
     let backBtn = document.createElement('button');
@@ -132,7 +132,7 @@ function lostSubmitBtn(){
                 callAjax(boardNo,wrongCnt);
                 const toChatBtn = document.getElementById("toChatBtn");
                 console.log(toChatBtn);
-                //lostfix010 --
+                //lostfix001 --
                 toChatBtn.setAttribute("type", "button");
                 toChatBtn.innerHTML = "1:1 대화 불가";
                 // --
