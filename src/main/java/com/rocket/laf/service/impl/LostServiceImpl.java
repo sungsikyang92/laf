@@ -58,17 +58,30 @@ public class LostServiceImpl implements LostService {
         }
     }
 
+    @Transactional
     @Override
     public void updatelBoardDetail(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest)
             throws Exception {
-        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getBoardNo(), multipartHttpServletRequest);
-        if (CollectionUtils.isEmpty(list) == false) {
-            lostMapper.updatelBoardDetail(LostDto);
-            lostMapper.writelBoardFileList(list);
-        } else {
-            lostMapper.updatelBoardDetail(LostDto);
-            pictureMapper.insertPicBoardNo(LostDto.getBoardNo());
-        }
+        lostMapper.updatelBoardDetail(LostDto);
+        List<PictureDto> pictureDtoList = fileUtils.parseFileInfo(LostDto.getBoardNo(), multipartHttpServletRequest);
+        if (CollectionUtils.isEmpty(pictureDtoList) == false)
+            lostMapper.writelBoardFileList(pictureDtoList);
+//        List<PictureDto> list = fileUtils.parseFileInfo(LostDto.getBoardNo(), multipartHttpServletRequest);
+//        if (CollectionUtils.isEmpty(list) == false) {
+//            lostMapper.updatelBoardDetail(LostDto);
+//            lostMapper.writelBoardFileList(list);
+//        } else {
+//            lostMapper.updatelBoardDetail(LostDto);
+//            //만약 해당 게시글번호에 해당하는 picno가 있으면 insertPicBoardNo를 실행하지 않는다.
+//            List<PictureDto> pictureDtoList = pictureMapper.getAllPictureByBoardNo(LostDto.getBoardNo());
+//            for (PictureDto pictureDto : pictureDtoList) {
+//                if (pictureDto.getBoardNo() == LostDto.getBoardNo()) {
+//                    continue;
+//                } else {
+//                    pictureMapper.insertPicBoardNo(LostDto.getBoardNo());
+//                }
+//            }
+//        }
     }
 
    

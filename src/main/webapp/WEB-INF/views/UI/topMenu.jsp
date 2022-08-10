@@ -28,13 +28,11 @@
             <div class = "center_nav">
                 <span>
                     <%--<a href="canfound" class="canfound">--%>
-<%--                    <a href='#' class='canfound' onclick="getFoundId('습득')">--%>
+                    <a href='#' class='canfound' onclick="getFoundId('습득')">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
-                        <span type = "text" class="item" onclick="getFoundId('습득')">찾아줄게요</span>
-<%--                    </a>--%>
+                        <span type = "text" class="item">찾아줄게요</span>
+                    </a>
                 </span>
-                <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>
-                <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>
                 <span>
                     <%--<a href="helpfound" class="helpfound">--%>
                     <a href="#" class="helpfound" onclick="getLostId('분실')">
@@ -43,9 +41,9 @@
                     </a>
                 </span>
                 <span>
-                    <input type = "text">
-                    검색
-                    </input>
+                    <input type = "text" placeholder="검색어를 입력해주세요." id="search"/>
+
+                    <input type="button" value="검색" onclick="searchArg(document.getElementById('search').value)">
                 </span>
                 <span>
                     <a href="QnA" class="qna">
