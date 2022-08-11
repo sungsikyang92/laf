@@ -20,6 +20,7 @@
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <script type="text/javascript"
             src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
