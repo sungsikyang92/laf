@@ -11,10 +11,15 @@
     <title>Mypage</title>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/myPage.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    
     <script type="text/javascript"
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
             <script type="text/javascript"
@@ -85,7 +90,7 @@
         </div>
 
 
-        <jsp:include page="../UI/sideMenu.jsp" flush="true" />
+        <%--<jsp:include page="../UI/sideMenu.jsp" flush="true" />--%>
             <script src='../resources/js/readImage.js'></script>
             <script src='../resources/js/main_sidebar.js'></script>
             <script src='../resources/js/naverMapApiTest3.js'></script>

@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- security teglibrary -->
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>    
+<head>
+    <script src='../resources/js/topMenu.js' defer></script>
+    <meta charset="utf-8">    
     <script type="text/javascript">
         function searchArg(data) {
             let searchArg = data;
@@ -53,39 +54,38 @@
                     <img src="/resources/img/logo/laf6.png" alt="">
                 </a>
             </div>
-            <input id="menu-toggle" type = "checkbox"/>
+            <!-- <input id="menu-toggle" type = "checkbox"/>
             <label class='menu-button-container' for="menu-toggle">
                 <div class='menu-button'></div>
+            </label> -->
             <!--가운데 네비게이션 바-->
-            
-            </label>
-            <div class = "center_nav">
-                <span>
-                    <%--<a href="canfound" class="canfound">--%>
-                    <a href='#' class='canfound' onclick="getFoundId('습득')">
+            <ul class = "center_nav">
+                <li>
+                    <a href='#' class="hidden" onclick="getFoundId('습득')">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
                         <span type = "text" class="item">찾아줄게요</span>
                     </a>
-                </span>
+                </li>
 
-                <span>
-                    <%--<a href="helpfound" class="helpfound">--%>
-                    <a href="#" class="helpfound" onclick="getLostId('분실')">
+                <li>
+                    <a href="#" class="hidden" onclick="getLostId('분실')">
                         <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
                         <span class="item">찾아주세요</span>
                     </a>
-                </span>
-                <span>
-                        <input id='title' type="text" name="title">
-                        <button onclick="searchArg('title')">검색</button>
-                </span>
-                <span>
-                    <a href="QnA" class="qna">
+                </li>
+
+                <li>
+                    <a href="QnA" class="hidden">
                         <span class="icon"><i class="fi fi-rr-comment-alt"></i></span>
                         <span class="item">자주묻는질문</span>
                     </a>
-                </span>
-            </div>
+                </li>
+                <li>
+                        <input class="title" type="text" name="title">
+                        <button class="title" onclick="searchArg('title')">검색</button>
+                </li>
+                
+            </ul>
 
             <!-- 오른쪽 네비게이션 바 -->
             <div class="right_nav">
@@ -104,6 +104,9 @@
                 </sec:authorize>
                 <!-- security tags ends-->
             </div>
+            <a href="#" class="navbar_toggleBtn">
+                <i class="fi fi-rr-menu-burger"></i>
+            </a>
         </div>
     
     
