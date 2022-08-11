@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+        href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <script src='../resources/js/terms.js'></script>
 
 </head>
@@ -45,30 +45,27 @@
                 <td>위치기반 서비스 동의 <input type="checkbox" name="chk" value="location" onclick='checkSelectAll()'/>
                     </tdid>
             </tr>
-
-            <tr>
-                <th>${terms.TPrivacyTitle} (필수)</th>
-            </tr>
-            <tr>
-                <td><textarea rows="10" cols="50">${terms.TPrivacyContent}</textarea></td>
-            </tr>
-            <tr>
-                <td>개인정보 이용 동의 <input type="checkbox" name="chk" value="privacy" onclick='checkSelectAll()'/></td>
-            </tr>
-            <tr>
-                <td>전체 이용 동의 <input type="checkbox" name="selectall" onclick='selectAll(this)'/></td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <input id="vol" type="button" value="취소" onclick="location.href='/user/login'">
-                    <input id="vol" type="button" value="확인" onclick="cfmReg()">
-
-
+				<tr>
+					<th>${terms.TPrivacyTitle} (필수)</th>
+				</tr>
+				<tr>
+					<td><textarea rows="10" cols="50">${terms.TPrivacyContent}</textarea></td>
+				</tr>
+				<tr>
+					<td>개인정보 이용 동의 <input type="checkbox" name="chk" value="privacy" onclick='checkSelectAll()' /></td>
+				</tr>
+				<tr>
+					<td>전체 이용 동의 <input type="checkbox" name="selectall" onclick='selectAll(this)' /></td>
+				</tr>
+				<tr>
+					<td colspan="1">
+						<input class="vol" type="button" value="취소" onclick="location.href='/user/login'">
+						<input class="vol" type="button" value="확인" onclick="cfmReg()">
                 </td>
             </tr>
         </table>
     </form>
-    <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
+    <%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 </body>
 
