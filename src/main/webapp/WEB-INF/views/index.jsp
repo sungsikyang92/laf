@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaF</title>
 
-
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script src='/resources/js/main_sidebar.js'></script>
+    <script src='../resources/js/topMenu.js' defer></script>
 
     <%-- ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -197,22 +198,24 @@
                     <c:otherwise>
                         <c:forEach items="${lostlist}" var="lostboard">
                             <div class="lostBoardListContainer" onclick="location.href='/${lostboard.boardNo}'">
-                                <div>${lostboard.boardNo}</div>
-                                <div>${lostboard.title}</div>
-                                <div>${lostboard.createDate}</div>
-                                <div>${lostboard.location}</div>
                                 <div id="lostBoardListMainImg${lostboard.boardNo}">
                                     <c:choose>
                                         <c:when test="${empty picList}">
                                             <img width='300' height='169' src='/resources/img/woo.png'
-                                                 alt='사진을 불러올수가 엄써'
-                                                 class='img'/>
+                                            alt='사진을 불러올수가 엄써'
+                                            class='img'/>
                                         </c:when>
                                         <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
-                                                          alt='사진을 불러올수가 엄써'
-                                                          class='img'/></c:otherwise>
+                                        alt='사진을 불러올수가 엄써'
+                                        class='img'/></c:otherwise>
                                     </c:choose>
+                                    
                                 </div>
+                                
+                                <div>${lostboard.boardNo}</div>
+                                <div>${lostboard.title}</div>
+                                <div>${lostboard.createDate}</div>
+                                <div>${lostboard.location}</div>
                             </div>
                         </c:forEach>
                     </c:otherwise>
@@ -220,7 +223,7 @@
             </div>
         </div>
     </div>
-
+    <%--<jsp:include page="UI/sideMenu.jsp" flush="true"/>--%>
 </div>
 
 </body>

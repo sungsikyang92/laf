@@ -56,7 +56,7 @@
         
     </div>
 
-    <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
+    <%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
     
 </div>
 </body>
