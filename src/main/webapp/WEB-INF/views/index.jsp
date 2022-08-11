@@ -38,13 +38,13 @@
                         if (mainPicList[i].picExt == false) {
                             tags += "<article class='location-listing'>";
                             tags += "<div class='location-image'>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</div>";
                             tags += "</article>";
                         } else {
                             tags += "<article class='location-listing'>";
                             tags += "<div class='location-image'>";
-                            tags += "<img width='300' height='169' src='" + mainPicList[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='" + mainPicList[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</div>";
                             tags += "</article>";
                         }
@@ -69,22 +69,22 @@
                     for (let i = 0; i < mainFoundListDtos.length; i++) {
                         if (mainFoundListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<a href='/"+ mainFoundListDtos[i].boardNo +"'>"
+                            tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<a href='/"+ mainFoundListDtos[i].boardNo +"'>"
+                            tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         }
@@ -108,22 +108,22 @@
                     for (let i = 0; i < mainLostListDtos.length; i++) {
                         if (mainLostListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<a href='/"+ mainLostListDtos[i].boardNo +"'>"
+                            tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainLostListDtos[i].title + "</div>";
                             tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainLostListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<a href='/"+ mainLostListDtos[i].boardNo +"'>"
+                            tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainLostListDtos[i].title + "</div>";
                             tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainLostListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         }
@@ -147,22 +147,22 @@
                     for (let i = 0; i < searchListDtos.length; i++) {
                         if (searchListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<a href='/"+ searchListDtos[i].boardNo +"'>"
+                            tags += "<a href='/" + searchListDtos[i].boardNo + "'>"
                             tags += "<div>" + searchListDtos[i].boardNo + "</div>";
                             tags += "<div>" + searchListDtos[i].title + "</div>";
                             tags += "<div>" + searchListDtos[i].createDate + "</div>";
                             tags += "<div>" + searchListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<a href='/"+ searchListDtos[i].boardNo +"'>"
+                            tags += "<a href='/" + searchListDtos[i].boardNo + "'>"
                             tags += "<div>" + searchListDtos[i].boardNo + "</div>";
                             tags += "<div>" + searchListDtos[i].title + "</div>";
                             tags += "<div>" + searchListDtos[i].createDate + "</div>";
                             tags += "<div>" + searchListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         }
@@ -186,8 +186,8 @@
 
             <%--            <h2 style="text-align: center;">실시간베너 만들것 </h2>--%>
             <%--            <div>--%>
-<%--                            <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>--%>
-<%--                            <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>--%>
+            <%--                            <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>--%>
+            <%--                            <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>--%>
             <%--            </div>--%>
             <div class="grid-container" id="test">
 
@@ -202,16 +202,16 @@
                                     <c:choose>
                                         <c:when test="${empty picList}">
                                             <img width='300' height='169' src='/resources/img/woo.png'
-                                            alt='사진을 불러올수가 엄써'
-                                            class='img'/>
+                                                 alt='사진을 불러올수가 엄써'
+                                                 class='img'/>
                                         </c:when>
                                         <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
-                                        alt='사진을 불러올수가 엄써'
-                                        class='img'/></c:otherwise>
+                                                          onerror='this.src=/resources/img/woo.png' alt=''
+                                                          class='img'/></c:otherwise>
                                     </c:choose>
-                                    
+
                                 </div>
-                                
+
                                 <div>${lostboard.boardNo}</div>
                                 <div>${lostboard.title}</div>
                                 <div>${lostboard.createDate}</div>
@@ -223,7 +223,6 @@
             </div>
         </div>
     </div>
-    <%--<jsp:include page="UI/sideMenu.jsp" flush="true"/>--%>
 </div>
 
 </body>
