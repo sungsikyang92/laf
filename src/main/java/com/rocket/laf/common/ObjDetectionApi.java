@@ -5,14 +5,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
+import com.nimbusds.jose.shaded.json.JSONObject;
+import com.nimbusds.jose.shaded.json.parser.JSONParser;
+
 public class ObjDetectionApi {
 
-    public String callObjApi(String path){
+    public Object callObjApi(String path){
 
-        StringBuffer reqStr = new StringBuffer();
         String clientId = "9uju5qlink";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "cBAe0e2BwwY6xC5QGxDmOqtzSm3zLRGvacQSCrOK";//애플리케이션 클라이언트 시크릿값";
-        StringBuffer response = null;
+        StringBuffer response = new StringBuffer();
+        //StringBuilder resBuilder = new StringBuilder();
 
         try {
             String paramName = "image"; // 파라미터명은 image로 지정
@@ -60,12 +63,20 @@ public class ObjDetectionApi {
             }
             String inputLine;
             if(br != null) {
-                response = new StringBuffer();
                 while ((inputLine = br.readLine()) != null) {
                     response.append(inputLine);
+                    System.out.println(inputLine);
+                    //resBuilder.append(inputLine);
                 }
                 br.close();
-                System.out.println(response.toString());
+                //System.out.println(response.toString());
+                String resStr = response.toString();
+                JSONParser parser = new JSONParser(4);
+                JSONObject resJSON = (JSONObject) parser.parse(resStr);;
+                System.out.println(resJSON);
+                System.out.println(resJSON.get("predictions"));
+          
+                //System.out.println(resJSON.get("predictions"));
             } else {
                 System.out.println("error !!!");
             }
@@ -74,7 +85,7 @@ public class ObjDetectionApi {
         }
 
         // 8/10 리턴타입 제이슨으로 바꿔보기.
-        return response.toString(); 
+        return response; 
     }
     
 }

@@ -1,12 +1,12 @@
 window.onload = function(){
 
+    document.getElementById("loadingContainer").style = "display:none"
     onloadQues();
 
 };
 
 
 function onloadQues(){
-    console.log("haha");
     var element = '<option>문제 유형 선택</option>' + 
                 '<option value="mobile">휴대폰</option>' +
                 '<option value="wallet">지갑</option>' +

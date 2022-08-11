@@ -44,12 +44,26 @@
                onchange="setThumbnail(event);" multiple/>
         <button type="button" onclick="resetFile()">올린파일 초기화</button>
         <br>
+        <!-- objdesc001-02 start-->
+        <div id="loadingContainer">
+            <br>
+            <span style="font-size:15px;">사물인식 중</span> <img src='../resources/img/loading.gif' width="15%"/>
+        </div>
+        <!-- objdesc001-02 end-->
+        <br>
         <h2>
             분실
             <input type="radio" name="category" id="" value="분실"/>
             &nbsp;&nbsp; 습득
             <input type="radio" name="category" id="" value="습득" checked="checked"/>
         </h2>
+        <!-- objdesc001-02 start-->
+        <div id="objResContainer"></div>
+        <br>
+        <h2>카테고리 :
+            <input type="text" id="category" readonly="true" placeholder="첫번째 사진을 올리시면 인공지능이 자동으로 등록합니다. (실패시 직접입력)"/>
+        </h2>
+        <!-- objdesc001-02 end -->
         <br>
         <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
             <input type="text" name="title" placeholder="글 제목을 입력해주세요"/>
