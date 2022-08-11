@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script src='../resources/js/topMenu.js' defer></script>
     <meta charset="utf-8">    
     <script type="text/javascript">
