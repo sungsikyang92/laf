@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import com.nimbusds.jose.shaded.json.JSONObject;
+import com.nimbusds.jose.shaded.json.JSONUtil;
 import com.nimbusds.jose.shaded.json.parser.JSONParser;
 
 public class ObjDetectionApi {
@@ -65,16 +66,20 @@ public class ObjDetectionApi {
             if(br != null) {
                 while ((inputLine = br.readLine()) != null) {
                     response.append(inputLine);
-                    System.out.println(inputLine);
-                    //resBuilder.append(inputLine);
                 }
                 br.close();
-                //System.out.println(response.toString());
                 String resStr = response.toString();
                 JSONParser parser = new JSONParser(4);
                 JSONObject resJSON = (JSONObject) parser.parse(resStr);;
-                System.out.println(resJSON);
-                System.out.println(resJSON.get("predictions"));
+                JSONObject resJSON2 = (JSONObject) resJSON.get("predictions");
+                
+
+                System.out.println("--------------------------------");
+                
+                String obj = JSONUtil.getGetterName("resJSON");
+                System.out.println(obj);
+                
+
           
                 //System.out.println(resJSON.get("predictions"));
             } else {
