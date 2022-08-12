@@ -3,10 +3,17 @@ package com.rocket.laf.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+import com.nimbusds.jose.shaded.json.JSONArray;
+import com.nimbusds.jose.shaded.json.JSONObject;
+import com.nimbusds.jose.shaded.json.parser.JSONParser;
+import com.nimbusds.jose.shaded.json.parser.ParseException;
 import com.rocket.laf.common.FileUtils;
 import com.rocket.laf.common.ObjDetectionApi;
+import com.rocket.laf.common.Papago;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.service.impl.BoardNoServiceImpl;
 import com.rocket.laf.service.impl.PictureServiceImpl;
@@ -84,25 +91,37 @@ public class PictureController {
     //objdect001 --
     @PostMapping("/objDect")
     @ResponseBody
-    public Object callObjDect (MultipartHttpServletRequest multiReq) throws IOException, InterruptedException{
+    public Object callObjDect (MultipartHttpServletRequest multiReq) throws IOException, InterruptedException, ParseException{
         log.info("callObjDect 실행");
         MultipartFile pixObj = multiReq.getFile("tempPix");
         List<File> tempFileInfo = fileUtils.createTempFile(pixObj);
         String tempFile = tempFileInfo.get(1).toString();
 
-        //파일 압축 하는것도 생각해볼 필요있음 2메가 제한이라.
         Object objRtn =  new ObjDetectionApi().callObjApi(tempFile);
-        System.out.println();
-        System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = ");
-        System.out.println();
-        System.out.println("ObjApiReturn: " + objRtn);
-        System.out.println();
-        System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = ");
-        System.out.println();
+
+        JSONParser parser = new JSONParser(4);
+        String resStr = objRtn.toString();
+        JSONObject resJSON = (JSONObject) parser.parse(resStr);
+        JSONArray resArr = (JSONArray) resJSON.get("predictions");
+        JSONObject reJsonObject = (JSONObject) resArr.get(0);
+        String namesArr = reJsonObject.get("detection_names").toString().replaceAll("[\\[\\]\"]", " ");
+
+        String transReturn = new Papago().papagoTrans(namesArr);
+
+        JSONObject transJson =  (JSONObject) parser.parse(transReturn);
+        JSONObject transMessage = (JSONObject) transJson.get("message");
+        JSONObject transResult = (JSONObject) transMessage.get("result");
+        String transName = transResult.get("translatedText").toString();
+        List<String> transNameArr = new ArrayList<>(Arrays.asList(transName.split("\\s*,\\s*")));
+        resJSON.put("papagoName", transNameArr);
+
+        System.out.println(); System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = "); System.out.println();
+        System.out.println("FINAL RESULT ____________ " + resJSON);
+        System.out.println(); System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = "); System.out.println();
 
         fileUtils.deleteTempFile(tempFileInfo.get(1));
 
-        return objRtn;
+        return resJSON;
     }
     //--
 

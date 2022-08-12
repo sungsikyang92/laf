@@ -118,12 +118,15 @@ function callAjaxForm(param1){
             }else{
                 //인식된 사물이 있을때 (상관없이 최대 값으로한다.)
                 let tag = document.createElement("p");
-                tag.innerHTML = "사물을 정상적으로 인식하였습니다. 인식된 사물 ( " + objRes.predictions[0].detection_names.slice(0,i) +" )";
+                tag.innerHTML = "사물을 정상적으로 인식하였습니다. 인식된 사물 ( " + objRes.papagoName.slice(0,i) +" )";
                 tag.id = 'objResult';
                 tag.style.fontSize = "10px"
                 tag.style.color = "blue";
                 document.querySelector("div#objResContainer").appendChild(tag);
-                document.getElementById("category").setAttribute("value", objRes.predictions[0].detection_names[0])
+                document.getElementById("category").setAttribute("value", objRes.papagoName[0])
+                autoQ(objRes.predictions[0].detection_names[0], objRes.papagoName[0]);
+
+
             }
             console.log("filteredObjCnt ___ " + filteredObjCnt)
 
@@ -145,4 +148,42 @@ function callAjaxForm(param1){
         }
         }
     };
+}
+
+function autoQ(stuff, stuffKor){
+    var option = document.createElement("option");
+    option.innerHTML = "사물인식 결과 적용";
+    option.selected = true;
+    document.getElementById('quesQuery').appendChild(option);
+    if (stuff == "scissors"){
+        document.getElementsByName("question")[0].setAttribute("value",stuffKor + "의(이) 원산지는 어디입니까?");
+        document.getElementsByName("answers")[0].setAttribute("value","중국");
+        document.getElementsByName("answers1")[0].setAttribute("value","미국");
+        document.getElementsByName("answers2")[0].setAttribute("value","한국");
+        document.getElementsByName("answers3")[0].setAttribute("value","홍콩");
+        document.getElementsByName("answers4")[0].setAttribute("value","우간다");
+    }else if (stuff == "mobile"){
+        document.getElementsByName("question")[0].setAttribute("value","배경화면은 무었입니까?");
+        document.getElementsByName("answers")[0].setAttribute("value","기본바탕화면");
+        document.getElementsByName("answers1")[0].setAttribute("value","색상");
+        document.getElementsByName("answers2")[0].setAttribute("value","케릭터");
+        document.getElementsByName("answers3")[0].setAttribute("value","인물사진");
+        document.getElementsByName("answers4")[0].setAttribute("value","배경사진");
+    }else if (stuff == "wallet") {
+        document.getElementsByName("question")[0].setAttribute("value","지갑안에 없는 것은?");
+        document.getElementsByName("answers")[0].setAttribute("value","주민등록증");
+        document.getElementsByName("answers1")[0].setAttribute("value","현금");
+        document.getElementsByName("answers2")[0].setAttribute("value","신용카드");
+        document.getElementsByName("answers3")[0].setAttribute("value","남친사진");
+        document.getElementsByName("answers4")[0].setAttribute("value","여친사진");
+    }else if (stuff == "bag") {
+        document.getElementsByName("question")[0].setAttribute("value","가방안에 없는 것은?");
+        document.getElementsByName("answers")[0].setAttribute("value","강아지");
+        document.getElementsByName("answers1")[0].setAttribute("value","지갑");
+        document.getElementsByName("answers2")[0].setAttribute("value","현금");
+        document.getElementsByName("answers3")[0].setAttribute("value","휴대폰");
+        document.getElementsByName("answers4")[0].setAttribute("value","가디건");
+    }else{
+    }
+
 }

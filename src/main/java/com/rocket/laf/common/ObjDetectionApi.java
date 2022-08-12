@@ -5,9 +5,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.nimbusds.jose.shaded.json.JSONObject;
-import com.nimbusds.jose.shaded.json.JSONUtil;
-import com.nimbusds.jose.shaded.json.parser.JSONParser;
 
 public class ObjDetectionApi {
 
@@ -16,7 +13,6 @@ public class ObjDetectionApi {
         String clientId = "9uju5qlink";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "cBAe0e2BwwY6xC5QGxDmOqtzSm3zLRGvacQSCrOK";//애플리케이션 클라이언트 시크릿값";
         StringBuffer response = new StringBuffer();
-        //StringBuilder resBuilder = new StringBuilder();
 
         try {
             String paramName = "image"; // 파라미터명은 image로 지정
@@ -68,20 +64,6 @@ public class ObjDetectionApi {
                     response.append(inputLine);
                 }
                 br.close();
-                String resStr = response.toString();
-                JSONParser parser = new JSONParser(4);
-                JSONObject resJSON = (JSONObject) parser.parse(resStr);;
-                JSONObject resJSON2 = (JSONObject) resJSON.get("predictions");
-                
-
-                System.out.println("--------------------------------");
-                
-                String obj = JSONUtil.getGetterName("resJSON");
-                System.out.println(obj);
-                
-
-          
-                //System.out.println(resJSON.get("predictions"));
             } else {
                 System.out.println("error !!!");
             }
@@ -89,7 +71,6 @@ public class ObjDetectionApi {
             System.out.println(e);
         }
 
-        // 8/10 리턴타입 제이슨으로 바꿔보기.
         return response; 
     }
     

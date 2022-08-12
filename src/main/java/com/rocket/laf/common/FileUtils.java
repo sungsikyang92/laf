@@ -1,11 +1,9 @@
 package com.rocket.laf.common;
 
-import com.rocket.laf.controller.PictureController;
 import com.rocket.laf.dto.PictureDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
@@ -13,14 +11,22 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.awt.Image;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 //objdect001 --
 @Slf4j
@@ -97,13 +103,47 @@ public class FileUtils {
     //objdect001--
     public List<File> createTempFile (MultipartFile file) throws IOException, InterruptedException{
         log.info("createTempFile 실행");
+
+        BufferedImage originalImg = ImageIO.read(file.getInputStream());
+        int originalImgH = originalImg.getHeight();
+        int originalImgW = originalImg.getWidth();
+        System.out.printf("original: %d * %d", originalImgH, originalImgW);
+        System.out.println();
+        int compImgW = 1280;
+        InputStream inputStream = null;
+        
+        if (originalImgW > compImgW){
+            log.info("파일 압축실행");
+            int compImgH = (compImgW * originalImgH) / originalImgW;
+            System.out.printf("compressed: %d * %d", compImgW, compImgH);
+            System.out.println();
+            
+            Image compImgScale = originalImg.getScaledInstance(compImgW, compImgH, Image.SCALE_AREA_AVERAGING);
+            BufferedImage compBuffered = new BufferedImage(compImgW, compImgH, BufferedImage.TYPE_INT_RGB);
+            Graphics graphics = compBuffered.getGraphics();
+            graphics.drawImage(compImgScale, -90, -90, null);
+            graphics.dispose();
+
+
+            ByteArrayOutputStream OutputStreamShell = new ByteArrayOutputStream();
+            String type = file.getContentType().substring(file.getContentType().indexOf("/")+1);	//확장자 확인
+            ImageIO.write(compBuffered, type, OutputStreamShell);
+            inputStream = new ByteArrayInputStream(OutputStreamShell.toByteArray());
+
+        }else{
+            log.info("파일 압축 하지 않음");
+            inputStream = file.getInputStream();
+        }
+        
+        log.info("파일 압축 완료");
         File path = new File(System.getProperty("java.io.tmpdir"));
         String fileName = file.getOriginalFilename();
         File tempFile = File.createTempFile("file", fileName, path);
-        FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(tempFile));
+        FileCopyUtils.copy(inputStream, new FileOutputStream(tempFile));
         List<File> tempList = new ArrayList<>();
         tempList.add(path);
         tempList.add(tempFile);
+
         return tempList;
     }
 

@@ -14,13 +14,12 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+   
           <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 
     <script src='resources/js/main_sidebar.js'></script>
-    <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
+    <link rel="stylesheet" href="../resources/css/lostdetail.css" type="text/css">
 
     <script>
         let answer1 = "${boardDetail.answers1}";
@@ -97,7 +96,7 @@
 <%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 
-<script src='resources/js/lostQuestion.js'></script>
+<script src='resources/js/lostQuestion.js' async></script>
 
 </body>
 
