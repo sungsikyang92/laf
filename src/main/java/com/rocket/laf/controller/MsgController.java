@@ -6,11 +6,12 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ChatController {
+public class MsgController {
 
     @MessageMapping("/hello")
     @SendTo("/topic/roomId")
     public Message sendMessage(Message message) {
         return message;
     }
+
 }

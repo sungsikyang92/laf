@@ -170,10 +170,9 @@
 
 </div>
 </div>
-<%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 
-<script src='resources/js/lostQuestion.js'></script>
+<script src='resources/js/lostQuestion.js' async></script>
 </body>
 
 </html>

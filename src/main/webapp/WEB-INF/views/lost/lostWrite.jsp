@@ -47,7 +47,7 @@
         <h2>
             분실
             <input type="radio" name="category" id="" value="분실"/>
-            &nbsp;&nbsp; 습득
+            습득
             <input type="radio" name="category" id="" value="습득" checked="checked"/>
         </h2>
         <br>
