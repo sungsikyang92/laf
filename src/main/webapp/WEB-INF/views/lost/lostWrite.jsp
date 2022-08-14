@@ -23,7 +23,7 @@
 
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
-    <script type="text/javascript" src="../resources/js/lostWrite.js" async></script>
+    <script type="text/javascript" src="resources/js/lostWrite.js" async></script>
 
     
 </head>
@@ -40,9 +40,10 @@
         <sec:authentication property="principal.userNo" var="userNo"/>
         <input type="hidden" name="userNo" value="${userNo}">
         <div id="image_container"></div>
-        <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*"
-               onchange="setThumbnail(event);" multiple/>
-        <button type="button" onclick="resetFile()">올린파일 초기화</button>
+        <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*" onchange="setThumbnail(event);" multiple>
+        <!-- lostfix002 start -->
+        <button type="button" onclick="resetFile(2)" id="fileResetBtn">올린파일 초기화</button>
+        <!-- lostfix002 end -->
         <br>
         <!-- objdesc001-02 start-->
         <div id="loadingContainer">

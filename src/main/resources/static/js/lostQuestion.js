@@ -1,4 +1,6 @@
-window.onload = function () {
+//topmenu js 충돌 수정
+window.addEventListener('load', function(){
+// window.onload = function () {
 
 
 
@@ -105,7 +107,7 @@ window.onload = function () {
 
     }
     // ---
-}
+});
 
 function lostSubmitBtn(){
     console.log("JS funtion call _________ lostSubmitBtn");

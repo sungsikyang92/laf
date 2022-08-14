@@ -105,23 +105,26 @@ public class PictureController {
         JSONArray resArr = (JSONArray) resJSON.get("predictions");
         JSONObject reJsonObject = (JSONObject) resArr.get(0);
         String namesArr = reJsonObject.get("detection_names").toString().replaceAll("[\\[\\]\"]", " ");
+        int predictionCnt = Integer.parseInt(reJsonObject.get("num_detections").toString());
 
-        String transReturn = new Papago().papagoTrans(namesArr);
+        if (predictionCnt != 0) { 
+            String transReturn = new Papago().papagoTrans(namesArr);
+            JSONObject transJson =  (JSONObject) parser.parse(transReturn);
+            JSONObject transMessage = (JSONObject) transJson.get("message");
+            JSONObject transResult = (JSONObject) transMessage.get("result");
+            String transName = transResult.get("translatedText").toString();
+            List<String> transNameArr = new ArrayList<>(Arrays.asList(transName.split("\\s*,\\s*")));
+            resJSON.put("papagoName", transNameArr);
+            System.out.println(); System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = "); System.out.println();
+            System.out.println("FINAL RESULT ____________ " + resJSON);
+            System.out.println(); System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = "); System.out.println();
+            fileUtils.deleteTempFile(tempFileInfo.get(1));
+            return resJSON;
+        }else{
+            fileUtils.deleteTempFile(tempFileInfo.get(1));
+            return resJSON;
+        }
 
-        JSONObject transJson =  (JSONObject) parser.parse(transReturn);
-        JSONObject transMessage = (JSONObject) transJson.get("message");
-        JSONObject transResult = (JSONObject) transMessage.get("result");
-        String transName = transResult.get("translatedText").toString();
-        List<String> transNameArr = new ArrayList<>(Arrays.asList(transName.split("\\s*,\\s*")));
-        resJSON.put("papagoName", transNameArr);
-
-        System.out.println(); System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = "); System.out.println();
-        System.out.println("FINAL RESULT ____________ " + resJSON);
-        System.out.println(); System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = "); System.out.println();
-
-        fileUtils.deleteTempFile(tempFileInfo.get(1));
-
-        return resJSON;
     }
     //--
 

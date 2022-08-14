@@ -107,7 +107,7 @@ public class FileUtils {
         BufferedImage originalImg = ImageIO.read(file.getInputStream());
         int originalImgH = originalImg.getHeight();
         int originalImgW = originalImg.getWidth();
-        System.out.printf("original: %d * %d", originalImgH, originalImgW);
+        System.out.printf("original: %d * %d", originalImgW, originalImgH);
         System.out.println();
         int compImgW = 1280;
         InputStream inputStream = null;
@@ -121,7 +121,7 @@ public class FileUtils {
             Image compImgScale = originalImg.getScaledInstance(compImgW, compImgH, Image.SCALE_AREA_AVERAGING);
             BufferedImage compBuffered = new BufferedImage(compImgW, compImgH, BufferedImage.TYPE_INT_RGB);
             Graphics graphics = compBuffered.getGraphics();
-            graphics.drawImage(compImgScale, -90, -90, null);
+            graphics.drawImage(compImgScale, 0, 0, null);
             graphics.dispose();
 
 
@@ -148,7 +148,7 @@ public class FileUtils {
     }
 
     public void deleteTempFile (File tempFile) throws InterruptedException{
-        tempFile.delete();
+        //tempFile.delete();
     }
 
 }

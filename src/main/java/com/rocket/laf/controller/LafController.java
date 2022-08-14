@@ -178,4 +178,5 @@ public class LafController {
         return "redirect:/"+lBoardNo;
     }
 
+
 }

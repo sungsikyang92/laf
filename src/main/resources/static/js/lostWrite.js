@@ -1,10 +1,12 @@
-window.onload = function(){
+
+//topmenu js 충돌 수정
+window.addEventListener('load', function(){
 
     
     document.getElementById("loadingContainer").style = "display:none"
     onloadQues();
 
-};
+});
 
 
 function onloadQues(){

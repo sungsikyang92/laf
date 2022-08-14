@@ -7,7 +7,11 @@ var x = function(){
     }
 };
 x();
-window.onload = function(){
+//topmenu js 충돌 수정
+window.addEventListener('load', function(){
+// window.onload = function(){
+
+    console.log("signup js 연결");
     
     // onloadCalan();
     // onloadBank();
@@ -49,7 +53,7 @@ window.onload = function(){
     document.getElementsByName("userPwChk")[0].onblur = function(){
         chkLogic("pwChk");
     };
-}
+});
 
 function chkLogic(parameter){
     console.log("calling chkLogic")
