@@ -1,6 +1,9 @@
 package com.rocket.laf.service;
 
+import com.rocket.laf.dto.MessageRoom;
 import com.rocket.laf.dto.UserDto;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -12,4 +15,5 @@ public interface UserService {
     public UserDto chkUserSocialData(String userEmail);
     UserDto getUserInfoById(String username);
     Long getUserNoById(String username);
+    List<MessageRoom> getAllChatRoomByUserName(String userName);
 }

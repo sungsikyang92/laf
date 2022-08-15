@@ -13,9 +13,18 @@ public interface ChatMapper {
     @Select(" SELECT roomId FROM Message WHERE username= #{username} ")
     List<MessageRoom> getAllChatRoom(String username);
 
-    @Insert(" INSERT INTO Message (boardNo, userNo) VALUES (boardNo=#{boardNo}, userNo=#{userNo}) ")
-    MessageRoom createChatRoom(String boardNo, Long userNo);
+    @Insert(" INSERT INTO Message (boardNo, userNo) VALUES (#{boardNo}, #{userNo}) ")
+    void createChatRoom(String boardNo, long userNo);
 
-    @Select(" SELECT roomId FROM Message WHERE userNo")
-    long getRoomIdByuserNo(Long userNo);
+    @Select(" SELECT roomId FROM Message WHERE userNo=#{userNo} and boardNo=#{boardNo} ")
+    long getRoomIdByuserNo(long userNo, String boardNo);
+
+    @Select(" SELECT COUNT(*) FROM (SELECT * FROM Message WHERE boardNo=#{boardNo} and userNo=#{userNo}) CHAT_EXIST ")
+    int chkChatRoomExist(String boardNo, long userNo);
+
+    @Select(" SELECT * FROM Message ")
+    List<MessageRoom> getAllChatRoomByUser();
+
+    @Select(" SELECT * FROM Message m INNER JOIN User u WHERE u.userNo = m.userNo and u.userName= #{userName} ")
+    List<MessageRoom> getAllChatRoomByUserName(String userName);
 }

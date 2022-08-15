@@ -23,12 +23,27 @@ public class ChatServiceImpl implements ChatService {
 
     @Transactional
     @Override
-    public MessageRoom createChatRoom(String boardNo, Long userNo) {
-        return chatMapper.createChatRoom(boardNo, userNo);
+    public void createChatRoom(String boardNo, long userNo) {
+        chatMapper.createChatRoom(boardNo, userNo);
     }
 
     @Override
-    public Long getRoomIdByuserNo(Long userNo) {
-        return chatMapper.getRoomIdByuserNo(userNo);
+    public long getRoomIdByuserNo(long userNo, String boardNo) {
+        return chatMapper.getRoomIdByuserNo(userNo, boardNo);
+    }
+
+    @Override
+    public int chkChatRoomExist(String boardNo, long userNo) {
+        return chatMapper.chkChatRoomExist(boardNo, userNo);
+    }
+
+    @Override
+    public List<MessageRoom> getAllChatRoomByUser() {
+        return chatMapper.getAllChatRoomByUser();
+    }
+
+    @Override
+    public List<MessageRoom> getAllChatRoomByUserName(String userName) {
+        return chatMapper.getAllChatRoomByUserName(userName);
     }
 }

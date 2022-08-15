@@ -124,27 +124,34 @@ public class LafController {
         return "lost/lostDetail";
     }
 
-    @PostMapping("/post_Quiz")
-    public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, @RequestParam String boardNo) {
+    @GetMapping("/post_Quiz")
+    public MessageRoom LostChatCreate(HttpServletRequest req, @RequestParam String loginUserName, @RequestParam String boardNo) {
 
         String answer = req.getParameter("ans");
         LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
+        MessageRoom messageRoom = new MessageRoom();
         if (lost.getAnswers().equals(answer)) {
-            MessageRoom messageRoom = new MessageRoom();
             UserDto userInfo = userService.getUserInfoById(loginUserName);
-            Long userNo = userService.getUserNoById(loginUserName);
+            long userNo = userService.getUserNoById(loginUserName);
             LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
-            chatServiceImpl.createChatRoom(boardNo, userNo);
-            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo);
-            messageRoom.setRoomId(roomId);
-            messageRoom.setUserNo(userNo);
-            messageRoom.setBoardNo(boardNo);
-            model.addAttribute("userInfo", userInfo);
-            model.addAttribute("boardInfo", boardInfo);
-            return "chat/chatDetail";
-        } else {
-            return "redirect:/lostDetail";
+            if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
+                chatServiceImpl.createChatRoom(boardNo, userNo);
+                long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
+                messageRoom.setRoomId(roomId);
+                messageRoom.setUserNo(userNo);
+                messageRoom.setBoardNo(boardNo);
+                messageRoom.setBoardInfo(boardInfo);
+                messageRoom.setUserInfo(userInfo);
+            } else {
+                long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
+                messageRoom.setRoomId(roomId);
+                messageRoom.setUserNo(userNo);
+                messageRoom.setBoardNo(boardNo);
+                messageRoom.setBoardInfo(boardInfo);
+                messageRoom.setUserInfo(userInfo);
+            }
         }
+        return messageRoom;
     }
 
 
