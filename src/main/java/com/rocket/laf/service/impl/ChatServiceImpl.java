@@ -46,4 +46,9 @@ public class ChatServiceImpl implements ChatService {
     public List<MessageRoom> getAllChatRoomByUserName(String userName) {
         return chatMapper.getAllChatRoomByUserName(userName);
     }
+
+    @Override
+    public MessageRoom getRoomByRoomId(long roomId) {
+        return chatMapper.getRoomByRoomId(roomId);
+    }
 }

@@ -27,4 +27,7 @@ public interface ChatMapper {
 
     @Select(" SELECT * FROM Message m INNER JOIN User u WHERE u.userNo = m.userNo and u.userName= #{userName} ")
     List<MessageRoom> getAllChatRoomByUserName(String userName);
+
+    @Select(" SELECT roomId FROM Message WHERE roomId = #{roomId} ")
+    MessageRoom getRoomByRoomId(long roomId);
 }
