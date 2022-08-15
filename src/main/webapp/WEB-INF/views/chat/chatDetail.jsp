@@ -24,14 +24,6 @@
     <script src="/webjars/bootstrap/4.3.1/dist/js/bootstrap.min.js"></script>
     <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>
-    <script>
-        // websocket & stomp initialize
-        let sock = new SockJS("/ws-stomp");
-        let ws = Stomp.over(sock);
-        let reconnect = 0;
-
-
-    </script>
 </head>
 
 <body class="body_container">

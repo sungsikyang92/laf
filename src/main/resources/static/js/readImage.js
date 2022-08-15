@@ -11,13 +11,13 @@ function setThumbnail(event) {
         for (let image of event.target.files) {
             let reader = new FileReader();
             reader.onload = function (event) {
-                /*
-                var img_con_init = document.getElementById("image_container");
-                if (img_con_init = false) {
-                    console.log(img_con_init);
-                    //img_con_init.removeChild(img_con_init);
-                }
-                */
+
+                // var img_con_init = document.getElementById("image_container");
+                // if (img_con_init = false) {
+                //     console.log(img_con_init);
+                //     img_con_init.removeChild(img_con_init);
+                // }
+
                 let img = document.createElement("img");
                 let button = document.createElement("input");
                 img.setAttribute("src", event.target.result);
