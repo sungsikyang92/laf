@@ -148,7 +148,7 @@ public class FileUtils {
     }
 
     public void deleteTempFile (File tempFile) throws InterruptedException{
-        //tempFile.delete();
+        tempFile.delete();
     }
 
 }

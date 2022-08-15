@@ -22,18 +22,12 @@
     <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-<<<<<<< HEAD
+
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
     <script type="text/javascript" src="resources/js/lostWrite.js" async></script>
 
     
-=======
-    <script type="text/javascript"
-            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
-    <script type="text/javascript"
-            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
->>>>>>> d885b726d3b6f2c75837881a075db5621585f2e7
 </head>
 
 <body class="body_container">

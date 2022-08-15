@@ -14,15 +14,6 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-<<<<<<< HEAD
-   
-          <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
-
-    <script src='resources/js/main_sidebar.js'></script>
-    <link rel="stylesheet" href="../resources/css/lostdetail.css" type="text/css">
-
-=======
     <link rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -33,7 +24,6 @@
     <%-- ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%-- ajax를 위한 script END--%>
->>>>>>> d885b726d3b6f2c75837881a075db5621585f2e7
     <script>
         let answer1 = "${boardDetail.answers1}";
         let answer2 = "${boardDetail.answers2}";
@@ -52,8 +42,6 @@
         let boardUserNo = "${boardDetail.userNo}";
         //--
     </script>
-<<<<<<< HEAD
-=======
     <%-- 찾아줄게요 버튼 ajax --%>
     <script type="text/javascript">
         function getFoundId(data) {
@@ -132,7 +120,6 @@
             })
         }
     </script>
->>>>>>> d885b726d3b6f2c75837881a075db5621585f2e7
 
 </head>
 
@@ -177,7 +164,7 @@
     <br>
     <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.question}</h3>
 
-    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post" onsubmit="return lostSubmitBtn();">
+    <form action="/chat" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post" onsubmit="return lostSubmitBtn();">
         <br>
         <input type="hidden" name="boardNo" value="${boardDetail.boardNo}">
         <input type="hidden" name="writerName" value="${writerInfo.userName}">
