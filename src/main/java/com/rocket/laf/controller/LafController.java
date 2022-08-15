@@ -6,8 +6,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rocket.laf.dto.MessageRoom;
 import com.rocket.laf.dto.UserDto;
-import com.rocket.laf.service.impl.UserServiceImpl;
+import com.rocket.laf.service.impl.*;
 import lombok.RequiredArgsConstructor;
 
 import org.apache.catalina.User;
@@ -24,9 +25,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
-import com.rocket.laf.service.impl.BoardNoServiceImpl;
-import com.rocket.laf.service.impl.LostServiceImpl;
-import com.rocket.laf.service.impl.PictureServiceImpl;
 
 import java.util.logging.Logger;
 
@@ -39,6 +37,7 @@ public class LafController {
     private final PictureServiceImpl pictureServiceImpl;
     private final BoardNoServiceImpl boardNoServiceImpl;
     private final UserServiceImpl userService;
+    private final ChatServiceImpl chatServiceImpl;
 
     private final static Logger logger = Logger.getGlobal();
 
@@ -52,10 +51,9 @@ public class LafController {
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
             System.out.println("익명의 사용자 _________ " + userInfo);
             System.out.println("익명의 사용자 인증정보_________ " + auth);
+
         } else {
             System.out.println("로그인한 사용자_________ " + userInfo);
-            //System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
-            //System.out.println("로그인한 사용자 번호_________ " +  userInfo.getUserNo());
             System.out.println("로그인한 사용자 인증정보_________ " + auth);
         }
 
@@ -134,48 +132,57 @@ public class LafController {
     }
 
     @PostMapping("/post_Quiz")
-    public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, Principal principal) {
+    public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, @RequestParam String boardNo) {
 
         String answer = req.getParameter("ans");
-        String bNo = req.getParameter("boardNo");
-        String userA = req.getParameter("writerName");
-        String userB = loginUserName;
-
-
-//        logger.log(Level.INFO, answer);
-//        logger.log(Level.INFO, bNo);
-        LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
+        LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
         if (lost.getAnswers().equals(answer)) {
-//            String roomId = createdRoom.getRoomId();
-//            chatRoomRepository.enterChatRoom(createdRoom.getRoomId());
+            MessageRoom messageRoom = new MessageRoom();
+            UserDto userInfo = userService.getUserInfoById(loginUserName);
+            Long userNo = userService.getUserNoById(loginUserName);
+            LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
+            chatServiceImpl.createChatRoom(boardNo, userNo);
+            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo);
+            messageRoom.setRoomId(roomId);
+            messageRoom.setUserNo(userNo);
+            messageRoom.setBoardNo(boardNo);
+            model.addAttribute("userInfo", userInfo);
+            model.addAttribute("boardInfo", boardInfo);
             return "chat/chatDetail";
-//            return "redirect:/chat/room/enter/"+roomId;
         } else {
             return "redirect:/lostDetail";
         }
     }
 
-    @GetMapping("/update/{lBoardNo}")
-    public String updatelBoardNo(@PathVariable(name = "lBoardNo") String lBoardNo, Model model) {
 
-        LostDto lostDto = lostserviceImpl.getLostBoardOne(lBoardNo);
-        List<PictureDto> picList = pictureServiceImpl.getAllPictureByBoardNo(lBoardNo);
+    @GetMapping("/update/{boardNo}")
+    public String updatelBoardNo(@PathVariable(name = "boardNo") String boardNo, Model model) {
+
+        LostDto lostDto = lostserviceImpl.getLostBoardOne(boardNo);
+        List<PictureDto> picList = pictureServiceImpl.getAllPictureByBoardNo(boardNo);
+//        for (PictureDto pdto : picList) {
+//            String originPath = pdto.getStoredFilePath();
+//            pdto.setStoredFilePath("/resources/" + originPath.substring(26));
+//        }
+
         for (PictureDto pdto : picList) {
             String originPath = pdto.getStoredFilePath();
-            pdto.setStoredFilePath("/resources/" + originPath.substring(26));
+            if (originPath != null)
+                pdto.setStoredFilePath("/resources/img/communityBoard/" + originPath.substring(45));
+            else
+                continue;
         }
-
         model.addAttribute("lboard", lostDto);
         model.addAttribute("pDetail", picList);
 
         return "lost/lostUpdate";
     }
 
-    @PostMapping("/update/{lBoardNo}")
-    public String updatelBoard(@PathVariable(name = "lBoardNo") String lBoardNo, LostDto lostDto,
+    @PostMapping("/update/{boardNo}")
+    public String updatelBoard(@PathVariable(name = "boardNo") String boardNo, LostDto lostDto,
             MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
-        return "redirect:/"+lBoardNo;
+        return "redirect:/"+boardNo;
     }
 
 

@@ -76,6 +76,16 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     }
 
     @Override
+    public UserDto getUserInfoById(String username) {
+        return userMapper.getUserInfoById(username);
+    }
+
+    @Override
+    public Long getUserNoById(String username) {
+        return userMapper.getUserNoById(username);
+    }
+
+    @Override
     public int regUserSocial(UserDto dto) {
         return userMapper.regUserSocial(dto);
     }

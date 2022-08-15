@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <script src='../resources/js/topMenu.js' defer></script>
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
     <script type="text/javascript">
         function searchArg(data) {
             let searchArg = data;
@@ -27,11 +27,11 @@
                             tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
                             tags += "</div>";
                         } else {
-                            tags += "<div class='lostBoardListContainer' onclick='location.href=/"+searchListDtos[i].boardNo+"'>";
-                            tags += "<div>"+searchListDtos[i].boardNo+"</div>";
-                            tags += "<div>"+searchListDtos[i].title+"</div>";
-                            tags += "<div>"+searchListDtos[i].createDate+"</div>";
-                            tags += "<div>"+searchListDtos[i].location+"</div>";
+                            tags += "<div class='lostBoardListContainer' onclick='location.href=/" + searchListDtos[i].boardNo + "'>";
+                            tags += "<div>" + searchListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + searchListDtos[i].title + "</div>";
+                            tags += "<div>" + searchListDtos[i].createDate + "</div>";
+                            tags += "<div>" + searchListDtos[i].location + "</div>";
                             tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
                             tags += "</div>";
                         }
@@ -45,47 +45,48 @@
 
 <body class="body_container">
 
-    <div class="section">
-        <div class="top_navbar">
+<div class="section">
+    <div class="top_navbar">
 
-            <!--왼쪽 네비게이션 바-->
-            <div class = "left_nav">
-                <a href="/" class="logo">
-                    <img src="/resources/img/logo/laf6.png" alt="">
-                </a>
-            </div>
-            <!-- <input id="menu-toggle" type = "checkbox"/>
-            <label class='menu-button-container' for="menu-toggle">
-                <div class='menu-button'></div>
-            </label> -->
-            <!--가운데 네비게이션 바-->
-            <ul class = "center_nav">
-                <li>
-                    <a href='#' class="hidden" onclick="getFoundId('습득')">
+        <!--왼쪽 네비게이션 바-->
+        <div class="left_nav">
+            <a href="/" class="logo">
+                <img src="/resources/img/logo/laf6.png" alt="">
+            </a>
+        </div>
+        <!-- <input id="menu-toggle" type = "checkbox"/>
+        <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+        </label> -->
+        <!--가운데 네비게이션 바-->
+
+        <div class="center_nav">
+                <span>
+                    <%--<a href="canfound" class="canfound">--%>
+                    <a href='#' class='canfound' onclick="getFoundId('습득')">
                         <span class="icon"><i class="fi fi-rr-home"></i></span>
-                        <span type = "text" class="item">찾아줄게요</span>
+                        <span type="text" class="item">찾아줄게요</span>
                     </a>
-                </li>
-
-                <li>
-                    <a href="#" class="hidden" onclick="getLostId('분실')">
+                </span>
+            <span>
+                    <%--<a href="helpfound" class="helpfound">--%>
+                    <a href="#" class="helpfound" onclick="getLostId('분실')">
                         <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
                         <span class="item">찾아주세요</span>
                     </a>
-                </li>
+                </span>
+            <span>
+                    <input type="text" placeholder="검색어를 입력해주세요." id="search"/>
 
-                <li>
-                    <a href="QnA" class="hidden">
+                    <input type="button" value="검색" onclick="searchArg(document.getElementById('search').value)">
+                </span>
+            <span>
+                    <a href="QnA" class="qna">
                         <span class="icon"><i class="fi fi-rr-comment-alt"></i></span>
                         <span class="item">자주묻는질문</span>
                     </a>
-                </li>
-                <li>
-                        <input class="title" type="text" name="title">
-                        <button class="title" onclick="searchArg('title')">검색</button>
-                </li>
-                
-            </ul>
+                </span>
+
 
             <!-- 오른쪽 네비게이션 바 -->
             <div class="right_nav">
@@ -108,7 +109,9 @@
                 <i class="fi fi-rr-menu-burger"></i>
             </a>
         </div>
-    
-    
-    </body>
+    </div>
+</div>
+
+
+</body>
 </html>

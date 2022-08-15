@@ -1,4 +1,4 @@
-//window.onload하면 html문서를 읽고 js를 읽는다. 
+// window.onload하면 html문서를 읽고 js를 읽는다.
 window.onload =function(){
     console.log("연결완료");
 

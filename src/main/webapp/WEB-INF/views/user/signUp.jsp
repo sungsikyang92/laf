@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-	<!DOCTYPE html>
-	<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 	<head>
 		<meta charset="UTF-8">
@@ -18,14 +18,14 @@
 			let policyOn = "${policyOn}";
 		</script>
 
-		<script src='../resources/js/signUp.js'></script>
+    <script src='../resources/js/signUp.js'></script>
 
 
-	</head>
+</head>
 
-	<body class="body_container">
-		<div class="wrapper">
-		<jsp:include page="../UI/topMenu.jsp" flush="true" />
+<body class="body_container">
+<div class="wrapper">
+    <jsp:include page="../UI/topMenu.jsp" flush="true"/>
 
 		<div class="userReg-box">
 			<h1>회원가입</h1>
@@ -114,4 +114,5 @@
 		<%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 		</div>	
 	</body>
+
 </html>

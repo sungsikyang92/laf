@@ -30,7 +30,7 @@
     align-items:center;
 }
 
-                /************미디어쿼리 시작************/
+/************미디어쿼리 시작************/
 @media (max-width: 700px) {
 
     .top_navbar{
@@ -45,7 +45,7 @@
         width: 100%;
         align-items:center;
         z-index:1;
-        /* 
+        /*
         top: 70%;
         margin-top: 0;
         left: 0;
@@ -70,7 +70,7 @@
         margin-left:-2rem;
         justify-content: center;
         z-index:1;
-        
+
     }
     .right_nav .btn{
         line-height:30px;
@@ -83,35 +83,35 @@
 
 
 
-/* .top_navbar .right_nav {
-    width:100px;
-} */
-/* .center_nav > span {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0.5em 0;
-    width: 100%;
-    background-color:#6667AB;
-} */
-/* .center_nav > span:not(:last-child) {
-    border-bottom: 1px solid #444;
-} */
+    /* .top_navbar .right_nav {
+        width:100px;
+    } */
+    /* .center_nav > span {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0.5em 0;
+        width: 100%;
+        background-color:#6667AB;
+    } */
+    /* .center_nav > span:not(:last-child) {
+        border-bottom: 1px solid #444;
+    } */
 
-.top_navbar .left_nav img{
-    width:5rem!important;
-    height:5rem!important;
-    padding: 8px 12px;
-    
+    .top_navbar .left_nav img{
+        width:5rem!important;
+        height:5rem!important;
+        padding: 8px 12px;
+
+    }
+    .navbar_toggleBtn{
+        display:block;
+    }
+
+
+
 }
-.navbar_toggleBtn{
-    display:block!important;
-}
-
-
-
-}
-                /************미디어쿼리 끝************/
+/************미디어쿼리 끝************/
 .navbar_toggleBtn{
     display:none;
     position:absolute;
@@ -120,7 +120,7 @@
     color:white;
 }
 
-                /*CENTER_NAV*/
+/*CENTER_NAV*/
 .wrapper .section .top_navbar .center_nav{
     display:flex;
     margin-left : auto;
@@ -192,7 +192,7 @@ body{
     /* margin-top: 20px; */
     width: 8rem;
     height: 5rem;
-    
+
 }
 
 
@@ -223,7 +223,7 @@ body{
     list-style:none;
 }
 .wrapper .sidebar {
-    /* display:flex; 
+    /* display:flex;
     flex-direction:row; */
     background: #6667AB;
     /* position: relative; */
@@ -232,7 +232,7 @@ body{
     width: 100%;
     height: 50%;
     padding: 1em;
-    transition: all 0.5s ease; 
+    transition: all 0.5s ease;
     font-size:0;
     flex-wrap :wrap;
 }
@@ -242,7 +242,7 @@ body{
     width:225px;
     height:100px;
     margin-right:30px;
-    
+
 }
 .wrapper .section .logo img{
     height:90px;
