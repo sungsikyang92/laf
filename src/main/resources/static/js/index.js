@@ -1,5 +1,5 @@
 $(window).on('load', function () {
-	load('.child-page-listing', '12');
+	load('.child-page-listing', '4');
 	$("#js-btn-wrap .button").on("click", function () {
 		load('.child-page-listing', '4', '#js-btn-wrap');
 	})

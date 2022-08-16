@@ -54,7 +54,7 @@ public class UserController {
         logger.info("------------------------Controller mapping 'signUp button call'");
 
         // 약관버전 설정
-        int tVersion = 1;
+        int tVersion = 2;
         model.addAttribute("terms", termsService.selectOne(tVersion));
         System.out.println("-----------------------chk-----------------------" + model);
 
