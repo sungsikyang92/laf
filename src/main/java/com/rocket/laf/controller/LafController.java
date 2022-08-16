@@ -111,6 +111,8 @@ public class LafController {
 
     @GetMapping("/{boardNo}")
     public String LostDetail(@PathVariable(name = "boardNo") String boardNo, Model model) {
+        System.out.println("이게 왜 실행이 될까요?");
+        
         LostDto lostDto = lostserviceImpl.getLostBoardOne(boardNo);
         long writerNo = lostDto.getUserNo();
         UserDto writerInfo = userService.getUserById(writerNo);
