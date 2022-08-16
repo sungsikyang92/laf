@@ -1,4 +1,6 @@
-window.onload = function(){
+//topmenu js 충돌 수정
+window.addEventListener('load', function(){
+// window.onload = function(){
     console.log(typeof(option));
     console.log(typeof(score));
     
@@ -36,4 +38,4 @@ window.onload = function(){
 
     
 
-}
+});
