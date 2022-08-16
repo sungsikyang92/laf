@@ -38,8 +38,8 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public List<MessageRoom> getAllChatRoomByUser() {
-        return chatMapper.getAllChatRoomByUser();
+    public List<MessageRoom> getAllChatRoomByUser(long userNo) {
+        return chatMapper.getAllChatRoomByUser(userNo);
     }
 
     @Override

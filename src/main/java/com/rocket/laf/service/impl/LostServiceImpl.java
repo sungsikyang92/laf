@@ -84,5 +84,10 @@ public class LostServiceImpl implements LostService {
 //        }
     }
 
-   
+    @Override
+    public String getLostBoardTitle(String boardNo) {
+        return lostMapper.getLostBoardTitle(boardNo);
+    }
+
+
 }

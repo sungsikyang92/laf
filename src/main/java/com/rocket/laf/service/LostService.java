@@ -20,4 +20,6 @@ public interface LostService {
 
     void updatelBoardDetail(LostDto LostDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
 
+    String getLostBoardTitle(String boardNo);
+
 }

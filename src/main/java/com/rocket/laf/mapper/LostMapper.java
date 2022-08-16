@@ -52,4 +52,6 @@ public interface LostMapper {
             "WHERE boardNo = #{boardNo}")
     void updatelBoardDetail(LostDto lostDto);
 
+    @Select(" SELECT title FROM Lost WHERE boardNo = #{boardNo} ")
+    String getLostBoardTitle(String boardNo);
 }

@@ -22,8 +22,8 @@ public interface ChatMapper {
     @Select(" SELECT COUNT(*) FROM (SELECT * FROM Message WHERE boardNo=#{boardNo} and userNo=#{userNo}) CHAT_EXIST ")
     int chkChatRoomExist(String boardNo, long userNo);
 
-    @Select(" SELECT * FROM Message ")
-    List<MessageRoom> getAllChatRoomByUser();
+    @Select(" SELECT * FROM Message WHERE userNo = #{userNo} ")
+    List<MessageRoom> getAllChatRoomByUser(long userNo);
 
     @Select(" SELECT * FROM Message m INNER JOIN User u WHERE u.userNo = m.userNo and u.userName= #{userName} ")
     List<MessageRoom> getAllChatRoomByUserName(String userName);

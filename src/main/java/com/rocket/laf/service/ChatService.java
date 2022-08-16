@@ -13,7 +13,7 @@ public interface ChatService {
 
     int chkChatRoomExist(String boardNo, long userNo);
 
-    List<MessageRoom> getAllChatRoomByUser();
+    List<MessageRoom> getAllChatRoomByUser(long userNo);
 
     List<MessageRoom> getAllChatRoomByUserName(String userName);
 

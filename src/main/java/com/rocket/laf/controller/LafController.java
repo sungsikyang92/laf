@@ -170,8 +170,6 @@ public class LafController {
             messageRoom.setRoomId(roomId);
             messageRoom.setUserNo(userNo);
             messageRoom.setBoardNo(boardNo);
-            messageRoom.setBoardInfo(boardInfo);
-            messageRoom.setUserInfo(userInfo);
             if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
                 chatServiceImpl.createChatRoom(boardNo, userNo);
             }

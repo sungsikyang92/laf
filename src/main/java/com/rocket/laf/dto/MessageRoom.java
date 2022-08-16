@@ -8,9 +8,8 @@ public class MessageRoom {
     private long roomId;
     //분실물을 찾아주는 사람
     private String boardNo;
-    private LostDto boardInfo;
     //분실물을 찾고싶은 사람
     private Long userNo;
-    private UserDto userInfo;
+    private String title;
 
 }
