@@ -12,6 +12,7 @@ import com.rocket.laf.service.impl.*;
 import lombok.RequiredArgsConstructor;
 
 import org.apache.catalina.User;
+import org.apache.catalina.util.URLEncoder;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.logging.Logger;
 
@@ -124,9 +126,39 @@ public class LafController {
         return "lost/lostDetail";
     }
 
+//    @GetMapping("/post_Quiz")
+//    public String LostChatCreate(HttpServletRequest req, @RequestParam String loginUserName, @RequestParam String boardNo) {
+//
+//        String answer = req.getParameter("ans");
+//        LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
+//        MessageRoom messageRoom = new MessageRoom();
+//        if (lost.getAnswers().equals(answer)) {
+//            UserDto userInfo = userService.getUserInfoById(loginUserName);
+//            long userNo = userService.getUserNoById(loginUserName);
+//            LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
+//            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
+//            if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
+//                chatServiceImpl.createChatRoom(boardNo, userNo);
+//                messageRoom.setRoomId(roomId);
+//                messageRoom.setUserNo(userNo);
+//                messageRoom.setBoardNo(boardNo);
+//                messageRoom.setBoardInfo(boardInfo);
+//                messageRoom.setUserInfo(userInfo);
+//                return "redirect:/localhost:3000/room/enter/"+ roomId;
+//            } else {
+//                messageRoom.setRoomId(roomId);
+//                messageRoom.setUserNo(userNo);
+//                messageRoom.setBoardNo(boardNo);
+//                messageRoom.setBoardInfo(boardInfo);
+//                messageRoom.setUserInfo(userInfo);
+//                return "redirect:/localhost:3000/room/enter/"+ roomId;
+//            }
+//        }
+//        return "redirect:/";
+//    }
     @GetMapping("/post_Quiz")
-    public MessageRoom LostChatCreate(HttpServletRequest req, @RequestParam String loginUserName, @RequestParam String boardNo) {
-
+    public ModelAndView LostChatCreate(HttpServletRequest req, @RequestParam String loginUserName, @RequestParam String boardNo) {
+        ModelAndView mv = new ModelAndView();
         String answer = req.getParameter("ans");
         LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
         MessageRoom messageRoom = new MessageRoom();
@@ -134,24 +166,19 @@ public class LafController {
             UserDto userInfo = userService.getUserInfoById(loginUserName);
             long userNo = userService.getUserNoById(loginUserName);
             LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
+            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
+            messageRoom.setRoomId(roomId);
+            messageRoom.setUserNo(userNo);
+            messageRoom.setBoardNo(boardNo);
+            messageRoom.setBoardInfo(boardInfo);
+            messageRoom.setUserInfo(userInfo);
             if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
                 chatServiceImpl.createChatRoom(boardNo, userNo);
-                long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
-                messageRoom.setRoomId(roomId);
-                messageRoom.setUserNo(userNo);
-                messageRoom.setBoardNo(boardNo);
-                messageRoom.setBoardInfo(boardInfo);
-                messageRoom.setUserInfo(userInfo);
-            } else {
-                long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
-                messageRoom.setRoomId(roomId);
-                messageRoom.setUserNo(userNo);
-                messageRoom.setBoardNo(boardNo);
-                messageRoom.setBoardInfo(boardInfo);
-                messageRoom.setUserInfo(userInfo);
             }
+            String url = "redirect://localhost:3000/?roomId="+roomId+"/userName="+userInfo.getUserName();
+            mv.setViewName(url);
         }
-        return messageRoom;
+        return mv;
     }
 
 
