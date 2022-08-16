@@ -33,6 +33,7 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Service;
 
 import com.nimbusds.jose.shaded.json.JSONArray;
+import com.rocket.laf.common.DefaultOAuth2UserExtention;
 import com.rocket.laf.common.UserExtension;
 import com.rocket.laf.dto.PenaltyDto;
 import com.rocket.laf.dto.UserDto;
@@ -208,7 +209,7 @@ public class UserServiceImpl extends DefaultOAuth2UserService
         Collection<GrantedAuthority> auth = new ArrayList<>();
         auth.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        OAuth2User transedOA2User = new DefaultOAuth2User(auth, userDetails, "username");
+        OAuth2User transedOA2User = new DefaultOAuth2UserExtention(auth, userDetails, "username");
 
         return transedOA2User;
     }
