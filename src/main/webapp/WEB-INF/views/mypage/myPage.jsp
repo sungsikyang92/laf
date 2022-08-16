@@ -46,7 +46,6 @@
         
     </sec:authorize>
     <!-- security tags ends-->
-    <br><br><br><br>
 
     <!--mypage start-->
     <div class = "mypage_container" id="mypage">
@@ -71,10 +70,10 @@
             <div class = "item3">
                 <form action = "" method="post" enctype="multipart/form-data">
                     <input type="file" name = "file">
-                    <button type="submit" class = "button">프로필 업데이트</button>
-                 </form>
+                    <button type="onsubmit" class = "button">프로필 업데이트</button>
+                </form>
             </div>
-         <br>
+        <br>
             <ul>
                 <li>
                     <a href = "/myPage/founddetail">

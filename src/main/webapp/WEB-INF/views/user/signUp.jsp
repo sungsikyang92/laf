@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/resources/css/user.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script>
         let policyOn = "${policyOn}";
     </script>
