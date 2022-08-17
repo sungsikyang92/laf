@@ -21,6 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rocket.laf.dto.LostDto;
@@ -44,7 +45,10 @@ public class LafController {
 
     //팀장님, 로그인 유저정보 로그 확인을 위해서 Authentication 추가 했습니다.
     @GetMapping("")
-    public String main(Model model, @AuthenticationPrincipal User userInfo, Authentication auth) {
+    public String main(Model model, @AuthenticationPrincipal User userInfo, Authentication auth, HttpServletRequest request) {
+        
+        logger.info("index.jsp 실행");
+        
         AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
             System.out.println("익명의 사용자 _________ " + userInfo);
@@ -54,6 +58,9 @@ public class LafController {
             System.out.println("로그인한 사용자_________ " + userInfo);
             System.out.println("로그인한 사용자 인증정보_________ " + auth);
         }
+
+        Object list = request.getSession().getAttribute("penaltyObj");
+        System.out.println("컨트롤러 세션유지호가인 ____ " + list);
 
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
         List<PictureDto> PictureDtoList = pictureServiceImpl.getMainPictureForLost();
@@ -209,5 +216,6 @@ public class LafController {
         lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
         return "redirect:/"+boardNo;
     }
+
 
 }

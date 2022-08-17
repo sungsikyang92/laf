@@ -206,13 +206,14 @@ public class UserController {
         Map<String, String> jsonResponse = new HashMap<String, String>();
         JSONArray penaltyObj = new JSONArray();
         System.out.println("boardNoList" + boardNoList);
+        userService.deletePenalty(authentication.getName());
+        
         if (boardNoList.contains(penaltyJson.get("param1"))){
             penaltyObj.add(penaltyList);
             System.out.println("________penaltyObj__유저컨트롤러_______________________" + penaltyObj);
             session.setAttribute("penaltyObj", penaltyObj);
-
-            System.out.println("넘어온숫자: " + Integer.parseInt(penaltyJson.get("param2").toString()));
             
+            userService.updatePenalty(penaltyList);
             
             if (newCnt == 0){
                 jsonResponse.put("res", "correct");
@@ -232,6 +233,8 @@ public class UserController {
             penaltyObj.add(penaltyList);
             System.out.println("________penaltyObjElse__유저컨트롤러_______________________" + penaltyObj);
             session.setAttribute("penaltyObj", penaltyObj);
+
+            userService.updatePenalty(penaltyList);
 
             if (newCnt == 0){
                 jsonResponse.put("res", "correct");

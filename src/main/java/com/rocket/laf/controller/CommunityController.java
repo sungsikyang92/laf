@@ -1,6 +1,5 @@
 package com.rocket.laf.controller;
 
-import com.rocket.laf.dto.HashTagDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.service.impl.*;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor

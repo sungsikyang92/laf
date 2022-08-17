@@ -14,13 +14,10 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
-
-    <script src='resources/js/main_sidebar.js'></script>
     <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
+
     <%-- ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%-- ajax를 위한 script END--%>
@@ -33,10 +30,14 @@
         let boardNo = "${boardDetail.boardNo}";
 
         var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
-                var penaltyArrList = JSON.parse(penaltyObj);
-                
-                console.log(typeof(penaltyArrList));
+        var penaltyArrList = JSON.parse(penaltyObj);
 
+        //lostfix001 --
+        <sec:authorize access="isAuthenticated()">
+            let userNo = "<sec:authentication property='principal.userNo'/>";
+        </sec:authorize>
+        let boardUserNo = "${boardDetail.userNo}";
+        //--
     </script>
     <%-- 찾아줄게요 버튼 ajax --%>
     <script type="text/javascript">
@@ -116,6 +117,7 @@
             })
         }
     </script>
+
 
 </head>
 

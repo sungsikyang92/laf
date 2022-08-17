@@ -11,16 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaF</title>
-
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <script src='/resources/js/main_sidebar.js'></script>
-    <script src='../resources/js/topMenu.js' defer></script>
+    <script src='../resources/js/index.js' defer></script>
 
     <%-- ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -69,22 +66,22 @@
                     for (let i = 0; i < mainFoundListDtos.length; i++) {
                         if (mainFoundListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
+                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         }
@@ -108,22 +105,22 @@
                     for (let i = 0; i < mainLostListDtos.length; i++) {
                         if (mainLostListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
+                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainLostListDtos[i].title + "</div>";
                             tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainLostListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
                             tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainLostListDtos[i].title + "</div>";
                             tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
                             tags += "<div>" + mainLostListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         }
@@ -202,12 +199,12 @@
                                     <c:choose>
                                         <c:when test="${empty picList}">
                                             <img width='300' height='169' src='/resources/img/woo.png'
-                                                 alt='사진을 불러올수가 엄써'
-                                                 class='img'/>
+                                                alt='사진을 불러올수가 엄써'
+                                                class='img'/>
                                         </c:when>
                                         <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
-                                                          onerror='this.src=/resources/img/woo.png' alt=''
-                                                          class='img'/></c:otherwise>
+                                                        onerror='this.src=/resources/img/woo.png' alt=''
+                                                        class='img'/></c:otherwise>
                                     </c:choose>
 
                                 </div>
@@ -222,8 +219,10 @@
                 </c:choose>
             </div>
         </div>
+        <%--<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>--%>
     </div>
 </div>
+
 
 </body>
 
