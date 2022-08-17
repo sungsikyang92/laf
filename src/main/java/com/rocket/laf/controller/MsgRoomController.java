@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
@@ -25,9 +26,12 @@ public class MsgRoomController {
     private final UserServiceImpl userService;
 
     @GetMapping("/room/enter/{roomId}")
-    public String roomEnter(Model model, @PathVariable String roomId) {
-        model.addAttribute("roomId", roomId);
-        return "/chat/chatDetail";
+    public ModelAndView roomEnter(@PathVariable String roomId, Authentication authentication) {
+        ModelAndView mv = new ModelAndView();
+        String accessUser = authentication.getName();
+        String url = "redirect://localhost:3000/?roomId="+roomId+"&&userName="+accessUser;
+        mv.setViewName(url);
+        return mv;
     }
 
     @ResponseBody
@@ -51,21 +55,20 @@ public class MsgRoomController {
         return "/chat/roomList";
     }
 
-    @ResponseBody
-    @GetMapping("/room/ext")
-    public int chkChatRoomExist(@RequestParam long roomId, Authentication authentication) {
-        String loginUserName = authentication.getName();
-        MessageRoom roomByUserInfo = chatService.getRoomByRoomId(roomId);
-        Long userNo = roomByUserInfo.getUserNo();
-        UserDto userById = userService.getUserById(userNo);
-        System.out.println(loginUserName);
-        System.out.println(userById.getUserName());
-        if (userById.getUserName() == loginUserName) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
+//    @ResponseBody
+//    @GetMapping("/room/{roomId}/{boardNo}/{accessUserName}")
+//    public int chkChatRoomExist(@RequestParam String roomId, @RequestParam String accessUserName, @RequestParam String boardNo) {
+//        MessageRoom roomByUserInfo = chatService.getRoomByRoomId(roomId);
+//        Long userNo = roomByUserInfo.getUserNo();
+//        UserDto userById = userService.getUserById(userNo);
+//        System.out.println(userById.getUserName());
+//        if (userById.getUserName() == loginUserName) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+//    }
+
 //    @ResponseBody
 //    @GetMapping("/rooms")
 //    public String getAllChatRoomByUser(Model model) {

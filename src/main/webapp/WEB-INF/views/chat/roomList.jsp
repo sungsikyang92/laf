@@ -36,7 +36,7 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${roomList}" var="rL">
-                            <div class="chatList" onclick="location.href='/chat/${rL.roomId}'">
+                            <div class="chatList" onclick="location.href='/comm/room/enter/${rL.roomId}'">
                                 ${rL.roomId}
                                 ${rL.boardNo}
                                 ${rL.title}
