@@ -21,7 +21,6 @@ public class CommunityController {
 
     private final CommunityServiceImpl communityService;
     private final PictureServiceImpl pictureService;
-    private final HashTagServiceImpl hashTagService;
     private final UserServiceImpl userService;
     private final BoardNoServiceImpl boardNoService;
 
@@ -76,11 +75,9 @@ public class CommunityController {
                 pictureDtoList.add(pDto);
             }
         }
-        HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
         model.addAttribute("pDetail", picList);
-        model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
         return "/community/comBoardDetail";
     }
@@ -98,11 +95,9 @@ public class CommunityController {
             else
                 continue;
         }
-        HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
         model.addAttribute("pDetail", picList);
-        model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
 //        if (picList.size() >= 2) {
 //            if (picList.contains(null)) {
