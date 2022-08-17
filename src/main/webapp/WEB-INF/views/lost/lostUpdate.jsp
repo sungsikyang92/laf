@@ -8,14 +8,13 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Laf Lostwrite</title>
-            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            
             <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
             <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-            <link rel="stylesheet"
-                href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
             <link rel="stylesheet" href="/resources/css/lostUpdate.css" type="text/css">
             <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
+            
+            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <script type="text/javascript"
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
             <script type="text/javascript"

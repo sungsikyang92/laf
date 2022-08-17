@@ -19,8 +19,7 @@
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    <script src='/resources/js/main_sidebar.js'></script>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 </head>
 
@@ -31,7 +30,20 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>채팅방리스트</h3>
-                채팅방리스트
+                <c:choose>
+                    <c:when test="${empty roomList}">
+                        아직 채팅방이 존재하지 않습니다.
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${roomList}" var="rL">
+                            <div class="chatList" onclick="location.href='/chat/${rL.roomId}'">
+                                ${rL.roomId}
+                                ${rL.boardNo}
+                                ${rL.title}
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div><!-- <%-- contents_container --%> -->

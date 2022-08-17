@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.rocket.laf.dto.MessageRoom;
+import com.rocket.laf.mapper.ChatMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -49,6 +51,8 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     private UserMapper userMapper;
     @Autowired
     private PenaltyMapper penaltyMapper;
+    @Autowired
+    private ChatMapper chatMapper;
 
     @Override
     public UserDto login(UserDto dto) {
@@ -83,6 +87,11 @@ public class UserServiceImpl extends DefaultOAuth2UserService
     @Override
     public Long getUserNoById(String username) {
         return userMapper.getUserNoById(username);
+    }
+
+    @Override
+    public List<MessageRoom> getAllChatRoomByUserName(String userName) {
+        return chatMapper.getAllChatRoomByUserName(userName);
     }
 
     @Override

@@ -10,4 +10,6 @@ public class MessageRoom {
     private String boardNo;
     //분실물을 찾고싶은 사람
     private Long userNo;
+    private String title;
+
 }

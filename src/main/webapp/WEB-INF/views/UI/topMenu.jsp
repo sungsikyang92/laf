@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script src='../resources/js/topMenu.js' defer></script>
     <meta charset="utf-8">
     <script type="text/javascript">
@@ -43,75 +44,67 @@
     </script>
 </head>
 
-<body class="body_container">
+    <body class="body_container">
 
-<div class="section">
-    <div class="top_navbar">
+        <div class="section">
+            <div class="top_navbar">
 
-        <!--왼쪽 네비게이션 바-->
-        <div class="left_nav">
-            <a href="/" class="logo">
-                <img src="/resources/img/logo/laf6.png" alt="">
-            </a>
-        </div>
-        <!-- <input id="menu-toggle" type = "checkbox"/>
-        <label class='menu-button-container' for="menu-toggle">
-            <div class='menu-button'></div>
-        </label> -->
-        <!--가운데 네비게이션 바-->
-
-        <div class="center_nav">
-                <span>
-                    <%--<a href="canfound" class="canfound">--%>
-                    <a href='#' class='canfound' onclick="getFoundId('습득')">
-                        <span class="icon"><i class="fi fi-rr-home"></i></span>
-                        <span type="text" class="item">찾아줄게요</span>
+                <!--왼쪽 네비게이션 바-->
+                <div class="left_nav">
+                    <a href="/" class="logo">
+                        <img src="/resources/img/logo/laf6.png" alt="">
                     </a>
-                </span>
-            <span>
-                    <%--<a href="helpfound" class="helpfound">--%>
-                    <a href="#" class="helpfound" onclick="getLostId('분실')">
-                        <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
-                        <span class="item">찾아주세요</span>
-                    </a>
-                </span>
-            <span>
+                </div>
+                <div class="input_search">
                     <input type="text" placeholder="검색어를 입력해주세요." id="search"/>
-
                     <input type="button" value="검색" onclick="searchArg(document.getElementById('search').value)">
-                </span>
-            <span>
-                    <a href="QnA" class="qna">
-                        <span class="icon"><i class="fi fi-rr-comment-alt"></i></span>
+                </div>
+                
+                <!--가운데 네비게이션 바-->
+                <ul class="center_nav">
+                    <li>
+                        <a href='#' class='canfound' onclick="getFoundId('습득')">
+                            <!--아이콘들 이미지로 변경할 것.-->
+                            <span type="text" class="item">찾아줄게요</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="helpfound" onclick="getLostId('분실')">
+                            <span class="item">찾아주세요</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="QnA" class="qna">
                         <span class="item">자주묻는질문</span>
-                    </a>
-                </span>
+                        </a>
+                    </li>
+                </ul>
 
+                <!-- 오른쪽 네비게이션 바 -->
+                <div class="right_nav">
+                    <!-- security tags starts-->
+                    <sec:authorize access="isAnonymous()">
+                        <button class="btn" sec:authorize="isAnonymous()"
+                                onclick="location.href='/user/login'">로그인
+                        </button>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <sec:authentication property="principal.username" var="loginUserName"/>
+                        <span class="item">${loginUserName}님 환영합니다</span>
+                        <button class="btn" onclick="location.href='/write'">글쓰기</button>
+                        <button class="btn" onclick="location.href='/myPage?userId=${loginUserName}'">마이페이지</button>
+                        <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
+                    </sec:authorize>
+                    <!-- security tags ends-->
+                </div>
 
-            <!-- 오른쪽 네비게이션 바 -->
-            <div class="right_nav">
-                <!-- security tags starts-->
-                <sec:authorize access="isAnonymous()">
-                    <button class="btn" sec:authorize="isAnonymous()"
-                            onclick="location.href='/user/login'">로그인
-                    </button>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username" var="loginUserName"/>
-                    <span class="item">${loginUserName}님 환영합니다</span>
-                    <button class="btn" onclick="location.href='/write'">글쓰기</button>
-                    <button class="btn" onclick="location.href='/myPage?userId=${loginUserName}'">마이페이지</button>
-                    <button class="btn" onclick="location.href='/user/logout'">로그아웃</button>
-                </sec:authorize>
-                <!-- security tags ends-->
+                <!--togglebutton-->
+                <a href="#" class="navbar_toggleBtn">
+                    <img src = "/resources/img/logo/Hamburger_icon.svg.png" alt="">
+                </a>
+                
             </div>
-            <a href="#" class="navbar_toggleBtn">
-                <i class="fi fi-rr-menu-burger"></i>
-            </a>
         </div>
-    </div>
-</div>
-
-
-</body>
+    </body>
 </html>

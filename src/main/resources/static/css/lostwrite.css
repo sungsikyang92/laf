@@ -90,7 +90,12 @@ h2 {
         border-radius: 5px;
     }
 }
+@media(max-width:1024px){
+    textarea{
+        width:20em;
 
+    }
+}
 
 /* in form tag */
 
