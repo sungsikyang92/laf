@@ -1,6 +1,5 @@
 package com.rocket.laf.controller;
 
-import com.rocket.laf.dto.HashTagDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.service.impl.*;
@@ -15,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/cBoard")
@@ -24,7 +21,6 @@ public class CommunityController {
 
     private final CommunityServiceImpl communityService;
     private final PictureServiceImpl pictureService;
-    private final HashTagServiceImpl hashTagService;
     private final UserServiceImpl userService;
     private final BoardNoServiceImpl boardNoService;
 
@@ -79,11 +75,9 @@ public class CommunityController {
                 pictureDtoList.add(pDto);
             }
         }
-        HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
         model.addAttribute("pDetail", picList);
-        model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
         return "/community/comBoardDetail";
     }
@@ -101,11 +95,9 @@ public class CommunityController {
             else
                 continue;
         }
-        HashTagDto hashTagDto = hashTagService.getHashTagById(hashNo);
         UserDto userDto = userService.getUserById(userNo);
         model.addAttribute("cbDetail", comDto);
         model.addAttribute("pDetail", picList);
-        model.addAttribute("hDetail", hashTagDto);
         model.addAttribute("uDetail", userDto);
 //        if (picList.size() >= 2) {
 //            if (picList.contains(null)) {

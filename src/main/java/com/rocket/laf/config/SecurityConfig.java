@@ -36,8 +36,9 @@ public class SecurityConfig{
                 .frameOptions().disable().and()
             .authorizeRequests()
             //개발할땐 이걸 키고
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated().and()
+                .antMatchers("/**","/chat","/chat/**").permitAll()
+//                .anyRequest().authenticated().and()
+                .anyRequest().permitAll().and()
             // //22.08.02 업데이트) 시연할땐 이걸 키고
                 // .antMatchers("/chat").hasRole("USER")
                 // .antMatchers("/mypage").hasRole("USER")

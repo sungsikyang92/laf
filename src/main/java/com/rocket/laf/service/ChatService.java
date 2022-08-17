@@ -7,7 +7,15 @@ import java.util.List;
 public interface ChatService {
     List<MessageRoom> getAllChatRoom(String username);
 
-    MessageRoom createChatRoom(String username, Long boardNo);
+    void createChatRoom(String username, long boardNo);
 
-    Long getRoomIdByuserNo(Long userNo);
+    long getRoomIdByuserNo(long userNo, String boardNo);
+
+    int chkChatRoomExist(String boardNo, long userNo);
+
+    List<MessageRoom> getAllChatRoomByUser(long userNo);
+
+    List<MessageRoom> getAllChatRoomByUserName(String userName);
+
+    MessageRoom getRoomByRoomId(long roomId);
 }
