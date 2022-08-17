@@ -32,6 +32,41 @@
 
 #starlabel{
   margin-top: 0.1em;
-
-
 }
+
+/* --------- 영재 테스트 ------------ */
+
+body {
+  background: #f5f6fa;
+}
+
+.userReview-box {
+  width: 70%;
+  margin: auto;
+  margin-top: 40px;
+  
+}
+
+
+/* for touch screen devices */
+
+@media(max-width:1024px){
+  textarea{
+      width:20em;
+
+  }
+}
+
+/* in form tag */
+
+.input_container {
+  display: flex;
+}
+
+.search {
+  position: absolute;
+  z-index: 5;
+  top: 20px;
+  left: 20px;
+}
+

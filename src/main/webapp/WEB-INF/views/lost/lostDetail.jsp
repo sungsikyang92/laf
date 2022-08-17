@@ -14,12 +14,7 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-<<<<<<< HEAD
-    <link rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
-=======
 
->>>>>>> bcf32d5d114bce7aaad15d7a86419835c9dbba2a
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
@@ -122,10 +117,7 @@
             })
         }
     </script>
-<<<<<<< HEAD
-=======
 
->>>>>>> bcf32d5d114bce7aaad15d7a86419835c9dbba2a
 
 </head>
 
