@@ -6,8 +6,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rocket.laf.dto.MessageRoom;
 import com.rocket.laf.dto.UserDto;
-import com.rocket.laf.service.impl.UserServiceImpl;
+import com.rocket.laf.service.impl.*;
 import lombok.RequiredArgsConstructor;
 
 import org.apache.catalina.User;
@@ -19,13 +20,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
-import com.rocket.laf.service.impl.BoardNoServiceImpl;
-import com.rocket.laf.service.impl.LostServiceImpl;
-import com.rocket.laf.service.impl.PictureServiceImpl;
 
 import java.util.logging.Logger;
 
@@ -38,22 +37,28 @@ public class LafController {
     private final PictureServiceImpl pictureServiceImpl;
     private final BoardNoServiceImpl boardNoServiceImpl;
     private final UserServiceImpl userService;
+    private final ChatServiceImpl chatServiceImpl;
 
     private final static Logger logger = Logger.getGlobal();
 
     //팀장님, 로그인 유저정보 로그 확인을 위해서 Authentication 추가 했습니다.
     @GetMapping("")
-    public String main(Model model, @AuthenticationPrincipal User userInfo, Authentication auth) {
+    public String main(Model model, @AuthenticationPrincipal User userInfo, Authentication auth, HttpServletRequest request) {
+        
+        logger.info("index.jsp 실행");
+        
         AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
             System.out.println("익명의 사용자 _________ " + userInfo);
             System.out.println("익명의 사용자 인증정보_________ " + auth);
+
         } else {
             System.out.println("로그인한 사용자_________ " + userInfo);
-            //System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
-            //System.out.println("로그인한 사용자 번호_________ " +  userInfo.getUserNo());
             System.out.println("로그인한 사용자 인증정보_________ " + auth);
         }
+
+        Object list = request.getSession().getAttribute("penaltyObj");
+        System.out.println("컨트롤러 세션유지호가인 ____ " + list);
 
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
         List<PictureDto> PictureDtoList = pictureServiceImpl.getMainPictureForLost();
@@ -106,6 +111,8 @@ public class LafController {
 
     @GetMapping("/{boardNo}")
     public String LostDetail(@PathVariable(name = "boardNo") String boardNo, Model model) {
+        System.out.println("이게 왜 실행이 될까요?");
+        
         LostDto lostDto = lostserviceImpl.getLostBoardOne(boardNo);
         long writerNo = lostDto.getUserNo();
         UserDto writerInfo = userService.getUserById(writerNo);
@@ -127,22 +134,23 @@ public class LafController {
     }
 
     @PostMapping("/post_Quiz")
-    public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, Principal principal) {
+    public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, @RequestParam String boardNo) {
 
         String answer = req.getParameter("ans");
-        String bNo = req.getParameter("boardNo");
-        String userA = req.getParameter("writerName");
-        String userB = loginUserName;
-
-
-//        logger.log(Level.INFO, answer);
-//        logger.log(Level.INFO, bNo);
-        LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
+        LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
         if (lost.getAnswers().equals(answer)) {
-//            String roomId = createdRoom.getRoomId();
-//            chatRoomRepository.enterChatRoom(createdRoom.getRoomId());
+            MessageRoom messageRoom = new MessageRoom();
+            UserDto userInfo = userService.getUserInfoById(loginUserName);
+            Long userNo = userService.getUserNoById(loginUserName);
+            LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
+            chatServiceImpl.createChatRoom(boardNo, userNo);
+            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo);
+            messageRoom.setRoomId(roomId);
+            messageRoom.setUserNo(userNo);
+            messageRoom.setBoardNo(boardNo);
+            model.addAttribute("userInfo", userInfo);
+            model.addAttribute("boardInfo", boardInfo);
             return "chat/chatDetail";
-//            return "redirect:/chat/room/enter/"+roomId;
         } else {
             return "redirect:/lostDetail";
         }
@@ -178,5 +186,6 @@ public class LafController {
         lostserviceImpl.updatelBoardDetail(lostDto, multipartHttpServletRequest);
         return "redirect:/"+boardNo;
     }
+
 
 }

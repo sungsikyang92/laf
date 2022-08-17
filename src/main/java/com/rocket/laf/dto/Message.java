@@ -9,5 +9,5 @@ public class Message {
 
     private String username;
     private String content;
-    private LocalDateTime date;
+    private LocalDateTime chattime;
 }

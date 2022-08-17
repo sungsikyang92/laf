@@ -35,4 +35,11 @@ public interface UserMapper {
     @Select (" select max(userNo) from User")
     int getMaxUserNo();
 
+    //수정
+    @Select(" SELECT * FROM User WHERE userId = #{username} ")
+    UserDto getUserInfoById(String username);
+
+    @Select(" SELECT userNo FROM User WHERE userId = #{username} ")
+    Long getUserNoById(String username);
+
 }

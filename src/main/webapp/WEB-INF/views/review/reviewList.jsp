@@ -28,7 +28,7 @@
 <body class="body_container">
     <div class="wrapper">
 <jsp:include page="../UI/topMenu.jsp" flush="true" />
-        <table border="1">
+        <table>
             <colgroup>
                 <col width="50">
                 <col width="200">

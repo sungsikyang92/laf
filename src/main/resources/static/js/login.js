@@ -1,4 +1,5 @@
-window.onload = function () {
+//topmenu js 충돌 수정
+window.addEventListener('load', function(){
 	// if (document.querySelector('p') != null){
 	// 	document.querySelector('p').remove
 	// }
@@ -6,7 +7,7 @@ window.onload = function () {
 		var errorTag = setErrorMsg("아이디 혹은 비밀번호가 일치하지 않습니다", "red");
 		document.getElementsByName("password")[0].parentNode.appendChild(errorTag);
 	}
-}
+});
 
 
 function chkBlank() {

@@ -14,9 +14,13 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
+    <link rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
+
+    <script src='resources/js/main_sidebar.js'></script>
+    <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
     <%-- ajax를 위한 script START--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%-- ajax를 위한 script END--%>
@@ -29,10 +33,14 @@
         let boardNo = "${boardDetail.boardNo}";
 
         var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
-                var penaltyArrList = JSON.parse(penaltyObj);
-                
-                console.log(typeof(penaltyArrList));
+        var penaltyArrList = JSON.parse(penaltyObj);
 
+        //lostfix001 --
+        <sec:authorize access="isAuthenticated()">
+            let userNo = "<sec:authentication property='principal.userNo'/>";
+        </sec:authorize>
+        let boardUserNo = "${boardDetail.userNo}";
+        //--
     </script>
     <%-- 찾아줄게요 버튼 ajax --%>
     <script type="text/javascript">
@@ -150,13 +158,13 @@
         <!-- end grid container -->
     </div>
     <br>
-    <h3>작정자 : ${writerInfo.userName}</h3>
+    <h3>작성자 : ${writerInfo.userName}</h3>
     <h2>작성일 : ${boardDetail.createDate}</h2>
     <h3>글내용 : ${boardDetail.content}</h3>
     <br>
     <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.question}</h3>
 
-    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post" onsubmit="return lostSubmitBtn();">
+    <form action="/chat" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post" onsubmit="return lostSubmitBtn();">
         <br>
         <input type="hidden" name="boardNo" value="${boardDetail.boardNo}">
         <input type="hidden" name="writerName" value="${writerInfo.userName}">
@@ -166,10 +174,10 @@
 
 </div>
 </div>
-<%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 
 <script src='resources/js/lostQuestion.js' async></script>
+
 </body>
 
 </html>

@@ -75,11 +75,11 @@
             </div>
         <br>
             <ul>
-                <li>
+                <!-- <li>
                     <a href = "/myPage/founddetail">
                         <span class="item">내가 찾아준 내역 ▷</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href = "/review">
                         <span class="item">내 후기 모아보기 ▷</span>
