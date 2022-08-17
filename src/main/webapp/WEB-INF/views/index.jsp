@@ -86,7 +86,8 @@
                             tags += "</div>";
                         }
                     }
-                    $("#test").html(tags);
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
                 }
             })
         }
@@ -125,7 +126,8 @@
                             tags += "</div>";
                         }
                     }
-                    $("#test").html(tags);
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
                 }
             })
         }
@@ -164,7 +166,8 @@
                             tags += "</div>";
                         }
                     }
-                    $("#test").html(tags);
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
                 }
             })
         }
