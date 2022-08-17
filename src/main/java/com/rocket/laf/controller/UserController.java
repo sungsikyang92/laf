@@ -342,7 +342,8 @@ public class UserController {
             System.out.println("로그인한 사용자 인증정보_________ " +  auth);
             return "/user/secTestGgl";
         }
+
     }
-    
+
     
 }
