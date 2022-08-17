@@ -25,7 +25,7 @@
             src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
     <script type="text/javascript"
             src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
-    
+
     <script type="text/javascript" src="resources/js/lostWrite.js" async></script>
 
 
@@ -59,7 +59,7 @@
         <h2>
             분실
             <input type="radio" name="category" id="" value="분실"/>
-            &nbsp;&nbsp; 습득
+            습득
             <input type="radio" name="category" id="" value="습득" checked="checked"/>
         </h2>
         <!-- objdesc001-02 start-->

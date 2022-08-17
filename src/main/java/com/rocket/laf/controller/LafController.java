@@ -6,11 +6,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rocket.laf.dto.MessageRoom;
 import com.rocket.laf.dto.UserDto;
-import com.rocket.laf.service.impl.UserServiceImpl;
+import com.rocket.laf.service.impl.*;
 import lombok.RequiredArgsConstructor;
 
 import org.apache.catalina.User;
+import org.apache.catalina.util.URLEncoder;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
@@ -24,9 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.PictureDto;
-import com.rocket.laf.service.impl.BoardNoServiceImpl;
-import com.rocket.laf.service.impl.LostServiceImpl;
-import com.rocket.laf.service.impl.PictureServiceImpl;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.logging.Logger;
 
@@ -39,6 +39,7 @@ public class LafController {
     private final PictureServiceImpl pictureServiceImpl;
     private final BoardNoServiceImpl boardNoServiceImpl;
     private final UserServiceImpl userService;
+    private final ChatServiceImpl chatServiceImpl;
 
     private final static Logger logger = Logger.getGlobal();
 
@@ -52,10 +53,9 @@ public class LafController {
         if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
             System.out.println("익명의 사용자 _________ " + userInfo);
             System.out.println("익명의 사용자 인증정보_________ " + auth);
+
         } else {
             System.out.println("로그인한 사용자_________ " + userInfo);
-            //System.out.println("로그인한 사용자 아이디_________ " +  userInfo.getUsername());
-            //System.out.println("로그인한 사용자 번호_________ " +  userInfo.getUserNo());
             System.out.println("로그인한 사용자 인증정보_________ " + auth);
         }
 
@@ -133,26 +133,57 @@ public class LafController {
         return "lost/lostDetail";
     }
 
-    @PostMapping("/post_Quiz")
-    public String LostChatCreate(HttpServletRequest req, Model model, @RequestParam String loginUserName, Principal principal) {
-
+//    @GetMapping("/post_Quiz")
+//    public String LostChatCreate(HttpServletRequest req, @RequestParam String loginUserName, @RequestParam String boardNo) {
+//
+//        String answer = req.getParameter("ans");
+//        LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
+//        MessageRoom messageRoom = new MessageRoom();
+//        if (lost.getAnswers().equals(answer)) {
+//            UserDto userInfo = userService.getUserInfoById(loginUserName);
+//            long userNo = userService.getUserNoById(loginUserName);
+//            LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
+//            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
+//            if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
+//                chatServiceImpl.createChatRoom(boardNo, userNo);
+//                messageRoom.setRoomId(roomId);
+//                messageRoom.setUserNo(userNo);
+//                messageRoom.setBoardNo(boardNo);
+//                messageRoom.setBoardInfo(boardInfo);
+//                messageRoom.setUserInfo(userInfo);
+//                return "redirect:/localhost:3000/room/enter/"+ roomId;
+//            } else {
+//                messageRoom.setRoomId(roomId);
+//                messageRoom.setUserNo(userNo);
+//                messageRoom.setBoardNo(boardNo);
+//                messageRoom.setBoardInfo(boardInfo);
+//                messageRoom.setUserInfo(userInfo);
+//                return "redirect:/localhost:3000/room/enter/"+ roomId;
+//            }
+//        }
+//        return "redirect:/";
+//    }
+    @GetMapping("/post_Quiz")
+    public ModelAndView LostChatCreate(HttpServletRequest req, @RequestParam String loginUserName, @RequestParam String boardNo) {
+        ModelAndView mv = new ModelAndView();
         String answer = req.getParameter("ans");
-        String bNo = req.getParameter("boardNo");
-        String userA = req.getParameter("writerName");
-        String userB = loginUserName;
-
-
-//        logger.log(Level.INFO, answer);
-//        logger.log(Level.INFO, bNo);
-        LostDto lost = lostserviceImpl.getLostBoardOne(bNo);
+        LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
+        MessageRoom messageRoom = new MessageRoom();
         if (lost.getAnswers().equals(answer)) {
-//            String roomId = createdRoom.getRoomId();
-//            chatRoomRepository.enterChatRoom(createdRoom.getRoomId());
-            return "chat/chatDetail";
-//            return "redirect:/chat/room/enter/"+roomId;
-        } else {
-            return "redirect:/lostDetail";
+            UserDto userInfo = userService.getUserInfoById(loginUserName);
+            long userNo = userService.getUserNoById(loginUserName);
+            LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
+            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
+            messageRoom.setRoomId(roomId);
+            messageRoom.setUserNo(userNo);
+            messageRoom.setBoardNo(boardNo);
+            if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
+                chatServiceImpl.createChatRoom(boardNo, userNo);
+            }
+            String url = "redirect://localhost:3000/?roomId="+roomId+"&&userName="+userInfo.getUserName();
+            mv.setViewName(url);
         }
+        return mv;
     }
 
 

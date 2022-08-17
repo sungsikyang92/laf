@@ -63,7 +63,6 @@
             </c:if>
         </div>
     </div><%-- contents_container --%>
-    <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
 </div><%--wrapper--%>
 </body>
 

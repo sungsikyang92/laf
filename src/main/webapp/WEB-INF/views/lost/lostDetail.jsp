@@ -162,7 +162,7 @@
     <br>
     <h3 style="border-top:solid 2px rgb(169, 169, 169);">문제 : ${boardDetail.question}</h3>
 
-    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="post" onsubmit="return lostSubmitBtn();">
+    <form action="/post_Quiz" id="form_Q" style="border-bottom:solid 2px rgb(169, 169, 169);" method="get" onsubmit="return lostSubmitBtn();">
         <br>
         <input type="hidden" name="boardNo" value="${boardDetail.boardNo}">
         <input type="hidden" name="writerName" value="${writerInfo.userName}">
@@ -172,11 +172,9 @@
 
 </div>
 </div>
-<%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 
 
 <script src='resources/js/lostQuestion.js' async></script>
-
 </body>
 
 </html>

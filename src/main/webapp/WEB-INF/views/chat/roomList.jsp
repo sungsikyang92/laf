@@ -29,35 +29,24 @@
     <div class="contents_container">
         <div class="row">
             <div class="col-md-12">
-                <h3>채팅</h3>
+                <h3>채팅방리스트</h3>
+                <c:choose>
+                    <c:when test="${empty roomList}">
+                        아직 채팅방이 존재하지 않습니다.
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${roomList}" var="rL">
+                            <div class="chatList" onclick="location.href='/chat/${rL.roomId}'">
+                                ${rL.roomId}
+                                ${rL.boardNo}
+                                ${rL.title}
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
-<!-- <%--        <div class="input-group">--%>
-<%--            <div class="input-group-prepend">--%>
-<%--                <label class="input-group-text">방제목</label>--%>
-<%--            </div>--%>
-<%--            <form>--%>
-<%--            <input type="text" class="form-control" name="room_name">--%>
-<%--                <div class="input-group-append">--%>
-<%--                    <button class="chatInputBtn" type="button" onclick="createRoom(this.id)"></button>--%>
-<%--                </div>--%>
-<%--            </form>--%>
-<%--        </div>--%> -->
-        <div class="chat_list">
-            <c:choose>
-                <c:when test="${empty chatRoomList}">
-                    <div>아직 진행된 채팅이 없습니다!</div>
-                </c:when>
-                <c:otherwise>
-                   <c:forEach items="${chatRoomList}" var="crl">
-                       <div onclick="location.href='/chat/room/enter/${crl.roomId}'">${crl.name}</div>
-                   </c:forEach>
-                </c:otherwise>
-            </c:choose>
-        </div>
-    </div>
-    <!-- <%-- contents_container --%> -->
-</div>
-<!-- <%--wrapper--%> -->
+    </div><!-- <%-- contents_container --%> -->
+</div><!-- <%--wrapper--%> -->
 </body>
 </html>
