@@ -173,7 +173,7 @@ public class LafController {
             if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
                 chatServiceImpl.createChatRoom(boardNo, userNo);
             }
-            String url = "redirect://localhost:3000/?roomId="+roomId+"/userName="+userInfo.getUserName();
+            String url = "redirect://localhost:3000/?roomId="+roomId+"&&userName="+userInfo.getUserName();
             mv.setViewName(url);
         }
         return mv;
