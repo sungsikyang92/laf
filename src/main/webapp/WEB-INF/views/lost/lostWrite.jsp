@@ -12,18 +12,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Laf Lostwrite</title>
-
+    
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
+    
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
     
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
 
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
+    <script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
+    <script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri&submodules=geocoder"></script>
+    
     <script type="text/javascript" src="resources/js/lostWrite.js" async></script>
+
 
     
 </head>

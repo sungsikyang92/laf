@@ -14,13 +14,13 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-   
-          <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
-    <script src='resources/js/main_sidebar.js'></script>
-    <link rel="stylesheet" href="../resources/css/lostdetail.css" type="text/css">
-
+    <%-- ajax를 위한 script START--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <%-- ajax를 위한 script END--%>
     <script>
         let answer1 = "${boardDetail.answers1}";
         let answer2 = "${boardDetail.answers2}";
@@ -39,6 +39,85 @@
         let boardUserNo = "${boardDetail.userNo}";
         //--
     </script>
+    <%-- 찾아줄게요 버튼 ajax --%>
+    <script type="text/javascript">
+        function getFoundId(data) {
+            let found = data;
+            $.ajax({
+                type: "get",
+                data: "lCategory=" + found,
+                dataType: "json",
+                url: "/lafList/found/" + found,
+                success: function (mainFoundListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < mainFoundListDtos.length; i++) {
+                        if (mainFoundListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainFoundListDtos[i].boardNo +"'>"
+                            tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].title + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainFoundListDtos[i].boardNo +"'>"
+                            tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].title + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
+                            tags += "</div>";
+                        }
+                    }
+                    $("#dtl").html(tags);
+                }
+            })
+        }
+    </script>
+    <%-- 찾아주세요 버튼 ajax --%>
+    <script type="text/javascript">
+        function getLostId(data) {
+            let lost = data;
+            $.ajax({
+                type: "get",
+                data: "lCategory=" + lost,
+                dataType: "json",
+                url: "/lafList/lost/" + lost,
+                success: function (mainLostListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < mainLostListDtos.length; i++) {
+                        if (mainLostListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainLostListDtos[i].boardNo +"'>"
+                            tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].title + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/"+ mainLostListDtos[i].boardNo +"'>"
+                            tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].title + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].location + "</div>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써' class='img' />";
+                            tags += "</a>"
+                            tags += "</div>";
+                        }
+                    }
+                    $("#dtl").html(tags);
+                }
+            })
+        }
+    </script>
+
 
 </head>
 
@@ -48,7 +127,7 @@
 <jsp:include page="../UI/topMenu.jsp" flush="true"/>
 
 <!-- 컨텐츠 삽입부분-->
-<div class="contents_container">
+<div class="contents_container" id="dtl">
     <h1 style="border-bottom: solid 2px rgb(169, 169, 169);padding-bottom: 20px;">글 제목 :
         ${boardDetail.title}</h1>
     <br>

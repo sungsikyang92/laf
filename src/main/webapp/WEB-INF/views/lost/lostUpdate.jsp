@@ -8,13 +8,13 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Laf Lostwrite</title>
-            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            
             <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
             <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-            <link rel="stylesheet"
-                href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
             <link rel="stylesheet" href="/resources/css/lostUpdate.css" type="text/css">
-
+            <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+            
+            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <script type="text/javascript"
                 src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
             <script type="text/javascript"
@@ -55,7 +55,7 @@
 
             <!-- 컨텐츠 삽입부분-->
             <div class="contents_container">
-                <form action="/update/${lboard.LBoardNo}" method="post" enctype="multipart/form-data">
+                <form action="/update/${lboard.boardNo}" method="post" enctype="multipart/form-data">
 
                     <div id="image_container">
                         <div id="imageList">
@@ -83,10 +83,10 @@
                         onchange="setThumbnail(event);" multiple />
                     <button type="button" onclick="resetFile()">올린파일 초기화</button>
                     <br>
-                    <c:if test="${lboard.LCategory eq '분실'}">
+                    <c:if test="${lboard.category eq '분실'}">
                         <h2>분실<input type="radio" name="category" id="" value="분실" checked="checked" /></h2>
                     </c:if>
-                    <c:if test="${lboard.LCategory eq '습득'}">
+                    <c:if test="${lboard.category eq '습득'}">
                         <h2>습득<input type="radio" name="category" id="" value="습득" checked="checked" /></h2>
                     </c:if>
                     <br>
@@ -95,7 +95,7 @@
                     </h1>
                     <br>
                     <h2>글 내용 : <br>
-                        <textarea cols="150" rows="15" name="content" value="${lboard.content}"></textarea>
+                        <textarea cols="150" rows="15" name="content">${lboard.content}</textarea>
                     </h2>
                     <br>
                     <h3 style="border-top:solid 2px rgb(169, 169, 169);">

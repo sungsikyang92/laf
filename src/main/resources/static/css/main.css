@@ -6,14 +6,26 @@ body {
     width: 70%;
     margin: auto;
     margin-top: 40px;
+    
 }
 /*image*/
 
+.lostBoardListContainer{
+    position:relative;
+    left:1em;
+    /* display:none; */
+}
+.lostBoardListContainer.active{
+    display:grid;
+}
+.btn-wrap {
+    text-align: center;
+}
 
 .lostBoardListContainer img{
-    width: 200px;
+    width: 15em;
     /* need to overwrite inline dimensions */
-    height: 150px;
+    height: 10em;
     padding:1em;
     border-radius:30%;
     filter: blur(0px);
@@ -21,6 +33,7 @@ body {
     transform: scale(1.1);
     line-height: 0;
     overflow:hidden;
+    
 }
 
 
@@ -31,10 +44,33 @@ h2 {
 /* CSS GRID와 CSS FLEX 차이 */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
     /* grid-template-columns: 1fr 1fr 1fr 1fr; */
     /* grid-column-gap:5em; */
+}
+
+@media(max-width:1024px){
+    .grid-container{
+        display:grid;
+        grid-template-columns:repeat(3,minmax(250px,1fr));
+    }
     
+    
+}
+
+@media(max-width:768px){
+    .grid-container{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(250px,1fr));
+    }
+}
+
+@media(max-width:480px){
+    .grid-container{
+        display:grid;
+        grid-template-columns:repeat(1,minmax(250px,1fr));
+    }
+
 }
 
 /* hover styles */
@@ -75,14 +111,14 @@ h2 {
 
 
 /* for touch screen devices */
-@media (hover: none) {
+@media (max-width:700px) {
     .location-title {
         opacity: 1;
         border-radius: 5px;
     }
-
-    .lostBoardListContainer img {
+    
+    .lostBoardListContainer:hover img {
         filter: blur(2px);
-        
     }
+
 }
