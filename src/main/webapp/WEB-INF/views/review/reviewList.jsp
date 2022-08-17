@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/review.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -28,7 +29,7 @@
 <body class="body_container">
     <div class="wrapper">
 <jsp:include page="../UI/topMenu.jsp" flush="true" />
-        <table border="1">
+        <table>
             <colgroup>
                 <col width="50">
                 <col width="200">

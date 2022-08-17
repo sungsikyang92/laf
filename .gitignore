@@ -10,7 +10,7 @@ df
 application.properties
 secTest.jsp
 secTestGgl.jsp
-DefaultOAuth2UserExtention.java
+# DefaultOAuth2UserExtention.java
 
 
 ### STS ###

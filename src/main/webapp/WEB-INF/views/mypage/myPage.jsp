@@ -12,10 +12,10 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
+    <link rel="stylesheet" href="/resources/css/myPage.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
-    <link rel="stylesheet" href="/resources/css/myPage.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -50,11 +50,14 @@
     <!--mypage start-->
     <div class = "mypage_container" id="mypage">
             <div class = "container">
-                <div class = "item">
+                <!-- <div class = "item">
                     <form action = "" method="get" enctype="multipart/form-data">
                         <img id = "img1" onclick="changeImage()" border="0" src = "resources/img/profile/${img.originalFileName}">
                         
                     </form>
+                </div> -->
+                <div class="item">
+                    <img id="img1" src="resources/img/profile/${img.originalFileName}">
                 </div>
                 <div class = "item2">
                     <ul>
@@ -75,11 +78,11 @@
             </div>
         <br>
             <ul>
-                <li>
+                <!-- <li>
                     <a href = "/myPage/founddetail">
                         <span class="item">내가 찾아준 내역 ▷</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href = "/review">
                         <span class="item">내 후기 모아보기 ▷</span>

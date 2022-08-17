@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../resources/css/reviewWrite.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/review.css" type="text/css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <script src="../resources/js/reviewDetail.js"></script>
@@ -22,7 +23,10 @@
 
     <title>reviewDetail</title>
 </head>
-<body>
+
+<body class="body_container">
+    <div class="wrapper">
+<jsp:include page="../UI/topMenu.jsp" flush="true" />
         <sec:authentication property="name" var="loginUserName" />
     <div class="userReview-box">
  <!-- 임시 --><h2>리뷰 디테일  페이지</h2>
@@ -63,6 +67,7 @@
 			<input type="button" value="뒤로가기" onclick="location.href='/review'">
 	</div>
 
+    </div>
     
 </body>
 </html>

@@ -54,7 +54,7 @@ public class UserController {
         logger.info("------------------------Controller mapping 'signUp button call'");
 
         // 약관버전 설정
-        int tVersion = 1;
+        int tVersion = 2;
         model.addAttribute("terms", termsService.selectOne(tVersion));
         System.out.println("-----------------------chk-----------------------" + model);
 
@@ -213,15 +213,20 @@ public class UserController {
             System.out.println("________penaltyObj__유저컨트롤러_______________________" + penaltyObj);
             session.setAttribute("penaltyObj", penaltyObj);
             
+            System.out.println("세션 이상없음");
             userService.updatePenalty(penaltyList);
+            System.out.println("업데이트 페널티 이상없음");
             
             if (newCnt == 0){
+                System.out.println("new cnt = 0");
                 jsonResponse.put("res", "correct");
                 return jsonResponse;
             }else if (newCnt < 3){
+                System.out.println("new cnt = 3");
                 jsonResponse.put("res", "wrong");
                 return jsonResponse;
             }else{
+                System.out.println("else");
                 jsonResponse.put("res", "block");
                 return jsonResponse;
             }
@@ -236,13 +241,26 @@ public class UserController {
 
             userService.updatePenalty(penaltyList);
 
+            // if (newCnt == 0){
+            //     jsonResponse.put("res", "correct");
+            //     return jsonResponse;
+            // }else if (newCnt < 3){
+            //     jsonResponse.put("res", "wrong");
+            //     return jsonResponse;
+            // }else{
+            //     jsonResponse.put("res", "block");
+            //     return jsonResponse;
+            // }
             if (newCnt == 0){
+                System.out.println("else new cnt = 0");
                 jsonResponse.put("res", "correct");
                 return jsonResponse;
             }else if (newCnt < 3){
+                System.out.println("else new cnt = 3");
                 jsonResponse.put("res", "wrong");
                 return jsonResponse;
             }else{
+                System.out.println("else else");
                 jsonResponse.put("res", "block");
                 return jsonResponse;
             }

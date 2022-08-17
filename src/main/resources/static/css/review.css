@@ -1,0 +1,43 @@
+/*reviewlist*/
+table{
+    /* margin:0 auto; */
+    width:90%;
+    position:relative;
+    left:5em;
+    border-collapse: collapse;
+    top:2em;
+    
+}
+td{
+    text-align:center;
+}
+@media(max-width:1024px){
+    table{
+        position:static;
+        width:100%;
+    }
+}
+tr{
+    border-bottom: 1px solid black;
+}
+a{
+    color:black;
+}
+
+/*reviewdetail*/
+.userReview-box{
+    width:100%;
+    position:relative;
+    top:5em;
+    left:30%;
+}
+@media(max-width:1024px){
+    .userReview-box{
+        width:80%;
+    top:2em;
+    left:10%;
+    }
+    textarea{
+        width:100%;
+    }
+}
