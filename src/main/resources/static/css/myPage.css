@@ -1,9 +1,15 @@
 .mypage_container{
-    width: 70%;
-    margin: auto;
-    margin-top: 40px;
-    
-    
+    width: 100%;
+    position:relative;
+    top:5em;
+    left:30%;
+}
+@media(max-width:1024px){
+    .mypage_container{
+        width:80%;
+        top:2em;
+        left:20%;
+    }
 }
 .button {
     border : none;

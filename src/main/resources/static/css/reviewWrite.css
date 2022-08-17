@@ -48,25 +48,20 @@ body {
 }
 
 
-/* for touch screen devices */
 
+.userReview-box{
+  width:100%;
+  position:relative;
+  top:5em;
+  left:30%;
+}
 @media(max-width:1024px){
+  .userReview-box{
+      width:80%;
+  top:2em;
+  left:10%;
+  }
   textarea{
-      width:20em;
-
+      width:100%;
   }
 }
-
-/* in form tag */
-
-.input_container {
-  display: flex;
-}
-
-.search {
-  position: absolute;
-  z-index: 5;
-  top: 20px;
-  left: 20px;
-}
-

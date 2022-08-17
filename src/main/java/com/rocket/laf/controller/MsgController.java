@@ -7,21 +7,19 @@ import com.rocket.laf.service.impl.ChatServiceImpl;
 import com.rocket.laf.service.impl.LostServiceImpl;
 import com.rocket.laf.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
+import org.apache.catalina.User;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-@Slf4j
-//@RestController
-@Controller
-@RequestMapping("/")
+@RestController
 @RequiredArgsConstructor
 public class MsgController {
-
 
     private static ChatServiceImpl chatServiceImpl;
     private static UserServiceImpl userServiceImpl;
@@ -87,4 +85,5 @@ public class MsgController {
 //        model.addAttribute("roomList", messageRooms);
 //        return messageRooms;
 //    }
+
 }
