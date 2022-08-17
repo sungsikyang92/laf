@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
+
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="resources/css/lostdetail.css" type="text/css">
 
@@ -29,10 +30,14 @@
         let boardNo = "${boardDetail.boardNo}";
 
         var penaltyObj = '<%= session.getAttribute("penaltyObj") %>'
-                var penaltyArrList = JSON.parse(penaltyObj);
-                
-                console.log(typeof(penaltyArrList));
+        var penaltyArrList = JSON.parse(penaltyObj);
 
+        //lostfix001 --
+        <sec:authorize access="isAuthenticated()">
+            let userNo = "<sec:authentication property='principal.userNo'/>";
+        </sec:authorize>
+        let boardUserNo = "${boardDetail.userNo}";
+        //--
     </script>
     <%-- 찾아줄게요 버튼 ajax --%>
     <script type="text/javascript">
@@ -113,6 +118,7 @@
         }
     </script>
 
+
 </head>
 
 <body class="body_container">
@@ -170,6 +176,7 @@
 
 
 <script src='resources/js/lostQuestion.js' async></script>
+
 </body>
 
 </html>

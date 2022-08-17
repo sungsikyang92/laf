@@ -2,6 +2,8 @@ package com.rocket.laf.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.rocket.laf.dto.PictureDto;
 
 public interface PictureService {
@@ -19,4 +21,5 @@ public interface PictureService {
 
     // NULL값 사진 삭제하기
     void deleteNullPic(long picNo);
+
 }
