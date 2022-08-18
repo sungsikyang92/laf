@@ -25,7 +25,7 @@
 
 <body class="body_container">
 <div class="wrapper">
-    <jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
+    <jsp:include page="../UI/topMenu.jsp" flush="true"/>
     <div class="contents_container">
         <div class="row">
             <div class="col-md-12">

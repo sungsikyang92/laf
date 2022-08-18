@@ -25,22 +25,14 @@
         <jsp:include page="../UI/topMenu.jsp" flush="true" />
     <!-- security tags starts-->
     <sec:authorize access="isAnonymous()">
-        <!-- <button class="btn" sec:authorize="isAnonymous()"
-            onclick="location.href='/user/login'">로그인</button> -->
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
         <sec:authentication property="name" var="loginUserName" />
-        <!-- <span class="item">${loginUserName}님 환영합니다</span>
-        <button class="btn" onclick="location.href='/lostWrite'">글쓰기</button>
-        <button class="btn" onclick="location.href=''">마이페이지</button>
-        <button class="btn" onclick="location.href='/user/logout'">로그아웃</button> -->
     </sec:authorize>
     <!-- security tags ends-->
 
     <div class="userReview-box">
- <!-- 임시 --><h2>후기 작성  페이지</h2>
 		<form action="/review/saveReview" method="get" onsubmit="return submitBtn()" id="formTag">
- <!-- 임시 --><div>${loginUserName}</div> 
             <input type="hidden" name="rUserId" value="${loginUserName}">
             <input type="hidden" name="rRevieweeId" value="${revieweeId}">
             <br>

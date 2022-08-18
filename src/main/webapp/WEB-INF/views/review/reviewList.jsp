@@ -28,8 +28,10 @@
 </head>
 <body class="body_container">
     <div class="wrapper">
+
 <jsp:include page="../UI/topMenu.jsp" flush="true" />
         <table>
+
             <colgroup>
                 <col width="50">
                 <col width="200">

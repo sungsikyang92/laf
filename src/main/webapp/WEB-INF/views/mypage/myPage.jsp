@@ -88,6 +88,17 @@
                         <span class="item">내 후기 모아보기 ▷</span>
                     </a>
                 </li>
+                <li>
+                    <sec:authentication property="principal.userNo" var="userNo"/>
+                    <a href = "/comm/rooms/${userNo}">
+                        <span class="item">내 채팅방 리스트 ▷</span>
+                    </a>
+                </li>
+                <li>
+                    <a href = "/cBoard">
+                        <span class="item">커뮤니티 입장 ▷</span>
+                    </a>
+                </li>
             </ul>
         </div>
 

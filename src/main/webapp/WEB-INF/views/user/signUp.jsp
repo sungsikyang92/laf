@@ -85,9 +85,9 @@
 					<label><h3>전화번호</h3></label>
 					<input type="text" name="userPhone" title="전화번호">
 					<!--dto6-->
-					<input type="button" value="인증번호 받기" onclick="contactIdentification()" title="전화 번호">
-					<br>
-					<input type="text" name="contactCertNo" placeholder="인증번호를 입력해주세요" title="인증번호">
+					<!-- <input type="button" value="인증번호 받기" onclick="contactIdentification()" title="전화 번호"> -->
+					<!-- <br> -->
+					<!-- <input type="text" name="contactCertNo" placeholder="인증번호를 입력해주세요" title="인증번호"> -->
 				</div>
 				<hr><br><br>
 				<div class="email-box">
@@ -114,4 +114,6 @@
 		<%--<jsp:include page="../UI/sideMenu.jsp" flush="true"/>--%>
 		</div>	
 	</body>
+
 </html>
+
