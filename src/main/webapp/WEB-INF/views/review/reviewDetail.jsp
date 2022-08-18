@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/resources/css/review.css" type="text/css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
+
     <script src="../resources/js/reviewDetail.js"></script>
     <script>
         let option = "${reviewDetail.ROption}";
@@ -23,6 +24,7 @@
 
     <title>reviewDetail</title>
 </head>
+
 
 <body class="body_container">
     <div class="wrapper">
@@ -66,6 +68,7 @@
             <br>
 			<input type="button" value="뒤로가기" onclick="location.href='/review'">
 	</div>
+
 
     </div>
     

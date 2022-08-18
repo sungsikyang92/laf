@@ -21,6 +21,7 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="resources/css/lostwrite.css" type="text/css">
 
+
     <script type="text/javascript"
             src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0dxd3s19ri"></script>
     <script type="text/javascript"

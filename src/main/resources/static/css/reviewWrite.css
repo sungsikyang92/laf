@@ -32,9 +32,23 @@
 
 #starlabel{
   margin-top: 0.1em;
-
-
 }
+
+/* --------- 영재 테스트 ------------ */
+
+body {
+  background: #f5f6fa;
+}
+
+.userReview-box {
+  width: 70%;
+  margin: auto;
+  margin-top: 40px;
+  
+}
+
+
+
 .userReview-box{
   width:100%;
   position:relative;
@@ -48,6 +62,6 @@
   left:10%;
   }
   textarea{
-      width:100%;
+      width:80%;
   }
 }
