@@ -163,23 +163,23 @@ public class LafController {
 //        }
 //        return "redirect:/";
 //    }
-    @GetMapping("/post_Quiz")
+    @PostMapping("/post_Quiz")
     public ModelAndView LostChatCreate(HttpServletRequest req, @RequestParam String loginUserName, @RequestParam String boardNo) {
         ModelAndView mv = new ModelAndView();
         String answer = req.getParameter("ans");
         LostDto lost = lostserviceImpl.getLostBoardOne(boardNo);
-        MessageRoom messageRoom = new MessageRoom();
+//        MessageRoom messageRoom = new MessageRoom();
         if (lost.getAnswers().equals(answer)) {
             UserDto userInfo = userService.getUserInfoById(loginUserName);
             long userNo = userService.getUserNoById(loginUserName);
             LostDto boardInfo = lostserviceImpl.getLostBoardOne(boardNo);
-            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
-            messageRoom.setRoomId(roomId);
-            messageRoom.setUserNo(userNo);
-            messageRoom.setBoardNo(boardNo);
+//            messageRoom.setRoomId(roomId);
+//            messageRoom.setUserNo(userNo);
+//            messageRoom.setBoardNo(boardNo);
             if (chatServiceImpl.chkChatRoomExist(boardNo, userNo) == 0) {
                 chatServiceImpl.createChatRoom(boardNo, userNo);
             }
+            long roomId = chatServiceImpl.getRoomIdByuserNo(userNo, boardNo);
             String url = "redirect://localhost:3000/?roomId="+roomId+"&&userName="+userInfo.getUserName();
             mv.setViewName(url);
         }

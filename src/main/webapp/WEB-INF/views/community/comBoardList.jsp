@@ -58,7 +58,7 @@
 
 <body class="body_container">
 <div class="wrapper">
-    <jsp:include page="../UI/topMenu.jsp" flush="true"/>
+    <jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
     <div class="contents_container">
         <c:choose>
             <c:when test="${empty cbList }">
@@ -79,11 +79,11 @@
                                 class='img'/></c:otherwise>
                             </c:choose>
                         </div>
-                        <div>${cbl.boardNo}</div>
+<%--                        <div>${cbl.boardNo}</div>--%>
                         <div>${cbl.title}</div>
                         <div>${cbl.createDate}</div>
-                        <div>${cbl.location}</div>
-                        <div>글 : ${cbl.modified}</div>
+<%--                        <div>${cbl.location}</div>--%>
+<%--                        <div>글 : ${cbl.modified}</div>--%>
                     </div>
                 </c:forEach>
             </c:otherwise>
