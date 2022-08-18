@@ -68,22 +68,22 @@
             <c:otherwise>
                 <c:forEach items="${cbList}" var="cbl">
                     <div class="comBoardListContainer" onclick="location.href='/cBoard/${cbl.boardNo}'">
+                        <div id="comBoardListMainImg${cbl.boardNo}">
+                            <c:choose>
+                                <c:when test="${empty picList}">
+                                    <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
+                                    class='img'/>
+                                </c:when>
+                                <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
+                                alt='사진을 불러올수가 엄써'
+                                class='img'/></c:otherwise>
+                            </c:choose>
+                        </div>
                         <div>${cbl.boardNo}</div>
                         <div>${cbl.title}</div>
                         <div>${cbl.createDate}</div>
                         <div>${cbl.location}</div>
                         <div>글 : ${cbl.modified}</div>
-                        <div id="comBoardListMainImg${cbl.boardNo}">
-                            <c:choose>
-                                <c:when test="${empty picList}">
-                                    <img width='300' height='169' src='/resources/img/woo.png' alt='사진을 불러올수가 엄써'
-                                         class='img'/>
-                                </c:when>
-                                <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
-                                                  alt='사진을 불러올수가 엄써'
-                                                  class='img'/></c:otherwise>
-                            </c:choose>
-                        </div>
                     </div>
                 </c:forEach>
             </c:otherwise>

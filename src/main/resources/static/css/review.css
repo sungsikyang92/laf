@@ -34,10 +34,10 @@ a{
 @media(max-width:1024px){
     .userReview-box{
         width:80%;
-    top:2em;
-    left:10%;
+        top:2em;
+        left:10%;
     }
     textarea{
-        width:100%;
+        width:80%;
     }
 }

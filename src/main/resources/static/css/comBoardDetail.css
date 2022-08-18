@@ -1,0 +1,9 @@
+.wrapper{
+    width:100%;
+    text-align:center;
+}
+.contents_container{
+    display:inline-block;
+    position:relative;
+    top:3em;
+}

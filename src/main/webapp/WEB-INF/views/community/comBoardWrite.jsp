@@ -14,7 +14,7 @@
     <title>LAF커뮤니티</title>
 
 
-    <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/comBoardDetail.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
 
@@ -24,49 +24,48 @@
 </head>
 
 <body class="body_container">
-
-<jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
-
-<div class="contents_container">
-    <form action="/cBoard/write" method="post" enctype="multipart/form-data">
-        <sec:authentication property="principal.userNo" var="userNo"/>
-        <input type="hidden" name="userNo" value="${userNo}">
-        <table>
-            <tr>
-                <div id="image_container"></div>
-                <div><input type="file" name="pictureUpload" id="pictureUpload" multiple="multiple"
-                            accept="image/*" onchange="setThumbnail(event);"/>
-                </div>
-            </tr>
-            <tr>
-                <div class="uploadResult"></div>
-            </tr>
-            <tr>
-                <td><input type="text" name="title" placeholder="글 제목을 입력해주세요"></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="category" placeholder="카테고리 입력"></td>
-            </tr>
-            <tr>
-                <td>
-                    <textarea name="content" placeholder="글 내용을 입력해주세요"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="취소" onclick="location.href='/cBoard'">
-                    <input type="submit" value="확인">
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+    <div class="wrapper">
+        <jsp:include page="../UI/topMenu.jsp" flush="true"/>
+            <div class="contents_container">
+                <form action="/cBoard/write" method="post" enctype="multipart/form-data">
+                    <sec:authentication property="principal.userNo" var="userNo"/>
+                    <input type="hidden" name="userNo" value="${userNo}">
+                    <table>
+                        <tr>
+                            <div id="image_container"></div>
+                            <div><input type="file" name="pictureUpload" id="pictureUpload" multiple="multiple"
+                                        accept="image/*" onchange="setThumbnail(event);"/>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="uploadResult"></div>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="title" placeholder="글 제목을 입력해주세요"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="category" placeholder="카테고리 입력"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea name="content" placeholder="글 내용을 입력해주세요"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="취소" onclick="location.href='/cBoard'">
+                                <input type="submit" value="확인">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
 
 <jsp:include page="../UI/sideMenu.jsp" flush="true"/>
 
 
 <script src='/resources/js/readImage.js'></script>
-
+    </div>
 </body>
 
 
