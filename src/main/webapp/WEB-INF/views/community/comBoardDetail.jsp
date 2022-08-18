@@ -44,18 +44,22 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div>${uDetail.userName}유저네임</div>
-        <div>${cbDetail.location}</div>
-        <div>${cbDetail.title}</div>
-        <div>${cbDetail.category}</div>
-        <div>${cbDetail.createDate}</div>
-        <div>${cbDetail.content}</div>
-        <div>${hDetail.hashKeyword}</div>
+        <div>작성자: ${uDetail.userName}</div>
+        <!-- <div>${cbDetail.location}</div> -->
+        <br>
+        <div>제목: ${cbDetail.title}</div>
+        <br>
+        <div>카테고리: ${cbDetail.category}</div>
+        <br>
+        <div>작성시간: ${cbDetail.createDate}</div>
+        <br>
+        <div>내용: ${cbDetail.content}</div>
+        <!-- <div>${hDetail.hashKeyword}</div> -->
         <div>
             <sec:authentication property="name" var="loginUserName"/>
-            ${loginUserName} 현재보는사람 아이디
+            <!-- ${loginUserName} 현재보는사람 아이디 -->
             <br>
-            ${uDetail.userId} 작성자 아이디
+            <!-- ${uDetail.userId} 작성자 아이디 -->
             <br>
             <input type="button" value="목록" onclick="location.href='/cBoard'">
             <c:if test="${uDetail.userId == loginUserName}">
