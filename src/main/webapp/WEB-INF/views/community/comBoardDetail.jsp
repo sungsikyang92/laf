@@ -15,8 +15,8 @@
     <title>LAF커뮤니티게시글보기</title>
 
 
+    <link rel="stylesheet" href="/resources/css/comBoardDetail.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
-    <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -26,7 +26,7 @@
 
 <body class="body_container">
 <div class="wrapper">
-    <jsp:include page="../UI/comTopMenu.jsp" flush="true"/>
+    <jsp:include page="../UI/topMenu.jsp" flush="true"/>
     <div class="contents_container">
         <div>
             <c:choose>
@@ -52,11 +52,12 @@
         <div>${cbDetail.content}</div>
         <div>${hDetail.hashKeyword}</div>
         <div>
-            <input type="button" value="목록" onclick="location.href='/cBoard'">
             <sec:authentication property="name" var="loginUserName"/>
             ${loginUserName} 현재보는사람 아이디
             <br>
             ${uDetail.userId} 작성자 아이디
+            <br>
+            <input type="button" value="목록" onclick="location.href='/cBoard'">
             <c:if test="${uDetail.userId == loginUserName}">
                 <input type="button" value="수정" onclick="location.href='/cBoard/update/${cbDetail.boardNo}'">
                 <input type="button" value="삭제" onclick="location.href='/cBoard/delete/${cbDetail.boardNo}'">
