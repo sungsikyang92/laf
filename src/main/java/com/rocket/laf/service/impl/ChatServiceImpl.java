@@ -1,6 +1,7 @@
 package com.rocket.laf.service.impl;
 
 import com.rocket.laf.dto.MessageRoom;
+import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.mapper.ChatMapper;
 import com.rocket.laf.service.ChatService;
 import lombok.RequiredArgsConstructor;
@@ -50,5 +51,10 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public MessageRoom getRoomByRoomId(long roomId) {
         return chatMapper.getRoomByRoomId(roomId);
+    }
+
+    @Override
+    public UserDto getUserInfoByRoomId(long roomId) {
+        return chatMapper.getUserInfoByRoomId(roomId);
     }
 }

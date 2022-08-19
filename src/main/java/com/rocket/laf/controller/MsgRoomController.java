@@ -2,17 +2,18 @@ package com.rocket.laf.controller;
 
 import com.rocket.laf.dto.LostDto;
 import com.rocket.laf.dto.MessageRoom;
+import com.rocket.laf.dto.UserDto;
 import com.rocket.laf.service.impl.ChatServiceImpl;
 import com.rocket.laf.service.impl.LostServiceImpl;
+import com.rocket.laf.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -22,11 +23,15 @@ public class MsgRoomController {
 
     private final ChatServiceImpl chatService;
     private final LostServiceImpl lostService;
+    private final UserServiceImpl userService;
 
     @GetMapping("/room/enter/{roomId}")
-    public String roomEnter(Model model, @PathVariable String roomId) {
-        model.addAttribute("roomId", roomId);
-        return "/chat/chatDetail";
+    public ModelAndView roomEnter(@PathVariable String roomId, Authentication authentication) {
+        ModelAndView mv = new ModelAndView();
+        String accessUser = authentication.getName();
+        String url = "redirect://localhost:3000/?roomId="+roomId+"&&userName="+accessUser;
+        mv.setViewName(url);
+        return mv;
     }
 
     @ResponseBody
@@ -34,12 +39,12 @@ public class MsgRoomController {
     public MessageRoom roomInfo(@PathVariable String roomId) {
         long roomId_to_long = Long.parseLong(roomId);
         MessageRoom msg = chatService.getRoomByRoomId(roomId_to_long);
-        System.out.println(msg.getRoomId());
-        System.out.println(msg.getUserNo());
+//        System.out.println(msg.getRoomId());
+//        System.out.println(msg.getUserNo());
         return msg;
     }
 
-    @GetMapping("/chat/rooms/{userNo}")
+    @GetMapping("/rooms/{userNo}")
     public String getAllChatRoomByUser(@PathVariable long userNo, Model model, Authentication authentication) {
         List<MessageRoom> messageRooms = chatService.getAllChatRoomByUser(userNo);
         for (MessageRoom messageRoom : messageRooms) {
@@ -49,6 +54,21 @@ public class MsgRoomController {
         model.addAttribute("roomList", messageRooms);
         return "/chat/roomList";
     }
+
+//    @ResponseBody
+//    @GetMapping("/room/{roomId}/{boardNo}/{accessUserName}")
+//    public int chkChatRoomExist(@RequestParam String roomId, @RequestParam String accessUserName, @RequestParam String boardNo) {
+//        MessageRoom roomByUserInfo = chatService.getRoomByRoomId(roomId);
+//        Long userNo = roomByUserInfo.getUserNo();
+//        UserDto userById = userService.getUserById(userNo);
+//        System.out.println(userById.getUserName());
+//        if (userById.getUserName() == loginUserName) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+//    }
+
 //    @ResponseBody
 //    @GetMapping("/rooms")
 //    public String getAllChatRoomByUser(Model model) {
@@ -69,3 +89,6 @@ public class MsgRoomController {
 //        return messageRooms;
 //    }
 }
+
+
+

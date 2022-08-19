@@ -14,7 +14,7 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
-    <!-- <link rel="stylesheet" href="/resources/css/comBoard.css" type="text/css"> -->
+
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <script src='../resources/js/index.js' defer></script>
@@ -66,8 +66,8 @@
                     for (let i = 0; i < mainFoundListDtos.length; i++) {
                         if (mainFoundListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
@@ -76,8 +76,8 @@
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].title + "</div>";
                             tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
@@ -86,7 +86,8 @@
                             tags += "</div>";
                         }
                     }
-                    $("#test").html(tags);
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
                 }
             })
         }
@@ -105,8 +106,8 @@
                     for (let i = 0; i < mainLostListDtos.length; i++) {
                         if (mainLostListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainLostListDtos[i].title + "</div>";
                             tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
@@ -115,8 +116,8 @@
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
                             tags += "<div>" + mainLostListDtos[i].title + "</div>";
                             tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
@@ -125,7 +126,8 @@
                             tags += "</div>";
                         }
                     }
-                    $("#test").html(tags);
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
                 }
             })
         }
@@ -145,26 +147,27 @@
                         if (searchListDtos[i].picExt == true) {
                             tags += "<div class='lostBoardListContainer'>";
                             tags += "<a href='/" + searchListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<div>" + searchListDtos[i].boardNo + "</div>";
                             tags += "<div>" + searchListDtos[i].title + "</div>";
                             tags += "<div>" + searchListDtos[i].createDate + "</div>";
                             tags += "<div>" + searchListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         } else {
                             tags += "<div class='lostBoardListContainer'>";
                             tags += "<a href='/" + searchListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "<div>" + searchListDtos[i].boardNo + "</div>";
                             tags += "<div>" + searchListDtos[i].title + "</div>";
                             tags += "<div>" + searchListDtos[i].createDate + "</div>";
                             tags += "<div>" + searchListDtos[i].location + "</div>";
-                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
                             tags += "</a>"
                             tags += "</div>";
                         }
                     }
-                    $("#test").html(tags);
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
                 }
             })
         }

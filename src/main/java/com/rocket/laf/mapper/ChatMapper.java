@@ -1,9 +1,11 @@
 package com.rocket.laf.mapper;
 
 import com.rocket.laf.dto.MessageRoom;
+import com.rocket.laf.dto.UserDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -30,4 +32,8 @@ public interface ChatMapper {
 
     @Select(" SELECT roomId,userNo FROM Message WHERE roomId = #{roomId} ")
     MessageRoom getRoomByRoomId(long roomId);
+
+    @Select(" SELECT userNo, boardNo")
+    UserDto getUserInfoByRoomId(long roomId);
+//    @Update(" UPDATE ")
 }
