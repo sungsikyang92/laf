@@ -57,8 +57,8 @@ public class LafController {
             System.out.println("로그인한 사용자 인증정보_________ " + auth);
         }
 
-        Object list = request.getSession().getAttribute("penaltyObj");
-        System.out.println("컨트롤러 세션유지호가인 ____ " + list);
+        // Object list = request.getSession().getAttribute("penaltyObj");
+        // System.out.println("컨트롤러 세션유지호가인 ____ " + list);
 
         List<LostDto> lostlist = lostserviceImpl.getLostBoardList();
         List<PictureDto> PictureDtoList = pictureServiceImpl.getMainPictureForLost();
@@ -73,6 +73,8 @@ public class LafController {
 
         model.addAttribute("lostlist", lostlist);
         model.addAttribute("picList", PictureDtoList);
+
+        System.out.println("laf 메인 컨트롤러 이상없음");
         return "index";
     }
 
@@ -217,5 +219,12 @@ public class LafController {
         return "redirect:/"+boardNo;
     }
 
+    @GetMapping("/faq")
+    public String faq(){
+
+
+
+        return "/lost/faq";
+    }
 
 }
