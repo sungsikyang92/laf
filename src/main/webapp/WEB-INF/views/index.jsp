@@ -14,6 +14,7 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
+
     <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
     <script src='../resources/js/index.js' defer></script>

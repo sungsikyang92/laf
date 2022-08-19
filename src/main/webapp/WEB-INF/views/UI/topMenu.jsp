@@ -79,7 +79,7 @@
                     </li>
                     
                     <li>
-                        <a href="QnA" class="qna">
+                        <a href="/faq" class="qna">
                         <span class="item">자주묻는질문</span>
                         </a>
                     </li>
