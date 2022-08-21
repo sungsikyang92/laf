@@ -4,15 +4,15 @@ import com.rocket.laf.common.FileUtils;
 import com.rocket.laf.dto.CommunityDto;
 import com.rocket.laf.dto.PictureDto;
 import com.rocket.laf.mapper.CommunityMapper;
+import com.rocket.laf.mapper.PictureMapper;
 import com.rocket.laf.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -20,6 +20,7 @@ import java.util.List;
 public class CommunityServiceImpl implements CommunityService {
 
     private final CommunityMapper communityMapper;
+    private final PictureMapper pictureMapper;
     private final FileUtils fileUtils;
 
     @Override
@@ -27,39 +28,51 @@ public class CommunityServiceImpl implements CommunityService {
         return communityMapper.getComBoardList();
     }
 
+    @Transactional
     @Override
-    public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
-        communityMapper.writeComBoard(communityDto);
-        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getCBoardNo(), multipartHttpServletRequest);
+    public void writeComBoard(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest)
+            throws Exception {
+        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getBoardNo(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
+            communityMapper.writeComBoard(communityDto);
             communityMapper.writeComBoardFileList(list);
+        } else {
+            communityMapper.writeComBoard(communityDto);
+//            pictureMapper.insertPicBoardNo(communityDto.getCBoardNo());
         }
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public CommunityDto getComBoardDetail(String cBoardNo) {
-        return communityMapper.getComBoardDetail(cBoardNo);
+    public CommunityDto getComBoardDetail(String boardNo) throws Exception {
+        CommunityDto communityDto = communityMapper.getComBoardDetail(boardNo);
+        return communityDto;
     }
 
+    @Transactional
     @Override
-    public int updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest) {
-        if (ObjectUtils.isEmpty(multipartHttpServletRequest) == false) {
-            Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-            String name;
-            while (iterator.hasNext()) {
-                name = iterator.next();
-                List<MultipartFile> list = multipartHttpServletRequest.getFiles(name);
-            }        }
-        return communityMapper.updateComBoardDetail(communityDto);
+    public void updateComBoardDetail(CommunityDto communityDto, MultipartHttpServletRequest multipartHttpServletRequest)
+            throws Exception {
+        communityMapper.updateComBoardDetail(communityDto);
+        List<PictureDto> list = fileUtils.parseFileInfo(communityDto.getBoardNo(), multipartHttpServletRequest);
+        if (CollectionUtils.isEmpty(list) == false) {
+            for (PictureDto pictureDto : list) {
+                System.out.println(pictureDto.getOriginalFileName());
+            }
+            communityMapper.writeComBoardFileList(list);
+        }
+
     }
 
+    @Transactional
     @Override
-    public int deleteComBoardDetail(String cBoardNo) {
-        return communityMapper.deleteComBoardDetail(cBoardNo);
+    public int deleteComBoardDetail(String boardNo) {
+        return communityMapper.deleteComBoardDetail(boardNo);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public String getLastCBoardNo() {
-        return communityMapper.getLastCBoardNo();
+        return communityMapper.getLastBoardNo();
     }
 }

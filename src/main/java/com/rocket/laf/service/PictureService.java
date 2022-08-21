@@ -1,34 +1,25 @@
 package com.rocket.laf.service;
 
 import java.util.List;
-import org.springframework.core.io.Resource;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
-import java.util.stream.Stream;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rocket.laf.dto.PictureDto;
 
 public interface PictureService {
-
-    List<PictureDto> getAllPictuer(String picNo);
-
-    String getMainPicLoc(long picNo);
-
-    //    모든 사진 가져오기
+    // 모든 사진 가져오기
     List<PictureDto> getAllPictureByBoardNo(String boardNo);
 
-    // filesystem
+    //커뮤니티 대표사진 한장 가져오기
+    List<PictureDto> getMainPictureForCom();
 
-    void init();
+    //로스트 대표사진 한장 가져오기
+    List<PictureDto> getMainPictureForLost();
 
-    void store(MultipartFile file);
+    // 선택된 사진 삭제하기
+    void deleteSelectedPic(long picNo);
 
-    Stream<Path> loadAll();
+    // NULL값 사진 삭제하기
+    void deleteNullPic(long picNo);
 
-    Path load(String filename);
-
-    Resource loadAsResource(String filename);
-
-    void deleteAll();
 }

@@ -2,7 +2,10 @@ package com.rocket.laf.dto;
 
 import lombok.*;
 
-@Data
+import java.util.List;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PictureDto {
@@ -11,5 +14,6 @@ public class PictureDto {
     private String originalFileName;
     private String storedFilePath;
     private long fileSize;
-    private boolean isDeleted;
+    private boolean picRmd;
+    private boolean picExt;
 }

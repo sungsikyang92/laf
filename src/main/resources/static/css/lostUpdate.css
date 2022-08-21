@@ -1,0 +1,29 @@
+body {
+    background: #f5f6fa;
+}
+
+.contents_container {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+h2 {
+    margin-bottom: .5em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1em;
+}
+
+#imageList {
+    display: flex;
+}
+
+/* in form tag */
+
+.input_container {
+    display: flex;
+}

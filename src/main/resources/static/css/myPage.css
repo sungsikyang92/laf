@@ -1,0 +1,41 @@
+.mypage_container{
+    width: 100%;
+    position:relative;
+    top:5em;
+    left:30%;
+}
+@media(max-width:1024px){
+    .mypage_container{
+        width:80%;
+        top:2em;
+        left:20%;
+    }
+}
+.button {
+    border : none;
+    cursor : pointer;
+    background-color :whitesmoke;
+}
+input {
+    
+    cursor : pointer;
+}
+.container{
+    display:flex;
+    flex-wrap:wrap;
+}
+img{
+    width : 200px;
+    height : 200px;
+}
+/* hr{
+    margin-top : 70px;
+    margin-bottom: 30px;
+    width : 200px;
+    size :30px;
+} */
+
+
+.item2 ul li{
+    margin-left: 30px;
+}

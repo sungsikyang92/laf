@@ -7,9 +7,20 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface BoardNoMapper {
 
-    @Select(" SELECT MAX(cBoardNO) FROM BoardNo ")
+    @Select(" SELECT MAX(cBoardNo) FROM BoardNo ")
     long getMaxBoardNo();
 
-    @Insert(" INSERT INTO BoardNo (cBoardNo) VALUES (#{cBoardNo}) ")
-    long addBoardNo(long cBoardNo);
+    @Insert(" INSERT INTO BoardNo (cBoardNo) VALUES (#{boardNo}) ")
+    long addBoardNo(long boardNo);
+
+    @Select(" SELECT MAX(lBoardNo) FROM BoardNo")
+    long getMaxlBoardNo();
+
+    @Insert("INSERT INTO BoardNo (lBoardNo) VALUES (#{lBoardNo})")
+    long addlBoardNo(long lBoardNo);
+    
+    @Select(" SELECT boardNo " +
+            "FROM Picture " +
+            "WHERE picNo = #{picNo} ")
+    String getBoardNoByPicNo(long picNo);
 }

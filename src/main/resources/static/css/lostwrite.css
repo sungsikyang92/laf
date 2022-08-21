@@ -6,6 +6,7 @@ body {
     width: 70%;
     margin: auto;
     margin-top: 40px;
+    
 }
 
 
@@ -89,7 +90,12 @@ h2 {
         border-radius: 5px;
     }
 }
+@media(max-width:1024px){
+    textarea{
+        width:20em;
 
+    }
+}
 
 /* in form tag */
 
@@ -113,4 +119,17 @@ h2 {
     left: 5px;
     color: white;
     text-shadow: 2px 2px 2px black;
+}
+
+
+/* MAP */
+.map {
+    position: relative;
+}
+
+.search {
+    position: absolute;
+    z-index: 5;
+    top: 20px;
+    left: 20px;
 }

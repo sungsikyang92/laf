@@ -1,145 +1,232 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- security teglibrary -->
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-        <!DOCTYPE html>
-        <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>LaF</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaF</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/button.css" type="text/css">
 
-            <link rel="stylesheet" href="resources/css/header_footer.css" type="text/css">
-            <link rel="stylesheet" href="resources/css/header_footer_btn.css" type="text/css">
-            <link rel="stylesheet"
-                href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="/resources/css/header_footer.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/header_footer_btn.css" type="text/css">
+    <script src='../resources/js/index.js' defer></script>
 
-            <link rel="stylesheet" href="resources/css/main.css" type="text/css">
-            <link rel="stylesheet" media="screen and (max-width:390px)" href="resources/css/main_mobile.css"
-                type="text/css">
+    <%-- ajax를 위한 script START--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <%-- ajax를 위한 script END--%>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "get",
+                data: {"boardNo": "l"},
+                dataType: "json",
+                url: "/picture",
+                success: function (mainPicList) {
+                    let tags = '';
+                    for (let i = 0; i < mainPicList.length; i++) {
+                        if (mainPicList[i].picExt == false) {
+                            tags += "<article class='location-listing'>";
+                            tags += "<div class='location-image'>";
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "</div>";
+                            tags += "</article>";
+                        } else {
+                            tags += "<article class='location-listing'>";
+                            tags += "<div class='location-image'>";
+                            tags += "<img width='300' height='169' src='" + mainPicList[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "</div>";
+                            tags += "</article>";
+                        }
+                        $("#lostBoardListMainImg" + mainPicList[i].boardNo).html(tags);
+                        tags = '';
+                    }
+                }
+            })
+        });
+    </script>
+    <%-- 찾아줄게요 버튼 ajax --%>
+    <script type="text/javascript">
+        function getFoundId(data) {
+            let found = data;
+            $.ajax({
+                type: "get",
+                data: "lCategory=" + found,
+                dataType: "json",
+                url: "/lafList/found/" + found,
+                success: function (mainFoundListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < mainFoundListDtos.length; i++) {
+                        if (mainFoundListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='" + mainFoundListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].title + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].location + "</div>";
+                            tags += "</a>"
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/" + mainFoundListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "<div>" + mainFoundListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].title + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainFoundListDtos[i].location + "</div>";
+                            tags += "</a>"
+                            tags += "</div>";
+                        }
+                    }
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
+                }
+            })
+        }
+    </script>
+    <%-- 찾아주세요 버튼 ajax --%>
+    <script type="text/javascript">
+        function getLostId(data) {
+            let lost = data;
+            $.ajax({
+                type: "get",
+                data: "lCategory=" + lost,
+                dataType: "json",
+                url: "/lafList/lost/" + lost,
+                success: function (mainLostListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < mainLostListDtos.length; i++) {
+                        if (mainLostListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='" + mainLostListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].title + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].location + "</div>";
+                            tags += "</a>"
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/" + mainLostListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "<div>" + mainLostListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].title + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].createDate + "</div>";
+                            tags += "<div>" + mainLostListDtos[i].location + "</div>";
+                            tags += "</a>"
+                            tags += "</div>";
+                        }
+                    }
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
+                }
+            })
+        }
+    </script>
+    <%--    검색결과 화면 Ajax--%>
+    <script type="text/javascript">
+        function searchArg(data) {
+            let searchArg = data;
+            $.ajax({
+                type: "get",
+                data: "searchArg=" + searchArg,
+                dataType: "json",
+                url: "/search/" + searchArg,
+                success: function (searchListDtos) {
+                    let tags = '';
+                    for (let i = 0; i < searchListDtos.length; i++) {
+                        if (searchListDtos[i].picExt == true) {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/" + searchListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='" + searchListDtos[i].storedFilePath + "' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "<div>" + searchListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + searchListDtos[i].title + "</div>";
+                            tags += "<div>" + searchListDtos[i].createDate + "</div>";
+                            tags += "<div>" + searchListDtos[i].location + "</div>";
+                            tags += "</a>"
+                            tags += "</div>";
+                        } else {
+                            tags += "<div class='lostBoardListContainer'>";
+                            tags += "<a href='/" + searchListDtos[i].boardNo + "'>"
+                            tags += "<img width='300' height='169' src='/resources/img/woo.png' onerror='this.src=/resources/img/woo.png' alt='' class='img' />";
+                            tags += "<div>" + searchListDtos[i].boardNo + "</div>";
+                            tags += "<div>" + searchListDtos[i].title + "</div>";
+                            tags += "<div>" + searchListDtos[i].createDate + "</div>";
+                            tags += "<div>" + searchListDtos[i].location + "</div>";
+                            tags += "</a>"
+                            tags += "</div>";
+                        }
+                    }
+                    // $("#test").html(tags);
+                    $(".grid-container").html(tags);
+                }
+            })
+        }
+    </script>
+</head>
 
+<body class="body_container">
+<div class="wrapper">
 
-            <script src='resources/js/main_sidebar.js'></script>
-        </head>
+    <jsp:include page="UI/topMenu.jsp" flush="true"/>
 
-        <body class="body_container">
-            <div class="wrapper">
-                <div class="section">
-                    <div class="top_navbar">
-                        <div class="hamburger">
-                            <a href="#">
-                                <i class="fi fi-rr-menu-burger"></i>
-                            </a>
-                        </div>
-                        <div class="right_nav">
-                            <button class="btn" onclick="location.href='/Lostwrite'">글쓰기</button>
-                            <button class="btn" onclick="location.href='/user/login'">로그인/마이페이지</button>
-                        </div>
-                    </div>
-                </div>
+    <!-- 컨텐츠 삽입부분-->
+    <div class="contents_container">
 
+        <div class="child-page-listing">
 
-                <!-- 컨텐츠 삽입부분-->
-                <div class="contents_container">
+            <%--            <h2 style="text-align: center;">실시간베너 만들것 </h2>--%>
+            <%--            <div>--%>
+            <%--                            <input type="button" value="찾아줄게요" id="foundBtn" class="foundBtn" onclick="getFoundId('습득')"/>--%>
+            <%--                            <input type="button" value="찾아주세요" id="lostBtn" class="lostBtn" onclick="getLostId('분실')"/>--%>
+            <%--            </div>--%>
+            <div class="grid-container" id="test">
 
-                    <div class="child-page-listing">
+                <c:choose>
+                    <c:when test="${empty lostlist }">
+                        <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${lostlist}" var="lostboard">
+                            <div class="lostBoardListContainer" onclick="location.href='/${lostboard.boardNo}'">
+                                <div id="lostBoardListMainImg${lostboard.boardNo}">
+                                    <c:choose>
+                                        <c:when test="${empty picList}">
+                                            <img width='300' height='169' src='/resources/img/woo.png'
+                                                alt='사진을 불러올수가 엄써'
+                                                class='img'/>
+                                        </c:when>
+                                        <c:otherwise><img width='300' height='169' src='/resources/img/woo.png'
+                                                        onerror='this.src=/resources/img/woo.png' alt=''
+                                                        class='img'/></c:otherwise>
+                                    </c:choose>
 
-                        <h2 style="text-align: center;">실시간베너 만들것 </h2>
+                                </div>
 
-                        <div class="grid-container">
-
-                            <c:choose>
-                                <c:when test="${empty lostlist }">
-                                    <td colspan="4">----작성된 글이 존재하지 않습니다----</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${lostlist}" var="lostboard">
-                                        <article class="location-listing">
-                                            <a class="location-title"
-                                                href="lostdetail?&lBNo=${lostboard.LBoardNo}&PicNo=${lostboard.picNo}">
-                                                ${lostboard.LTitle} </a>
-                                            <div class="location-image">
-                                                <a href="#">
-                                                    <img width="300" height="169" src="${lostboard.mainPicLoc}"
-                                                        alt="${lostboard.LTitle}">
-                                                </a>
-                                            </div>
-                                        </article>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <!-- end grid container -->
-                    </div>
-                </div>
-
-
-                <!-- TOP menu -->
-                <div class="sidebar">
-                    <div class="sidetop">
-                        <div class="sidetop_left">
-                            <a href="/" class="logo">
-                                <img src="resources/img/logo/laf6.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="MyPage" class="mypage">
-                                <span class="icon"><i class="fi fi-rr-home"></i></span>
-                                <span class="item">마이페이지</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="cBoard" class="cboard">
-                                <span class="icon"><i class="fi fi-rr-users-alt"></i></span>
-                                <span class="item">커뮤니티</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="QnA" class="qna">
-                                <span class="icon"><i class="fi fi-rr-comment-alt"></i></span>
-                                <span class="item">QnA</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Menual" class="menual">
-                                <span class="icon"><i class="fi fi-rr-document"></i></span>
-                                <span class="item">분실물 대처 방안</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="PayReward" class="payreward">
-                                <span class="icon"><i class="fi fi-rr-credit-card"></i></span>
-                                <span class="item">사례금 환급 받기</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Chat" class="chat">
-                                <span class="icon"><i class="fi fi-rr-smartphone"></i></span>
-                                <span class="item">진행중인 1:1 채팅</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="MyReviews" class="myreviews">
-                                <span class="icon"><i class="fi fi-rr-book-alt"></i></span>
-                                <span class="item">내 후기 모아보기</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                                <div>${lostboard.boardNo}</div>
+                                <div>${lostboard.title}</div>
+                                <div>${lostboard.createDate}</div>
+                                <div>${lostboard.location}</div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
-            <!--
-        <header class="header_container">
-
-        </header>
-        <footer class="footer_container">
-
-        </footer>
-        -->
+        </div>
+        <%--<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>--%>
+    </div>
+</div>
 
 
-        </body>
+</body>
 
-        </html>
+</html>

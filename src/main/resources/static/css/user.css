@@ -1,0 +1,81 @@
+body {
+    background: #f5f6fa;
+}
+
+.login-box {
+    width: 70%;
+    margin: 0 auto;
+    position:relative;
+    top:4em;
+}
+@media (max-width:600px){
+    .login-box{
+        top:5em;
+    }
+    #allchked table{ 
+        width:0;
+        position:relative;
+        
+        left:-3em;
+    }
+    
+
+}
+
+.login-box h2{
+    font-size: 50px;
+}
+
+.user-box{
+    font-size : 30px;
+    font-weight:bold;
+}
+
+.user-box input{
+    width : 10em;
+}
+
+#login{
+    font-size:large;
+    width:5em;
+}
+
+#logon{
+    font-size:large;
+    width:5em;
+}
+#google{
+    font-size:large;
+    width:7em;
+}
+.userReg-box{
+    width: 70%;
+    margin: 0 auto;
+    position:relative;
+    top:30px;
+   
+}
+
+#allchked{
+    width: 70%;
+    margin:0 auto;
+    position:relative;
+}
+#allchked table{
+    margin:0 auto;
+}
+#check1{
+    margin-left:50px;
+}
+
+#allchked .vol{
+    margin-left:50px;
+    width:129px;
+    margin-top:10px;
+}
+
+.userReg-box>form>.inp{
+    width:7em;
+    font-size:large;
+
+}
