@@ -28,3 +28,7 @@ Java, Javascript, JQuery, Css, Spring Boot, AWS, Naver Cloud Platform
 ### 서비스 사용 방법
 로그인(회원가입) -> 분실물 글작성 -> 문제 풀이 -> 1:1 채팅 -> 약속 후 돌려줌
     
+### 화면 설계 (FIGMA)
+<img width="709" alt="스크린샷 2022-10-22 오후 4 36 59" src="https://user-images.githubusercontent.com/71358285/197327064-90ac80df-350a-4214-8ed3-6dbe75ef5ff6.png">
+<img width="726" alt="스크린샷 2022-10-22 오후 4 37 35" src="https://user-images.githubusercontent.com/71358285/197327068-2ab9a74b-95f5-49f7-95b5-88a3b4b68597.png">
+<img width="573" alt="스크린샷 2022-10-22 오후 4 37 45" src="https://user-images.githubusercontent.com/71358285/197327075-73070739-0ac8-46bd-9fa9-39874fb8e738.png">
